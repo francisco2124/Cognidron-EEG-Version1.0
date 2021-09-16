@@ -9,11 +9,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
 
-class Ui_Consultar_Tutores(object):
+class Ui_Consultar_Tutor(object):
     def setupUi(self, Consultar_Terapeuta):
         Consultar_Terapeuta.setObjectName("Consultar_Terapeuta")
         Consultar_Terapeuta.resize(679, 683)
         Consultar_Terapeuta.setMinimumSize(QtCore.QSize(674, 683))
+        Consultar_Terapeuta.setMaximumSize(QtCore.QSize(674, 683))
+        self.label.setMaximumSize(QtCore.QSize(674, 683))
         self.btnEliminar = QtWidgets.QPushButton(Consultar_Terapeuta)
         self.btnEliminar.setGeometry(QtCore.QRect(480, 180, 71, 28))
         self.btnEliminar.setObjectName("btnEliminar")
@@ -175,7 +177,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Consultar_Terapeuta = QtWidgets.QDialog()
-    ui = Ui_Consultar_Terapeuta()
+    ui = Ui_Consultar_Tutor()
     ui.setupUi(Consultar_Terapeuta)
     Consultar_Terapeuta.show()
     sys.exit(app.exec_())

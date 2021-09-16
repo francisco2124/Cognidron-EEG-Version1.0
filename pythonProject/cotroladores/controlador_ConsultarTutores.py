@@ -111,7 +111,7 @@ class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
             item = self.ui.tableView_2.item(RowTable, 0)
             print(item.text())
 
-            buttonReply = QMessageBox.question(self, 'Alerta', "¿Quieres eliminar a: "+item.text()+" de forma permanente?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            buttonReply = QMessageBox.question(self, 'Alerta', "Hola Moni! ¿Quieres eliminar a: "+item.text()+" de forma permanente?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 
             if buttonReply == QMessageBox.Yes:
                 print("se eliminara el terapeuta")

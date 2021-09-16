@@ -197,7 +197,7 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
     def validarBorradoLigico(self, user):
         cursor = self.connection.cursor()
 
-        sql='''SELECT Terapeuta_idTrapeuta  FROM sesionterapeutica WHERE Terapeuta_idTrapeuta =' {}' '''.format(user)
+        sql='''SELECT idPaciente  FROM paciente WHERE Tutor_idTutor =' {}' '''.format(user)
 
         cursor.execute(sql)
         registro = cursor.fetchall()
@@ -210,8 +210,8 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
     def validarBorradoLigico2(self, user):
         cursor = self.connection.cursor()
 
-        sql="SELECT idTrapeuta FROM terapeuta " \
-            "INNER JOIN usuarios user ON (user.nombreUsuario = terapeuta.usuarios_nombreUsuario) where usuarios_nombreUsuario = '{}'".format(user)
+        sql="SELECT idTutor FROM terapeuta " \
+            " nombre = '{}'".format(user)
 
         cursor.execute(sql)
         registro = cursor.fetchall()
