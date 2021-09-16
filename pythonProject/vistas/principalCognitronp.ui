@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1101</width>
+    <height>834</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Cognitron</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>images/idea-genial.png</normaloff>images/idea-genial.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QMdiArea" name="mdiArea">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>1071</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+      <horstretch>80</horstretch>
+      <verstretch>80</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>1071</width>
+      <height>800</height>
+     </size>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>800</width>
+      <height>800</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1101</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuVista">
+    <property name="title">
+     <string>Vista</string>
+    </property>
+    <addaction name="mni_cascada"/>
+    <addaction name="mni_cuadricula"/>
+    <addaction name="mni_tabs"/>
+   </widget>
+   <widget class="QMenu" name="menuAchivo">
+    <property name="title">
+     <string>Achivo</string>
+    </property>
+    <widget class="QMenu" name="opc_Paciente">
+     <property name="title">
+      <string>Paciente</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="menuCrear_Paciente"/>
+     <addaction name="actionConsultar_Paciente"/>
+    </widget>
+    <widget class="QMenu" name="menuTutor">
+     <property name="title">
+      <string>Tutor</string>
+     </property>
+     <addaction name="actionCrear_Tutor_2"/>
+     <addaction name="actionConsultar_Tutor"/>
+    </widget>
+    <widget class="QMenu" name="menuTerapeuta">
+     <property name="title">
+      <string>Terapeuta</string>
+     </property>
+     <addaction name="actionCrear_Terapeutta"/>
+     <addaction name="actionConsultar_Terapeuta"/>
+    </widget>
+    <addaction name="menuTerapeuta"/>
+    <addaction name="menuTutor"/>
+    <addaction name="opc_Paciente"/>
+   </widget>
+   <widget class="QMenu" name="menuEjercicios">
+    <property name="title">
+     <string>Ejercicios</string>
+    </property>
+    <widget class="QMenu" name="menuNeurofeedback">
+     <property name="title">
+      <string>Neurofeedback</string>
+     </property>
+     <addaction name="actionElevar_Drone_2"/>
+     <addaction name="actionMnatener_Drone"/>
+     <addaction name="actionBajar_Drono"/>
+     <addaction name="actionMover_a_la_derecha"/>
+     <addaction name="actionMover_a_la_isquierda"/>
+    </widget>
+    <widget class="QMenu" name="menuModo_Libre">
+     <property name="title">
+      <string>Modo Libre</string>
+     </property>
+     <addaction name="actionLevel_1"/>
+     <addaction name="actionLevel_2"/>
+     <addaction name="actionLevel_3"/>
+     <addaction name="actionLevel_4"/>
+     <addaction name="actionLevel_5"/>
+    </widget>
+    <addaction name="menuNeurofeedback"/>
+    <addaction name="menuModo_Libre"/>
+   </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuCoexion">
+    <property name="title">
+     <string>Conexión</string>
+    </property>
+    <widget class="QMenu" name="menuConectar_Robot_Fisico">
+     <property name="title">
+      <string>Conectar Robot Fisico</string>
+     </property>
+     <addaction name="actionDrone"/>
+     <addaction name="actionRobot_Lego"/>
+    </widget>
+    <addaction name="actionConectar_Eotiv"/>
+    <addaction name="menuConectar_Robot_Fisico"/>
+    <addaction name="actionConfigurar_parametros_de_conexi_n"/>
+   </widget>
+   <widget class="QMenu" name="menuReportes">
+    <property name="title">
+     <string>Reportes</string>
+    </property>
+    <addaction name="actionConsultar_Reporte"/>
+    <addaction name="actionEditar_Reporte"/>
+   </widget>
+   <addaction name="menuAchivo"/>
+   <addaction name="menuEjercicios"/>
+   <addaction name="menuVista"/>
+   <addaction name="menuCoexion"/>
+   <addaction name="menuReportes"/>
+   <addaction name="menuAyuda"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionIconAbrirReporte"/>
+   <addaction name="actionIconConsulatrReporte"/>
+   <addaction name="separator"/>
+   <addaction name="actionIconoTerapeuta"/>
+   <addaction name="actionIconoTutor"/>
+   <addaction name="actionIconPaciente"/>
+   <addaction name="separator"/>
+   <addaction name="actionIconoConexion"/>
+   <addaction name="actionIconoTerapia"/>
+   <addaction name="actionIconoTerapia_2"/>
+   <addaction name="actionIconLibro"/>
+   <addaction name="separator"/>
+   <addaction name="actionVistaCuadricula"/>
+   <addaction name="actionVistaCascada"/>
+   <addaction name="actionVistaVentana"/>
+  </widget>
+  <action name="mni_tabs">
+   <property name="text">
+    <string>Vista Pestaña</string>
+   </property>
+  </action>
+  <action name="mni_cascada">
+   <property name="text">
+    <string>Vista Cascada</string>
+   </property>
+  </action>
+  <action name="mni_cuadricula">
+   <property name="text">
+    <string>Vista Cuadricula</string>
+   </property>
+  </action>
+  <action name="mni_subven">
+   <property name="text">
+    <string>Vista Subventanas</string>
+   </property>
+  </action>
+  <action name="actionElevar_Drone_2">
+   <property name="text">
+    <string>Elevar Drone</string>
+   </property>
+  </action>
+  <action name="actionMnatener_Drone">
+   <property name="text">
+    <string>Mnatener Drone </string>
+   </property>
+  </action>
+  <action name="actionBajar_Drono">
+   <property name="text">
+    <string>Bajar Drone</string>
+   </property>
+  </action>
+  <action name="actionMover_a_la_derecha">
+   <property name="text">
+    <string>Mover a la derecha</string>
+   </property>
+  </action>
+  <action name="actionMover_a_la_isquierda">
+   <property name="text">
+    <string>Mover a la isquierda</string>
+   </property>
+  </action>
+  <action name="actionLevel_1">
+   <property name="text">
+    <string>Level 1</string>
+   </property>
+  </action>
+  <action name="actionLevel_2">
+   <property name="text">
+    <string>Level 2</string>
+   </property>
+  </action>
+  <action name="actionLevel_3">
+   <property name="text">
+    <string>Level 3</string>
+   </property>
+  </action>
+  <action name="actionLevel_4">
+   <property name="text">
+    <string>Level 4</string>
+   </property>
+  </action>
+  <action name="actionLevel_5">
+   <property name="text">
+    <string>Level 5</string>
+   </property>
+  </action>
+  <action name="menuCrear_Paciente">
+   <property name="text">
+    <string>Crear Paciente</string>
+   </property>
+  </action>
+  <action name="actionConsultar_Paciente">
+   <property name="text">
+    <string>Consultar Paciente</string>
+   </property>
+  </action>
+  <action name="actionCrear_Tutor_2">
+   <property name="text">
+    <string>Crear Tutor</string>
+   </property>
+  </action>
+  <action name="actionConsultar_Tutor">
+   <property name="text">
+    <string>Consultar Tutor</string>
+   </property>
+  </action>
+  <action name="actionCrear_Terapeutta">
+   <property name="text">
+    <string>Crear Terapeutta</string>
+   </property>
+  </action>
+  <action name="actionConsultar_Terapeuta">
+   <property name="text">
+    <string>Consultar Terapeuta</string>
+   </property>
+  </action>
+  <action name="actionIconAbrirReporte">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/archivo.png</normaloff>:/images/archivo.png</iconset>
+   </property>
+   <property name="text">
+    <string>IconAbrirReporte</string>
+   </property>
+   <property name="toolTip">
+    <string>Abrir Reporte</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionVistaCuadricula">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/cuadricula.png</normaloff>:/images/cuadricula.png</iconset>
+   </property>
+   <property name="text">
+    <string>VistaCuadricula</string>
+   </property>
+   <property name="toolTip">
+    <string>Vista Cuadricula</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+1</string>
+   </property>
+  </action>
+  <action name="actionBotonDetener">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/detener.png</normaloff>:/images/detener.png</iconset>
+   </property>
+   <property name="text">
+    <string>BotonDetener</string>
+   </property>
+   <property name="toolTip">
+    <string>Detener</string>
+   </property>
+  </action>
+  <action name="actionIconoTutor">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/familia.png</normaloff>:/images/familia.png</iconset>
+   </property>
+   <property name="text">
+    <string>IconoTutor</string>
+   </property>
+   <property name="toolTip">
+    <string>Consultar Tutor</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionIconoTerapia">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/idea-genial.png</normaloff>:/images/idea-genial.png</iconset>
+   </property>
+   <property name="text">
+    <string>IconoOndas</string>
+   </property>
+   <property name="toolTip">
+    <string>Mostar Ondas Cerebrales</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionIconLibro">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/libro-abierto.png</normaloff>:/images/libro-abierto.png</iconset>
+   </property>
+   <property name="text">
+    <string>IconEjercicos</string>
+   </property>
+   <property name="toolTip">
+    <string>Abrir Ejercicos</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionVistaCascada">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/menu.png</normaloff>:/images/menu.png</iconset>
+   </property>
+   <property name="text">
+    <string>VistaCascada</string>
+   </property>
+   <property name="toolTip">
+    <string>Vista Cascada</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+2</string>
+   </property>
+  </action>
+  <action name="actionIconPaciente">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/paciente.png</normaloff>:/images/paciente.png</iconset>
+   </property>
+   <property name="text">
+    <string>IconPaciente</string>
+   </property>
+   <property name="toolTip">
+    <string>Consultar Paciente</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionBotonPausa">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/pausa.png</normaloff>:/images/pausa.png</iconset>
+   </property>
+   <property name="text">
+    <string>BotonPausa</string>
+   </property>
+   <property name="toolTip">
+    <string>Pausar</string>
+   </property>
+  </action>
+  <action name="actionBotonPlay">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/play.ico</normaloff>:/images/play.ico</iconset>
+   </property>
+   <property name="text">
+    <string>BotonPlay</string>
+   </property>
+   <property name="toolTip">
+    <string>Play</string>
+   </property>
+  </action>
+  <action name="actionBotonEncender">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/poder.png</normaloff>:/images/poder.png</iconset>
+   </property>
+   <property name="text">
+    <string>BotonEncender</string>
+   </property>
+   <property name="toolTip">
+    <string>Iniciar</string>
+   </property>
+  </action>
+  <action name="actionIconConsulatrReporte">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/reporte.png</normaloff>:/images/reporte.png</iconset>
+   </property>
+   <property name="text">
+    <string>IconConsulatrReporte</string>
+   </property>
+   <property name="toolTip">
+    <string>Consultar Reportes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionIconoTerapia_2">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/salud-mental.png</normaloff>:/images/salud-mental.png</iconset>
+   </property>
+   <property name="text">
+    <string>IconoTerapia</string>
+   </property>
+   <property name="toolTip">
+    <string>Abrir Terapa</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionIconoTerapeuta">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/terapeuta.png</normaloff>:/images/terapeuta.png</iconset>
+   </property>
+   <property name="text">
+    <string>IconoTerapeuta</string>
+   </property>
+   <property name="toolTip">
+    <string>Consulatr Terapeutas</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionIconoConexion">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/wifi.png</normaloff>:/images/wifi.png</iconset>
+   </property>
+   <property name="text">
+    <string>IconoConexion</string>
+   </property>
+   <property name="toolTip">
+    <string>Conexion</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionConectar_Eotiv">
+   <property name="text">
+    <string>Conectar Eotiv</string>
+   </property>
+  </action>
+  <action name="actionDrone">
+   <property name="text">
+    <string>Drone</string>
+   </property>
+  </action>
+  <action name="actionRobot_Lego">
+   <property name="text">
+    <string>Robot Lego</string>
+   </property>
+  </action>
+  <action name="actionConsultar_Reporte">
+   <property name="text">
+    <string>Consultar Reporte</string>
+   </property>
+  </action>
+  <action name="actionEditar_Reporte">
+   <property name="text">
+    <string>Editar Reporte</string>
+   </property>
+  </action>
+  <action name="actionVistaVentana">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/ventana.png</normaloff>:/images/ventana.png</iconset>
+   </property>
+   <property name="text">
+    <string>VistaVentana</string>
+   </property>
+   <property name="toolTip">
+    <string>Vista Ventanas</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+3</string>
+   </property>
+  </action>
+  <action name="actionConfigurar_parametros_de_conexi_n">
+   <property name="text">
+    <string>Configurar parametros de conexión</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="images/image.qrc"/>
+ </resources>
+ <connections/>
+</ui>
