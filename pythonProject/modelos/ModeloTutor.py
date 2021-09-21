@@ -85,7 +85,7 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
             db="cognidroneeg"
         )
         cursor = self.connection.cursor()
-        sql='''DELETE  FROM tutor WHERE idTutor = '{}' '''.format(idTerapeuta)
+        sql='''DELETE  FROM tutor WHERE idTutor ='{}' '''.format(idTerapeuta)
         cursor.execute(sql)
         self.connection.commit()
 
@@ -210,8 +210,8 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
     def validarBorradoLigico2(self, user):
         cursor = self.connection.cursor()
 
-        sql="SELECT idTutor FROM terapeuta " \
-            " nombre = '{}'".format(user)
+        sql="SELECT idTutor FROM tutor " \
+            " WHERE correo_electronico ='{}'".format(user)
 
         cursor.execute(sql)
         registro = cursor.fetchall()

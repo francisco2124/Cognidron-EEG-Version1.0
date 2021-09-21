@@ -1,3 +1,6 @@
+
+
+
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore
@@ -15,11 +18,12 @@ import re
 
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vista
 
+
 class Controlador_AgrgarTerapeutas(QtWidgets.QMainWindow):
 
     def __init__(self):
         super().__init__()
-        print("soy la vista de agregar terapeutas")
+        print("soy la vista de agregar terapeutascd  11")
         self.ui= Ui_DialogAgregarTerapeuta()
         self.modelo = Modelo_Terapeuta()
         self.ui.setupUi(self)

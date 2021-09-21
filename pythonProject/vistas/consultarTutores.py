@@ -15,7 +15,6 @@ class Ui_Consultar_Tutor(object):
         Consultar_Terapeuta.resize(679, 683)
         Consultar_Terapeuta.setMinimumSize(QtCore.QSize(674, 683))
         Consultar_Terapeuta.setMaximumSize(QtCore.QSize(674, 683))
-        self.label.setMaximumSize(QtCore.QSize(674, 683))
         self.btnEliminar = QtWidgets.QPushButton(Consultar_Terapeuta)
         self.btnEliminar.setGeometry(QtCore.QRect(480, 180, 71, 28))
         self.btnEliminar.setObjectName("btnEliminar")

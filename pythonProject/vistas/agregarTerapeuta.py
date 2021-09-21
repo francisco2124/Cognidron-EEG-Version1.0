@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
 
+
 class Ui_DialogAgregarTerapeuta(object):
     def setupUi(self, DialogAgregarTerapeuta):
         DialogAgregarTerapeuta.setObjectName("DialogAgregarTerapeuta")
@@ -365,7 +366,7 @@ class Ui_DialogAgregarTerapeuta(object):
         self.label_13.setText(_translate("DialogAgregarTerapeuta", "Código postal"))
         self.label_7.setText(_translate("DialogAgregarTerapeuta", "Apellido Paterno (*)"))
         self.cbMunicipio.setItemText(0, _translate("DialogAgregarTerapeuta", "Ameca"))
-        self.label_2.setText(_translate("DialogAgregarTerapeuta", "Nuevo Terapeuta"))
+        self.label_2.setText(_translate("DialogAgregarTerapeuta", "Nuevo Terapeutaa"))
         self.groupBox.setTitle(_translate("DialogAgregarTerapeuta", "Selecciona una opción"))
         self.rbFemenino.setText(_translate("DialogAgregarTerapeuta", "Femenino"))
         self.rbMasculino.setText(_translate("DialogAgregarTerapeuta", "Masculino"))

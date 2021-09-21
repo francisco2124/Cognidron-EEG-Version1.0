@@ -1,16 +1,13 @@
+
+
+
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore
-
-from vistas.agregarTutor import Ui_DialogAgregarTutor
+from vistas.agregarTutor import Ui_DialogAgregarTerapeuta
 from modelos.ModeloTutor import Modelo_Tutor_
-
 from modelos.ModeloTerapeuta import Modelo_Terapeuta
-
-
 from PyQt5.QtGui import QIntValidator
-
-
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp
 import re
@@ -24,7 +21,7 @@ class Controlador_AgrgarTutor(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         print("soy la vista de agregar terapeutas")
-        self.ui= Ui_DialogAgregarTutor()
+        self.ui= Ui_DialogAgregarTerapeuta()
         self.modelo = Modelo_Tutor_()
         self.ui.setupUi(self)
         self.inicializarGUI()

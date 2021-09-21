@@ -1,6 +1,11 @@
+
+
+
 from PyQt5 import QtWidgets
 from vistas.principalCognitronp import Ui_MainWindow
 from PyQt5.QtGui import QIntValidator
+
+
 
 #Modelo
 from modelos.ModeloTerapeuta import Modelo_Terapeuta
@@ -21,8 +26,10 @@ from cotroladores.controlador_ParametrosConexion import Controlador_parametros
 from cotroladores.controlador_Terapia import Controlador_Terapia
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vista
 
+
 class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
 
+    x = 0
     def __init__(self):
         super().__init__()
         print("soy princial de vista")
@@ -56,11 +63,10 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.abrir.show()
 
     def agregarTutor(self):
-
-        self.abrir = QtWidgets.QMainWindow()
-        self.abrir = Controlador_AgrgarTutor()
-        self.ui.mdiArea.addSubWindow(self.abrir)
-        self.abrir.show()
+            self.abrir = QtWidgets.QMainWindow()
+            self.abrir = Controlador_AgrgarTutor()
+            self.ui.mdiArea.addSubWindow(self.abrir)
+            self.abrir.show()
 
     def consultarTerapeuta(self):
 

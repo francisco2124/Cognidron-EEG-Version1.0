@@ -835,7 +835,7 @@ border-image: url(:/newPrefix/vision.png);</string>
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Nuevo Terapeuta</string>
+     <string>Nuevo Terapeutaa</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">
@@ -950,7 +950,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   </widget>
  </widget>
  <resources>
-  <include location="images/image.qrc"/>
+  <include location="../../../Cognidron-EEG_Software/pythonProject/vistas/images/image.qrc"/>
  </resources>
  <connections/>
 </ui>
