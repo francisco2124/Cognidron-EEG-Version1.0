@@ -36,7 +36,7 @@ class Ui_DialogAgregarTerapeuta(object):
         self.leCorreoElectronico.setFont(font)
         self.leCorreoElectronico.setText("")
         self.leCorreoElectronico.setMaxLength(40)
-        self.leCorreoElectronico.setObjectName("leCorreoElectronico")
+        self.leCorreoElectronico.setObjectName("leCorreoElectronicoo")
         self.leNombres = QtWidgets.QLineEdit(DialogAgregarTutor)
         self.leNombres.setGeometry(QtCore.QRect(220, 160, 181, 21))
         font = QtGui.QFont()
