@@ -663,7 +663,7 @@ background-color: rgb(200, 198, 223);</string>
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Nuevo Terapeuta</string>
+     <string>Nuevo Tutor</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">
