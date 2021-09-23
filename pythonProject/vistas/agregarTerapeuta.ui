@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../../Cognidron-EEG_Software/pythonProject/vistas/images/image.qrc">
+    <normaloff>:/newPrefix/terapeuta.png</normaloff>:/newPrefix/terapeuta.png</iconset>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>

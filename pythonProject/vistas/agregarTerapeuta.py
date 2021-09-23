@@ -9,12 +9,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
 
-
 class Ui_DialogAgregarTerapeuta(object):
     def setupUi(self, DialogAgregarTerapeuta):
         DialogAgregarTerapeuta.setObjectName("DialogAgregarTerapeuta")
         DialogAgregarTerapeuta.resize(490, 705)
         DialogAgregarTerapeuta.setMinimumSize(QtCore.QSize(490, 700))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/terapeuta.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        DialogAgregarTerapeuta.setWindowIcon(icon)
         self.label = QtWidgets.QLabel(DialogAgregarTerapeuta)
         self.label.setGeometry(QtCore.QRect(0, 0, 541, 741))
         self.label.setMinimumSize(QtCore.QSize(480, 710))

@@ -258,8 +258,19 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <number>0</number>
    </property>
    <property name="columnCount">
-    <number>5</number>
+    <number>6</number>
    </property>
+   <column>
+    <property name="text">
+     <string>Id_Tutor</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
    <column>
     <property name="text">
      <string>Nombre</string>
