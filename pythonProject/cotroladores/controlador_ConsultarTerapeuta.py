@@ -156,6 +156,8 @@ class Controlador_ConsultarTerapeutas(QtWidgets.QMainWindow):
             self.ui.tableView_2.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
             self.ui.tableView_2.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[4]))
             self.ui.tableView_2.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
+            #self.ui.tableView_2.setItem(tablerow,5,QtWidgets.QTableWidgetItem(row[6]))
+
             tablerow +=1
 
 

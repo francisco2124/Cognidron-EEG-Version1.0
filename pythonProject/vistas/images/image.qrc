@@ -30,6 +30,14 @@
   <file>EjerDerecha.png</file>
   <file>EjerIzquierda.png</file>
     <file>agregar.png</file>
+    <file>circuloAnaranjado.png</file>
+    <file>circuloRojo.png</file>
+    <file>circuloVerde.png</file>
+    <file>img.png</file>
+    <file>circuloLRNaranja.png</file>
+    <file>circuloLRRojo.png</file>
+    <file>circuloLRVerde.png</file>
+    <file>circuloGris.png</file>
 
 
   </qresource>

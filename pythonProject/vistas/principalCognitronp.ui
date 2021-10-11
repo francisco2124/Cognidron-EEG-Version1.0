@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1098</width>
+    <width>1285</width>
     <height>907</height>
    </rect>
   </property>
@@ -35,8 +35,8 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>1071</width>
-      <height>800</height>
+      <width>1261</width>
+      <height>810</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -47,8 +47,8 @@
     </property>
     <property name="minimumSize">
      <size>
-      <width>1071</width>
-      <height>800</height>
+      <width>1200</width>
+      <height>810</height>
      </size>
     </property>
     <property name="baseSize">
@@ -67,7 +67,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1098</width>
+     <width>1285</width>
      <height>26</height>
     </rect>
    </property>
@@ -167,7 +167,13 @@
      <addaction name="actionDrone"/>
      <addaction name="actionRobot_Lego"/>
     </widget>
-    <addaction name="actionConectar_Eotiv"/>
+    <widget class="QMenu" name="menuConectar_con_Diadema">
+     <property name="title">
+      <string>Conectar con Diadema</string>
+     </property>
+     <addaction name="actionConectar_Emotiv"/>
+    </widget>
+    <addaction name="menuConectar_con_Diadema"/>
     <addaction name="menuConectar_Robot_Fisico"/>
     <addaction name="actionConfigurar_parametros_de_conexi_n"/>
    </widget>
@@ -563,11 +569,6 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionConectar_Eotiv">
-   <property name="text">
-    <string>Conectar Eotiv</string>
-   </property>
-  </action>
   <action name="actionDrone">
    <property name="text">
     <string>Drone</string>
@@ -631,6 +632,11 @@
   <action name="mni_tabs">
    <property name="text">
     <string>Vista Pestaña</string>
+   </property>
+  </action>
+  <action name="actionConectar_Emotiv">
+   <property name="text">
+    <string>Conectar Emotiv</string>
    </property>
   </action>
  </widget>

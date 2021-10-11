@@ -24,6 +24,7 @@ from cotroladores.controlador_ConsultarTutores import Controlador_ConsultarTuoto
 #otros
 from cotroladores.controlador_ParametrosConexion import Controlador_parametros
 from cotroladores.controlador_Terapia import Controlador_Terapia
+from cotroladores.Controlador_conexion import Controlador_conexion
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vista
 
 
@@ -39,6 +40,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.modelo = Modelo_Terapeuta()
         #elf.generalTerapeuta = Controlador_ConsultarTerapeutas(self.modelo)
         #self.terapeutaSelect = Control_ConsultarTerapectuaSelec(self.modelo)
+        self.abrirTerapia()
 
 
     def InicializarGui(self):
@@ -54,6 +56,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
 
         self.ui.actionConfigurar_parametros_de_conexi_n.triggered.connect(self.editarParametros)
         self.ui.actionIconoTerapia.triggered.connect(self.abrirTerapia)
+        self.ui.actionConectar_Emotiv.triggered.connect(self.abrirConexionEmotiv)
 
     def agregarTerapeuta(self):
 
@@ -100,5 +103,12 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
 
         self.abrir = QtWidgets.QDialog()
         self.abrir = Controlador_Terapia()
+        self.ui.mdiArea.addSubWindow(self.abrir)
+        self.abrir.show()
+
+    def abrirConexionEmotiv(self):
+
+        self.abrir = QtWidgets.QDialog()
+        self.abrir = Controlador_conexion()
         self.ui.mdiArea.addSubWindow(self.abrir)
         self.abrir.show()

@@ -6,36 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1204</width>
+    <width>1000</width>
     <height>709</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>700</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Terapia</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>10</y>
-     <width>351</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Inicia una Terapia </string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>80</y>
+     <y>120</y>
      <width>171</width>
      <height>31</height>
     </rect>
@@ -46,16 +34,16 @@
     </font>
    </property>
    <property name="text">
-    <string>Seleciona un paciente:</string>
+    <string>Paciente:</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>90</y>
+     <x>90</x>
+     <y>120</y>
      <width>151</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
    <item>
@@ -74,56 +62,12 @@
     </property>
    </item>
   </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>80</y>
-     <width>151</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Tipo de Tratamiento:</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioButton">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>90</y>
-     <width>61</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Libre</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioButton_2">
-   <property name="geometry">
-    <rect>
-     <x>600</x>
-     <y>90</y>
-     <width>111</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>NeuroFeedback</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>170</y>
-     <width>141</width>
+     <x>300</x>
+     <y>120</y>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
@@ -133,88 +77,52 @@
     </font>
    </property>
    <property name="text">
-    <string>Seleciona un ejercicio:</string>
+    <string>Robot:</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox_2">
    <property name="geometry">
     <rect>
-     <x>890</x>
-     <y>90</y>
-     <width>151</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <item>
-    <property name="text">
-     <string>Elevar drone</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Decender Drone</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Modo libre</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>820</x>
-     <y>30</y>
-     <width>231</width>
+     <x>380</x>
+     <y>120</y>
+     <width>131</width>
      <height>31</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Martes 17 de Noviembre del 2020</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>30</y>
-     <width>231</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Terapeuta: nombre xxxxxxxxxxx</string>
-   </property>
+   <item>
+    <property name="text">
+     <string>Dron Be Boop</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Dron Tello</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Robot Lego</string>
+    </property>
+   </item>
   </widget>
   <widget class="QPushButton" name="btnEnviarIstruccion">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>270</y>
+     <x>40</x>
+     <y>340</y>
      <width>161</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Mostrar Istrucciones</string>
+    <string>Mostrar Instrucciones</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnActivarDrone">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>660</y>
+     <x>40</x>
+     <y>670</y>
      <width>161</width>
      <height>31</height>
     </rect>
@@ -229,23 +137,23 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>520</y>
-     <width>41</width>
+     <x>40</x>
+     <y>510</y>
+     <width>161</width>
      <height>28</height>
     </rect>
    </property>
    <property name="text">
-    <string>_</string>
+    <string>Aterrizar Drone</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>520</y>
-     <width>41</width>
-     <height>28</height>
+     <x>60</x>
+     <y>590</y>
+     <width>31</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -255,10 +163,10 @@
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>470</y>
+     <x>100</x>
+     <y>550</y>
      <width>41</width>
-     <height>28</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -268,10 +176,10 @@
   <widget class="QPushButton" name="pushButton_6">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>520</y>
-     <width>41</width>
-     <height>28</height>
+     <x>150</x>
+     <y>590</y>
+     <width>31</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -281,37 +189,21 @@
   <widget class="QPushButton" name="pushButton_7">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>570</y>
+     <x>100</x>
+     <y>620</y>
      <width>41</width>
-     <height>28</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>v</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnActivarEmotiv">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>170</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(0, 255, 0);</string>
-   </property>
-   <property name="text">
-    <string>Activar Emotiv</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnElevarDrone">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>420</y>
+     <x>40</x>
+     <y>470</y>
      <width>161</width>
      <height>31</height>
     </rect>
@@ -320,30 +212,12 @@
     <string>Elevar Drone</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>0</y>
-     <width>131</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Numero de terapia: </string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>480</x>
+     <x>550</x>
      <y>120</y>
-     <width>121</width>
+     <width>71</width>
      <height>31</height>
     </rect>
    </property>
@@ -353,13 +227,13 @@
     </font>
    </property>
    <property name="text">
-    <string>Establecer tiempo: </string>
+    <string>Tiempo:</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox_3">
    <property name="geometry">
     <rect>
-     <x>610</x>
+     <x>630</x>
      <y>120</y>
      <width>81</width>
      <height>31</height>
@@ -394,9 +268,9 @@
   <widget class="QProgressBar" name="progressBar">
    <property name="geometry">
     <rect>
-     <x>710</x>
+     <x>740</x>
      <y>120</y>
-     <width>171</width>
+     <width>231</width>
      <height>23</height>
     </rect>
    </property>
@@ -404,31 +278,11 @@
     <number>24</number>
    </property>
   </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>710</x>
-     <y>0</y>
-     <width>41</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>X_1</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnResumen">
    <property name="geometry">
     <rect>
-     <x>890</x>
-     <y>120</y>
+     <x>750</x>
+     <y>170</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -446,8 +300,8 @@
   <widget class="QPushButton" name="btnDetener">
    <property name="geometry">
     <rect>
-     <x>990</x>
-     <y>120</y>
+     <x>870</x>
+     <y>170</y>
      <width>61</width>
      <height>31</height>
     </rect>
@@ -465,8 +319,8 @@
   <widget class="QPushButton" name="btnPausar">
    <property name="geometry">
     <rect>
-     <x>940</x>
-     <y>120</y>
+     <x>820</x>
+     <y>170</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -484,8 +338,8 @@
   <widget class="QPushButton" name="btbCapturarObservaciones">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>220</y>
+     <x>40</x>
+     <y>300</y>
      <width>161</width>
      <height>31</height>
     </rect>
@@ -497,9 +351,9 @@
   <widget class="QLabel" name="label_10">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>120</y>
-     <width>141</width>
+     <x>20</x>
+     <y>160</y>
+     <width>51</width>
      <height>31</height>
     </rect>
    </property>
@@ -509,14 +363,14 @@
     </font>
    </property>
    <property name="text">
-    <string>Seleciona un Perfil:</string>
+    <string>Perfil:</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox_4">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>120</y>
+     <x>90</x>
+     <y>160</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -550,8 +404,8 @@
   <widget class="QLabel" name="labelComandosMentales">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>650</y>
+     <x>230</x>
+     <y>670</y>
      <width>261</width>
      <height>31</height>
     </rect>
@@ -568,8 +422,8 @@
   <widget class="QLabel" name="labelEventoDrone">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>650</y>
+     <x>510</x>
+     <y>670</y>
      <width>211</width>
      <height>31</height>
     </rect>
@@ -586,7 +440,7 @@
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>340</x>
      <y>290</y>
      <width>251</width>
      <height>281</height>
@@ -603,7 +457,7 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>210</y>
+     <y>220</y>
      <width>471</width>
      <height>431</height>
     </rect>
@@ -618,10 +472,10 @@
   <widget class="QProgressBar" name="progressBar_2">
    <property name="geometry">
     <rect>
-     <x>970</x>
-     <y>653</y>
-     <width>171</width>
-     <height>21</height>
+     <x>890</x>
+     <y>680</y>
+     <width>71</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="value">
@@ -631,10 +485,10 @@
   <widget class="QProgressBar" name="progressBar_3">
    <property name="geometry">
     <rect>
-     <x>710</x>
-     <y>650</y>
-     <width>171</width>
-     <height>23</height>
+     <x>750</x>
+     <y>680</y>
+     <width>71</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="value">
@@ -644,50 +498,35 @@
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>650</y>
+     <x>720</x>
+     <y>670</y>
      <width>41</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>9</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>MS Shell Dlg 2</family>
+     <pointsize>8</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <property name="text">
     <string>BCI</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_14">
-   <property name="geometry">
-    <rect>
-     <x>910</x>
-     <y>650</y>
-     <width>51</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Robot</string>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>830</x>
-     <y>520</y>
-     <width>120</width>
-     <height>80</height>
+     <x>840</x>
+     <y>380</y>
+     <width>121</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="title">
@@ -710,7 +549,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
+      <y>60</y>
       <width>95</width>
       <height>20</height>
      </rect>
@@ -723,8 +562,8 @@
   <widget class="QComboBox" name="comboBox_5">
    <property name="geometry">
     <rect>
-     <x>830</x>
-     <y>610</y>
+     <x>840</x>
+     <y>490</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -758,8 +597,8 @@
   <widget class="QPushButton" name="btnResumen_2">
    <property name="geometry">
     <rect>
-     <x>890</x>
-     <y>430</y>
+     <x>900</x>
+     <y>520</y>
      <width>51</width>
      <height>31</height>
     </rect>
@@ -777,8 +616,8 @@
   <widget class="QPushButton" name="btnResumen_3">
    <property name="geometry">
     <rect>
-     <x>840</x>
-     <y>430</y>
+     <x>850</x>
+     <y>520</y>
      <width>51</width>
      <height>31</height>
     </rect>
@@ -796,11 +635,14 @@
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
-     <x>840</x>
-     <y>470</y>
+     <x>850</x>
+     <y>560</y>
      <width>104</width>
-     <height>41</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Umbral 0-100</string>
    </property>
   </widget>
   <widget class="QProgressBar" name="progressBar_4">
@@ -809,7 +651,7 @@
      <x>730</x>
      <y>220</y>
      <width>81</width>
-     <height>331</height>
+     <height>411</height>
     </rect>
    </property>
    <property name="layoutDirection">
@@ -836,17 +678,457 @@
     <enum>QProgressBar::TopToBottom</enum>
    </property>
   </widget>
-  <zorder>label_12</zorder>
+  <widget class="QLabel" name="label_16">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>160</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Pista:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_6">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>160</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Pista 1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Pista 2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Pista 3</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_17">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>670</y>
+     <width>41</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MS Shell Dlg 2</family>
+     <pointsize>8</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Robot</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_14">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>220</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MS Shell Dlg 2</family>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+     <underline>true</underline>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+text-decoration: underline;</string>
+   </property>
+   <property name="text">
+    <string>Puntos Obtenidos</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_18">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>270</y>
+     <width>121</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Yu Gothic UI Semibold</family>
+     <pointsize>20</pointsize>
+     <weight>7</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 63 20pt &quot;Yu Gothic UI Semibold&quot;;
+background-color: rgb(200, 198, 223);</string>
+   </property>
+   <property name="text">
+    <string>     0</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>-20</x>
+     <y>0</y>
+     <width>1021</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(200, 198, 223);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>0</y>
+      <width>401</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <pointsize>19</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+font: 75 19pt &quot;Times New Roman&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Nueva Terapia</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>10</y>
+      <width>71</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/newPrefix/salud-mental.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Terapeuta: nombre:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>50</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Monica Perales</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>50</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Martes 17 de Noviembre del 2020</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_4">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>80</y>
+     <width>1001</width>
+     <height>10</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>10</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(214, 225, 229), stop:1 rgba(109, 130, 198));
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>89</y>
+     <width>1010</width>
+     <height>621</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>1010</width>
+     <height>610</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(210, 220, 220), stop:1 rgba(100, 130, 190));
+
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_19">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>590</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MS Shell Dlg 2</family>
+     <pointsize>12</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>    *</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnIniciarTerapia">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>220</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(252, 103, 66);</string>
+   </property>
+   <property name="text">
+    <string>Configura tu conexion</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnActivarDrone_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>420</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(116, 147, 198);</string>
+   </property>
+   <property name="text">
+    <string>Activar robot</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>160</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Ejercicio:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_7">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>160</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Elevar drone</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Decender Drone</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Modo libre</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="btnIniciarTerapia_2">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>600</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182, 181, 203);</string>
+   </property>
+   <property name="text">
+    <string>Aplicar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnIniciarTerapia_3">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>260</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182, 181, 203);</string>
+   </property>
+   <property name="text">
+    <string>Iniciar terapia</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnActivarEmotiv">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>380</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(0, 226, 0);</string>
+   </property>
+   <property name="text">
+    <string>Activar Diadema</string>
+   </property>
+  </widget>
   <zorder>label</zorder>
+  <zorder>frame</zorder>
+  <zorder>label_12</zorder>
   <zorder>label_2</zorder>
   <zorder>comboBox</zorder>
-  <zorder>label_3</zorder>
-  <zorder>radioButton</zorder>
-  <zorder>radioButton_2</zorder>
   <zorder>label_4</zorder>
   <zorder>comboBox_2</zorder>
-  <zorder>label_5</zorder>
-  <zorder>label_6</zorder>
   <zorder>btnEnviarIstruccion</zorder>
   <zorder>btnActivarDrone</zorder>
   <zorder>pushButton_3</zorder>
@@ -854,13 +1136,10 @@
   <zorder>pushButton_5</zorder>
   <zorder>pushButton_6</zorder>
   <zorder>pushButton_7</zorder>
-  <zorder>btnActivarEmotiv</zorder>
   <zorder>btnElevarDrone</zorder>
-  <zorder>label_7</zorder>
   <zorder>label_8</zorder>
   <zorder>comboBox_3</zorder>
   <zorder>progressBar</zorder>
-  <zorder>label_9</zorder>
   <zorder>btnResumen</zorder>
   <zorder>btnDetener</zorder>
   <zorder>btnPausar</zorder>
@@ -873,13 +1152,26 @@
   <zorder>progressBar_2</zorder>
   <zorder>progressBar_3</zorder>
   <zorder>label_13</zorder>
-  <zorder>label_14</zorder>
   <zorder>groupBox</zorder>
   <zorder>comboBox_5</zorder>
   <zorder>btnResumen_2</zorder>
   <zorder>btnResumen_3</zorder>
   <zorder>textEdit</zorder>
   <zorder>progressBar_4</zorder>
+  <zorder>label_16</zorder>
+  <zorder>comboBox_6</zorder>
+  <zorder>label_17</zorder>
+  <zorder>label_14</zorder>
+  <zorder>label_18</zorder>
+  <zorder>frame_4</zorder>
+  <zorder>label_19</zorder>
+  <zorder>btnIniciarTerapia</zorder>
+  <zorder>btnActivarDrone_2</zorder>
+  <zorder>label_7</zorder>
+  <zorder>comboBox_7</zorder>
+  <zorder>btnIniciarTerapia_2</zorder>
+  <zorder>btnIniciarTerapia_3</zorder>
+  <zorder>btnActivarEmotiv</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

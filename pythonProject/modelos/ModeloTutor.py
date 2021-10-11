@@ -115,7 +115,7 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
         self.connection.close()
 
 
-    def cargarPlaceHolder(self, user):
+    def cargarPlaceHolder(self, idTutor):
         self.connection = pymysql.connect(
             host="localhost",
             user="root",
@@ -123,8 +123,8 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
             db="cognidroneeg"
         )
         cursor = self.connection.cursor()
-        sql = '''SELECT ape_paterno, ape_materno, nombre, genero, fecha_nacimiento,  nacionalidad, localidad,calle, num, cod_postal, numero_contacto, correo_electronico,
-        idTrapeuta, Municipio_idMunicipio, user.tipo FROM terapeuta INNER JOIN usuarios user ON (user.nombreUsuario = terapeuta.usuarios_nombreUsuario) WHERE user.nombreUsuario = '{}'  '''.format(user)
+        sql = '''SELECT idTutor, nombre, ape_paterno, ape_materno, genero, fecha_nacimiento, nacionalidad, localidad, calle, num, cod_postal, numero_contacto, correo_electronico, Municipio_idMunicipio 
+          FROM tutor WHERE idTutor = '{}'  '''.format(idTutor)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -164,19 +164,7 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
         registro = cursor.fetchall()
         return registro
 
-    def validarUsuarioRepetido(self, usuario):
-        cursor = self.connection.cursor()
 
-        sql = "SELECT tipo FROM usuarios WHERE nombreUsuario = '{}'".format(usuario)
-
-        cursor.execute(sql)
-        registro = cursor.fetchall()
-        if(len(registro) == 0):
-            registro = False
-        else:
-            registro = True
-        self.connection.commit()
-        return registro
 
     def recuperarTutores(self):
 
@@ -194,10 +182,10 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
         return registro
         self.connection.close()
 
-    def validarBorradoLigico(self, user):
+    def validarBorradoLigico(self, idtutor):
         cursor = self.connection.cursor()
 
-        sql='''SELECT idPaciente  FROM paciente WHERE Tutor_idTutor =' {}' '''.format(user)
+        sql='''SELECT idPaciente  FROM paciente WHERE Tutor_idTutor =' {}' '''.format(idtutor)
 
         cursor.execute(sql)
         registro = cursor.fetchall()
@@ -236,7 +224,7 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
         return registro
 
 
-#--------------------------Vista consultar terapeuta seleccionado-------------------------
+#--------------------------Vista consultar tutor seleccionado-------------------------
 
     def cargarTablaXSesionTera(self, idTerapeuta):
 
@@ -267,14 +255,3 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
         return registro
 
 
-    def cambiarPass(self,newPass,nameUser):
-        connection2 = pymysql.connect(
-            host="localhost",
-            user="root",
-            passwd="root0",
-            db="cognidroneeg"
-        )
-        cursor = connection2.cursor()
-        sql ="UPDATE usuarios SET  password  ='{}' WHERE nombreUsuario = '{}' ".format(newPass,nameUser).strip()
-        cursor.execute(sql)
-        connection2.commit()

@@ -15,7 +15,7 @@ from modelos.ModeloTerapeuta import Modelo_Terapeuta
 #Abrir Nuevas Vistas
 
 from cotroladores.controlador_EditarTerapeuta import Control_EditarTerapeutas
-from cotroladores.controlador_ConsultarTerapeutaSelccionado import Control_ConsultarTerapectuaSelec
+from cotroladores.controlador_ConsultarTutorSelccionado import Control_ConsultarTutorSelec
 
 class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
 
@@ -75,7 +75,7 @@ class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
             item = self.ui.tableView_2.item(RowTable, 0)
             print(item.text())
 
-            self.abrir = Control_ConsultarTerapectuaSelec(item.text())
+            self.abrir = Control_ConsultarTutorSelec(item.text())
             self.abrir.show()
         else:
             lerta = QMessageBox.information(self, 'Alerta', "No has seleccionado un terapeuta", QMessageBox.Ok)
@@ -98,9 +98,8 @@ class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
 
     def validarBorradoLogico(self, item):
 
-        Terapeuta = self.modelo.validarBorradoLigico2(item.text())
-        idTerapeuta = Terapeuta[0]
-        res= self.modelo.validarBorradoLigico(idTerapeuta[0])
+        res = self.modelo.validarBorradoLigico(item.text())
+        print("res de tutor es: "+str(res))
         return  res
 
     def eliminarTutor(self):
@@ -109,31 +108,22 @@ class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
 
         if RowTable != -1:
             item = self.ui.tableView_2.item(RowTable, 0)
-            item2 = self.ui.tableView_2.item(RowTable, 4)
             print("Soy desconocido: "+item.text())
 
-            buttonReply = QMessageBox.question(self, 'Alerta', "Hola Moni! ¿Quieres eliminar a: "+item.text()+" de forma permanente?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            buttonReply = QMessageBox.question(self, 'Alerta', "¿Quieres eliminar a: "+item.text()+" de forma permanente?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 
             if buttonReply == QMessageBox.Yes:
                 print("se eliminara el terapeuta")
 
-                if(self.validarBorradoLogico(item2) == True):
+                if(self.validarBorradoLogico(item) == True):
                     print("Entre al if")
-                    Terapeuta = self.modelo.validarBorradoLigico2(item2.text())
-                    print("id tera : "+str(Terapeuta))
-                    idTerapeuta = Terapeuta[0]
-                    print("id es: " + str(idTerapeuta[0]))
-                    self.modelo.elimina_tutorLogico(idTerapeuta[0])
+                    self.modelo.elimina_tutorLogico(item.text())
                     alerta = QMessageBox.information(self, 'Alera', "El tutor tiene pasientes asignados y su borrrado fue logico", QMessageBox.Ok)
                     self.cargarTutor()
                     self.cargarCbTutores()
                 else:
                     print("Entre al else")
-                    Terapeuta = self.modelo.validarBorradoLigico2(item2.text())
-                    print(str(Terapeuta))
-                    idTerapeuta = Terapeuta[0]
-                    print(idTerapeuta[0])
-                    self.modelo.elimina_tutor(idTerapeuta[0])
+                    self.modelo.elimina_tutor(item.text())
 
                     alerta = QMessageBox.information(self, 'Confirmacion', "Tutor Eliminado permanente", QMessageBox.Ok)
                     self.cargarTutor()
@@ -154,13 +144,15 @@ class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
         self.ui.tableView_2.setRowCount(i)
         tablerow = 0
         for row in datos:
-            self.ui.tableView_2.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[1]))
-            self.ui.tableView_2.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
-            self.ui.tableView_2.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
-            self.ui.tableView_2.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[4]))
-            self.ui.tableView_2.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
+            self.ui.tableView_2.setItem(tablerow,0,QtWidgets.QTableWidgetItem(str(row[0])))
+            self.ui.tableView_2.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[1]))
+            self.ui.tableView_2.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[2]))
+            self.ui.tableView_2.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[3]))
+            self.ui.tableView_2.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[4]))
+            self.ui.tableView_2.setItem(tablerow,5,QtWidgets.QTableWidgetItem(row[5]))
 
             tablerow +=1
+
 
 
     def cargarTutorXTutor(self):
@@ -176,10 +168,11 @@ class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
             self.ui.tableView_2.setRowCount(i)
             tablerow = 0
             for row in datos2:
-                self.ui.tableView_2.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[0]))
-                self.ui.tableView_2.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[1]))
-                self.ui.tableView_2.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
-                self.ui.tableView_2.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
-                self.ui.tableView_2.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[4]))
-                self.ui.tableView_2.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
+                self.ui.tableView_2.setItem(tablerow,0,QtWidgets.QTableWidgetItem(str(row[0])))
+                self.ui.tableView_2.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[1]))
+                self.ui.tableView_2.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[2]))
+                self.ui.tableView_2.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[3]))
+                self.ui.tableView_2.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[4]))
+                self.ui.tableView_2.setItem(tablerow,5,QtWidgets.QTableWidgetItem(row[5]))
                 tablerow +=1
+

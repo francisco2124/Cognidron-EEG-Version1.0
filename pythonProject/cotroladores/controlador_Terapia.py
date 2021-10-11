@@ -3,7 +3,8 @@ from PyQt5.QtWidgets import QMessageBox
 
 from vistas.terapia import Ui_Dialog
 from PyQt5.QtGui import QIntValidator
-
+import os
+from playsound import playsound
 
 
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vis
@@ -28,7 +29,7 @@ class Controlador_Terapia(QtWidgets.QMainWindow):
         self.isDroneConnected = False
         self.emotiv = Emotiv()
 
-        # 1) Crear el objeto que se moverá a otro hilo
+        # 1) Crear el objeto que se moverá a otro hiloa=
         self.mental_command = MentalCommands(self.emotiv)
         # 2) Crear el hilo
         self.emotiv_thread = QThread()
@@ -68,15 +69,28 @@ class Controlador_Terapia(QtWidgets.QMainWindow):
                                             "background-color: rgb(170, 170, 255);"
                                             "}")
 
-        self.gui.progressBar_4.setStyleSheet("QProgressBar::chunk "
-                                           "{"
-                                           "background-color: rgb(255, 85, 0);"
-                                           "}")
+
 
         self.gui.btnEnviarIstruccion.clicked.connect(self.mensaje1)
         self.gui.btnActivarEmotiv.clicked.connect(self.mensaje4)
         self.gui.btnActivarDrone.clicked.connect(self.activarDron)
         #self.gui.btnElevarDrone.clicked.connect(self.actualizarProgressBar)
+        self.gui.btnIniciarTerapia.clicked.connect(self.iniciarTerapia)
+
+    def iniciarTerapia(self):
+
+        pista = self.gui.comboBox_6.currentText()
+
+        if pista == "Pista 1":
+            os.startfile("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\pista_1.mp3")
+            #playsound("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\pista_1.mp3")
+        elif pista == "Pista 2":
+            os.startfile("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\pista_2.mp3")
+            #playsound("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\pista_2.mp3")
+        elif pista == "Pista 3":
+            os.startfile("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\pista_3.mp3")
+            #playsound("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\pista_3.mp3")
+
 
     def mensaje1(self):
         if len(self.gui.lbl_terapeutas.text())==0:
