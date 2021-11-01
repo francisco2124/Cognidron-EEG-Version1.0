@@ -14,7 +14,7 @@ from modelos.ModeloTerapeuta import Modelo_Terapeuta
 
 #Abrir Nuevas Vistas
 
-from cotroladores.controlador_EditarTerapeuta import Control_EditarTerapeutas
+from cotroladores.controlador_EditarTutor import Control_EditarTutor
 from cotroladores.controlador_ConsultarTutorSelccionado import Control_ConsultarTutorSelec
 
 class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
@@ -60,10 +60,10 @@ class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
             item = self.ui.tableView_2.item(RowTable, 0)
             print(item.text())
 
-            self.abrir = Control_EditarTerapeutas(item.text())
+            self.abrir = Control_EditarTutor(item.text())
             self.abrir.show()
         else:
-            lerta = QMessageBox.information(self, 'Alerta', "No has seleccionado un terapeuta", QMessageBox.Ok)
+            lerta = QMessageBox.information(self, 'Alerta', "No has seleccionado un tutor", QMessageBox.Ok)
 
 
     def abrirConsultar(self):
@@ -78,7 +78,7 @@ class Controlador_ConsultarTuotores(QtWidgets.QMainWindow):
             self.abrir = Control_ConsultarTutorSelec(item.text())
             self.abrir.show()
         else:
-            lerta = QMessageBox.information(self, 'Alerta', "No has seleccionado un terapeuta", QMessageBox.Ok)
+            lerta = QMessageBox.information(self, 'Alerta', "No has seleccionado un tutor", QMessageBox.Ok)
 
 
         #print(type,self.ui.self.ui.tableView.currentRow())

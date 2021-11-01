@@ -78,6 +78,7 @@ class Control_ConsultarTerapectuaSelec(QtWidgets.QMainWindow):
 
         datosidT = self.modelo.cargarPlaceHolder(self.user)
         ListaDatos2 = datosidT[0]
+        print("Datos del terapeuta: "+str(ListaDatos2))
 
         datos = self.modelo.cargarTablaXSesionTera(str(ListaDatos2[12]))
         print("cargar Reportes")

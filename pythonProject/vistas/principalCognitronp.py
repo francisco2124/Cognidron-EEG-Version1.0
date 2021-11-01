@@ -12,7 +12,7 @@ import vistas.images
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1285, 907)
+        MainWindow.resize(1285, 931)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/newPrefix/idea-genial.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -350,7 +350,7 @@ class Ui_MainWindow(object):
         self.actionIconConsulatrReporte.setText(_translate("MainWindow", "IconConsulatrReporte"))
         self.actionIconConsulatrReporte.setToolTip(_translate("MainWindow", "Consultar Reportes"))
         self.actionIconConsulatrReporte.setShortcut(_translate("MainWindow", "Ctrl+R"))
-        self.actionIconoTerapia_2.setText(_translate("MainWindow", "IconoTerapia"))
+        self.actionIconoTerapia_2.setText(_translate("MainWindow", "IconoTerapiaNeuro"))
         self.actionIconoTerapia_2.setToolTip(_translate("MainWindow", "Abrir Terapa"))
         self.actionIconoTerapia_2.setShortcut(_translate("MainWindow", "Ctrl+T"))
         self.actionIconoTerapeuta.setText(_translate("MainWindow", "IconoTerapeuta"))

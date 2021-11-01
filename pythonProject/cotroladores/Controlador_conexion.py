@@ -11,6 +11,9 @@ import sys
 from PyQt5.QtWidgets import QMessageBox
 from vistas.conexion import Ui_Dialog
 from PyQt5.QtGui import QIntValidator
+import os
+from time import sleep
+#import threading
 
 import matplotlib.pyplot as plt
 
@@ -19,7 +22,7 @@ import matplotlib.pyplot as plt
 from modelos.modeloParametros import Modelo_conexion
 from cotroladores.classConexion import classConexion
 import threading
-
+from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
 
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vista
 
@@ -27,7 +30,8 @@ import threading
 
 class Controlador_conexion(QtWidgets.QMainWindow):
 
-
+    signalCommand = pyqtSignal(str)
+    status = False
 
     def __init__(self):
         super().__init__()
@@ -46,6 +50,21 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.InicializarGui()
         self.cargarParametris()
+
+        # 1) Crear el objeto que se moverá a otro hiloa=
+        self.mental_command = self.aplicarSeleccion(self.calidadElectrodo())
+        # 2) Crear el hilo
+        self.emotiv_thread = QThread()
+        # 3) Mover el objeto al hilo
+        self.mental_command.moveToThread(self.emotiv_thread)
+        # 4) Conectar la señal del objeto con el slot de la interfaz gráfica
+        self.mental_command.signalCommand.connect(self.actualizarProgressBar)
+        # 5) Conectar la señal de inicio del método run del objeto dentro de otro hilo
+        self.emotiv_thread.started.connect(self.mental_command.run)
+        # 6) Iniciar el hilo
+        self.emotiv_thread.start()
+
+
 
 
 
@@ -68,6 +87,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         self.ui.lbP8.setVisible(False)
         self.ui.lbF7.setVisible(False)
         self.ui.lbF8.setVisible(False)
+
 
 
 
@@ -100,6 +120,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
                 Alerta = QMessageBox.information(self, 'Alerta', "Problemas al iniciar sesión con el dispositivo en Cortex", QMessageBox.Ok)
                 break
             else:
+                self.ui.label_4.setStyleSheet("background-color: rgb(41, 226, 69);")
                 Alerta = QMessageBox.information(self, 'Alerta', "Conexion Exitosa", QMessageBox.Ok)
                 break
 
@@ -143,8 +164,18 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         print("Los datos son los siguientes: ")
         print(str(datos))
 
+    def calidadElectrodo(self):
+        result = self.conexionClass.suscribirseDEV()
+        calidadElectrodo = json.loads(result) #Utilizar Com
+        print("Todos los datos: "+str(calidadElectrodo))
+        calElectrodo = calidadElectrodo["dev"][2]
+        print("la calidad es: "+str(calElectrodo))
+        a=0
 
-    def aplicarSeleccion(self):
+        return calElectrodo
+
+
+    def aplicarSeleccion(self, calElectrodo):
         lbAF3  = self.ui.lbAF3
         lbAF4  = self.ui.lbAF4
         lbF3  = self.ui.lbF3
@@ -159,7 +190,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         lbP8  = self.ui.lbP8
         lbF7  = self.ui.lbF7
         lbF8  = self.ui.lbF8
-        listaElectrodos = [lbAF3,lbAF4,lbF3,lbF4,lbFC5,lbFC6,lb01,lb02,lbT7,lbT8,lbP7,lbP8,lbF7,lbF8,lbF8]
+        listaElectrodos = [lbAF3,lbF7,lbF3,lbFC5,lbT7,lbP7,lb01,lb02,lbP8,lbT8,lbFC6,lbF4,lbF8,lbAF4,lbF8]
 
 
         cbAF3  = self.ui.cbAF3
@@ -176,8 +207,9 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         cbP8  = self.ui.cbP8
         cbF7  = self.ui.cbF7
         cbF8  = self.ui.cbF8
-        listaChecables = [cbAF3,cbAF4,cbF3,cbF4,cbFC5,cbFC6,cb01,cb02,cbT7,cbT8,cbP7,cbP8,cbF7,cbF8]
+        listaChecables = [cbAF3,cbF7,cbF3,cbFC5,cbT7,cbP7,cb01,cb02,cbP8,cbT8,cbFC6,cbF4,cbF8,cbAF4]
         a=0
+
         for i in listaChecables:
             print(i)
             print(a)
@@ -187,26 +219,41 @@ class Controlador_conexion(QtWidgets.QMainWindow):
                 listaElectrodos[a].setVisible(False)
             a=a+1
 
-
-        result = self.conexionClass.suscribirseDEV()
-        calidadElectrodo = json.loads(result) #Utilizar Com
-        print("Todos los datos: "+str(calidadElectrodo))
-        calElectrodo = calidadElectrodo["dev"][2]
-        print("la calidad es: "+str(calElectrodo))
-        a=0
+        b = 0
         for i in calElectrodo:
-            #print(i)
-            #print(a)
+            print("Soy i: "+str(i))
+            print("Soy a:"+str(b))
             if i == 0:
-                listaElectrodos[a].setStyleSheet("image: url(:/newPrefix/circuloGris.png);")
+                listaElectrodos[b].setStyleSheet("image: url(:/newPrefix/circuloGris.png);")
             elif i == 1:
-                listaElectrodos[a].setStyleSheet("image: url(:/newPrefix/circuloRojo.png);")
+                listaElectrodos[b].setStyleSheet("image: url(:/newPrefix/circuloRojo.png);")
             elif i == 2:
-                listaElectrodos[a].setStyleSheet("image: url(:/newPrefix/circuloAnaranjado.png);")
+                listaElectrodos[b].setStyleSheet("image: url(:/newPrefix/circuloAnaranjado.png);")
             elif i == 4:
-                listaElectrodos[a].setStyleSheet("image: url(:/newPrefix/circuloVerde.png);")
-            a=a+1
+                listaElectrodos[b].setStyleSheet("image: url(:/newPrefix/circuloVerde.png);")
+            else:
+                print("Hola falle XD")
+            b=b+1
 
+
+
+    def start(self):
+        self.status = True
+        return self.status
+
+    def stop(self):
+        self.status = False
+        return self.status
+
+    def isWorking(self):
+        return self.status
+
+    def run(self):
+        main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate()))
+        while main_thread.is_alive(): #Mientras que el hilo principal esta vivo se ejecutará este hilo secundario o de trabajo
+            if self.status:
+                self.signalCommand.emit(str(self.aplicarSeleccion()))
+            sleep(0.1)
 
 '''
     def actualizarProgresBar(self):
@@ -217,3 +264,17 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         self.ui.label_3.setText(str(b)+"%")
 '''
 
+class Emotiv():
+
+    def connect(self):
+        return True
+
+
+    def disconnect(self):
+        return True
+
+    def activateSensors(self,sensors):
+        pass
+
+    def getProfiles(self):
+        pass

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1285</width>
-    <height>907</height>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -530,7 +530,7 @@
      <normaloff>:/newPrefix/idea-genial.png</normaloff>:/newPrefix/idea-genial.png</iconset>
    </property>
    <property name="text">
-    <string>IconoTerapia</string>
+    <string>IconoTerapiaNeuro</string>
    </property>
    <property name="toolTip">
     <string>Abrir Terapa</string>

@@ -1,12 +1,15 @@
-
-
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
+import time
 import websocket
 import json
 import ssl
+import threading
 from modelos.modeloParametros import Modelo_conexion
 
-class classConexion():
+class conexionEmotiv(QThread):
 
+    status = True
+    signEmotiv = pyqtSignal(float)
     def __init__(self):
         super().__init__()
 
@@ -19,9 +22,6 @@ class classConexion():
         # - - - - - - - - - - - - - - - - -
         self.url = "wss://localhost:6868"
 
-        self.cargarParametris()
-        self.conectar()
-        print("Hola Mundo")
     def cargarParametris(self):
 
         datos = self.modelo.cargarDatos()
@@ -205,7 +205,7 @@ class classConexion():
             dic = json.loads(result)
             headset = dic["result"][0]["id"]  # Obtener el ID de la diadema
             diadema =  headset
-                #self.ui.label_4.setStyleSheet("background-color: rgb(41, 226, 69);")
+            #self.ui.label_4.setStyleSheet("background-color: rgb(41, 226, 69);")
         except:
             print("Error: No hay ningun diadema conectada")
             diadema = False
@@ -248,53 +248,83 @@ class classConexion():
         return mensaje
 
 
+    def reanudar(self):
+        self.status = True
+        return self.status
 
-    def suscribirseDEV(self):
+    def detener(self):
+        self.status = False
+        return self.status
+
+    def estadoHilo(self):
+        return self.status
+
+    def potenciaElectrodo(self):
 
         ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
         datos = self.modelo.cargarDatos()
 
         ListaDatos = datos[0]
-        clientId = str(ListaDatos[0]).strip()
-        clientSecret = str(ListaDatos[1]).strip()
-        profile = "j"
-
-
-        token = self.obtenerToken()
-        headset = self.recuperarDeadema()
-        #**************************************************************************
-        print("-------------------------------------------------------")
-        print("Crear Sesion...: ")
+        self.clientId = str(ListaDatos[0]).strip()
+        self.clientSecret = str(ListaDatos[1]).strip()
+        profile = "Francisco"
+        #print("Obtener Token...: ")
         msg = """{
-                                "id": 1,
-                                "jsonrpc": "2.0",
-                                "method": "createSession",
-                                "params": {
-                                    "cortexToken": "%s",
-                                    "headset": "%s",
-                                    "status": "open"
-                                }
-                            }""" % (token, headset)
+                            "id": 1,
+                            "jsonrpc": "2.0",
+                            "method": "authorize",
+                            "params": {
+                                "clientId": "%s",
+                                "clientSecret": "%s"
+                            }
+                        }""" % (self.clientId, self.clientSecret)
         ws.send(msg)
 
-
-        print("--------------------------------------------------------")
         result = ws.recv()
-        print("Se recupera lo siguiente: " + result)
+        dic = json.loads(result)
+        token = dic["result"]["cortexToken"]
 
+
+        #print("Ver diademas conectadas...: ")
+        msg = """{"jsonrpc": "2.0", 
+                            "method": "queryHeadsets",
+                            "params": {},
+                            "id": 1
+                        }"""
+        ws.send(msg)
+
+        result = ws.recv()
+        if 'dongle' in result:
+            dic = json.loads(result)
+            headset = dic["result"][0]["id"]  # Obtener el ID de la diadema
+        else:
+            pass
+
+        #print("Crear Sesion...: ")
+        msg = """{
+                            "id": 1,
+                            "jsonrpc": "2.0",
+                            "method": "createSession",
+                            "params": {
+                                "cortexToken": "%s",
+                                "headset": "%s",
+                                "status": "open"
+                            }
+                        }""" % (token, headset)
+        ws.send(msg)
+
+        result = ws.recv()
 
         if 'appId' in result:
             dic = json.loads(result)
             sesion = dic['result']['id']
-            print("El ide de la sesion es: "+str(sesion))
         else:
-            print("Error: Problemas al iniciar sesión con el dispositivo en Cortex")
+            print("Error en sesion")
 
 
 
-        #**************************************************************************
-        print("-------------------------------------------------------")
-        print("Suscribirse a los comandos mentales...: ")
+
+        #print("Suscribirse a los comandos mentales...: ")
         msg = """{
                             "id": 1,
                             "jsonrpc": "2.0",
@@ -302,92 +332,26 @@ class classConexion():
                             "params": {
                                 "cortexToken": "%s",
                                 "session": "%s",
-                                "streams": ["dev"]
+                                "streams": ["pow"]
                             }
                         }""" % (token, sesion)
         ws.send(msg)
-
-        print("--------------------------------------------------------")
-        result = ws.recv()
-        print("Se recupera lo siguiente: " + result)
+        ws.recv()
         result = ws.recv()
 
-        return result
+        bucle = json.loads(result) #Utilizar Com
+        print(str(bucle))
+        potencialElectrico = bucle["pow"][0]
+        return potencialElectrico
 
-    def suscribirseNeurofeedback(self):
-
-        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
-        datos = self.modelo.cargarDatos()
-
-        ListaDatos = datos[0]
-        clientId = str(ListaDatos[0]).strip()
-        clientSecret = str(ListaDatos[1]).strip()
-        profile = "j"
-
-
-        token = self.obtenerToken()
-        headset = self.recuperarDeadema()
-        #**************************************************************************
-        print("-------------------------------------------------------")
-        print("Crear Sesion...: ")
-        msg = """{
-                                "id": 1,
-                                "jsonrpc": "2.0",
-                                "method": "createSession",
-                                "params": {
-                                    "cortexToken": "%s",
-                                    "headset": "%s",
-                                    "status": "open"
-                                }
-                            }""" % (token, headset)
-        ws.send(msg)
+    def run(self):
+        self.cont = 0
+        self.tiempoRegresivo = ""
+        main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate()))
+        while main_thread.is_alive():
+            potenciaElectrica = self.potenciaElectrodo()
+            print("La potencia es: "+str(potenciaElectrica))
+            time.sleep(0.5)
+            self.signEmotiv.emit(potenciaElectrica)
 
 
-        print("--------------------------------------------------------")
-        result = ws.recv()
-        print("Se recupera lo siguiente: " + result)
-
-
-        if 'appId' in result:
-            dic = json.loads(result)
-            sesion = dic['result']['id']
-            print("El ide de la sesion es: "+str(sesion))
-        else:
-            print("Error: Problemas al iniciar sesión con el dispositivo en Cortex")
-
-
-
-        #**************************************************************************
-        print("-------------------------------------------------------")
-        print("Suscribirse a los comandos mentales...: ")
-        msg = """{
-                            "id": 1,
-                            "jsonrpc": "2.0",
-                            "method": "subscribe",
-                            "params": {
-                                "cortexToken": "%s",
-                                "session": "%s",
-                                "streams": ["dev"]
-                            }
-                        }""" % (token, sesion)
-        ws.send(msg)
-
-        print("--------------------------------------------------------")
-        result = ws.recv()
-        print("Se recupera lo siguiente: " + result)
-        result = ws.recv()
-
-        return result
-
-
-
-    def cerrarConexion(self):
-        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
-        ws.close()
-        connected = False
-        print("Conexión de websocket con Emotiv Cortex cerrada.")
-
-
-
-if __name__ == '__main__':
-    print('PyCharm')

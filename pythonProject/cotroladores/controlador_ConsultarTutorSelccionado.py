@@ -41,7 +41,7 @@ class Control_ConsultarTutorSelec(QtWidgets.QMainWindow):
         datos = self.modelo.cargarPlaceHolder(self.user)
 
         ListaDatos = datos[0]
-        print(str(ListaDatos))
+        print("Los datos del tutor son: "+ str(ListaDatos))
 
         self.ui.lbNombre.setText(ListaDatos[1]+" "+ListaDatos[2]+" "+ListaDatos[3])
         self.ui.lbGenero.setText(ListaDatos[4])
