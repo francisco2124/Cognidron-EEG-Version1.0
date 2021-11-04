@@ -341,7 +341,17 @@ class conexionEmotiv(QThread):
 
         bucle = json.loads(result) #Utilizar Com
         print(str(bucle))
+
+        #Prueba solo con theta en f3
         potencialElectrico = bucle["pow"][0]
+
+        #Formula para sacar theta/beta = ( ((thetaf3+thetaf2)/2) / ((beta3+betaf4)/2) )
+        #thetaf3 = bucle["pow"][0]
+        #thetaf4 = bucle["pow"][55]
+        #betaf3 = bucle["pow"][2]
+        #betaf4 = bucle["pow"][57]
+        #thetabetha = ( ((thetaf3+thetaf2)/2) / ((beta3+betaf4)/2) )
+        #retur thetabetha
         return potencialElectrico
 
     def run(self):
