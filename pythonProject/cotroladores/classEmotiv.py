@@ -345,19 +345,21 @@ class conexionEmotiv(QThread):
         #Prueba solo con theta en f3
         potencialElectrico = bucle["pow"][0]
 
-        #Formula para sacar theta/beta = ( ((thetaf3+thetaf2)/2) / ((beta3+betaf4)/2) )
+        #Formula para sacar theta/beta = ( ((thetaf3+thetaf4)/2) / ((betaF3+betaf4)/2) )
+
+        #                                   theta F4YF4 / Beta F3YF4
         #thetaf3 = bucle["pow"][0]
         #thetaf4 = bucle["pow"][55]
         #betaf3 = bucle["pow"][2]
         #betaf4 = bucle["pow"][57]
         #thetabetha = ( ((thetaf3+thetaf2)/2) / ((beta3+betaf4)/2) )
-        #retur thetabetha
+        #return thetabetha
         return potencialElectrico
 
     def run(self):
         self.cont = 0
         self.tiempoRegresivo = ""
-        main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate()))
+        main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate())) #Mientras el hilo esta vivo y recuperar los datos
         while main_thread.is_alive():
             potenciaElectrica = self.potenciaElectrodo()
             print("La potencia es: "+str(potenciaElectrica))

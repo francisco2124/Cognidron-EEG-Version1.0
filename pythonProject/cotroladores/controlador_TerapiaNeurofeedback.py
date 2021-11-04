@@ -353,15 +353,19 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
         potencia = potencia * 1000
         if self.ui.rdbExitatorio.isChecked()== True:
             self.ui.labelEventoDrone.setText("Eleva tus ondas cerebrales")
+            #operdor logico exitatorio
             operador = potencia >= self.umbral
         else:
+            #operador logico inibitorio
             self.ui.labelEventoDrone.setText("Disminuye tus ondas cerebrales")
             operador = potencia <= self.umbral
 
         if self.posY == 500:
+
             if self.puntaje !=0 and self.puntaje%2 != 0:
                 self.puntaje = self.puntaje +1
                 self.ui.label_18.setText(str(self.puntaje))
+            #direccion
             self.val = True
 
         elif self.posY == 270:
@@ -370,6 +374,7 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
                 self.ui.label_18.setText(str(self.puntaje))
             self.val = False
 
+        #Comparacion de umbral deacurdo al tipo ejercicio
         if self.val == True:
             print("Elevar dron")
             if operador:
