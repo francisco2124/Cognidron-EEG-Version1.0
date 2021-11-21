@@ -21,10 +21,15 @@ from cotroladores.controlador_ConsultarTerapeutaSelccionado import Control_Consu
 from cotroladores.ControladorAgregarTutor import Controlador_AgrgarTutor
 from cotroladores.controlador_ConsultarTutores import Controlador_ConsultarTuotores
 
+#Paciente
+from cotroladores.ControladorAgregarPaciente import Controlador_AgrgarPaciente
+from cotroladores.controlador_ConsultarPaciente import Controlador_ConsultarPaciente
+
 #otros
 from cotroladores.controlador_ParametrosConexion import Controlador_parametros
 from cotroladores.controlador_Terapia import Controlador_Terapia
-from cotroladores.controlador_TerapiaNeurofeedback import Controlador_TerapiaNeurofeedback
+from cotroladores.controlador_TerapiaTipoNeurofeedback import Controlador_TerapiaNeurofeedback
+from cotroladores.controlador_Ejercicios import Controlador_EjerciciosTerapeuticos
 
 from cotroladores.Controlador_conexion import Controlador_conexion
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vista
@@ -55,11 +60,23 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.ui.actionCrear_Tutor_2.triggered.connect(self.agregarTutor)
         self.ui.actionConsultar_Tutor.triggered.connect(self.consultarTutor)
 
+        self.ui.menuCrear_Paciente.triggered.connect(self.agregarPaciente)
+        self.ui.actionIconPaciente.triggered.connect(self.consultarPaciente)
+
+        self.ui.actionIconLibro.triggered.connect(self.ejerciciosTerapeuticos)
+
 
         self.ui.actionConfigurar_parametros_de_conexi_n.triggered.connect(self.editarParametros)
         self.ui.actionIconoTerapia.triggered.connect(self.abrirTerapia)
         self.ui.actionIconoTerapia_2.triggered.connect(self.abrirTerapiaNeurofeedback)
         self.ui.actionConectar_Emotiv.triggered.connect(self.abrirConexionEmotiv)
+
+    def ejerciciosTerapeuticos(self):
+
+        self.abrir = QtWidgets.QMainWindow()
+        self.abrir = Controlador_EjerciciosTerapeuticos()
+        self.ui.mdiArea.addSubWindow(self.abrir)
+        self.abrir.show()
 
     def agregarTerapeuta(self):
 
@@ -74,6 +91,12 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
             self.ui.mdiArea.addSubWindow(self.abrir)
             self.abrir.show()
 
+    def agregarPaciente(self):
+        self.abrir = QtWidgets.QMainWindow()
+        self.abrir = Controlador_AgrgarPaciente()
+        self.ui.mdiArea.addSubWindow(self.abrir)
+        self.abrir.show()
+
     def consultarTerapeuta(self):
 
         self.abrir = QtWidgets.QMainWindow()
@@ -85,6 +108,13 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
 
         self.abrir = QtWidgets.QMainWindow()
         self.abrir = Controlador_ConsultarTuotores()
+        self.ui.mdiArea.addSubWindow(self.abrir)
+        self.abrir.show()
+
+    def consultarPaciente(self):
+
+        self.abrir = QtWidgets.QMainWindow()
+        self.abrir = Controlador_ConsultarPaciente()
         self.ui.mdiArea.addSubWindow(self.abrir)
         self.abrir.show()
 

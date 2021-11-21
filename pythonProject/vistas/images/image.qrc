@@ -1,34 +1,47 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>EjerCirculo.png</file>
+    <file>EjerCuatroCM.png</file>
+    <file>EjerDosCM.png</file>
+    <file>EjerNeutral.png</file>
+    <file>EjerPirueta.png</file>
+    <file>EjerTresCM.png</file>
+    <file>EjerUnoCM.png</file>
     <file>archivo.png</file>
     <file>lupa.png</file>
     <file>archivo.png</file>
-  <file>cuadricula.png</file>
-  <file>detener.png</file>
-  <file>familia.png</file>
-  <file>idea-genial.png</file>
-  <file>libro-abierto.png</file>
-  <file>padlock.png</file>
-  <file>vision.png</file>
-  <file>user.png</file>
-  <file>menu.png</file>
-  <file>paciente.png</file>
-  <file>pausa.png</file>
-  <file>play.ico</file>
-  <file>poder.png</file>
-  <file>reporte.png</file>
-  <file>salud-mental.png</file>
-  <file>terapeuta.png</file>
-  <file>ventana.png</file>
-  <file>wifi.png</file>
-  <file>archivo.png</file>
-  <file>cuadricula.png</file>
+    <file>cuadricula.png</file>
+    <file>detener.png</file>
+    <file>familia.png</file>
+    <file>idea-genial.png</file>
+    <file>libro-abierto.png</file>
+    <file>padlock.png</file>
+    <file>vision.png</file>
+    <file>user.png</file>
+    <file>menu.png</file>
+    <file>paciente.png</file>
+    <file>pausa.png</file>
+    <file>play.ico</file>
+    <file>poder.png</file>
+    <file>reporte.png</file>
+    <file>salud-mental.png</file>
+    <file>terapeuta.png</file>
+    <file>ventana.png</file>
+    <file>wifi.png</file>
+    <file>archivo.png</file>
+    <file>cuadricula.png</file>
     <file>ejemGrafico.png</file>
-  <file>EjerAdelante.png</file>
-  <file>EjerDecender.png</file>
-  <file>EjerElevar.png</file>
-  <file>EjerDerecha.png</file>
-  <file>EjerIzquierda.png</file>
+    <file>EjerAdelante.png</file>
+    <file>EjerDecender.png</file>
+    <file>EjerElevar.png</file>
+    <file>EjerIzquierda.png</file>
+    <file>EjerNeutral.png</file>
+    <file>EjerPirueta.png</file>
+    <file>EjerCirculo.png</file>
+    <file>EjerUnoCM.png</file>
+    <file>EjerDosCM.png</file>
+    <file>EjerTresCM.png</file>
+    <file>EjerCuatroCM.png</file>
     <file>agregar.png</file>
     <file>circuloAnaranjado.png</file>
     <file>circuloRojo.png</file>
@@ -40,7 +53,5 @@
     <file>circuloGris.png</file>
     <file>lineaIzqu.png</file>
     <file>lineroja.png</file>
-
-
   </qresource>
 </RCC>

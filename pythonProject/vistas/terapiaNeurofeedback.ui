@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>TerapiaNeurofeedback</class>
+ <widget class="QDialog" name="TerapiaNeurofeedback">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>710</height>
+    <height>711</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -131,7 +131,7 @@
     <string notr="true">background-color: rgb(116, 147, 198);</string>
    </property>
    <property name="text">
-    <string>Obtener Control</string>
+    <string>Obtener Control Total</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnDecenderDrone">
@@ -391,7 +391,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Estado de los comandos mentales</string>
+    <string>Istruccion</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelEventoDrone">
@@ -1100,7 +1100,7 @@ background-color: rgb(200, 198, 223);</string>
    <property name="geometry">
     <rect>
      <x>670</x>
-     <y>460</y>
+     <y>470</y>
      <width>161</width>
      <height>91</height>
     </rect>
@@ -1145,10 +1145,10 @@ background-color: rgb(200, 198, 223);</string>
     </font>
    </property>
    <property name="text">
-    <string>-----Altura Minima ---&gt;2 Metro</string>
+    <string>-----Altura Maxima ---&gt;2 Metro</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="spinBoxUmbral">
    <property name="geometry">
     <rect>
      <x>840</x>
@@ -1186,7 +1186,7 @@ background-color: rgb(200, 198, 223);</string>
    <property name="title">
     <string>Tipo de umbral</string>
    </property>
-   <widget class="QRadioButton" name="rbInivitorio_2">
+   <widget class="QRadioButton" name="rbUmbralAutomatico">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -1199,7 +1199,7 @@ background-color: rgb(200, 198, 223);</string>
      <string>Automatico</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="rdbExitatorio_2">
+   <widget class="QRadioButton" name="rdUmbralManual">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -1265,7 +1265,7 @@ background-color: rgb(200, 198, 223);</string>
   <zorder>lbUmbral</zorder>
   <zorder>label_10</zorder>
   <zorder>label_20</zorder>
-  <zorder>spinBox</zorder>
+  <zorder>spinBoxUmbral</zorder>
   <zorder>label_19</zorder>
   <zorder>groupBox_2</zorder>
  </widget>
