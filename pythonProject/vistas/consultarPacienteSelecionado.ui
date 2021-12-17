@@ -636,7 +636,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <rect>
      <x>20</x>
      <y>530</y>
-     <width>341</width>
+     <width>361</width>
      <height>51</height>
     </rect>
    </property>
@@ -745,10 +745,10 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <string notr="true">font: 87 8pt &quot;Segoe UI Black&quot;;</string>
    </property>
    <property name="text">
-    <string>Motivo de las Terapias</string>
+    <string>Motivo de las Terapias:</string>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser_2">
+  <widget class="QTextBrowser" name="etfDiagnostico">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -784,7 +784,7 @@ p, li { white-space: pre-wrap; }
     <string notr="true">font: 87 8pt &quot;Segoe UI Black&quot;;</string>
    </property>
    <property name="text">
-    <string>Tuor del paciente:</string>
+    <string>Tutor del paciente:</string>
    </property>
   </widget>
   <widget class="QLabel" name="lbTutor">
@@ -864,7 +864,7 @@ p, li { white-space: pre-wrap; }
   <zorder>lbCodPostal</zorder>
   <zorder>lbgen</zorder>
   <zorder>lb1_2</zorder>
-  <zorder>textBrowser_2</zorder>
+  <zorder>etfDiagnostico</zorder>
   <zorder>lb14_3</zorder>
   <zorder>lbTutor</zorder>
   <zorder>lb14_4</zorder>

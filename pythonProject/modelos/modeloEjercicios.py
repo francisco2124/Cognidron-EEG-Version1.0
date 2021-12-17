@@ -27,7 +27,14 @@ class Modelo_Ejercicios(QtWidgets.QMainWindow):
 
     def cargarTablaEjercicios(self):
         cursor = self.connection.cursor()
-        sql = "SELECT idEjercicios, nombre, tipo  FROM ejercicios "
+        sql = "SELECT idEjercicios, nombre, tipo  FROM ejercicios WHERE tipo = 'Neurofeedback' "
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro
+
+    def cargarTablaEjerciciosControlMental(self):
+        cursor = self.connection.cursor()
+        sql = "SELECT idEjercicios, nombre, tipo  FROM ejercicios WHERE tipo = 'Control Mental' "
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro

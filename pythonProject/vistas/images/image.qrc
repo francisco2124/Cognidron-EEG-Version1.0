@@ -53,5 +53,7 @@
     <file>circuloGris.png</file>
     <file>lineaIzqu.png</file>
     <file>lineroja.png</file>
+    <file>libroNeurofeedback.png</file>
+    <file>libroControlMental.png</file>
   </qresource>
 </RCC>

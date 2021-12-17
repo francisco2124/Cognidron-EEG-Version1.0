@@ -6,31 +6,31 @@ from datetime import datetime
 import time
 from PyQt5.QtWidgets import QMessageBox
 
-from vistas.consultarTerapeutaSelecionado import Ui_ConsultarTerapeutaSelec
+from vistas.consultarPacienteSelecionado import Ui_ConsultarPacienteSelec
 from PyQt5.QtGui import QIntValidator
 
-from modelos.ModeloTerapeuta import Modelo_Terapeuta
+from modelos.ModeloPacientes import Modelo_Paciente_
 from cotroladores.ControladorReporteEspecifico import Controlador_ConsultarReporteEspecifoco
 
-class Control_ConsultarTerapectuaSelec(QtWidgets.QMainWindow):
+class Control_ConsultarPaciebSelec(QtWidgets.QMainWindow):
 
-    def __init__(self, idTerapeuta):
+    def __init__(self, idPaciente):
         super().__init__()
-        print("soy la vista de consultaR un terapeuta especifico")
-        self.ui= Ui_ConsultarTerapeutaSelec()
+        print("soy la vista de consultar un paciente especifico")
+        self.ui= Ui_ConsultarPacienteSelec()
         self.ui.setupUi(self)
-        self.user = idTerapeuta
-        self.modelo = Modelo_Terapeuta()
+        self.paciente = idPaciente
+        self.modelo = Modelo_Paciente_()
         self.cargarTerapeuta()
         self.InicializarGui()
-        self.cargarReportesXTerapeuta()
-        self.cargarTablaTeraPacientes()
+        #self.cargarReportesXTerapeuta()
+        #self.cargarTablaTeraPacientes()
 
     def InicializarGui(self):
 
         #print(type, self.user)
-        self.ui.lbUsuario.setText(self.user)
-        self.ui.pushButton.clicked.connect(self.abrirReporteEspecifico)
+        self.ui.lbUsuario.setText(self.paciente)
+        #self.ui.pushButton.clicked.connect(self.abrirReporteEspecifico)
 
 
 
@@ -39,15 +39,16 @@ class Control_ConsultarTerapectuaSelec(QtWidgets.QMainWindow):
 
 
 
-        datos = self.modelo.cargarPlaceHolder(self.user)
-        print(datos)
+        datos = self.modelo.cargarPlaceHolder(self.paciente)
+
         ListaDatos = datos[0]
+        print(str(ListaDatos))
 
-        self.ui.lbNombre.setText(ListaDatos[0]+" "+ListaDatos[1]+" "+ListaDatos[2])
-        self.ui.lbGenero.setText(ListaDatos[3])
-        self.ui.lbFechaNaimiento.setText(ListaDatos[4])
+        self.ui.lbNombre.setText(ListaDatos[1]+" "+ListaDatos[2]+" "+ListaDatos[3])
+        self.ui.lbGenero.setText(ListaDatos[4])
+        self.ui.lbFechaNaimiento.setText(ListaDatos[5])
 
-        fecha_dt = datetime.strptime(str(ListaDatos[4]).strip(), '%d/%m/%Y')
+        fecha_dt = datetime.strptime(str(ListaDatos[5]).strip(), '%d/%m/%Y')
         print(fecha_dt)
         datetime.date(fecha_dt)
         age = (datetime.now() - fecha_dt)
@@ -55,24 +56,27 @@ class Control_ConsultarTerapectuaSelec(QtWidgets.QMainWindow):
         edad = math.floor(dias/365)
         #print(edad)
         self.ui.lbEdad.setText(str(edad))
-        self.ui.lbNacionalidad.setText(ListaDatos[5])
+        self.ui.lbNacionalidad.setText(ListaDatos[9])
+        self.ui.etfDiagnostico.setText(ListaDatos[10])
 
-        datos2 = self.modelo.cargarEstadoAndMunicipio(str(ListaDatos[13]))
+        datos2 = self.modelo.cargarEstadoAndMunicipio(str(ListaDatos[14]))
+        print("Soy datos 2" +str(datos2))
         ListaDatos2 = datos2[0]
         print(ListaDatos2)
         self.ui.lbEstado.setText(ListaDatos2[0])
         self.ui.lbMunicipio.setText(ListaDatos2[1])
 
-        self.ui.lbLocalida.setText(ListaDatos[6])
-        self.ui.lbDomicilio.setText(ListaDatos[7]+ " #"+str(ListaDatos[8]))
-        self.ui.lbContacto.setText(str(ListaDatos[9]))
-        self.ui.lbCodPostal.setText(str(ListaDatos[10]))
+        self.ui.lbLocalida.setText(ListaDatos[7])
+        self.ui.lbDomicilio.setText(ListaDatos[8]+ " #"+str(ListaDatos[9]))
+        self.ui.lbContacto.setText(str(ListaDatos[10]))
+        self.ui.lbCodPostal.setText(str(ListaDatos[6]))
         self.ui.lbCorreo.setText(ListaDatos[11])
 
-        print("Tipo de terapeuta e---s "+ str(ListaDatos[14]))
-        if str(ListaDatos[14]) == '0':
+        print("El paciente tiene tutor "+ str(ListaDatos[14]))
+        #if str(ListaDatos[14]) == '0':
 
-            self.ui.lbAdmin.setHidden(True)
+
+            #self.ui.lbAdmin.setHidden(True)
 
     def cargarReportesXTerapeuta(self):
 

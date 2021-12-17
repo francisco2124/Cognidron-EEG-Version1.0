@@ -15,8 +15,8 @@ from modelos.ModeloPacientes import Modelo_Paciente_
 
 #Abrir Nuevas Vistas
 
-from cotroladores.controlador_EditarTerapeuta import Control_EditarTerapeutas
-from cotroladores.controlador_ConsultarTerapeutaSelccionado import Control_ConsultarTerapectuaSelec
+from cotroladores.controlador_EditarPacienter import Control_EditarPaciente
+from cotroladores.controlador_ConsultarPacienteSelccionado import Control_ConsultarPaciebSelec
 
 class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
 
@@ -27,7 +27,6 @@ class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.InicializarGui()
 
-        self.modelo = Modelo_Terapeuta()
         self.modeloP = Modelo_Paciente_()
         self.cargarPacientes()
         self.cargarCbPacientes()
@@ -62,10 +61,10 @@ class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
             item = self.ui.tableView_2.item(RowTable, 0)
             print(item.text())
 
-            self.abrir = Control_EditarTerapeutas(item.text())
+            self.abrir = Control_EditarPaciente(item.text())
             self.abrir.show()
         else:
-            lerta = QMessageBox.information(self, 'Alerta', "No has seleccionado un terapeuta", QMessageBox.Ok)
+            lerta = QMessageBox.information(self, 'Alerta', "No has seleccionado un paciente", QMessageBox.Ok)
 
 
     def abrirConsultar(self):
@@ -77,7 +76,7 @@ class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
             item = self.ui.tableView_2.item(RowTable, 0)
             print(item.text())
 
-            self.abrir = Control_ConsultarTerapectuaSelec(item.text())
+            self.abrir = Control_ConsultarPaciebSelec(item.text())
             self.abrir.show()
         else:
             lerta = QMessageBox.information(self, 'Alerta', "No has seleccionado un terapeuta", QMessageBox.Ok)
@@ -99,10 +98,12 @@ class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
 
 
     def validarBorradoLogico(self, item):
-
-        Terapeuta = self.modelo.validarBorradoLigico2(item.text())
+        '''
+        Terapeuta = self.modeloP.validarBorradoLigico2(item.text())
+        print("El resultado es: "+str(Terapeuta))
         idTerapeuta = Terapeuta[0]
-        res= self.modelo.validarBorradoLigico(idTerapeuta[0])
+        '''
+        res= self.modeloP.validarBorradoLigico(item)
         return  res
 
     def eliminarTerapeuta(self):
@@ -124,16 +125,18 @@ class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
                     print("id tera : "+str(Terapeuta))
                     idTerapeuta = Terapeuta[0]
                     print("id es: " + str(idTerapeuta[0]))
-                    self.modelo.elimina_terapeutaLogico2(idTerapeuta[0])
+                    self.modeloP.elimina_terapeutaLogico2(idTerapeuta[0])
                     alerta = QMessageBox.information(self, 'Alera', "El terapeuta tiene sesiones terapeuticas y su borrrado fue logico", QMessageBox.Ok)
                     self.cargarTerapeutas()
                     self.cargarCbPacientes()
                 else:
                     print("Entre al else")
-                    Terapeuta = self.modelo.validarBorradoLigico2(item.text())
+                    '''
+                    Terapeuta = self.modeloP.validarBorradoLigico2(item.text())
                     idTerapeuta = Terapeuta[0]
                     print(idTerapeuta)
-                    self.modelo.elimina_terapeuta(idTerapeuta[0])
+                    '''
+                    self.modeloP.eliminar_Paciente(item.text())
 
                     alerta = QMessageBox.information(self, 'Confirmacion', "Terapeuta Eliminado permanente", QMessageBox.Ok)
                     self.cargarTerapeutas()

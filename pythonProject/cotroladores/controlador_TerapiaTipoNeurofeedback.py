@@ -19,7 +19,7 @@ from PyQt5.QtGui import QIntValidator
 import os
 from playsound import playsound
 
-
+from cotroladores.controladorDron import Dron
 
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vis
 import sys
@@ -70,13 +70,17 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
 
         #Controles de emergencia del dron
         self.ui.btnObtenerDrone.clicked.connect(self.obtenerControlDrone)
-        self.ui.btnElevarDrone.clicked.connect(self.elevarDrone)
+
         self.ui.btnDecenderDrone.clicked.connect(self.decenderDrone)
         self.ui.btnDerechaDrone.clicked.connect(self.derechaDrone)
         self.ui.btnIsquierdaDrone.clicked.connect(self.izquierdaDrone)
         self.ui.btnAdelanteDrone.clicked.connect(self.adelanteDrone)
         self.ui.btnAtrasDrone.clicked.connect(self.atrasDrone)
+
+        self.ui.btnElevarDrone.clicked.connect(self.despegarDrone)
         self.ui.btnAterrizarDrone.clicked.connect(self.aterrizarDrone)
+        self.ui.btnPausar.clicked.connect(self.finalizarTerapia)
+
 
         #Botones basicos de la sesion
         self.ui.btnIniciarTerapia.clicked.connect(self.iniciarTerapia)
@@ -96,6 +100,7 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
 
     def iniciarTerapia(self):
 
+            self.dron = Dron('192.168.10.1', 8889, "tello")
 
             pista = self.ui.cbPista.currentText()
 
@@ -164,7 +169,13 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
             self.ui.btnActivarEmotiv.setStyleSheet("background-color: rgb(0, 226, 0);")
             self.ui.btnActivarEmotiv.setEnabled(True)
 
+    def despegarDrone(self):
+        print("llame la funcion elevar")
+        self.dron.despegar()
 
+    def aterrizarDrone(self):
+        print("llame la funcion decender")
+        self.dron.aterrizar()
 
     def adelanteDrone(self):
 
@@ -179,10 +190,6 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
         self.alto = self.alto  + 5
         self.ancho = self.ancho + 5
         self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.ancho))
-
-    def aterrizarDrone(self):
-
-        self.ui.labelComandosMentales.setText("El dron ha aterizado")
 
     def elevarDrone(self):
         self.posY = self.posY - 23
@@ -281,6 +288,9 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
 
         self.hilo.reanudar()
         self.ui.label_11.setText(str(self.hilo.estadoHilo()))
+
+    def finalizarTerapia(self):
+        del(self.dron)
 
     def actualizarDuracion(self,val):
         #print("b", str(val))

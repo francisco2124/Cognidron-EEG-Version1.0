@@ -524,7 +524,7 @@
 background-color: rgb(200, 198, 223);</string>
    </property>
    <property name="text">
-    <string>Aceptar</string>
+    <string>Editar</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnCancelar">

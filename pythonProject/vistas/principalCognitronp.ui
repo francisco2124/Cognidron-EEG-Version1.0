@@ -219,6 +219,7 @@
    <addaction name="actionIconoTerapia"/>
    <addaction name="actionIconoTerapia_2"/>
    <addaction name="actionIconLibro"/>
+   <addaction name="actionEjerciciosControlMnetal"/>
    <addaction name="separator"/>
    <addaction name="actionVistaCuadricula"/>
    <addaction name="actionVistaCascada"/>
@@ -416,7 +417,7 @@
   <action name="actionIconoTerapia">
    <property name="icon">
     <iconset resource="images/image.qrc">
-     <normaloff>:/newPrefix/salud-mental.png</normaloff>:/newPrefix/salud-mental.png</iconset>
+     <normaloff>:/newPrefix/idea-genial.png</normaloff>:/newPrefix/idea-genial.png</iconset>
    </property>
    <property name="text">
     <string>IconoOndas</string>
@@ -431,13 +432,13 @@
   <action name="actionIconLibro">
    <property name="icon">
     <iconset resource="images/image.qrc">
-     <normaloff>:/newPrefix/libro-abierto.png</normaloff>:/newPrefix/libro-abierto.png</iconset>
+     <normaloff>:/newPrefix/libroNeurofeedback.png</normaloff>:/newPrefix/libroNeurofeedback.png</iconset>
    </property>
    <property name="text">
     <string>IconEjercicos</string>
    </property>
    <property name="toolTip">
-    <string>Abrir Ejercicos</string>
+    <string>Abrir Ejercicos Neurofeedback</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -512,7 +513,7 @@
   <action name="actionIconConsulatrReporte">
    <property name="icon">
     <iconset resource="images/image.qrc">
-     <normaloff>:/newPrefix/libro-abierto.png</normaloff>:/newPrefix/libro-abierto.png</iconset>
+     <normaloff>:/newPrefix/reporte.png</normaloff>:/newPrefix/reporte.png</iconset>
    </property>
    <property name="text">
     <string>IconConsulatrReporte</string>
@@ -527,7 +528,7 @@
   <action name="actionIconoTerapia_2">
    <property name="icon">
     <iconset resource="images/image.qrc">
-     <normaloff>:/newPrefix/idea-genial.png</normaloff>:/newPrefix/idea-genial.png</iconset>
+     <normaloff>:/newPrefix/salud-mental.png</normaloff>:/newPrefix/salud-mental.png</iconset>
    </property>
    <property name="text">
     <string>IconoTerapiaNeuro</string>
@@ -582,7 +583,7 @@
   <action name="actionConsultar_Reporte">
    <property name="icon">
     <iconset resource="images/image.qrc">
-     <normaloff>:/newPrefix/libro-abierto.png</normaloff>:/newPrefix/libro-abierto.png</iconset>
+     <normaloff>:/newPrefix/reporte.png</normaloff>:/newPrefix/reporte.png</iconset>
    </property>
    <property name="text">
     <string>Consultar Reporte</string>
@@ -637,6 +638,21 @@
   <action name="actionConectar_Emotiv">
    <property name="text">
     <string>Conectar Emotiv</string>
+   </property>
+  </action>
+  <action name="actionEjerciciosControlMnetal">
+   <property name="icon">
+    <iconset resource="images/image.qrc">
+     <normaloff>:/newPrefix/libroControlMental.png</normaloff>:/newPrefix/libroControlMental.png</iconset>
+   </property>
+   <property name="text">
+    <string>EjerciciosControlMnetal</string>
+   </property>
+   <property name="toolTip">
+    <string>Abrir ejercicios de tipo control mental</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
    </property>
   </action>
  </widget>

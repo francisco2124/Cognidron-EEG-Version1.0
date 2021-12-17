@@ -52,9 +52,9 @@ text-decoration: underline;</string>
   <widget class="QPushButton" name="btnRealizar">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>700</x>
      <y>150</y>
-     <width>131</width>
+     <width>161</width>
      <height>28</height>
     </rect>
    </property>
@@ -125,7 +125,7 @@ text-decoration: underline;</string>
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>601</width>
+      <width>611</width>
       <height>61</height>
      </rect>
     </property>
@@ -143,7 +143,7 @@ text-decoration: underline;</string>
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Ejercicios de tipo Neurofeedback</string>
+     <string>Ejercicios de tipo Control Mnetal</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_25">
@@ -161,7 +161,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/newPrefix/libroNeurofeedback.png);</string>
+     <string notr="true">image: url(:/newPrefix/libroControlMental.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -489,6 +489,258 @@ p, li { white-space: pre-wrap; }
     <string> -----------------------------------------------</string>
    </property>
   </widget>
+  <widget class="QComboBox" name="cbcomandoMental1">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>150</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Comando 1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Elevar</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Decender</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Izquierda</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Derecha</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Adelante</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Atras</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Pirueta </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Girar derecha</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Girar Izquierda</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="cbcomandoMental2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>150</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Comando 2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Elevar</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Decender</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Izquierda</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Derecha</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Adelante</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Atras</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Pirueta </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Girar derecha</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Girar Izquierda</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="cbcomandoMental3">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>150</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Comando 3</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Elevar</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Decender</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Izquierda</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Derecha</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Adelante</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Atras</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Pirueta </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Girar derecha</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Girar Izquierda</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="cbcomandoMental4">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>150</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Comando 4</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Elevar</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Decender</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Izquierda</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Derecha</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Adelante</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Atras</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Pirueta </string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Girar derecha</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Girar Izquierda</string>
+    </property>
+   </item>
+  </widget>
   <widget class="QLabel" name="lbEjercicioSeecionado">
    <property name="geometry">
     <rect>
@@ -525,6 +777,10 @@ p, li { white-space: pre-wrap; }
   <zorder>lbParametro2</zorder>
   <zorder>label_7</zorder>
   <zorder>lbParametro1</zorder>
+  <zorder>cbcomandoMental1</zorder>
+  <zorder>cbcomandoMental2</zorder>
+  <zorder>cbcomandoMental3</zorder>
+  <zorder>cbcomandoMental4</zorder>
   <zorder>lbEjercicioSeecionado</zorder>
  </widget>
  <resources>

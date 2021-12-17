@@ -128,7 +128,7 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         self.connection.close()
 
 
-    def cargarPlaceHolder(self, idTutor):
+    def cargarPlaceHolder(self, idPaciente):
         self.connection = pymysql.connect(
             host="localhost",
             user="root",
@@ -136,8 +136,8 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
             db="cognidroneeg"
         )
         cursor = self.connection.cursor()
-        sql = '''SELECT idTutor, nombre, ape_paterno, ape_materno, genero, fecha_nacimiento, nacionalidad, localidad, calle, num, cod_postal, numero_contacto, correo_electronico, Municipio_idMunicipio 
-          FROM tutor WHERE idTutor = '{}'  '''.format(idTutor)
+        sql = '''SELECT idPaciente, nombre,ape_paterno, ape_materno, genero, fecha_nacimiento, cod_postal, localidad, calle,''' \
+          '''num, nacionalidad, diagnostico, numero_contacto, correo_electronico, Tutor_idTutor, Municipio_idMunicipio FROM paciente WHERE idPaciente = '{}'  '''.format(idPaciente)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -195,10 +195,10 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         return registro
         self.connection.close()
 
-    def validarBorradoLigico(self, idtutor):
+    def validarBorradoLigico(self, idPaciente):
         cursor = self.connection.cursor()
 
-        sql='''SELECT idPaciente  FROM paciente WHERE Tutor_idTutor =' {}' '''.format(idtutor)
+        sql='''SELECT idPaciente  FROM paciente WHERE idPaciente =' {}' '''.format(idPaciente)
 
         cursor.execute(sql)
         registro = cursor.fetchall()
@@ -220,9 +220,9 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         self.connection.commit()
         return registro
 
-    def elimina_tutorLogico(self,id):
+    def elimina_PacienteLogico(self,id):
         cursor = self.connection.cursor()
-        sql ="UPDATE tutor SET  borradoLogico  = '1' WHERE idTutor = '{}' ".format(id)
+        sql ="UPDATE paciente SET  borradoLogico  = '1' WHERE idPaciente = '{}' ".format(id)
 
         cursor.execute(sql)
         self.connection.commit()
