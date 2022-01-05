@@ -42,7 +42,7 @@ class Control_ConsultarPaciebSelec(QtWidgets.QMainWindow):
         datos = self.modelo.cargarPlaceHolder(self.paciente)
 
         ListaDatos = datos[0]
-        print(str(ListaDatos))
+        print("Soy datos 1 "+str(ListaDatos))
 
         self.ui.lbNombre.setText(ListaDatos[1]+" "+ListaDatos[2]+" "+ListaDatos[3])
         self.ui.lbGenero.setText(ListaDatos[4])
@@ -56,8 +56,8 @@ class Control_ConsultarPaciebSelec(QtWidgets.QMainWindow):
         edad = math.floor(dias/365)
         #print(edad)
         self.ui.lbEdad.setText(str(edad))
-        self.ui.lbNacionalidad.setText(ListaDatos[9])
-        self.ui.etfDiagnostico.setText(ListaDatos[10])
+        self.ui.lbNacionalidad.setText(str(ListaDatos[10]))
+        self.ui.etfDiagnostico.setText(ListaDatos[11])
 
         datos2 = self.modelo.cargarEstadoAndMunicipio(str(ListaDatos[14]))
         print("Soy datos 2" +str(datos2))
@@ -68,15 +68,16 @@ class Control_ConsultarPaciebSelec(QtWidgets.QMainWindow):
 
         self.ui.lbLocalida.setText(ListaDatos[7])
         self.ui.lbDomicilio.setText(ListaDatos[8]+ " #"+str(ListaDatos[9]))
-        self.ui.lbContacto.setText(str(ListaDatos[10]))
-        self.ui.lbCodPostal.setText(str(ListaDatos[6]))
-        self.ui.lbCorreo.setText(ListaDatos[11])
+        self.ui.lbContacto.setText(str(ListaDatos[6]))
+        self.ui.lbCodPostal.setText(str(ListaDatos[12]))
+        self.ui.lbCorreo.setText(ListaDatos[13])
 
         print("El paciente tiene tutor "+ str(ListaDatos[14]))
-        #if str(ListaDatos[14]) == '0':
-
-
-            #self.ui.lbAdmin.setHidden(True)
+        if str(ListaDatos[15]) == '0':
+            self.ui.lbTutor.setText("Sin_Tutor")
+        else:
+            nombreTutor =  self.modelo.recuperarNombreTutor(str(ListaDatos[15]))
+            self.ui.lbTutor.setText(str(nombreTutor[0][0])+ " "+str(nombreTutor[0][1]))
 
     def cargarReportesXTerapeuta(self):
 

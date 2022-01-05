@@ -231,12 +231,12 @@ class Ui_ConsultarPacienteSelec(object):
         self.lbgen.setStyleSheet("font: 87 8pt \"Segoe UI Black\";")
         self.lbgen.setObjectName("lbgen")
         self.lb1_2 = QtWidgets.QLabel(ConsultarPacienteSelec)
-        self.lb1_2.setGeometry(QtCore.QRect(290, 210, 151, 31))
+        self.lb1_2.setGeometry(QtCore.QRect(290, 180, 151, 31))
         self.lb1_2.setStyleSheet("font: 87 8pt \"Segoe UI Black\";")
         self.lb1_2.setObjectName("lb1_2")
         self.etfDiagnostico = QtWidgets.QTextBrowser(ConsultarPacienteSelec)
         self.etfDiagnostico.setEnabled(False)
-        self.etfDiagnostico.setGeometry(QtCore.QRect(290, 250, 311, 211))
+        self.etfDiagnostico.setGeometry(QtCore.QRect(290, 220, 311, 211))
         self.etfDiagnostico.setObjectName("etfDiagnostico")
         self.lb14_3 = QtWidgets.QLabel(ConsultarPacienteSelec)
         self.lb14_3.setGeometry(QtCore.QRect(290, 150, 151, 31))
@@ -245,13 +245,6 @@ class Ui_ConsultarPacienteSelec(object):
         self.lbTutor = QtWidgets.QLabel(ConsultarPacienteSelec)
         self.lbTutor.setGeometry(QtCore.QRect(420, 150, 141, 31))
         self.lbTutor.setObjectName("lbTutor")
-        self.lb14_4 = QtWidgets.QLabel(ConsultarPacienteSelec)
-        self.lb14_4.setGeometry(QtCore.QRect(290, 180, 171, 31))
-        self.lb14_4.setStyleSheet("font: 87 8pt \"Segoe UI Black\";")
-        self.lb14_4.setObjectName("lb14_4")
-        self.lbTerapeutaR = QtWidgets.QLabel(ConsultarPacienteSelec)
-        self.lbTerapeutaR.setGeometry(QtCore.QRect(460, 180, 141, 31))
-        self.lbTerapeutaR.setObjectName("lbTerapeutaR")
         self.label_8.raise_()
         self.label.raise_()
         self.pushButton.raise_()
@@ -290,8 +283,6 @@ class Ui_ConsultarPacienteSelec(object):
         self.etfDiagnostico.raise_()
         self.lb14_3.raise_()
         self.lbTutor.raise_()
-        self.lb14_4.raise_()
-        self.lbTerapeutaR.raise_()
 
         self.retranslateUi(ConsultarPacienteSelec)
         QtCore.QMetaObject.connectSlotsByName(ConsultarPacienteSelec)
@@ -353,8 +344,7 @@ class Ui_ConsultarPacienteSelec(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.lb14_3.setText(_translate("ConsultarPacienteSelec", "Tutor del paciente:"))
         self.lbTutor.setText(_translate("ConsultarPacienteSelec", "Sin_Tutor"))
-        self.lb14_4.setText(_translate("ConsultarPacienteSelec", "Terapeuta que lo registro:"))
-        self.lbTerapeutaR.setText(_translate("ConsultarPacienteSelec", "Monica Peraltes"))
+
 
 if __name__ == "__main__":
     import sys

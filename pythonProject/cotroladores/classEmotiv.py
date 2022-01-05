@@ -268,7 +268,7 @@ class conexionEmotiv(QThread):
         self.clientId = str(ListaDatos[0]).strip()
         self.clientSecret = str(ListaDatos[1]).strip()
         profile = "Francisco"
-        #print("Obtener Token...: ")
+        #print("--------------------------Obtener Token...: ")
         msg = """{
                             "id": 1,
                             "jsonrpc": "2.0",
@@ -285,7 +285,7 @@ class conexionEmotiv(QThread):
         token = dic["result"]["cortexToken"]
 
 
-        #print("Ver diademas conectadas...: ")
+        #print("======================Ver diademas conectadas...: ")
         msg = """{"jsonrpc": "2.0", 
                             "method": "queryHeadsets",
                             "params": {},
@@ -300,7 +300,7 @@ class conexionEmotiv(QThread):
         else:
             pass
 
-        #print("Crear Sesion...: ")
+        #print("----------------------------------Crear Sesion...: ")
         msg = """{
                             "id": 1,
                             "jsonrpc": "2.0",
@@ -324,7 +324,7 @@ class conexionEmotiv(QThread):
 
 
 
-        #print("Suscribirse a los comandos mentales...: ")
+        #print("-----------------------------Suscribirse a los comandos mentales...: ")
         msg = """{
                             "id": 1,
                             "jsonrpc": "2.0",
