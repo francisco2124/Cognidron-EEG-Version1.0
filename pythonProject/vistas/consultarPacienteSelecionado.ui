@@ -736,7 +736,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>210</y>
+     <y>180</y>
      <width>151</width>
      <height>31</height>
     </rect>
@@ -755,7 +755,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>250</y>
+     <y>220</y>
      <width>311</width>
      <height>211</height>
     </rect>
@@ -800,35 +800,6 @@ p, li { white-space: pre-wrap; }
     <string>Sin_Tutor</string>
    </property>
   </widget>
-  <widget class="QLabel" name="lb14_4">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>180</y>
-     <width>171</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 87 8pt &quot;Segoe UI Black&quot;;</string>
-   </property>
-   <property name="text">
-    <string>Terapeuta que lo registro:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lbTerapeutaR">
-   <property name="geometry">
-    <rect>
-     <x>460</x>
-     <y>180</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Monica Peraltes</string>
-   </property>
-  </widget>
   <zorder>label_8</zorder>
   <zorder>label</zorder>
   <zorder>pushButton</zorder>
@@ -867,8 +838,6 @@ p, li { white-space: pre-wrap; }
   <zorder>etfDiagnostico</zorder>
   <zorder>lb14_3</zorder>
   <zorder>lbTutor</zorder>
-  <zorder>lb14_4</zorder>
-  <zorder>lbTerapeutaR</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

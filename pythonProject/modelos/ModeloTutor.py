@@ -226,7 +226,7 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
 
 #--------------------------Vista consultar tutor seleccionado-------------------------
 
-    def cargarTablaXSesionTera(self, idTerapeuta):
+    def cargarTablaXSesionTera(self, idPaciente):
 
         connection2 = pymysql.connect(
             host="localhost",
@@ -238,7 +238,7 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
         sql = "SELECT idSesionTerapeutica, identificador, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
               "INNER JOIN ejercicios ejer ON (ejer.idEjercicios = sesio.Ejercicios_idEjercicios)" \
               "INNER JOIN paciente pati ON (pati.idPaciente = sesio.Paciente_idPaciente)" \
-              "INNER JOIN terapeuta tera ON (tera.idTrapeuta = sesio.Terapeuta_idTrapeuta) WHERE Terapeuta_idTrapeuta = '{}' ".format(idTerapeuta)
+              "INNER JOIN terapeuta tera ON (tera.idTrapeuta = sesio.Terapeuta_idTrapeuta) WHERE Paciente_idPaciente = '{}' ".format(idPaciente)
 
         cursor.execute(sql)
         cursor.close()
@@ -254,4 +254,12 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
         registro = cursor.fetchall()
         return registro
 
+    def cargarTablaxTPacienteLocalidad(self, idTutor):
+        cursor = self.connection.cursor()
+        sql = "SELECT pati.idPaciente, pati.nombre, pati.localidad FROM paciente pati " \
+              "INNER JOIN tutor tuto ON (pati.Tutor_idTutor = tuto.idTutor)" \
+              " where idTutor = '{}'".format(idTutor)
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro
 

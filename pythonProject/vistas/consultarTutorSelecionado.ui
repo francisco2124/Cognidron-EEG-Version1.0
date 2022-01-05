@@ -709,7 +709,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <rect>
      <x>20</x>
      <y>520</y>
-     <width>251</width>
+     <width>521</width>
      <height>51</height>
     </rect>
    </property>
@@ -721,7 +721,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </font>
    </property>
    <property name="text">
-    <string>Reportes relacionados al tutor</string>
+    <string>Reportes relacionados al paciente asignado </string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">

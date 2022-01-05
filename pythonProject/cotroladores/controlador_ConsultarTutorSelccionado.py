@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 from vistas.consultarTutorSelecionado import Ui_ConsultarTutorSelec
 from PyQt5.QtGui import QIntValidator
+from cotroladores.ControladorReporteEspecifico import Controlador_ConsultarReporteEspecifoco
 
 from modelos.ModeloTutor import Modelo_Tutor_
 
@@ -23,13 +24,14 @@ class Control_ConsultarTutorSelec(QtWidgets.QMainWindow):
         self.cargarTutor()
         self.InicializarGui()
         #self.cargarReportesXTerapeuta()
-        #self.cargarTablaTeraPacientes()
+        self.cargarTablaPacienteLocalidad()
 
     def InicializarGui(self):
 
         #print(type, self.user)
         self.ui.lbUsuario.setText(self.user)
         self.ui.pushButton.clicked.connect(self.abrirReporteEspecifico)
+        self.ui.tabla_pacientes_2.cellClicked.connect(self.cargarReportesXPaciente)
 
 
 
@@ -72,12 +74,12 @@ class Control_ConsultarTutorSelec(QtWidgets.QMainWindow):
 
 
 
-    def cargarReportesXTerapeuta(self):
+    def cargarReportesXPaciente(self):
 
-        datosidT = self.modelo.cargarPlaceHolder(self.user)
-        ListaDatos2 = datosidT[0]
-
-        datos = self.modelo.cargarTablaXSesionTera(str(ListaDatos2[12]))
+        RowTable = self.ui.tabla_pacientes_2.currentRow()
+        item = self.ui.tabla_pacientes_2.item(RowTable, 0)
+        print(str(item.text()))
+        datos = self.modelo.cargarTablaXSesionTera(item.text())
         print("cargar Reportes")
         i = len(datos)
         self.ui.tabla_pacientes.setRowCount(i)
@@ -125,6 +127,21 @@ class Control_ConsultarTutorSelec(QtWidgets.QMainWindow):
             self.abrir.show()
 
         else:
-            Alerta = QMessageBox.information(self, 'Alerta', "Selecciona un rreporte", QMessageBox.Ok)
+            Alerta = QMessageBox.information(self, 'Alerta', "Selecciona un Reporte", QMessageBox.Ok)
             print("No selecionaste")
 
+
+    def cargarTablaPacienteLocalidad(self):
+
+        datos = self.modelo.cargarTablaxTPacienteLocalidad(self.user)
+        print("Los datos de paciente y localidad  son: "+str(datos))
+        i = len(datos)
+        if i != 0:
+            self.ui.tabla_pacientes_2.setRowCount(i)
+            tablerow = 0
+            for row in datos:
+                self.ui.tabla_pacientes_2.setItem(tablerow,0,QtWidgets.QTableWidgetItem(str(row[0])))
+                self.ui.tabla_pacientes_2.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
+                tablerow +=1
+        else:
+            print("No tiene pacientes asignados")

@@ -137,7 +137,7 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         )
         cursor = self.connection.cursor()
         sql = '''SELECT idPaciente, nombre,ape_paterno, ape_materno, genero, fecha_nacimiento, cod_postal, localidad, calle,''' \
-          '''num, nacionalidad, diagnostico, numero_contacto, correo_electronico, Tutor_idTutor, Municipio_idMunicipio FROM paciente WHERE idPaciente = '{}'  '''.format(idPaciente)
+          '''num, nacionalidad, diagnostico, numero_contacto, correo_electronico, Municipio_idMunicipio, Tutor_idTutor FROM paciente WHERE idPaciente = '{}'  '''.format(idPaciente)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -145,6 +145,13 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
     def cargarEstados(self):
         cursor = self.connection.cursor()
         sql = '''SELECT idEstadado, nombre FROM estado '''
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro
+
+    def recuperarNombreTutor(self, idTutor):
+        cursor = self.connection.cursor()
+        sql = '''SELECT nombre, ape_paterno FROM tutor WHERE idTutor = '{}'  '''.format(idTutor)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
