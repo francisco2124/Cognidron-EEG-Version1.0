@@ -7,7 +7,6 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import vistas.images
 
 class Ui_ejercicioTerapeuticos(object):
     def setupUi(self, ejercicioTerapeuticos):
@@ -194,7 +193,7 @@ class Ui_ejercicioTerapeuticos(object):
     def retranslateUi(self, ejercicioTerapeuticos):
         _translate = QtCore.QCoreApplication.translate
         ejercicioTerapeuticos.setWindowTitle(_translate("ejercicioTerapeuticos", "Dialog"))
-        self.lbEjercicio.setText(_translate("ejercicioTerapeuticos", "Ejercicio Selecionado:"))
+        self.lbEjercicio.setText(_translate("ejercicioTerapeuticos", "Ejercicio Seleccionado:"))
         self.btnRealizar.setText(_translate("ejercicioTerapeuticos", "Realizar Ejercicio"))
         self.label_10.setText(_translate("ejercicioTerapeuticos", "Ejercicios de tipo Neurofeedback"))
         item = self.tvEjercicios.horizontalHeaderItem(0)
@@ -210,9 +209,9 @@ class Ui_ejercicioTerapeuticos(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Descripción del ejercico....</p></body></html>"))
-        self.label_3.setText(_translate("ejercicioTerapeuticos", "Parametro 1:"))
+        self.label_3.setText(_translate("ejercicioTerapeuticos", "Parámetro 1:"))
         self.lbParametro2.setText(_translate("ejercicioTerapeuticos", " -----------------------------------------------"))
-        self.label_7.setText(_translate("ejercicioTerapeuticos", "Parametro 2:"))
+        self.label_7.setText(_translate("ejercicioTerapeuticos", "Parámetro 2:"))
         self.lbParametro1.setText(_translate("ejercicioTerapeuticos", " -----------------------------------------------"))
 
 

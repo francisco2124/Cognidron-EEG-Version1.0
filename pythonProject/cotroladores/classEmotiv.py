@@ -21,6 +21,7 @@ class conexionEmotiv(QThread):
         self.profile = "j"
         # - - - - - - - - - - - - - - - - -
         self.url = "wss://localhost:6868"
+        self.contadorDePotencias = 0
 
     def cargarParametris(self):
 
@@ -313,11 +314,12 @@ class conexionEmotiv(QThread):
                         }""" % (token, headset)
         ws.send(msg)
 
-        result = ws.recv()
+        result0 = ws.recv()
 
-        if 'appId' in result:
-            dic = json.loads(result)
+        if 'appId' in result0:
+            dic = json.loads(result0)
             sesion = dic['result']['id']
+            print("sesion es igual a "+str(sesion))
         else:
             print("Error en sesion")
 
@@ -343,9 +345,24 @@ class conexionEmotiv(QThread):
         print(str(bucle))
 
         #Prueba solo con theta en f3
-        potencialElectrico = bucle["pow"][0]
+        try:
+            #potencialElectrico = bucle["pow"][0]
+            #return potencialElectrico
+            thetaf3 = bucle["pow"][10]
+            thetaf4 = bucle["pow"][55]
+            betaf3 = bucle["pow"][12]
+            betaf4 = bucle["pow"][57]
+            thetabetha = ( ((thetaf3+thetaf4)/2) / ((betaf3+betaf4)/2) )
+            listaPotencias = []
 
-        #Formula para sacar theta/beta = ( ((thetaf3+thetaf4)/2) / ((betaF3+betaf4)/2) )
+            listaPotencias.append(thetabetha)
+
+            return thetabetha
+        except:
+            print("No se obtuvo lectura...")
+            return 0
+
+        #Formula para sacar theta/beta = ( ((thetaf3+thetaf4)/2) / ((betabajoF3+betabajof4)/2) )
 
         #                                   theta F4YF4 / Beta F3YF4
         #thetaf3 = bucle["pow"][0]
@@ -354,7 +371,7 @@ class conexionEmotiv(QThread):
         #betaf4 = bucle["pow"][57]
         #thetabetha = ( ((thetaf3+thetaf2)/2) / ((beta3+betaf4)/2) )
         #return thetabetha
-        return potencialElectrico
+
 
     def run(self):
         self.cont = 0
@@ -363,6 +380,8 @@ class conexionEmotiv(QThread):
         while main_thread.is_alive():
             potenciaElectrica = self.potenciaElectrodo()
             print("La potencia es: "+str(potenciaElectrica))
+            self.contadorDePotencias = self.contadorDePotencias + 1
+            print("El numero de potencias registradas son: "+str(self.contadorDePotencias))
             time.sleep(0.5)
             self.signEmotiv.emit(potenciaElectrica)
 

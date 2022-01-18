@@ -1,7 +1,8 @@
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMessageBox
 
 #Hilos necesarios
+
 from cotroladores.timerDuracion import HiloDuracion
 from cotroladores.timerDuracionReloj import HiloDuracionReloj
 from cotroladores.classSingnsEmotiv import HiloSingsEotiv
@@ -15,11 +16,13 @@ from vistas.terapiaNeurofeedback import Ui_TerapiaNeurofeedback
 from modelos.ModeloPacientes import Modelo_Paciente_
 from modelos.modeloEjercicios import Modelo_Ejercicios
 
+from cotroladores.controlador_Observaciones import Controlador_Observaciones
+
 from PyQt5.QtGui import QIntValidator
 import os
 from playsound import playsound
 
-from cotroladores.controladorDron import Dron
+from cotroladores.dron.controladorDron import Dron
 
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vis
 import sys
@@ -28,7 +31,7 @@ import sys
 import random
 from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
 
-class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
+class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
 
     def __init__(self):
@@ -36,15 +39,18 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
         self.ui = Ui_TerapiaNeurofeedback()
         self.ui.setupUi(self)
         self.inicializarGUI()
-        self.posX = 310
-        self.posY = 500
-        self.ancho = 141
-        self.alto = 101
+        self.posX = 380
+        self.posY = 550
+        self.ancho = 111
+        self.alto = 71
         self.hilo = HiloDuracion;
         self.puntaje = 0
         self.Umbral = 0
-        self.contadorumbral =0
+        self.contadorumbral =1
         self.contadorumbralMaximo =0
+        self.estadoDron = 0
+        self.contadorPuntos = 0
+        self.dirreccion = 0
 
         #modelos
         self.modeloPaciente = Modelo_Paciente_()
@@ -53,6 +59,11 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
         #Funciones
         self.cargarCbPacientes()
         self.cargarCbEjercicios()
+
+        self.listapotencia = []
+        self.hiloEmotiv = conexionEmotiv()
+
+
 
 
 
@@ -63,37 +74,33 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
         self.ui.labelEventoDrone.setText("")
         self.ui.label.setText("")
         self.ui.labelComandosMentales.setText("")
-        self.ui.proBarTiempoSesion.setStyleSheet("QProgressBar::chunk "
-                                            "{"
-                                            "background-color: rgb(170, 170, 255);"
-                                            "}")
+
 
         #Controles de emergencia del dron
         self.ui.btnObtenerDrone.clicked.connect(self.obtenerControlDrone)
 
+        self.ui.btnAterrizarDrone.clicked.connect(self.despegarAtirrizarDrone)
         self.ui.btnDecenderDrone.clicked.connect(self.decenderDrone)
         self.ui.btnDerechaDrone.clicked.connect(self.derechaDrone)
         self.ui.btnIsquierdaDrone.clicked.connect(self.izquierdaDrone)
         self.ui.btnAdelanteDrone.clicked.connect(self.adelanteDrone)
         self.ui.btnAtrasDrone.clicked.connect(self.atrasDrone)
-
-        self.ui.btnElevarDrone.clicked.connect(self.despegarDrone)
-        self.ui.btnAterrizarDrone.clicked.connect(self.aterrizarDrone)
-        self.ui.btnPausar.clicked.connect(self.finalizarTerapia)
+        self.ui.btnElevarDrone.clicked.connect(self.elevarDrone)
+        self.ui.rotarRelocj.clicked.connect(self.girarDroneDerecha)
+        self.ui.rotarContraRelocj.clicked.connect(self.giraeDroneIzquierda)
+        self.ui.btbCapturarObservaciones.clicked.connect(self.abrirCapturarObservaciones)
 
 
         #Botones basicos de la sesion
         self.ui.btnIniciarTerapia.clicked.connect(self.iniciarTerapia)
-        self.ui.btnDetener.clicked.connect(self.deternerTipoDuracion)
-        self.ui.btnResumen.clicked.connect(self.reanudarTipoDuracion)
-        #.ui.btnResumen.clicked.connect(self.iniciarBarraProgreso)
+        self.ui.btnActivarEmotiv.clicked.connect(self.instruccion1)
 
 
         #Botones del umbral
-        self.ui.spinBoxUmbral.setMinimum(5)
-        self.ui.spinBoxUmbral.setMaximum(95)
+        self.ui.spinBoxUmbral.setMinimum(1)
+        self.ui.spinBoxUmbral.setMaximum(99)
         self.ui.spinBoxUmbral.valueChanged.connect(self.colocarumbral)
-        self.ui.spinBoxUmbral.setSingleStep(5)
+        self.ui.spinBoxUmbral.setSingleStep(1)
         self.ui.spinBoxUmbral.setValue(30)
 
 
@@ -104,21 +111,13 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
 
             pista = self.ui.cbPista.currentText()
 
-            tiempo = tiempo = self.ui.cbTiempoSesion.currentText()
-
-            if tiempo == "Sin Seleccion":
-                Alerta = QMessageBox.information(self, 'Alerta', "Selecciona un una duracion de la sesion para iniciar la terapia", QMessageBox.Ok)
-
-            elif pista != "Sin Pista":
-                self.iniciarBarraProgreso(tiempo)
+            if pista != "Sin Pista":
 
                 self.activarBarraNeurofeedback()
                 self.crearArchivoCSV()
                 self.reproducirPista(pista)
                 self.ejecutardron()
             else:
-                self.iniciarBarraProgreso(tiempo)
-                self.activarcuntaRegresiva(tiempo)
                 self.activarBarraNeurofeedback()
                 self.crearArchivoCSV()
                 self.ejecutardron()
@@ -169,116 +168,207 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
             self.ui.btnActivarEmotiv.setStyleSheet("background-color: rgb(0, 226, 0);")
             self.ui.btnActivarEmotiv.setEnabled(True)
 
-    def despegarDrone(self):
-        print("llame la funcion elevar")
-        self.dron.despegar()
 
-    def aterrizarDrone(self):
-        print("llame la funcion decender")
-        self.dron.aterrizar()
+    #Acciones del dron :) para el control manual ---------------------------------------
+
+    def dronNoInstanciado(self):
+
+        lerta = QMessageBox.information(self, 'Alerta', "Inicia sesion y selecciona un dron para usar sus comandos...", QMessageBox.Ok)
+
+    def despegarAtirrizarDrone(self):
+
+        if self.estadoDron == 0:
+            try:
+                print("llame la funcion despegar")
+                self.dron.despegar()
+                icon = QtGui.QIcon()
+                icon.addPixmap(QtGui.QPixmap(":/newPrefix/aterrizar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                self.ui.btnAterrizarDrone.setIcon(icon)
+                self.estadoDron = 1
+            except:
+                self.dronNoInstanciado()
+
+        else:
+            print("llame la funcion aterrizar")
+            self.dron.aterrizar()
+            self.estadoDron = 0
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(":/newPrefix/despegar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.ui.btnAterrizarDrone.setIcon(icon)
+
+    def instruccion1(self):
+
+        print("Contador puntos es =: "+str(self.contadorPuntos))
+
+        if self.contadorPuntos != 5:
+            if self.contadorPuntos == 1:
+                self.posY = self.posY - 33
+                self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.alto))
+                self.contadorPuntos = self.contadorPuntos + 1
+            else:
+                self.posY = self.posY - 66
+                self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.alto))
+                self.contadorPuntos = self.contadorPuntos + 1
+        else:
+            self.posY = 550
+            self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.alto))
+            self.contadorPuntos = 1
+            self.dirreccion = 1
+
+        ejercicio = self.ui.cbEjercicio.currentText()
+        print("El ejercicio es: "+str(ejercicio))
+
+        if ejercicio == "Elevar y descender dron":
+            self.dron.elevar()
+        elif ejercicio == "Adelante y Atras Dron":
+            self.dron.adelante()
+        elif ejercicio == "Derecha e Izquierda Dron":
+            self.dron.derecha()
+        elif ejercicio == "Girar Dron":
+            self.dron.girarderecha()
+        else:
+            self.ui.labelEventoDrone.setText("------Selecciona un ejercicio---------")
+
+
+
+
+    def instruccion2(self):
+
+        print("Contador puntos es =: "+str(self.contadorPuntos))
+
+        if self.contadorPuntos != 5:
+            if self.contadorPuntos == 1:
+                self.posY = self.posY - 33
+                self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.alto))
+                self.contadorPuntos = self.contadorPuntos + 1
+            else:
+                self.posY = self.posY - 66
+                self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.alto))
+                self.contadorPuntos = self.contadorPuntos + 1
+        else:
+            self.posY = 550
+            self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.alto))
+            self.contadorPuntos = 1
+            self.dirreccion = 0
+
+        ejercicio = self.ui.cbEjercicio.currentText()
+        print("El ejercicio es: "+str(ejercicio))
+
+        if ejercicio == "Elevar y descender dron":
+            self.dron.decender()
+        elif ejercicio == "Adelante y Atras Dron":
+            self.dron.atras()
+        elif ejercicio == "Derecha e Izquierda Dron":
+            self.dron.izquierda()
+        elif ejercicio == "Girar Dron":
+            self.dron.girarizquierda()
+        else:
+            self.ui.labelEventoDrone.setText("------Selecciona un ejercicio---------")
 
     def adelanteDrone(self):
-
-        self.ui.labelComandosMentales.setText("Dron hacia adelante")
-        self.alto = self.alto - 5
-        self.ancho = self.ancho - 5
-        self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.ancho))
+        try:
+            print("llame la funcion Adelante")
+            self.dron.adelante()
+        except:
+            self.dronNoInstanciado()
 
     def atrasDrone(self):
 
-        self.ui.labelComandosMentales.setText("Dron hacia atras")
-        self.alto = self.alto  + 5
-        self.ancho = self.ancho + 5
-        self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.ancho))
+        try:
+            print("llame la funcion Atras")
+            self.dron.atras()
+        except:
+            self.dronNoInstanciado()
 
     def elevarDrone(self):
-        self.posY = self.posY - 23
-        self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.alto))
+
+        try:
+            print("llame la funcion elevar Dron")
+            self.dron.elevar()
+        except:
+            self.dronNoInstanciado()
 
     def decenderDrone(self):
-        self.posY = self.posY + 23
-        self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.alto))
+
+        try:
+            print("llame la funcion decender")
+            self.dron.decender()
+
+        except:
+            self.dronNoInstanciado()
 
     def derechaDrone(self):
-        self.posX = self.posX + 5
-        self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, 251, 281))
+
+        try:
+            print("llame la funcion derecha")
+            self.dron.derecha()
+
+        except:
+            self.dronNoInstanciado()
 
     def izquierdaDrone(self):
-        self.posX = self.posX - 5
-        self.ui.label_11.setGeometry(QtCore.QRect(self.posX, self.posY, 251, 281))
+
+        try:
+            print("llame la funcion izquierda")
+            self.dron.izquierda()
+        except:
+            self.dronNoInstanciado()
+
+    def girarDroneDerecha(self):
+
+        try:
+            print("llame la funcion girar derecha")
+            self.dron.girarderecha()
+        except:
+            self.dronNoInstanciado()
+
+    def giraeDroneIzquierda(self):
+
+        try:
+            print("llame la funcion girar izquierda")
+            self.dron.girarizquierda()
+        except:
+            self.dronNoInstanciado()
 
     #Controles de umbral ------------------------------------------------------------------------
 
 
     def colocarumbral(self):
 
-        print(str(self.ui.spinBoxUmbral.value()))
+        #print(str(self.ui.spinBoxUmbral.value()))
 
         self.umbral = 570 - (int(self.ui.spinBoxUmbral.value()) * 4)
         self.ui.lbUmbral.setGeometry(QtCore.QRect(673, self.umbral, 161, 91))
 
+
+
     def bajarumbral(self):
 
-        if self.ui.spinBoxUmbral.value() != 5:
-            print(str(self.ui.spinBoxUmbral.value()))
-            valor = self.ui.spinBoxUmbral.value() - 5
+        if self.ui.spinBoxUmbral.value() != 1:
+            #print(str(self.ui.spinBoxUmbral.value()))
+            valor = self.ui.spinBoxUmbral.value() - 1
             self.ui.spinBoxUmbral.setValue(valor)
 
             self.umbral = 573 - (int(self.ui.spinBoxUmbral.value()) * 4)
             self.ui.lbUmbral.setGeometry(QtCore.QRect(673, self.umbral, 161, 91))
         else:
-            print("Umbral Minimo")
-
+            #print("Umbral Minimo")
+            pass
     def elevarumbral(self):
 
-        if self.ui.spinBoxUmbral.value() != 95:
-            print(str(self.ui.spinBoxUmbral.value()))
-            valor = self.ui.spinBoxUmbral.value() + 5
+        if self.ui.spinBoxUmbral.value() != 99:
+            #print(str(self.ui.spinBoxUmbral.value()))
+            valor = self.ui.spinBoxUmbral.value() + 1
             self.ui.spinBoxUmbral.setValue(valor)
 
             self.umbral = 573 - (int(self.ui.spinBoxUmbral.value()) * 4)
             self.ui.lbUmbral.setGeometry(QtCore.QRect(673, self.umbral, 161, 91))
         else:
-            print("Umbral Maximo")
-
+            #print("Umbral Maximo")
+            pass
 
     #Metodos con hilos
 
-    def iniciarBarraProgreso(self,tiempo):
-
-        self.valTiempo = 0
-
-        print(tiempo)
-        if tiempo == "1 Minuto":
-            print("Duarara 1 minuto")
-            self.valTiempo = 0.6
-        elif tiempo == "5 Minutos":
-            print("Duarara 5 minutos")
-            self.valTiempo = 3
-        elif tiempo == "10 Minutos":
-            print("Duarara 10 minutos")
-            self.valTiempo = 6
-        elif tiempo == "15 Minutos":
-            print("Duarara 15 minutos")
-            self.valTiempo = 9
-        elif tiempo == "20 Minutos":
-            print("Duarara 20 minutos")
-            self.valTiempo = 12
-        elif tiempo == "25 Minutos":
-            print("Duarara 25 minutos")
-            self.valTiempo = 15
-        else:
-            print("Seleceiona un opcion")
-
-        if self.valTiempo != 0:
-            self.hilo = HiloDuracion(self.valTiempo)
-            self.hilo.signDS.connect(self.actualizarDuracion)
-            self.hilo.start()
-
-
-
-        else:
-            Alerta = QMessageBox.information(self, 'Alerta', "Selecciona el tiempo de duracion de la sesion", QMessageBox.Ok)
 
     def deternerTipoDuracion(self):
 
@@ -292,18 +382,13 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
     def finalizarTerapia(self):
         del(self.dron)
 
-    def actualizarDuracion(self,val):
-        #print("b", str(val))
-        self.ui.proBarTiempoSesion.setValue(val)
-
-
-
     def activarBarraNeurofeedback(self):
         #self.hilo2 = conexionEmotiv()
-        self.hilo2 = HiloSingsEotiv()
-        #self.hilo2.signEmotiv.connect(self.barraNeurofeedback)
-        self.hilo2.signDS.connect(self.barraNeurofeedback)
-        self.hilo2.start()
+        #self.hilo2 = HiloSingsEotiv()
+        self.hiloEmotiv.signEmotiv.connect(self.barraNeurofeedback)
+        #self.hilo2.signDS.connect(self.barraNeurofeedback)
+        self.hiloEmotiv.start()
+
 
     def barraNeurofeedback(self,val):
 
@@ -313,47 +398,21 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
 
 
 
-    def activarcuntaRegresiva(self, tiempo):
-        valTiempo = 0
 
-        print(tiempo)
-        if tiempo == "1 Minuto":
-            print("Duarara 1 minuto")
-            valTiempo = 1
-        elif tiempo == "5 Minutos":
-            print("Duarara 5 minutos")
-            valTiempo = 5
-        elif tiempo == "10 Minutos":
-            print("Duarara 10 minutos")
-            valTiempo = 10
-        elif tiempo == "15 Minutos":
-            print("Duarara 15 minutos")
-            valTiempo = 15
-        elif tiempo == "20 Minutos":
-            print("Duarara 20 minutos")
-            valTiempo = 20
-        elif tiempo == "25 Minutos":
-            print("Duarara 25 minutos")
-            valTiempo = 25
-        else:
-            print("Seleceiona un opcion")
 
-        if self.valTiempo != 0:
-            self.hiloreloj = HiloDuracionReloj(valTiempo)
-            self.hiloreloj.signDSReloj.connect(self.cuentaRegresiva)
-            self.hiloreloj.start()
-
-        else:
-            Alerta = QMessageBox.information(self, 'Alerta', "Selecciona el tiempo de duracion de la sesion", QMessageBox.Ok)
-
-    def cuentaRegresiva(self,tiempo):
-        #print("Desde  la clase: "+repr(tiempo))
-        self.ui.lbMinutos.setText(tiempo)
 
     def crearArchivoCSV(self):
+        #self.hilo3 = HiloSingsEotiv()
+        self.hiloEmotiv.signEmotiv.connect(self.llenarArchivoCSV)
+        #self.hilo3.signDS.connect(self.almacenarPotencias)
+        self.hiloEmotiv.start()
+
+
+
+    def llenarArchivoCSV(self, potencia): #222222222222222222222222222222222222222222222222222222222222222222222222222222222222-------
         archivo = open("archivo.csv","w")
         #Titulo
-        archivo.write("Reporte de potencias")
+        archivo.write("Reporte de potencias 2")
         archivo.write("\n")
 
         #Encabezado
@@ -366,30 +425,33 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
         archivo.write("Id de la sesio")
         archivo.write(",")
         archivo.write("Tipo de ejercicio")
+        archivo.write(",")
+        archivo.write("Id del paciente")
 
-        potencias = [20.2,30.2,10.12,40.56,50,78,20.2,30.2,10.12,40.56,50,78,20.2,30.2,10.12,40.56,50,78]
+        #potencias = [20.2,30.2,10.12,40.56,50,78,20.2,30.2,10.12,40.56,50,78,20.2,30.2,10.12,40.56,50,78,1,1,1]
 
-        for i in potencias:
+        self.listapotencia.append(str(potencia))
+        for i in self.listapotencia:
 
             archivo.write("\n")
-            archivo.write("F3")
+            archivo.write("F3 F4")
             archivo.write(",")
-            archivo.write("Theta")
+            archivo.write("Theta/BetaL")
             archivo.write(",")
             archivo.write(str(i))
             archivo.write(",")
             archivo.write("001")
             archivo.write(",")
             archivo.write("Inivitorio")
-
-
+            archivo.write(",")
+            archivo.write("001")
     #Movimiento del dron
     def ejecutardron(self):
         #self.hilodron = conexionEmotiv()
-        self.hilodron = HiloSingsEotiv()
+        #self.hilodron = HiloSingsEotiv()
         #self.hilodron.signEmotiv.connect(self.movimientoDron)
-        self.hilodron.signDS.connect(self.movimientoDron)
-        self.hilodron.start()
+        self.hiloEmotiv.signEmotiv.connect(self.movimientoDron)
+        self.hiloEmotiv.start()
 
     def movimientoDron(self, potencia):
 
@@ -406,26 +468,27 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
             self.ui.labelEventoDrone.setText("Disminuye tus ondas cerebrales")
             operador = potencia <= self.umbral
 
-        if self.posY == 500:
-
-            if self.puntaje !=0 and self.puntaje%2 != 0:
-                self.puntaje = self.puntaje +1
-                self.ui.label_18.setText(str(self.puntaje))
+        if self.dirreccion == 0:
+            if self.contadorPuntos == 5:
+                if self.puntaje !=0 and self.puntaje%2 != 0:
+                    self.puntaje = self.puntaje +1
+                    self.ui.label_18.setText(str(self.puntaje))
             #direccion
             self.val = True
 
-        elif self.posY == 270:
-            if self.puntaje%2 == 0  or self.puntaje == 0:
+        elif self.dirreccion == 1:
+            self.val = False
+            if self.contadorPuntos == 5:
                 self.puntaje = self.puntaje +1
                 self.ui.label_18.setText(str(self.puntaje))
-            self.val = False
 
         #Comparacion de umbral deacurdo al tipo ejercicio
         if self.val == True:
 
             #print("Elevar dron")
             if operador:
-                self.elevarDrone()
+
+                self.instruccion1()
                 self.ui.labelComandosMentales.setText("-SI- se alcanzo el umbral subir")
 
                 self.contadorumbralMaximo = self.contadorumbralMaximo + 1
@@ -440,7 +503,7 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
         else:
             #print("Bajar dron")
             if operador:
-                self.decenderDrone()
+                self.instruccion2()
                 self.ui.labelComandosMentales.setText("-SI- se alcanzo el umbral bajar")
                 self.contadorumbralMaximo = self.contadorumbralMaximo + 1
                 self.contadorumbral = 0
@@ -450,8 +513,8 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
                 self.contadorumbralMaximo = 0
 
         #Umbral Inteligente
-        print("El valor del contador bajar es: "+str(self.contadorumbral))
-        print("El valor del contador subir es: "+str(self.contadorumbralMaximo))
+        #print("El valor del contador bajar es: "+str(self.contadorumbral))
+        #print("El valor del contador subir es: "+str(self.contadorumbralMaximo))
         if self.contadorumbral == 5:
             self.bajarumbral()
             self.contadorumbral = 0
@@ -465,7 +528,7 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
     def cargarCbPacientes(self):
 
         pacientes =  self.modeloPaciente.recuperarPacientes()
-        print(str(pacientes))
+        #print(str(pacientes))
         #print(terapeutas)
 
         combo = self.ui.cbPaciente
@@ -476,7 +539,7 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
     def cargarCbEjercicios(self):
 
         ejercicios =  self.modeloEjercicios.recuperarEjercicios()
-        print(str(ejercicios))
+        #print(str(ejercicios))
         #print(terapeutas)
 
         combo = self.ui.cbEjercicio
@@ -484,3 +547,7 @@ class Controlador_TerapiaNeurofeedback(QtWidgets.QMainWindow):
         combo.addItem("Todos")
         combo.addItems([str(x[1]) for x in ejercicios])
 
+    def abrirCapturarObservaciones(self):
+
+        self.abrir = Controlador_Observaciones()
+        self.abrir.show()

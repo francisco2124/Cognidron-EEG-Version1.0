@@ -1,20 +1,28 @@
-Reporte de potencias
-Electrodo,Banda,Promedio Potencia,Id de la sesio,Tipo de ejercicio
-F3,Theta,20.2,001,Inivitorio
-F3,Theta,30.2,001,Inivitorio
-F3,Theta,10.12,001,Inivitorio
-F3,Theta,40.56,001,Inivitorio
-F3,Theta,50,001,Inivitorio
-F3,Theta,78,001,Inivitorio
-F3,Theta,20.2,001,Inivitorio
-F3,Theta,30.2,001,Inivitorio
-F3,Theta,10.12,001,Inivitorio
-F3,Theta,40.56,001,Inivitorio
-F3,Theta,50,001,Inivitorio
-F3,Theta,78,001,Inivitorio
-F3,Theta,20.2,001,Inivitorio
-F3,Theta,30.2,001,Inivitorio
-F3,Theta,10.12,001,Inivitorio
-F3,Theta,40.56,001,Inivitorio
-F3,Theta,50,001,Inivitorio
-F3,Theta,78,001,Inivitorio
+Reporte de potencias 2
+Electrodo,Banda,Promedio Potencia,Id de la sesio,Tipo de ejercicio,Id del paciente
+F3 F4,Theta/BetaL,0.9681923972071373,001,Inivitorio,001
+F3 F4,Theta/BetaL,9.382022471910112,001,Inivitorio,001
+F3 F4,Theta/BetaL,11.278752436647173,001,Inivitorio,001
+F3 F4,Theta/BetaL,3.7772861356932155,001,Inivitorio,001
+F3 F4,Theta/BetaL,5.908542713567839,001,Inivitorio,001
+F3 F4,Theta/BetaL,3.8197908286403868,001,Inivitorio,001
+F3 F4,Theta/BetaL,3.962610469068661,001,Inivitorio,001
+F3 F4,Theta/BetaL,6.6616352201257865,001,Inivitorio,001
+F3 F4,Theta/BetaL,5.248381400824014,001,Inivitorio,001
+F3 F4,Theta/BetaL,3.5382746051032803,001,Inivitorio,001
+F3 F4,Theta/BetaL,2.773776546629732,001,Inivitorio,001
+F3 F4,Theta/BetaL,5.676886792452829,001,Inivitorio,001
+F3 F4,Theta/BetaL,1.3206960845245495,001,Inivitorio,001
+F3 F4,Theta/BetaL,3.031095087877422,001,Inivitorio,001
+F3 F4,Theta/BetaL,1.5279567121875803,001,Inivitorio,001
+F3 F4,Theta/BetaL,2.031191515907673,001,Inivitorio,001
+F3 F4,Theta/BetaL,8.365384615384615,001,Inivitorio,001
+F3 F4,Theta/BetaL,18.918604651162795,001,Inivitorio,001
+F3 F4,Theta/BetaL,2.3278867102396514,001,Inivitorio,001
+F3 F4,Theta/BetaL,2.6641791044776117,001,Inivitorio,001
+F3 F4,Theta/BetaL,1.87124183006536,001,Inivitorio,001
+F3 F4,Theta/BetaL,0.5411328388401888,001,Inivitorio,001
+F3 F4,Theta/BetaL,4.996174445294567,001,Inivitorio,001
+F3 F4,Theta/BetaL,0.0,001,Inivitorio,001
+F3 F4,Theta/BetaL,4.844405594405593,001,Inivitorio,001
+F3 F4,Theta/BetaL,3.017621145374449,001,Inivitorio,001

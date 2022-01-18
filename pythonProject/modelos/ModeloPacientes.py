@@ -36,8 +36,8 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         registro = cursor.fetchall()
         return registro
 
-    def agregarTuor(self, app, apm, nombre,genero, date, codPostal,localidad, calle, num,
-                nacionalidad, numero , correoElec, idTutor, diagnostico, idMunicipio):
+    def agregarPaciente(self, app, apm, nombre,genero, date, codPostal,localidad, calle, num,
+                nacionalidad, numero , correoElec, borradoLogico, idTutor, diagnostico, idMunicipio):
 
         connectionAgregar = pymysql.connect(
             host="localhost",
@@ -49,9 +49,9 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         cursor = connectionAgregar.cursor()
 
         sql = '''INSERT INTO paciente (nombre, ape_paterno,ape_materno, genero, fecha_nacimiento, cod_postal, localidad, calle, num, nacionalidad, diagnostico, numero_contacto ,
-         correo_electronico, Tutor_idTutor, Municipio_idMunicipio) 
-        VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}' , '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')'''.format(nombre, app, apm, genero, date, codPostal,localidad, calle, num,
-                                                                                                              nacionalidad, diagnostico, numero, correoElec, idTutor,idMunicipio)
+         correo_electronico, borradoLogico, Tutor_idTutor, Municipio_idMunicipio) 
+        VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')'''.format(nombre, app, apm, genero, date, codPostal,localidad, calle, num,
+                                                                                                              nacionalidad, diagnostico, numero, correoElec, borradoLogico, idTutor,idMunicipio)
 
         cursor.execute(sql)
         connectionAgregar.commit()
@@ -196,7 +196,7 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
                 db="cognidroneeg"
             )
         cursor = self.connection.cursor()
-        sql = '''SELECT nombre FROM tutor where borradoLogico = '0' and idTutor > 0'''
+        sql = '''SELECT idTutor, nombre FROM tutor where borradoLogico = '0' and idTutor > 0'''
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro

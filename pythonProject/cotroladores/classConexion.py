@@ -1,12 +1,13 @@
-
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
+import time
 
 import websocket
 import json
 import ssl
 from modelos.modeloParametros import Modelo_conexion
 
-class classConexion():
-
+class classConexion(QThread):
+    signDS = pyqtSignal(int)
     def __init__(self):
         super().__init__()
 
@@ -311,7 +312,7 @@ class classConexion():
         result = ws.recv()
         print("Se recupera lo siguiente: " + result)
         result = ws.recv()
-
+        self.signDS.emit(result)
         return result
 
     def suscribirseNeurofeedback(self):

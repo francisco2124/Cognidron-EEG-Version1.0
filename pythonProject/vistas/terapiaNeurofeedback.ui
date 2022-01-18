@@ -7,13 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>711</height>
+    <height>705</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>1000</width>
-    <height>700</height>
+    <height>705</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>724</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -22,7 +28,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>440</x>
      <y>120</y>
      <width>171</width>
      <height>31</height>
@@ -40,9 +46,9 @@
   <widget class="QComboBox" name="cbPaciente">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>510</x>
      <y>120</y>
-     <width>151</width>
+     <width>181</width>
      <height>31</height>
     </rect>
    </property>
@@ -65,7 +71,7 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>230</x>
      <y>120</y>
      <width>81</width>
      <height>31</height>
@@ -77,13 +83,13 @@
     </font>
    </property>
    <property name="text">
-    <string>Robot:</string>
+    <string>Dron:</string>
    </property>
   </widget>
   <widget class="QComboBox" name="cbRobot">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>280</x>
      <y>120</y>
      <width>131</width>
      <height>31</height>
@@ -105,264 +111,6 @@
     </property>
    </item>
   </widget>
-  <widget class="QPushButton" name="btnEnviarIstruccion">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>340</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Mostrar Instrucciones</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnObtenerDrone">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>670</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(116, 147, 198);</string>
-   </property>
-   <property name="text">
-    <string>Obtener Control Total</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnDecenderDrone">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>510</y>
-     <width>161</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Decender Drone</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnIsquierdaDrone">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>590</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnAdelanteDrone">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>550</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>^</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnDerechaDrone">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>590</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&gt;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnAtrasDrone">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>630</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>v</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnElevarDrone">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>470</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Elevar Drone</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>120</y>
-     <width>71</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Tiempo:</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="cbTiempoSesion">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>120</y>
-     <width>91</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <item>
-    <property name="text">
-     <string>Sin Seleccion</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>1 Minuto</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>5 Minutos</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>10 Minutos</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>15 Minutos</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>20 Minutos</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>25 Minutos</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QProgressBar" name="proBarTiempoSesion">
-   <property name="geometry">
-    <rect>
-     <x>750</x>
-     <y>160</y>
-     <width>241</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="value">
-    <number>24</number>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnResumen">
-   <property name="geometry">
-    <rect>
-     <x>830</x>
-     <y>120</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>&gt;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnDetener">
-   <property name="geometry">
-    <rect>
-     <x>910</x>
-     <y>120</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>[]</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnPausar">
-   <property name="geometry">
-    <rect>
-     <x>870</x>
-     <y>120</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>l l</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btbCapturarObservaciones">
    <property name="geometry">
     <rect>
@@ -372,6 +120,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182, 181, 203);</string>
+   </property>
    <property name="text">
     <string>Capturar observaciones</string>
    </property>
@@ -379,8 +130,8 @@
   <widget class="QLabel" name="labelComandosMentales">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>670</y>
+     <x>240</x>
+     <y>660</y>
      <width>261</width>
      <height>31</height>
     </rect>
@@ -391,15 +142,15 @@
     </font>
    </property>
    <property name="text">
-    <string>Istruccion</string>
+    <string>Istrucción</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelEventoDrone">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>670</y>
-     <width>211</width>
+     <x>500</x>
+     <y>660</y>
+     <width>191</width>
      <height>31</height>
     </rect>
    </property>
@@ -415,10 +166,10 @@
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>500</y>
-     <width>141</width>
-     <height>101</height>
+     <x>390</x>
+     <y>580</y>
+     <width>111</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -434,7 +185,7 @@
      <x>230</x>
      <y>220</y>
      <width>461</width>
-     <height>431</height>
+     <height>441</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -447,9 +198,9 @@
   <widget class="QProgressBar" name="progressBar_2">
    <property name="geometry">
     <rect>
-     <x>890</x>
-     <y>680</y>
-     <width>71</width>
+     <x>130</x>
+     <y>665</y>
+     <width>101</width>
      <height>20</height>
     </rect>
    </property>
@@ -460,9 +211,9 @@
   <widget class="QProgressBar" name="progressBar_3">
    <property name="geometry">
     <rect>
-     <x>750</x>
-     <y>680</y>
-     <width>71</width>
+     <x>830</x>
+     <y>665</y>
+     <width>141</width>
      <height>20</height>
     </rect>
    </property>
@@ -473,9 +224,9 @@
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>670</y>
-     <width>41</width>
+     <x>710</x>
+     <y>660</y>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
@@ -492,14 +243,14 @@
     <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <property name="text">
-    <string>BCI</string>
+    <string>Bateria del EEG:</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>840</x>
-     <y>370</y>
+     <y>400</y>
      <width>121</width>
      <height>81</height>
     </rect>
@@ -540,9 +291,9 @@
   <widget class="QComboBox" name="cbBanda">
    <property name="geometry">
     <rect>
-     <x>710</x>
-     <y>630</y>
-     <width>91</width>
+     <x>840</x>
+     <y>360</y>
+     <width>121</width>
      <height>21</height>
     </rect>
    </property>
@@ -613,7 +364,7 @@
   <widget class="QLabel" name="label_16">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>230</x>
      <y>160</y>
      <width>71</width>
      <height>31</height>
@@ -631,9 +382,9 @@
   <widget class="QComboBox" name="cbPista">
    <property name="geometry">
     <rect>
-     <x>630</x>
+     <x>280</x>
      <y>160</y>
-     <width>91</width>
+     <width>131</width>
      <height>31</height>
     </rect>
    </property>
@@ -666,9 +417,9 @@
   <widget class="QLabel" name="label_17">
    <property name="geometry">
     <rect>
-     <x>850</x>
-     <y>670</y>
-     <width>41</width>
+     <x>20</x>
+     <y>660</y>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
@@ -685,14 +436,14 @@
     <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <property name="text">
-    <string>Robot</string>
+    <string>Bateria del Dron:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_14">
    <property name="geometry">
     <rect>
      <x>840</x>
-     <y>220</y>
+     <y>210</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -719,7 +470,7 @@ text-decoration: underline;</string>
    <property name="geometry">
     <rect>
      <x>840</x>
-     <y>270</y>
+     <y>250</y>
      <width>121</width>
      <height>71</height>
     </rect>
@@ -892,16 +643,16 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>-10</x>
-     <y>89</y>
+     <x>0</x>
+     <y>90</y>
      <width>1010</width>
-     <height>621</height>
+     <height>641</height>
     </rect>
    </property>
    <property name="minimumSize">
     <size>
      <width>1010</width>
-     <height>610</height>
+     <height>590</height>
     </size>
    </property>
    <property name="styleSheet">
@@ -913,42 +664,10 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnIniciarConfigurarConexion">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>220</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(112, 142, 191);</string>
-   </property>
-   <property name="text">
-    <string>Configura tu conexion</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnActivarDrone">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>420</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(116, 147, 198);</string>
-   </property>
-   <property name="text">
-    <string>Activar robot</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>440</x>
      <y>160</y>
      <width>81</width>
      <height>31</height>
@@ -966,9 +685,9 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QComboBox" name="cbEjercicio">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>510</x>
      <y>160</y>
-     <width>131</width>
+     <width>181</width>
      <height>31</height>
     </rect>
    </property>
@@ -995,7 +714,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>260</y>
+     <y>220</y>
      <width>161</width>
      <height>31</height>
     </rect>
@@ -1011,70 +730,24 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>380</y>
+     <y>260</y>
      <width>161</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(0, 226, 0);</string>
+    <string notr="true">background-color: rgb(182, 181, 203);</string>
    </property>
    <property name="text">
-    <string>Activar Diadema</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnAterrizarDrone">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>590</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
-   </property>
-   <property name="text">
-    <string>+</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>170</y>
-     <width>231</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>MS Shell Dlg 2</family>
-     <pointsize>8</pointsize>
-     <weight>50</weight>
-     <italic>false</italic>
-     <bold>false</bold>
-     <underline>true</underline>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
-text-decoration: underline;</string>
-   </property>
-   <property name="text">
-    <string>Elect(s): F3, F4</string>
+    <string>Grabar sesión</string>
    </property>
   </widget>
   <widget class="QLabel" name="lbMinutos">
    <property name="geometry">
     <rect>
-     <x>750</x>
+     <x>850</x>
      <y>120</y>
-     <width>71</width>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
@@ -1095,6 +768,9 @@ background-color: rgb(200, 198, 223);</string>
    <property name="text">
     <string>00 : 00 </string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="lbUmbral">
    <property name="geometry">
@@ -1112,29 +788,11 @@ background-color: rgb(200, 198, 223);</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_10">
-   <property name="geometry">
-    <rect>
-     <x>480</x>
-     <y>580</y>
-     <width>201</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>-----Altura Minima ---&gt;1 Metro</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_20">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>250</y>
+     <x>490</x>
+     <y>270</y>
      <width>201</width>
      <height>31</height>
     </rect>
@@ -1145,14 +803,14 @@ background-color: rgb(200, 198, 223);</string>
     </font>
    </property>
    <property name="text">
-    <string>-----Altura Maxima ---&gt;2 Metro</string>
+    <string>&lt;--------------100%----------------</string>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBoxUmbral">
    <property name="geometry">
     <rect>
      <x>840</x>
-     <y>580</y>
+     <y>610</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -1165,7 +823,7 @@ background-color: rgb(200, 198, 223);</string>
    <property name="geometry">
     <rect>
      <x>840</x>
-     <y>550</y>
+     <y>590</y>
      <width>121</width>
      <height>16</height>
     </rect>
@@ -1178,7 +836,7 @@ background-color: rgb(200, 198, 223);</string>
    <property name="geometry">
     <rect>
      <x>840</x>
-     <y>460</y>
+     <y>490</y>
      <width>121</width>
      <height>81</height>
     </rect>
@@ -1198,6 +856,9 @@ background-color: rgb(200, 198, 223);</string>
     <property name="text">
      <string>Automatico</string>
     </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QRadioButton" name="rdUmbralManual">
     <property name="geometry">
@@ -1211,10 +872,536 @@ background-color: rgb(200, 198, 223);</string>
     <property name="text">
      <string>Manual</string>
     </property>
-    <property name="checked">
+    <property name="checkable">
      <bool>true</bool>
     </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
    </widget>
+  </widget>
+  <widget class="QLabel" name="label_21">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>340</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Frecuencia</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>620</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>00.00 %</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_22">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>120</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Tiempo de sesión:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_25">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>120</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MS Shell Dlg 2</family>
+     <pointsize>9</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+     <underline>true</underline>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;MS Shell Dlg 2&quot;;
+text-decoration: underline;</string>
+   </property>
+   <property name="text">
+    <string>Calidad de electrodos</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>160</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial Black</family>
+     <pointsize>9</pointsize>
+     <weight>10</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 87 9pt &quot;Arial Black&quot;;</string>
+   </property>
+   <property name="text">
+    <string>00.00 %</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>350</y>
+     <width>201</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Control Manual de Dron</string>
+   </property>
+   <widget class="QPushButton" name="btnElevarDrone">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Subir Dron</string>
+    </property>
+    <property name="text">
+     <string>Subir Drone</string>
+    </property>
+    <property name="shortcut">
+     <string>W</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnDecenderDrone">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>130</y>
+      <width>161</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Bajar Dron</string>
+    </property>
+    <property name="text">
+     <string>Bajar Drone</string>
+    </property>
+    <property name="shortcut">
+     <string>S</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotarContraRelocj">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Girar Izquierdad Dron</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images/image.qrc">
+      <normaloff>:/newPrefix/contraReloj.png</normaloff>:/newPrefix/contraReloj.png</iconset>
+    </property>
+    <property name="shortcut">
+     <string>A</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnDerechaDrone">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>205</y>
+      <width>31</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Derecha Dron</string>
+    </property>
+    <property name="text">
+     <string>&gt;</string>
+    </property>
+    <property name="shortcut">
+     <string>Right</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAdelanteDrone">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>75</x>
+      <y>170</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Adelante Dron</string>
+    </property>
+    <property name="text">
+     <string>^</string>
+    </property>
+    <property name="shortcut">
+     <string>Up</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAterrizarDrone">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>65</x>
+      <y>205</y>
+      <width>61</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Despegar o Aterrizar Dron</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images/image.qrc">
+      <normaloff>:/newPrefix/despegar.png</normaloff>:/newPrefix/despegar.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>60</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>Space</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnIsquierdaDrone">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>205</y>
+      <width>31</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Izquierda Dron</string>
+    </property>
+    <property name="text">
+     <string>&lt;</string>
+    </property>
+    <property name="shortcut">
+     <string>Left</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAtrasDrone">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>75</x>
+      <y>250</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Atras Dron</string>
+    </property>
+    <property name="text">
+     <string>v</string>
+    </property>
+    <property name="shortcut">
+     <string>Down</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotarRelocj">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>170</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Girar derecha Dron</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images/image.qrc">
+      <normaloff>:/newPrefix/haciaReloj.png</normaloff>:/newPrefix/haciaReloj.png</iconset>
+    </property>
+    <property name="shortcut">
+     <string>D</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnObtenerDrone">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Obtener Control Total</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QProgressBar" name="progressBar_5">
+   <property name="geometry">
+    <rect>
+     <x>945</x>
+     <y>250</y>
+     <width>16</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="value">
+    <number>0</number>
+   </property>
+   <property name="textVisible">
+    <bool>true</bool>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <property name="textDirection">
+    <enum>QProgressBar::TopToBottom</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_24">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>600</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;---------------0%-----------------</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_26">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>220</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial Black</family>
+     <pointsize>9</pointsize>
+     <weight>10</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 87 9pt &quot;Arial Black&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Referencia de puntaje</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>170</y>
+     <width>113</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_27">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>160</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Escala del umbral:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_28">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>336</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;--------------80%-----------------</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_29">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>534</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;--------------20%-----------------</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_30">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>402</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;--------------60%-----------------</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_31">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>468</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;--------------40%-----------------</string>
+   </property>
   </widget>
   <zorder>label</zorder>
   <zorder>frame</zorder>
@@ -1223,20 +1410,6 @@ background-color: rgb(200, 198, 223);</string>
   <zorder>cbPaciente</zorder>
   <zorder>label_4</zorder>
   <zorder>cbRobot</zorder>
-  <zorder>btnEnviarIstruccion</zorder>
-  <zorder>btnObtenerDrone</zorder>
-  <zorder>btnDecenderDrone</zorder>
-  <zorder>btnIsquierdaDrone</zorder>
-  <zorder>btnAdelanteDrone</zorder>
-  <zorder>btnDerechaDrone</zorder>
-  <zorder>btnAtrasDrone</zorder>
-  <zorder>btnElevarDrone</zorder>
-  <zorder>label_8</zorder>
-  <zorder>cbTiempoSesion</zorder>
-  <zorder>proBarTiempoSesion</zorder>
-  <zorder>btnResumen</zorder>
-  <zorder>btnDetener</zorder>
-  <zorder>btnPausar</zorder>
   <zorder>btbCapturarObservaciones</zorder>
   <zorder>labelComandosMentales</zorder>
   <zorder>labelEventoDrone</zorder>
@@ -1253,21 +1426,31 @@ background-color: rgb(200, 198, 223);</string>
   <zorder>label_14</zorder>
   <zorder>label_18</zorder>
   <zorder>frame_4</zorder>
-  <zorder>btnIniciarConfigurarConexion</zorder>
-  <zorder>btnActivarDrone</zorder>
   <zorder>label_7</zorder>
   <zorder>cbEjercicio</zorder>
   <zorder>btnIniciarTerapia</zorder>
   <zorder>btnActivarEmotiv</zorder>
-  <zorder>btnAterrizarDrone</zorder>
-  <zorder>label_9</zorder>
   <zorder>lbMinutos</zorder>
   <zorder>lbUmbral</zorder>
-  <zorder>label_10</zorder>
   <zorder>label_20</zorder>
   <zorder>spinBoxUmbral</zorder>
   <zorder>label_19</zorder>
   <zorder>groupBox_2</zorder>
+  <zorder>label_21</zorder>
+  <zorder>label_8</zorder>
+  <zorder>label_22</zorder>
+  <zorder>label_25</zorder>
+  <zorder>label_9</zorder>
+  <zorder>groupBox_3</zorder>
+  <zorder>progressBar_5</zorder>
+  <zorder>label_24</zorder>
+  <zorder>label_26</zorder>
+  <zorder>lineEdit</zorder>
+  <zorder>label_27</zorder>
+  <zorder>label_28</zorder>
+  <zorder>label_29</zorder>
+  <zorder>label_30</zorder>
+  <zorder>label_31</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

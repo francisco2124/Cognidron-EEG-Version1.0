@@ -167,7 +167,6 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
         idEstado = self.ui.cbEstado.currentText()
         date = self.ui.dateEdit.text()
         diagnostico = self.ui.ptDiagnostico.toPlainText()
-        idTutor = 0
 
         #Almacenar directamente una cantidad determinada de caracteres caracteres
         #cadena1 = "Hola Mundo"
@@ -177,6 +176,8 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
         #El campo Nacionalidad, Estado, Municipio, Localidad, codigo postal y Domicilio con numero NO SON OBLIGATORIOS
         if validarCamposConEspacios(app):
             Alerta = QMessageBox.information(self, 'Alerta', "Ingresa un Apellido Paterno", QMessageBox.Ok)
+
+
         elif validarCamposConEspacios(apm):
             Alerta = QMessageBox.information(self, 'Alerta', "Ingresa un Apellido Materno", QMessageBox.Ok)
         elif validarCamposConEspacios(nombre):
@@ -205,11 +206,19 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
 
         else:
 
-                print("Datos extras")
+                print("Datos Municipio")
                 idMun = self.modelo.recuperarIdMunicipio(self.ui.cbMunicipio.currentText())
                 idMunicipio = idMun[0]
-                print("El id de municipio es: "+str(idMunicipio[0]))
 
+                #----------------------------------------
+
+                print("Datos nombre tutor")
+                idtutor = self.ui.cbTutor.currentText()
+                idTutorF = idtutor[0] + idtutor[1] + idtutor[2]
+
+                print("El id del tutor es: "+str(idTutorF.strip()))
+
+                print("El id de municipio es: "+str(idMunicipio[0]))
                 if self.ui.rbMasculino.isChecked()==True:
                     genero = "Masculino"
                 else:
@@ -230,8 +239,8 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
                     codPostal = 0
 
 
-                self.modelo.agregarTuor(app, apm, nombre,genero, date, codPostal,localidad, calle, num,
-                                nacionalidad, contacto, correoElec, idTutor, diagnostico, idMunicipio[0])
+                self.modelo.agregarPaciente(app, apm, nombre,genero, date, codPostal,localidad, calle, num,
+                                nacionalidad, contacto, correoElec, borradoLogico, idTutorF, diagnostico, idMunicipio[0])
 
                 Alerta = QMessageBox.information(self, 'Confirmacion', "Se ha registrado un nuevo usuario", QMessageBox.Ok)
                 self.limpiarCampos()
@@ -252,14 +261,14 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
 
     def cargarCbTutores(self):
 
-        terapeutas =  self.modelo.recuperarTutores()
+        tutores =  self.modelo.recuperarTutores()
         #print(terapeutas)
 
 
         combo = self.ui.cbTutor
         combo.clear()
         combo.addItem("Sin Tutor")
-        combo.addItems([str(x[0]) for x in terapeutas])
+        combo.addItems([str(x[0]) +"  "+ str(x[1]) for x in tutores])
 
 
 

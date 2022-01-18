@@ -27,7 +27,7 @@ from cotroladores.controladorReportesGenerales import Controlador_ConsultarRepor
 
 #------------------------------------Terapias-----------------------------------------------
 from cotroladores.controlador_Terapia import Controlador_Terapia
-from cotroladores.controlador_TerapiaTipoNeurofeedback import Controlador_TerapiaNeurofeedback
+from cotroladores.controlador_TerapiaTipoNeurofeedback import Controlador_TerapiaNeurofeeldback
 
 #----------------------------------Conexion------------------------------------------------
 from cotroladores.controlador_ParametrosConexion import Controlador_parametros
@@ -173,7 +173,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
     def abrirTerapiaNeurofeedback(self):
 
         self.abrir = QtWidgets.QDialog()
-        self.abrir = Controlador_TerapiaNeurofeedback()
+        self.abrir = Controlador_TerapiaNeurofeeldback()
         self.ui.mdiArea.addSubWindow(self.abrir)
         self.abrir.show()
 

@@ -258,10 +258,10 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>370</y>
-     <width>201</width>
-     <height>121</height>
+     <x>430</x>
+     <y>320</y>
+     <width>251</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="undoRedoEnabled">
@@ -277,22 +277,6 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="acceptRichText">
     <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btSelElectrodos">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>310</y>
-     <width>201</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(170, 170, 255);</string>
-   </property>
-   <property name="text">
-    <string>Aplicar Seleccion de electrodos</string>
    </property>
   </widget>
   <widget class="QLabel" name="lbAF3">
@@ -710,6 +694,49 @@ image: url(:/newPrefix/circuloGris.png);</string>
     <string/>
    </property>
   </widget>
+  <widget class="QTextEdit" name="textEdit_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>450</y>
+     <width>231</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="undoRedoEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Recuerda hidratar corrrectamente los electrodos y asegurate que la posicion sea la correcta.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="acceptRichText">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>280</y>
+     <width>201</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Infomacion de la conexión</string>
+   </property>
+  </widget>
   <zorder>label_8</zorder>
   <zorder>label_2</zorder>
   <zorder>btnEvaluarConexion</zorder>
@@ -729,7 +756,6 @@ image: url(:/newPrefix/circuloGris.png);</string>
   <zorder>cbAF4</zorder>
   <zorder>cbF8</zorder>
   <zorder>textEdit</zorder>
-  <zorder>btSelElectrodos</zorder>
   <zorder>label_5</zorder>
   <zorder>frame</zorder>
   <zorder>frame_2</zorder>
@@ -749,6 +775,8 @@ image: url(:/newPrefix/circuloGris.png);</string>
   <zorder>lbF7</zorder>
   <zorder>lbRFIquierdo</zorder>
   <zorder>lbRFIquierdo_2</zorder>
+  <zorder>textEdit_2</zorder>
+  <zorder>label_3</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

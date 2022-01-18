@@ -15,7 +15,7 @@ class Ui_Dialog(object):
         Dialog.setEnabled(True)
         Dialog.resize(691, 747)
         Dialog.setMinimumSize(QtCore.QSize(691, 747))
-#        Dialog.setSizeGripEnabled(True)
+        #Dialog.setSizeGripEnabled(True)
         self.label_2 = QtWidgets.QLabel(Dialog)
         self.label_2.setGeometry(QtCore.QRect(10, 110, 201, 21))
         self.label_2.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
@@ -72,14 +72,10 @@ class Ui_Dialog(object):
         self.cbF8.setObjectName("cbF8")
         self.textEdit = QtWidgets.QTextEdit(Dialog)
         self.textEdit.setEnabled(False)
-        self.textEdit.setGeometry(QtCore.QRect(440, 370, 201, 121))
+        self.textEdit.setGeometry(QtCore.QRect(430, 320, 251, 111))
         self.textEdit.setUndoRedoEnabled(False)
         self.textEdit.setAcceptRichText(False)
         self.textEdit.setObjectName("textEdit")
-        self.btSelElectrodos = QtWidgets.QPushButton(Dialog)
-        self.btSelElectrodos.setGeometry(QtCore.QRect(440, 310, 201, 31))
-        self.btSelElectrodos.setStyleSheet("background-color: rgb(170, 170, 255);")
-        self.btSelElectrodos.setObjectName("btSelElectrodos")
         self.lbAF3 = QtWidgets.QLabel(Dialog)
         self.lbAF3.setGeometry(QtCore.QRect(150, 400, 51, 31))
         self.lbAF3.setStyleSheet("image: url(:/newPrefix/circuloGris.png);")
@@ -216,6 +212,16 @@ class Ui_Dialog(object):
         self.lbRFIquierdo_2.setStyleSheet("image: url(:/newPrefix/circuloLRRojo.png);")
         self.lbRFIquierdo_2.setText("")
         self.lbRFIquierdo_2.setObjectName("lbRFIquierdo_2")
+        self.textEdit_2 = QtWidgets.QTextEdit(Dialog)
+        self.textEdit_2.setEnabled(False)
+        self.textEdit_2.setGeometry(QtCore.QRect(440, 450, 231, 81))
+        self.textEdit_2.setUndoRedoEnabled(False)
+        self.textEdit_2.setAcceptRichText(False)
+        self.textEdit_2.setObjectName("textEdit_2")
+        self.label_3 = QtWidgets.QLabel(Dialog)
+        self.label_3.setGeometry(QtCore.QRect(460, 280, 201, 21))
+        self.label_3.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
+        self.label_3.setObjectName("label_3")
         self.label_8.raise_()
         self.label_2.raise_()
         self.btnEvaluarConexion.raise_()
@@ -235,7 +241,6 @@ class Ui_Dialog(object):
         self.cbAF4.raise_()
         self.cbF8.raise_()
         self.textEdit.raise_()
-        self.btSelElectrodos.raise_()
         self.label_5.raise_()
         self.frame.raise_()
         self.frame_2.raise_()
@@ -255,6 +260,8 @@ class Ui_Dialog(object):
         self.lbF7.raise_()
         self.lbRFIquierdo.raise_()
         self.lbRFIquierdo_2.raise_()
+        self.textEdit_2.raise_()
+        self.label_3.raise_()
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -284,8 +291,14 @@ class Ui_Dialog(object):
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Hidrata corrrectamente los electrodos y asegurate que la posicion sea la correcta.</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.btSelElectrodos.setText(_translate("Dialog", "Aplicar Seleccion de electrodos"))
         self.label_6.setText(_translate("Dialog", "Configuración de la conexión (Emotiv Epoc +)"))
+        self.textEdit_2.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Recuerda hidratar corrrectamente los electrodos y asegurate que la posicion sea la correcta.</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.label_3.setText(_translate("Dialog", "Infomacion de la conexión"))
 
 
 if __name__ == "__main__":

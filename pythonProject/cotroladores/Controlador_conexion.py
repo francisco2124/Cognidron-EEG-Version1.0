@@ -50,7 +50,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.InicializarGui()
         self.cargarParametris()
-
+        '''
         # 1) Crear el objeto que se moverá a otro hiloa=
         self.mental_command = self.aplicarSeleccion(self.calidadElectrodo())
         # 2) Crear el hilo
@@ -63,7 +63,9 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         self.emotiv_thread.started.connect(self.mental_command.run)
         # 6) Iniciar el hilo
         self.emotiv_thread.start()
+        '''
 
+        #self.calidadElectrodo()
 
 
 
@@ -72,7 +74,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
 
         #self.ui.btnEvaluarConexion.clicked.connect(self.evaluarConexion)
         self.ui.btnEvaluarConexion.clicked.connect(self.evaluarConexion)
-        self.ui.btSelElectrodos.clicked.connect(self.aplicarSeleccion)
+        #self.ui.btSelElectrodos.clicked.connect(self.aplicarSeleccion)
         self.ui.lbAF3.setVisible(False)
         self.ui.lbAF4.setVisible(False)
         self.ui.lbF3.setVisible(False)
@@ -122,6 +124,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
             else:
                 self.ui.label_4.setStyleSheet("background-color: rgb(41, 226, 69);")
                 Alerta = QMessageBox.information(self, 'Alerta', "Conexion Exitosa", QMessageBox.Ok)
+                self.aplicarSeleccion()
                 break
 
 
@@ -175,7 +178,8 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         return calElectrodo
 
 
-    def aplicarSeleccion(self, calElectrodo):
+
+    def aplicarSeleccion(self):
         lbAF3  = self.ui.lbAF3
         lbAF4  = self.ui.lbAF4
         lbF3  = self.ui.lbF3
@@ -220,6 +224,8 @@ class Controlador_conexion(QtWidgets.QMainWindow):
             a=a+1
 
         b = 0
+        calElectrodo = self.calidadElectrodo()
+        print("El resultado calE ---> "+str(calElectrodo))
         for i in calElectrodo:
             print("Soy i: "+str(i))
             print("Soy a:"+str(b))
@@ -237,23 +243,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
 
 
 
-    def start(self):
-        self.status = True
-        return self.status
 
-    def stop(self):
-        self.status = False
-        return self.status
-
-    def isWorking(self):
-        return self.status
-
-    def run(self):
-        main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate()))
-        while main_thread.is_alive(): #Mientras que el hilo principal esta vivo se ejecutará este hilo secundario o de trabajo
-            if self.status:
-                self.signalCommand.emit(str(self.aplicarSeleccion()))
-            sleep(0.1)
 
 '''
     def actualizarProgresBar(self):
@@ -263,18 +253,3 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         self.ui.progressBar_4.setProperty("value", b)
         self.ui.label_3.setText(str(b)+"%")
 '''
-
-class Emotiv():
-
-    def connect(self):
-        return True
-
-
-    def disconnect(self):
-        return True
-
-    def activateSensors(self,sensors):
-        pass
-
-    def getProfiles(self):
-        pass
