@@ -37,37 +37,37 @@ class DronTello():
 
     def adelante(self):
 
-        self.sock.sendto('forward 30'.encode(encoding="utf-8"), self.tello_address)
+        self.sock.sendto('forward 20'.encode(encoding="utf-8"), self.tello_address)
         print("Adelante Dron")
         #time.sleep(5)
 
     def atras(self):
 
-        self.sock.sendto('back 30'.encode(encoding="utf-8"), self.tello_address)
+        self.sock.sendto('back 20'.encode(encoding="utf-8"), self.tello_address)
         print("Atras  Dron")
         #time.sleep(5)
 
     def elevar(self):
 
-        self.sock.sendto('up 30'.encode(encoding="utf-8"), self.tello_address)
+        self.sock.sendto('up 20'.encode(encoding="utf-8"), self.tello_address)
         print("Elevar Dron")
         #time.sleep(5)
 
     def decender(self):
 
-        self.sock.sendto('down 30'.encode(encoding="utf-8"), self.tello_address)
+        self.sock.sendto('down 20'.encode(encoding="utf-8"), self.tello_address)
         print("Desender Dron")
         #time.sleep(5)
 
     def derecha(self):
 
-        self.sock.sendto('right 30'.encode(encoding="utf-8"), self.tello_address)
+        self.sock.sendto('right 20'.encode(encoding="utf-8"), self.tello_address)
         print("Derecha Dron")
         #time.sleep(5)
 
     def izquierda(self):
 
-        self.sock.sendto('left 30'.encode(encoding="utf-8"), self.tello_address)
+        self.sock.sendto('left 20'.encode(encoding="utf-8"), self.tello_address)
         print("Izquierda Dron")
         #time.sleep(5)
 

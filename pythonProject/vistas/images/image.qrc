@@ -32,8 +32,10 @@
     <file>cuadricula.png</file>
     <file>ejemGrafico.png</file>
     <file>EjerAdelante.png</file>
+    <file>EjerAtras.png</file>
     <file>EjerDecender.png</file>
     <file>EjerElevar.png</file>
+    <file>EjerDerecha.png</file>
     <file>EjerIzquierda.png</file>
     <file>EjerNeutral.png</file>
     <file>EjerPirueta.png</file>
@@ -62,6 +64,18 @@
     <file>play.png</file>
     <file>pause.png</file>
     <file>stop.png</file>
+    <file>EjerCirculo1.png</file>
+    <file>EjerCirculo2.png</file>
+    <file>EjerCirculo3.png</file>
+    <file>EjerCirculo4.png</file>
+    <file>EjerCirculo5.png</file>
+    <file>EjerCirculo6.png</file>
+    <file>EjerCirculo7.png</file>
+    <file>EjerCirculo8.png</file>
+
+
+
+
 
   </qresource>
 </RCC>
