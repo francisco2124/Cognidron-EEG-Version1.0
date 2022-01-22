@@ -18,12 +18,6 @@ class Modelo_Ejercicios(QtWidgets.QMainWindow):
             db="cognidroneeg"
         )
 
-    def recuperarEjercicios(self):
-        cursor = self.connection.cursor()
-        sql = "SELECT idEjercicios, nombre FROM ejercicios"
-        cursor.execute(sql)
-        registro = cursor.fetchall()
-        return registro
 
     def cargarTablaEjercicios(self):
         cursor = self.connection.cursor()

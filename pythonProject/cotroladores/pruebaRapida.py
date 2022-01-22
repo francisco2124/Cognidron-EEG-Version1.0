@@ -6,7 +6,7 @@ import ssl
 import threading
 from modelos.modeloParametros import Modelo_conexion
 
-class pruebaconexionEmotiv():
+class pruebaconexionEmotiv(QThread):
 
     status = True
     signEmotiv = pyqtSignal(list)

@@ -337,60 +337,35 @@ class pruebaconexionEmotiv(QThread):
                                 "streams": ["pow"]
                             }
                         }""" % (token, sesion)
-        """
+
+        self.cont = 0
+        listaPotencias = []
         while True:
             ws.send(msg)
             ws.recv()
             result = ws.recv()
             print(str(result))
             self.cont = self.cont + 1
+            try:
+                #return potencialElectrico
+                bucle = json.loads(result)
+                thetaf3 = bucle["pow"][10]
+                thetaf4 = bucle["pow"][55]
+                betaf3 = bucle["pow"][12]
+                betaf4 = bucle["pow"][57]
+                thetabetha = ( ((thetaf3+thetaf4)/2) / ((betaf3+betaf4)/2) )
 
+                listaPotencias.append(thetabetha)
+            except:
 
+                print("No se obtuvo lectura...")
 
-        """
-        ws.send(msg)
-        ws.recv()
-        result = ws.recv()
-        bucle = json.loads(result) #Utilizar Com
-        print(str(bucle))
+            if len(listaPotencias) == 8:
+                promedio = sum(listaPotencias) / 8
+                listaPotencias.append(promedio)
+                break
+        return listaPotencias
 
-        #Prueba solo con theta en f3
-        try:
-            #potencialElectrico = bucle["pow"][0]
-            #return potencialElectrico
-            thetaf3 = bucle["pow"][10]
-            thetaf4 = bucle["pow"][55]
-            betaf3 = bucle["pow"][12]
-            betaf4 = bucle["pow"][57]
-            thetabetha = ( ((thetaf3+thetaf4)/2) / ((betaf3+betaf4)/2) )
-            listaPotencias = []
-
-            listaPotencias.append(thetaf3)
-            listaPotencias.append(thetaf4)
-            listaPotencias.append(betaf3)
-            listaPotencias.append(betaf4)
-            listaPotencias.append(thetabetha)
-
-            return listaPotencias
-        except:
-            print("No se obtuvo lectura...")
-            listaPotencias = []
-            listaPotencias.append(0)
-            listaPotencias.append(0)
-            listaPotencias.append(0)
-            listaPotencias.append(0)
-            listaPotencias.append(0)
-            return listaPotencias
-
-        #Formula para sacar theta/beta = ( ((thetaf3+thetaf4)/2) / ((betabajoF3+betabajof4)/2) )
-
-        #                                   theta F4YF4 / Beta F3YF4
-        #thetaf3 = bucle["pow"][0]
-        #thetaf4 = bucle["pow"][55]
-        #betaf3 = bucle["pow"][2]
-        #betaf4 = bucle["pow"][57]
-        #thetabetha = ( ((thetaf3+thetaf2)/2) / ((beta3+betaf4)/2) )
-        #return thetabetha
 
 
     def run(self):
@@ -403,7 +378,6 @@ class pruebaconexionEmotiv(QThread):
             print("La potencia es desde la prueba: "+str(potenciaElectrica))
             self.contadorDePotencias = self.contadorDePotencias + 1
             print("El numero de potencias registradas son: "+str(self.contadorDePotencias))
-            time.sleep(0.5)
             self.signEmotiv.emit(potenciaElectrica)
 
 

@@ -71,6 +71,9 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.estadoDron = 0
         self.dirreccion = 0
 
+        self.escalaUmbral = 15
+        self.listaUmbralAutomatico = []
+
         #modelos
         self.modeloPaciente = Modelo_Paciente_()
         self.modeloEjercicios = Modelo_Ejercicios()
@@ -80,7 +83,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.cargarCbEjercicios()
 
         self.listapotencia = []
-        self.hiloEmotiv = conexionEmotiv()
+        self.hiloEmotiv = pruebaconexionEmotiv()
 
         self.ui.cbEjercicio.currentIndexChanged[str].connect(self.definirParametrosEjercicio)
 
@@ -127,6 +130,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         #Botones basicos de la sesion
         self.ui.btnIniciarTerapia.clicked.connect(self.iniciarTerapia)
         self.ui.btnGrabarSesion.clicked.connect(self.definirParametrosEjercicio)
+        self.ui.btEditarUmbral.clicked.connect(self.modificarEscalaUmbral)
 
 
         #Botones del umbral
@@ -135,16 +139,6 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.ui.spinBoxUmbral.valueChanged.connect(self.colocarumbral)
         self.ui.spinBoxUmbral.setSingleStep(1)
         self.ui.spinBoxUmbral.setValue(30)
-
-    def pruebaBandas(self):
-        self.hiloprueba = pruebaconexionEmotiv()
-        self.hiloprueba.signEmotiv.connect(self.pruebaEmoti)
-        #self.hilo3.signDS.connect(self.almacenarPotencias)
-        self.hiloprueba.start()
-
-    def pruebaEmoti(self, x):
-
-        self.ui.labelComandosMentales.setText(str(x))
 
 
 
@@ -163,10 +157,14 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                 self.crearArchivoCSV()
                 self.reproducirPista(pista)
                 self.ejecutardron()
+                self.iniciarTipempoSesion()
+
             else:
                 self.activarBarraNeurofeedback()
                 self.crearArchivoCSV()
                 self.ejecutardron()
+                self.iniciarTipempoSesion()
+
 
     #Funcion para finalizar una terapia
 
@@ -591,23 +589,51 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
     #-IPORTANTE---------Funciones de la barra de progreso-------------
     def activarBarraNeurofeedback(self):
 
-        #self.hilo2 = conexionEmotiv()
-        #self.hilo2 = HiloSingsEotiv()
         self.hiloEmotiv.signEmotiv.connect(self.barraNeurofeedback)
         #self.hilo2.signDS.connect(self.barraNeurofeedback)
         self.hiloEmotiv.start()
 
-
-
     def barraNeurofeedback(self,val):
 
-        #val = val*1000
-        #print("la potencia de la barra es", str(val))
-        #print("Recibi el valor -------- "+str(val[4]))
         #self.ui.progressBar_4.setValue(val[4])
         print("Recibi el valor -------- "+str(val))
+        #val = (val * 100) / self.escalaUmbral
+        val = (val[8] * 100) / self.escalaUmbral
+        print("El valor aplicando la escala -" +str(self.escalaUmbral)+"- es: "+str(val))
         self.ui.progressBar_4.setValue(val)
 
+        if self.ui.rbUmbralAutomatico.isChecked()== True:
+
+            print("===================Automatico===========")
+            self.listaUmbralAutomatico.append(val)
+            print("La lista tiene: "+str(self.listaUmbralAutomatico))
+
+            if len(self.listaUmbralAutomatico) == 3:
+
+                actualizarUmbral = sum(self.listaUmbralAutomatico) / 3
+                print("El promedio cada 3 segundos es: "+str(actualizarUmbral))
+                self.ui.spinBoxUmbral.setValue(actualizarUmbral)
+                self.listaUmbralAutomatico = []
+
+
+        else:
+            print("===================Manual===========")
+        print("==============================================")
+    #Funciones para el timer de la seson
+
+    def iniciarTipempoSesion(self):
+        self.hiloTiempo = HiloDuracionReloj()
+        self.hiloTiempo.signDSReloj.connect(self.actualizarTiempoSesion)
+        self.hiloTiempo.start()
+
+    def actualizarTiempoSesion(self,tiempo):
+
+        self.ui.lbMinutos.setText(tiempo)
+
+    #Funcion para establecer escala de umbral
+    def modificarEscalaUmbral(self):
+        nuevoUmbral = int(self.ui.edUmbral.text())
+        self.escalaUmbral = nuevoUmbral
 
 
     #Funciones para crear y llenar el archico csv correspondiente al reporte de potencias
@@ -672,6 +698,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
         self.umbral = int(self.ui.spinBoxUmbral.value())
 
+        #potencia = (potencia * 100) / self.escalaUmbral
+        potencia = (potencia[8] * 100) / self.escalaUmbral
 
         #potencia = potencia * 1000
         if self.ui.rdbExitatorio.isChecked()== True:
@@ -713,20 +741,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                 self.ui.labelComandosMentales.setText("-No- se alcazo el umbral")
                 #self.contadorumbral = self.contadorumbral + 1
                 #self.contadorumbralMaximo = 0
-        """
-        #Umbral Inteligente
-        #print("El valor del contador bajar es: "+str(self.contadorumbral))
-        #print("El valor del contador subir es: "+str(self.contadorumbralMaximo))
-        if self.contadorumbral == 5:
-            self.bajarumbral()
-            self.contadorumbral = 0
 
-
-        elif self.contadorumbralMaximo == 5:
-            self.elevarumbral()
-            self.contadorumbralMaximo = 0
-        """
-
+    #Funcion Umbral Intelinte (Automatico)
 
     #------Funciones para llenar los combo box de pacientes y de ejercicios recueperando datos de la base de datos
 
@@ -738,18 +754,18 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
         combo = self.ui.cbPaciente
         combo.clear()
-        combo.addItem("Todos")
+        combo.addItem("Selecciona un paciente")
         combo.addItems([str(x[1])+" "+str(x[2])+" "+str(x[0]) for x in pacientes])
 
     def cargarCbEjercicios(self):
 
-        ejercicios =  self.modeloEjercicios.recuperarEjercicios()
+        ejercicios =  self.modeloEjercicios.cargarTablaEjercicios()
         #print(str(ejercicios))
         #print(terapeutas)
 
         combo = self.ui.cbEjercicio
         combo.clear()
-        combo.addItem("Todos")
+        combo.addItem("Selecciona un ejercicio")
         combo.addItems([str(x[1]) for x in ejercicios])
 
     #Funcion para reproducir la pista

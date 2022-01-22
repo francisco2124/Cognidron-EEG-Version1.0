@@ -8,9 +8,11 @@ class HiloDuracionReloj(QThread):
 
     status = True
     signDSReloj = pyqtSignal(str)
-    def __init__(self, minutos):
+    segundos = 0
+    minutos = 0
+    tiempoSesion = ""
+    def __init__(self):
         super().__init__()
-        self.minutos = minutos
 
     def reanudar(self):
         self.status = True
@@ -24,43 +26,52 @@ class HiloDuracionReloj(QThread):
         return self.status
 
     def run(self):
-        self.cont = 0
-        self.tiempoRegresivo = ""
+
         main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate()))
         while main_thread.is_alive():
-            while self.tiempoRegresivo != "00:00" and self.estadoHilo():
-                segundos = 60
-                for i in range(1,self.minutos+1):
-                    for j in range(1,segundos+1):
+            while self.tiempoSesion != "59:59" and self.estadoHilo():
 
-                        if self.minutos <10:
-                            if segundos-j < 10:
-                                self.tiempoRegresivo = ("0"+str(self.minutos-i)+ ":" +"0"+str(segundos-j))
-                                #print(self.tiempoRegresivo)
-                                self.signDSReloj.emit(self.tiempoRegresivo)
-                                time.sleep(1)
-                                #print("Hasta la vista, Baby."+str(self.tiempoRegresivo))
+                self.segundos = self.segundos +1
+                if self.minutos < 10:
+                    if self.segundos < 10:
+                            self.tiempoSesion = ("0"+str(self.minutos)+ ":" +"0"+str(self.segundos))
+                            print("Entre al if 1")
+                            print(self.tiempoSesion)
+                            self.signDSReloj.emit(self.tiempoSesion)
+                            time.sleep(1)
 
+                    else:
+                            print("Entre al if 2")
+                            print(self.tiempoSesion)
+                            #print(self.tiempoSesion)
+                            if self.segundos == 60:
+                                self.minutos = self.minutos + 1
+                                self.segundos = 0
+                                self.tiempoSesion = ("0"+str(self.minutos)+ ":0" +str(self.segundos))
                             else:
-                                self.tiempoRegresivo = ("0"+str(self.minutos-i)+ ":" +str(segundos-j))
-                                #print(self.tiempoRegresivo)
-                                self.signDSReloj.emit(self.tiempoRegresivo)
-                                time.sleep(1)
-                                #print("Hasta la vista, Baby."+str(self.tiempoRegresivo))
+                                self.tiempoSesion = ("0"+str(self.minutos)+ ":" +str(self.segundos))
+
+                            self.signDSReloj.emit(self.tiempoSesion)
+                            time.sleep(1)
+
+                else:
+                    if self.segundos < 10:
+                        self.tiempoSesion = (str(self.minutos)+ ":" +"0"+str(self.segundos))
+                        #print(self.tiempoSesion)
+                        self.signDSReloj.emit(self.tiempoSesion)
+                        time.sleep(1)
+
+                    else:
+                        #print(self.tiempoSesion)
+                        if self.segundos == 60:
+                            self.minutos = self.minutos + 1
+                            self.segundos = 0
+                            self.tiempoSesion = (str(self.minutos)+ ":0" +str(self.segundos))
                         else:
-                            if segundos-j < 10:
-                                self.tiempoRegresivo = (str(self.minutos-i)+ ":" +"0"+str(segundos-j))
-                                #print(self.tiempoRegresivo)
-                                self.signDSReloj.emit(self.tiempoRegresivo)
-                                time.sleep(1)
-                                #print("Hasta la vista, Baby."+str(self.tiempoRegresivo))
+                            self.tiempoSesion = (str(self.minutos)+ ":" +str(self.segundos))
 
-                            else:
-                                self.tiempoRegresivo = (str(self.minutos-i)+ ":" +str(segundos-j))
-                                #print(self.tiempoRegresivo)
-                                self.signDSReloj.emit(self.tiempoRegresivo)
-                                time.sleep(1)
-                                #print("Hasta la vista, Baby."+str(self.tiempoRegresivo))
+                        self.signDSReloj.emit(self.tiempoSesion)
+                        time.sleep(1)
 
 
 

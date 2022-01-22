@@ -97,17 +97,12 @@
    </property>
    <item>
     <property name="text">
-     <string>Dron Be Boop</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
      <string>Dron Tello</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Robot Lego</string>
+     <string>Dron Be Boop</string>
     </property>
    </item>
   </widget>
@@ -712,9 +707,9 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="lbMinutos">
    <property name="geometry">
     <rect>
-     <x>850</x>
+     <x>840</x>
      <y>120</y>
-     <width>111</width>
+     <width>131</width>
      <height>31</height>
     </rect>
    </property>
@@ -1261,14 +1256,20 @@ text-decoration: underline;</string>
     <string>Proximo movimiento es:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="edUmbral">
    <property name="geometry">
     <rect>
-     <x>850</x>
-     <y>170</y>
-     <width>113</width>
-     <height>22</height>
+     <x>840</x>
+     <y>160</y>
+     <width>51</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="placeholderText">
+    <string>15</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_27">
@@ -1276,7 +1277,7 @@ text-decoration: underline;</string>
     <rect>
      <x>710</x>
      <y>160</y>
-     <width>171</width>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
@@ -2044,6 +2045,31 @@ text-decoration: underline;</string>
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="btEditarUmbral">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>160</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Subir Dron</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182, 181, 203);</string>
+   </property>
+   <property name="text">
+    <string>Editar</string>
+   </property>
+   <property name="shortcut">
+    <string>W</string>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>frame</zorder>
   <zorder>label_12</zorder>
@@ -2083,7 +2109,7 @@ text-decoration: underline;</string>
   <zorder>groupBox_3</zorder>
   <zorder>pbBarraPuntos</zorder>
   <zorder>label_26</zorder>
-  <zorder>lineEdit</zorder>
+  <zorder>edUmbral</zorder>
   <zorder>label_27</zorder>
   <zorder>label_24</zorder>
   <zorder>label_28</zorder>
@@ -2127,6 +2153,7 @@ text-decoration: underline;</string>
   <zorder>progressBar_4</zorder>
   <zorder>lbUmbral</zorder>
   <zorder>lbProximoMoviemntoDron</zorder>
+  <zorder>btEditarUmbral</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>
