@@ -7,6 +7,7 @@ import threading
 class HiloDuracionReloj(QThread):
 
     status = True
+    segundos = 0
     signDSReloj = pyqtSignal(str)
     segundos = 0
     minutos = 0
@@ -35,14 +36,14 @@ class HiloDuracionReloj(QThread):
                 if self.minutos < 10:
                     if self.segundos < 10:
                             self.tiempoSesion = ("0"+str(self.minutos)+ ":" +"0"+str(self.segundos))
-                            print("Entre al if 1")
-                            print(self.tiempoSesion)
+                            #print("Entre al if 1")
+                            #print(self.tiempoSesion)
                             self.signDSReloj.emit(self.tiempoSesion)
                             time.sleep(1)
 
                     else:
-                            print("Entre al if 2")
-                            print(self.tiempoSesion)
+                            #print("Entre al if 2")
+                            #print(self.tiempoSesion)
                             #print(self.tiempoSesion)
                             if self.segundos == 60:
                                 self.minutos = self.minutos + 1

@@ -9,26 +9,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>691</width>
-    <height>747</height>
+    <width>740</width>
+    <height>757</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>691</width>
+    <width>740</width>
     <height>747</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Conexion</string>
   </property>
-  <property name="sizeGripEnabled">
-   <bool>true</bool>
-  </property>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>30</x>
      <y>110</y>
      <width>201</width>
      <height>21</height>
@@ -44,27 +41,27 @@
   <widget class="QPushButton" name="btnEvaluarConexion">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>110</y>
-     <width>111</width>
+     <x>240</x>
+     <y>105</y>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Evaluar Conexión</string>
+    <string>Conectar con Emotiv</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>110</y>
+     <x>410</x>
+     <y>105</y>
      <width>41</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(41, 226, 69);</string>
+    <string notr="true">background-color: rgb(204, 204, 204);</string>
    </property>
    <property name="text">
     <string/>
@@ -73,8 +70,8 @@
   <widget class="QCheckBox" name="cbAF3">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>210</y>
+     <x>90</x>
+     <y>220</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -86,8 +83,8 @@
   <widget class="QCheckBox" name="cbF7">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>170</y>
+     <x>260</x>
+     <y>180</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -100,7 +97,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>170</y>
+     <y>180</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -112,8 +109,8 @@
   <widget class="QCheckBox" name="cbFC5">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>170</y>
+     <x>370</x>
+     <y>180</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -125,8 +122,8 @@
   <widget class="QCheckBox" name="cbT7">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>210</y>
+     <x>200</x>
+     <y>220</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -138,8 +135,8 @@
   <widget class="QCheckBox" name="cbP7">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>210</y>
+     <x>320</x>
+     <y>220</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -151,8 +148,8 @@
   <widget class="QCheckBox" name="cb01">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>170</y>
+     <x>150</x>
+     <y>180</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -164,8 +161,8 @@
   <widget class="QCheckBox" name="cb02">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>170</y>
+     <x>200</x>
+     <y>180</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -177,8 +174,8 @@
   <widget class="QCheckBox" name="cbP8">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>210</y>
+     <x>370</x>
+     <y>220</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -190,8 +187,8 @@
   <widget class="QCheckBox" name="cbT8">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>210</y>
+     <x>260</x>
+     <y>220</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -204,7 +201,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>210</y>
+     <y>220</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -216,8 +213,8 @@
   <widget class="QCheckBox" name="cbF4">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>170</y>
+     <x>90</x>
+     <y>180</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -229,8 +226,8 @@
   <widget class="QCheckBox" name="cbAF4">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>210</y>
+     <x>150</x>
+     <y>220</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -242,41 +239,14 @@
   <widget class="QCheckBox" name="cbF8">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>170</y>
+     <x>320</x>
+     <y>180</y>
      <width>81</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
     <string>F8</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>320</y>
-     <width>251</width>
-     <height>111</height>
-    </rect>
-   </property>
-   <property name="undoRedoEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hidrata corrrectamente los electrodos y asegurate que la posicion sea la correcta.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="acceptRichText">
-    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="lbAF3">
@@ -316,7 +286,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>691</width>
+     <width>741</width>
      <height>81</height>
     </rect>
    </property>
@@ -382,7 +352,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <rect>
      <x>0</x>
      <y>80</y>
-     <width>691</width>
+     <width>741</width>
      <height>10</height>
     </rect>
    </property>
@@ -434,7 +404,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <rect>
      <x>0</x>
      <y>90</y>
-     <width>701</width>
+     <width>741</width>
      <height>691</height>
     </rect>
    </property>
@@ -694,53 +664,223 @@ image: url(:/newPrefix/circuloGris.png);</string>
     <string/>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_2">
+  <widget class="QPushButton" name="btnAplicarSelecion">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>450</y>
-     <width>231</width>
-     <height>81</height>
+     <x>510</x>
+     <y>110</y>
+     <width>201</width>
+     <height>31</height>
     </rect>
    </property>
-   <property name="undoRedoEnabled">
-    <bool>false</bool>
+   <property name="text">
+    <string>Aplicar selección de electrodos</string>
    </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+  </widget>
+  <widget class="QLabel" name="labelNoUsado">
+   <property name="geometry">
+    <rect>
+     <x>405</x>
+     <y>100</y>
+     <width>51</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(110, 114, 125);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>175</y>
+     <width>281</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Tipo de licencia</string>
+   </property>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Gratuita</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_2">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>30</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Por pago</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>275</y>
+     <width>281</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Realizar una terapia</string>
+   </property>
+   <widget class="QPushButton" name="btnTerapiaNeurofeedback">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>35</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Terapia Neurofeedback</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnTerapiaControlMental">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>85</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Terapia Control Mental</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>35</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/newPrefix/salud-mental.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>85</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/newPrefix/idea-genial.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>440</y>
+     <width>281</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Infomacion de la conexión</string>
+   </property>
+   <widget class="QTextEdit" name="textEdit_2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>251</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="undoRedoEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Recuerda hidratar corrrectamente los electrodos y asegurate que la posicion sea la correcta.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="acceptRichText">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>460</x>
-     <y>280</y>
-     <width>201</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-   </property>
-   <property name="text">
-    <string>Infomacion de la conexión</string>
-   </property>
+    </property>
+    <property name="acceptRichText">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>251</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="undoRedoEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Esperando ealuacion de conexión de la diadema&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="acceptRichText">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
   <zorder>label_8</zorder>
   <zorder>label_2</zorder>
   <zorder>btnEvaluarConexion</zorder>
-  <zorder>label_4</zorder>
   <zorder>cbAF3</zorder>
   <zorder>cbF7</zorder>
   <zorder>cbF3</zorder>
@@ -755,7 +895,6 @@ p, li { white-space: pre-wrap; }
   <zorder>cbF4</zorder>
   <zorder>cbAF4</zorder>
   <zorder>cbF8</zorder>
-  <zorder>textEdit</zorder>
   <zorder>label_5</zorder>
   <zorder>frame</zorder>
   <zorder>frame_2</zorder>
@@ -775,8 +914,12 @@ p, li { white-space: pre-wrap; }
   <zorder>lbF7</zorder>
   <zorder>lbRFIquierdo</zorder>
   <zorder>lbRFIquierdo_2</zorder>
-  <zorder>textEdit_2</zorder>
-  <zorder>label_3</zorder>
+  <zorder>btnAplicarSelecion</zorder>
+  <zorder>labelNoUsado</zorder>
+  <zorder>label_4</zorder>
+  <zorder>groupBox</zorder>
+  <zorder>groupBox_2</zorder>
+  <zorder>groupBox_3</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

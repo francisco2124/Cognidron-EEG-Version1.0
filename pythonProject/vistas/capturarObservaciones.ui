@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>477</width>
-    <height>626</height>
+    <height>673</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -111,7 +111,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
      <x>0</x>
      <y>70</y>
      <width>480</width>
-     <height>591</height>
+     <height>691</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -132,8 +132,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QTextEdit" name="teObservaciones">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>400</y>
+     <x>30</x>
+     <y>450</y>
      <width>431</width>
      <height>151</height>
     </rect>
@@ -142,8 +142,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>360</y>
+     <x>10</x>
+     <y>410</y>
      <width>461</width>
      <height>31</height>
     </rect>
@@ -161,8 +161,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>570</y>
+     <x>240</x>
+     <y>620</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -174,8 +174,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>570</y>
+     <x>360</x>
+     <y>620</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -187,8 +187,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>200</y>
+     <x>40</x>
+     <y>170</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -203,8 +203,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>240</y>
+     <x>40</x>
+     <y>210</y>
      <width>161</width>
      <height>31</height>
     </rect>
@@ -219,9 +219,9 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>280</y>
-     <width>241</width>
+     <x>40</x>
+     <y>250</y>
+     <width>261</width>
      <height>31</height>
     </rect>
    </property>
@@ -229,14 +229,14 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <string notr="true">font: 9pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <property name="text">
-    <string>Num. Veces que alcanzo el umbral:</string>
+    <string>Mayor tiempo que mantuvo el umbral:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>320</y>
+     <x>40</x>
+     <y>370</y>
      <width>311</width>
      <height>31</height>
     </rect>
@@ -245,7 +245,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <string notr="true">font: 9pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <property name="text">
-    <string>Porcentaje de tiempo que mantuvo el umbral:</string>
+    <string>Porcentaje que mantuvo el umbra:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -270,8 +270,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="lbPuntos">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>200</y>
+     <x>160</x>
+     <y>170</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -287,8 +287,8 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
   <widget class="QLabel" name="lbPromedioPotencias">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>240</y>
+     <x>195</x>
+     <y>210</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -300,11 +300,11 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
     <string>23.876</string>
    </property>
   </widget>
-  <widget class="QLabel" name="lbNumUmbral">
+  <widget class="QLabel" name="lbMayorTiempo">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>280</y>
+     <x>300</x>
+     <y>250</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -313,14 +313,14 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
     <string notr="true">font: 87 8pt &quot;Arial Black&quot;;</string>
    </property>
    <property name="text">
-    <string>35</string>
+    <string>9</string>
    </property>
   </widget>
   <widget class="QLabel" name="lbTiempoUmbralObtenido">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>320</y>
+     <x>275</x>
+     <y>370</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -329,14 +329,14 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
     <string notr="true">font: 87 8pt &quot;Arial Black&quot;;</string>
    </property>
    <property name="text">
-    <string>3 Minutos</string>
+    <string>-%</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>160</y>
+     <x>40</x>
+     <y>130</y>
      <width>151</width>
      <height>31</height>
     </rect>
@@ -351,8 +351,8 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
   <widget class="QLabel" name="lbDuracioSesion">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>160</y>
+     <x>190</x>
+     <y>130</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -362,6 +362,70 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
    </property>
    <property name="text">
     <string>20 Minutos</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>290</y>
+     <width>281</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Tiempo promedio que mantuvo el umbral:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbPromedioTiempo">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>290</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 87 8pt &quot;Arial Black&quot;;</string>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>330</y>
+     <width>261</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Menor tiempo que mantuvo el umbral:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbMenorTiempo">
+   <property name="geometry">
+    <rect>
+     <x>298</x>
+     <y>330</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 87 8pt &quot;Arial Black&quot;;</string>
+   </property>
+   <property name="text">
+    <string>3</string>
    </property>
   </widget>
  </widget>

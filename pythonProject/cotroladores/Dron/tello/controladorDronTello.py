@@ -3,6 +3,7 @@ from plistlib import Data
 
 import socket, time
 
+
 import command as command
 
 class DronTello():
@@ -10,6 +11,7 @@ class DronTello():
     def __init__(self, dron_ip, dron_port, host_ip, host_port):
         super().__init__()
         print("Hola soy controlador tello")
+        self.response = None
         self.dron_ip = dron_ip
         self.dron_port = dron_port
         self.host_ip = host_ip
@@ -84,6 +86,31 @@ class DronTello():
         self.sock.sendto('ccw 45'.encode(encoding="utf-8"), self.tello_address)
         print("Girar Izquierda Dron")
         #time.sleep(5)
+
+    def send_command(self, command):
+
+        self.sock.sendto(command.encode('utf-8'), self.tello_address)
+
+        if self.response is None:
+            response = 'none_response'
+        else:
+            response = self.response.decode('utf-8')
+
+        self.response = None
+
+        return response
+
+    def getbateriaDron(self):
+
+        battery = self.sock.sendto('Battery?'.encode(encoding="utf-8"), self.tello_address)
+        print("La bateria desde la clase tello es*******************: "+str(battery))
+
+        try:
+            battery = int(battery)
+        except:
+            pass
+
+        return battery
 
     def __del__(self):
         self.sock.close()

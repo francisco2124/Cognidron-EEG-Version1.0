@@ -12,7 +12,7 @@ import vistas.images
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1285, 900)
+        MainWindow.resize(1285, 922)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/newPrefix/idea-genial.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -22,7 +22,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.mdiArea = QtWidgets.QMdiArea(self.centralwidget)
         self.mdiArea.setEnabled(True)
-        self.mdiArea.setGeometry(QtCore.QRect(10, 20, 1261, 810))
+        self.mdiArea.setGeometry(QtCore.QRect(10, 20, 1261, 811))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(80)
         sizePolicy.setVerticalStretch(80)

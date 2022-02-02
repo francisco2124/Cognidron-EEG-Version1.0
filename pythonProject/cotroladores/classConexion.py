@@ -23,6 +23,11 @@ class classConexion(QThread):
         self.cargarParametris()
         self.conectar()
         print("Hola Mundo")
+
+        datos = self.modelo.cargarDatos()
+        #self.listasec = ["0NONRi3ZtjAVSBKu9FSihOQcdsAPLwRPungPC5oq", "VKRg9KUJZwFuRkCESVkL9zIpmuoYbSyNAOiX6UwXuzU9CnHcDZzfmmKPcLs9534PElenBtKlcDrwUrL0kbEGwz0GGNP6Zggpi9eC74KtN4cZ8ERAkjyTnRvpc3SeC6BK"]
+        self.listasec = datos[0]
+
     def cargarParametris(self):
 
         datos = self.modelo.cargarDatos()
@@ -100,7 +105,7 @@ class classConexion(QThread):
 
 
         print("Las credenciales son........")
-        ListaDatos = datos[0]
+        ListaDatos = self.listasec
         clientId = str(ListaDatos[0]).strip()
         clientSecret = str(ListaDatos[1]).strip()
 
@@ -151,7 +156,7 @@ class classConexion(QThread):
             ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
             datos = self.modelo.cargarDatos()
 
-            ListaDatos = datos[0]
+            ListaDatos = self.listasec
             clientId = str(ListaDatos[0]).strip()
             clientSecret = str(ListaDatos[1]).strip()
             profile = "j"
@@ -255,7 +260,7 @@ class classConexion(QThread):
         ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
         datos = self.modelo.cargarDatos()
 
-        ListaDatos = datos[0]
+        ListaDatos = self.listasec
         clientId = str(ListaDatos[0]).strip()
         clientSecret = str(ListaDatos[1]).strip()
         profile = "j"
@@ -320,7 +325,7 @@ class classConexion(QThread):
         ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
         datos = self.modelo.cargarDatos()
 
-        ListaDatos = datos[0]
+        ListaDatos = self.listasec
         clientId = str(ListaDatos[0]).strip()
         clientSecret = str(ListaDatos[1]).strip()
         profile = "j"

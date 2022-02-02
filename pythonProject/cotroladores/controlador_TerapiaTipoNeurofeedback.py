@@ -1,3 +1,5 @@
+import time
+import threading
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMessageBox
 
@@ -39,11 +41,13 @@ from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
 class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
 
-    def __init__(self):
+    def __init__(self, electrodos):
         super().__init__()
         self.ui = Ui_TerapiaNeurofeedback()
         self.ui.setupUi(self)
-        self.inicializarGUI()
+
+        #Lista de electrodos seleccionados en la ventana de conexion
+        self.electrodosSelecionados = electrodos
 
         #Variables de imagenes de ejercicios
         self.posX = 380
@@ -61,18 +65,36 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.contadorPuntos = 1
         self.porcentajeBarraPuntaje = 0
 
+        #Valida que se halla alcansado 3 veces el umbral
+        self.contadorpassUmbral = 0
+
+        #variable que almacena el tiempo en miutos que dura la sesion (Hilo)
+        self.tiempoSesion = 0
 
 
+        #Variable que almacena el hilo de emotiv
         self.hilo = HiloDuracion;
         self.puntaje = 0
-        self.Umbral = 0
-        self.contadorumbral =1
-        self.contadorumbralMaximo =0
+        #self.Umbral = 0
+
+        #Variable que contara el numero de veces que supero el umbral mas de 3 segundos
+        self.contadorUmbralMas3Segundos = 0
+        self.listaTiemposUmbral = []
+
+        #Variables que verifican el estado del dron y la direccion
         self.estadoDron = 0
         self.dirreccion = 0
 
+        #Variable que establece la escala de umbral en la interfaz grafica
         self.escalaUmbral = 15
+        #Variable que almacena 3 promedios de la deademas y coloca la linea de umbral en automatico
         self.listaUmbralAutomatico = []
+
+        #Lista que alamacena el promedio de las potencias de las ondas cerebrales cada 5 segundos
+        self.promedioPotencias5sg = []
+
+        #Variable que almacena los segundos de concentracio sobre el umbral
+        self.segundosSobreUmbral = 0
 
         #modelos
         self.modeloPaciente = Modelo_Paciente_()
@@ -82,16 +104,21 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.cargarCbPacientes()
         self.cargarCbEjercicios()
 
-        self.listapotencia = []
-        self.hiloEmotiv = pruebaconexionEmotiv()
+        #BanderaRegistroDatos
+        self.banderaRegistro = False
+
+        #Variable que determina si elctrol toal esta activado
+        self.controlTotal = False
 
         self.ui.cbEjercicio.currentIndexChanged[str].connect(self.definirParametrosEjercicio)
 
+        #Variables para crear archivo csv
+        self.listapotencia = []
 
+        self.inicializarGUI()
 
-
-
-
+        #Detener Bateria Dron
+        self.detenerHiloBateri = 0
 
     def inicializarGUI(self):
 
@@ -111,7 +138,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
 
         #Controles de emergencia del dron
-        #self.ui.btnObtenerDrone.clicked.connect(self.obtenerControlDrone)
+        self.ui.btnObtenerDrone.clicked.connect(self.obtenerControl)
 
         self.ui.btnAterrizarDrone.clicked.connect(self.despegarAtirrizarDrone)
         self.ui.btnDecenderDrone.clicked.connect(self.decenderDrone)
@@ -142,40 +169,139 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
 
 
+
+
     def iniciarTerapia(self):
 
-    #-------IMPORTANTE----- Valores de conexion del dron
-            self.dron = Dron('192.168.10.1', 8889, "tello")
-            # Instancia del dron (Ip del dron, puerto del dron, valor del dicionario que se encuentra en la clase dron)
+        if self.ui.btnIniciarTerapia.text() == "Iniciar terapia":
 
-            #Obtener nombre de la pista del combo box de la entana de terapia
-            pista = self.ui.cbPista.currentText()
+                #Validaciones de seleccion de combo box
+                if self.ui.cbPaciente.currentText() == "Selecciona un paciente":
 
-            #Condicioonal para la seleccion de la pista
-            if pista != "Sin Pista":
-                self.activarBarraNeurofeedback()
-                self.crearArchivoCSV()
-                self.reproducirPista(pista)
-                self.ejecutardron()
-                self.iniciarTipempoSesion()
+                    lerta = QMessageBox.information(self, 'Alerta', "Selecciona un paciente para iniciar la terapia", QMessageBox.Ok)
 
-            else:
-                self.activarBarraNeurofeedback()
-                self.crearArchivoCSV()
-                self.ejecutardron()
-                self.iniciarTipempoSesion()
+                elif self.ui.cbEjercicio.currentText() == "Selecciona un ejercicio":
+
+                    lerta = QMessageBox.information(self, 'Alerta', "Selecciona un ejercicio para iniciar la terapia", QMessageBox.Ok)
+
+                #Condicioonal para la seleccion de la pista
+                else:
+                    if self.ui.cbPista.currentText() != "Sin Pista":
+                        self.reproducirPista(self.ui.cbPista.currentText())
+                    else:
+                        pass
+                    #-------IMPORTANTE----- Valores de conexion del dron
+                    self.dron = Dron('192.168.10.1', 8889, "tello")
+                    # Instancia del dron (Ip del dron, puerto del dron, valor del dicionario que se encuentra en la clase dron)
+                    self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
+
+                    self.activarBarraNeurofeedback()
+                    self.crearArchivoCSV()
+                    self.ejecutardron()
+                    self.despegarDrone()
+                    self.banderaRegistro = True
+                    self.ui.btnIniciarTerapia.setText("Detener Terapia")
+                    self.ui.btnIniciarTerapia.setStyleSheet("background-color: rgb(165, 164, 184);")
+                    self.ui.btnGrabarSesion.setText("Grabando datos..")
+                    self.ui.btnGrabarSesion.setStyleSheet("background-color: rgb(165, 164, 184);")
+                    self.ui.lbGrabando.setText("Grabando...")
+                    self.ui.cbEjercicio.setEnabled(False)
+                    self.ui.cbBanda.setEnabled(False)
+                    self.ui.cbPaciente.setEnabled(False)
+                    self.ui.cbRobot.setEnabled(False)
+                    self.iniciarTipempoSesion()
+                    icon = QtGui.QIcon()
+                    icon.addPixmap(QtGui.QPixmap(":/newPrefix/aterrizar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                    self.ui.btnAterrizarDrone.setIcon(icon)
+                    #self.ejecutarHiloBateria()
+        else:
+            self.banderaRegistro = False
+            self.hiloTiempo.detener()
+            self.ui.btnIniciarTerapia.setText("Sesión Terminada")
+            self.ui.btnGrabarSesion.setText("Datos Almacenados")
+            self.ui.lbProximoMoviemntoDron.setText("Sesión Terminada")
+            self.ui.lbGrabando.setText("No Grabando")
+            self.ui.btnIniciarTerapia.setEnabled(False)
+            self.ui.btnGrabarSesion.setEnabled(False)
+            self.ui.btbCapturarObservaciones.setEnabled(True)
+            self.hiloEmotiv.detener()
+            self.finalizarTerapia()
 
 
+
+
+
+    def pruebaBateriaDron(self):
+
+        #listaBateria = [80,78,60,50,45,43,42,40,38,33,30,29,25,20,18,16,13,10,8,5,3,1]
+        #for i in listaBateria:
+            #self.ui.progressBar_4.setValue(i)
+            #time.sleep(2)
+        while True:
+            porcentajeBateria = self.dron.getBateria()
+            self.ui.lbPorcentajeBateriaDron.setText(str(porcentajeBateria*10)+"%")
+            time.sleep(4)
+            if self.detenerHiloBateri == 2:
+                break
+
+    def ejecutarHiloBateria(self):
+
+        hilo1 = threading.Thread(target=self.pruebaBateriaDron)
+        hilo1.start()
+
+
+
+
+    #Funcion para dejar de esuchar las instrucciones de la diadema
+    def obtenerControl(self):
+
+        if self.ui.btnObtenerDrone.text() == "Obtener Control Total":
+            self.controlTotal = True
+            self.ui.btnObtenerDrone.setStyleSheet("background-color: rgb(0, 170 ,170);")
+            self.ui.btnObtenerDrone.setText("Devolver Control")
+        else:
+            self.controlTotal = False
+            self.ui.btnObtenerDrone.setStyleSheet("background-color: rgb();")
+            self.ui.btnObtenerDrone.setText("Obtener Control Total")
     #Funcion para finalizar una terapia
-
     def finalizarTerapia(self):
+        self.aterrizarDrone()
         del(self.dron)
 
     #Funcion para capturar obsrvaciones y recuperar datos sbresalientes de la sesion
     def abrirCapturarObservaciones(self):
 
-        self.abrir = Controlador_Observaciones()
+
+        promedioPotencias =  sum(self.listapotencia) / len(self.listapotencia)
+        if len(self.listaTiemposUmbral) != 0:
+
+            max_tiempo = max(self.listaTiemposUmbral, key=int)
+            min_tiempo = min(self.listaTiemposUmbral, key=int)
+            promedioTiempo = sum(self.listaTiemposUmbral) / len(self.listaTiemposUmbral)
+        else:
+            max_tiempo = 0
+            min_tiempo = 0
+            promedioTiempo = 0
+
+        porcentajeTiempo = (100 / len(self.listapotencia)) * (sum(self.listaTiemposUmbral) / 3)
+        porcentajeTiempoF = round(porcentajeTiempo, 2)
+        self.abrir = Controlador_Observaciones(self.tiempoSesion,self.puntaje,promedioPotencias, max_tiempo, min_tiempo, promedioTiempo, porcentajeTiempoF)
         self.abrir.show()
+
+        self.ui.btnIniciarTerapia.setText("Iniciar terapia")
+        self.ui.btnGrabarSesion.setText("Grabar Sesión")
+        self.ui.lbProximoMoviemntoDron.setText("")
+        self.ui.btbCapturarObservaciones.setEnabled(False)
+        self.ui.btnIniciarTerapia.setEnabled(True)
+        self.ui.btnGrabarSesion.setEnabled(True)
+        self.ui.cbEjercicio.setEnabled(True)
+        self.ui.cbEjercicio.setCurrentIndex(0)
+        self.ui.cbPaciente.setEnabled(True)
+        self.ui.cbPaciente.setCurrentIndex(0)
+        self.ui.cbBanda.setEnabled(True)
+
+
+
 
     def definirParametrosEjercicio(self):
 
@@ -291,27 +417,35 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
        ______________________________________________________________________"""
 
     def valoresPredeterminadosdePuntaje(self):
-
-        self.contadorPuntos = self.contadorPuntos + 1
-        self.porcentajeBarraPuntaje = self.porcentajeBarraPuntaje + 20
-        self.ui.pbBarraPuntos.setValue(self.porcentajeBarraPuntaje)
+        if self.banderaRegistro == True:
+            self.contadorPuntos = self.contadorPuntos + 1
+            self.porcentajeBarraPuntaje = self.porcentajeBarraPuntaje + 20
+            self.ui.pbBarraPuntos.setValue(self.porcentajeBarraPuntaje)
+            self.segundosSobreUmbral = self.segundosSobreUmbral + 3
+            self.ui.lbSegundosObtenidos.setText(str(self.segundosSobreUmbral)+" Segundos")
+        else:
+            pass
 
     def valoresPredeterminadosPuntaje2(self):
-
-        self.contadorPuntos = self.contadorPuntos + 1
-        self.porcentajeBarraPuntaje = self.porcentajeBarraPuntaje + 20
-        self.ui.pbBarraPuntos.setValue(self.porcentajeBarraPuntaje)
-        self.puntaje = self.puntaje +1
-        self.ui.label_18.setText(str(self.puntaje))
-        self.contadorPuntos = 1
-        self.porcentajeBarraPuntaje = 0
-        self.ui.pbBarraPuntos.setValue(self.porcentajeBarraPuntaje)
+        if self.banderaRegistro == True:
+            self.contadorPuntos = self.contadorPuntos + 1
+            self.porcentajeBarraPuntaje = self.porcentajeBarraPuntaje + 20
+            self.ui.pbBarraPuntos.setValue(self.porcentajeBarraPuntaje)
+            self.puntaje = self.puntaje +1
+            self.ui.label_18.setText(str(self.puntaje))
+            self.contadorPuntos = 1
+            self.porcentajeBarraPuntaje = 0
+            self.ui.pbBarraPuntos.setValue(self.porcentajeBarraPuntaje)
+            self.segundosSobreUmbral = self.segundosSobreUmbral + 3
+            self.ui.lbSegundosObtenidos.setText(str(self.segundosSobreUmbral)+" Segundos")
+        else:
+            pass
 
     def instruccion1(self):
 
-        print("Contador puntos es =: "+str(self.contadorPuntos))
+        #print("Contador puntos es =: "+str(self.contadorPuntos))
         ejercicio = self.ui.cbEjercicio.currentText()
-        print("El ejercicio es: "+str(ejercicio))
+        #print("El ejercicio es: "+str(ejercicio))
 
         if self.contadorPuntos !=5:
 
@@ -374,9 +508,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
     def instruccion2(self):
 
-        print("Contador puntos es =: "+str(self.contadorPuntos))
         ejercicio = self.ui.cbEjercicio.currentText()
-        print("El ejercicio es: "+str(ejercicio))
 
         if self.contadorPuntos != 5:
             if ejercicio == "Girar Dron":
@@ -432,26 +564,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         else:
             self.ui.labelEventoDrone.setText("------Selecciona un ejercicio---------")
 
-    '''
-    #Funcion para obtener un control total de dron. (Dejara de recibir istruciones del EEG)
-    def obtenerControlDrone(self):
 
-        if self.ui.btnObtenerDrone.text() == "Obtener Control Total":
-
-            self.ui.labelComandosMentales.setText("Control del dron activado")
-            self.ui.btnObtenerDrone.setText("Devolver Control")
-            self.ui.btnObtenerDrone.setStyleSheet("background-color: rgb(85, 85, 255);")
-            self.ui.btnActivarEmotiv.setStyleSheet("background-color: rgb(182, 181, 203);")
-            self.ui.btnActivarEmotiv.setEnabled(False)
-
-
-        else:
-            self.ui.labelComandosMentales.setText("Control del dron desactivado")
-            self.ui.btnObtenerDrone.setText("Obtener Control Total")
-            self.ui.btnObtenerDrone.setStyleSheet("background-color: rgb(116, 147 ,198);")
-            self.ui.btnActivarEmotiv.setStyleSheet("background-color: rgb(0, 226, 0);")
-            self.ui.btnActivarEmotiv.setEnabled(True)
-        '''
     #****************************************************************************************************************************
     #-Comandos del dron-(Despegar, Aterrizar, Elevar, Desender, Adelante, Atras, Derecha, Izquierda, Roatar Izquierda y Derecha)
     #****************************************************************************************************************************
@@ -460,23 +573,32 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
         if self.estadoDron == 0:
             try:
-                print("llame la funcion despegar")
-                self.dron.despegar()
-                #--------Cambiar imagen del boton de Despege y Aterrizaje del dron
-                icon = QtGui.QIcon()
-                icon.addPixmap(QtGui.QPixmap(":/newPrefix/aterrizar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-                self.ui.btnAterrizarDrone.setIcon(icon)
-                self.estadoDron = 1
+                self.despegarDrone()
             except:
                 self.dronNoInstanciado()
 
         else:
-            print("llame la funcion aterrizar")
-            self.dron.aterrizar()
-            self.estadoDron = 0
-            icon = QtGui.QIcon()
-            icon.addPixmap(QtGui.QPixmap(":/newPrefix/despegar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-            self.ui.btnAterrizarDrone.setIcon(icon)
+            self.aterrizarDrone()
+
+    def despegarDrone(self):
+        print("llame la funcion despegar")
+        self.dron.despegar()
+        #--------Cambiar imagen del boton de Despege y Aterrizaje del dron
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/aterrizar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ui.btnAterrizarDrone.setIcon(icon)
+        self.estadoDron = 1
+        self.detenerHiloBateri = 1
+        #print("El estado del dron es: "+str(self.estadoDron))
+    def aterrizarDrone(self):
+
+        print("llame la funcion aterrizar")
+        self.dron.aterrizar()
+        self.estadoDron = 0
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/despegar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ui.btnAterrizarDrone.setIcon(icon)
+        self.detenerHiloBateri = 2
 
     def adelanteDrone(self):
         try:
@@ -586,6 +708,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
         self.hilo.reanudar()
 
+
+
     #-IPORTANTE---------Funciones de la barra de progreso-------------
     def activarBarraNeurofeedback(self):
 
@@ -595,30 +719,40 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
     def barraNeurofeedback(self,val):
 
-        #self.ui.progressBar_4.setValue(val[4])
-        print("Recibi el valor -------- "+str(val))
-        #val = (val * 100) / self.escalaUmbral
-        val = (val[8] * 100) / self.escalaUmbral
-        print("El valor aplicando la escala -" +str(self.escalaUmbral)+"- es: "+str(val))
+        #print("-------------------Recibi:" +str(val))
+        promedioPotencia = val[0]
+        #promedioPotencia = val
+
+        val = (promedioPotencia * 100) / self.escalaUmbral
+
+
         self.ui.progressBar_4.setValue(val)
+        self.promedioPotencias5sg.append(promedioPotencia)
+
+        if len(self.promedioPotencias5sg) == 5:
+            promedio5sg = round((sum(self.promedioPotencias5sg) / 5), 3)
+            self.ui.lbPromedioPotencias5sg.setText(str(promedio5sg))
+            self.promedioPotencias5sg = []
+
 
         if self.ui.rbUmbralAutomatico.isChecked()== True:
 
-            print("===================Automatico===========")
+            #print("===================Automatico===========")
             self.listaUmbralAutomatico.append(val)
-            print("La lista tiene: "+str(self.listaUmbralAutomatico))
+            #print("La lista tiene: "+str(self.listaUmbralAutomatico))
 
             if len(self.listaUmbralAutomatico) == 3:
 
                 actualizarUmbral = sum(self.listaUmbralAutomatico) / 3
-                print("El promedio cada 3 segundos es: "+str(actualizarUmbral))
+                #print("El promedio cada 3 segundos es: "+str(actualizarUmbral))
                 self.ui.spinBoxUmbral.setValue(actualizarUmbral)
                 self.listaUmbralAutomatico = []
 
 
         else:
-            print("===================Manual===========")
-        print("==============================================")
+            #print("===================Manual===========")
+        #print("==============================================")
+            pass
     #Funciones para el timer de la seson
 
     def iniciarTipempoSesion(self):
@@ -629,6 +763,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
     def actualizarTiempoSesion(self,tiempo):
 
         self.ui.lbMinutos.setText(tiempo)
+        self.tiempoSesion = tiempo
+
 
     #Funcion para establecer escala de umbral
     def modificarEscalaUmbral(self):
@@ -646,41 +782,44 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
 
     def llenarArchivoCSV(self, potencia): #222222222222222222222222222222222222222222222222222222222222222222222222222222222222-------
-        archivo = open("archivo.csv","w")
-        #Titulo
-        archivo.write("Reporte de potencias 2")
-        archivo.write("\n")
 
-        #Encabezado
-        archivo.write("Electrodo")
-        archivo.write(",")
-        archivo.write("Banda")
-        archivo.write(",")
-        archivo.write("Promedio Potencia")
-        archivo.write(",")
-        archivo.write("Id de la sesio")
-        archivo.write(",")
-        archivo.write("Tipo de ejercicio")
-        archivo.write(",")
-        archivo.write("Id del paciente")
+            if self.banderaRegistro == True:
+                archivo = open("archivo.csv","w")
+                #Titulo
+                archivo.write("Reporte de potencias 2")
+                archivo.write("\n")
 
-        #potencias = [20.2,30.2,10.12,40.56,50,78,20.2,30.2,10.12,40.56,50,78,20.2,30.2,10.12,40.56,50,78,1,1,1]
+                #Encabezado
+                archivo.write("Electrodo")
+                archivo.write(",")
+                archivo.write("Banda")
+                archivo.write(",")
+                archivo.write("Promedio Potencia")
+                archivo.write(",")
+                archivo.write("Id de la sesio")
+                archivo.write(",")
+                archivo.write("Tipo de ejercicio")
+                archivo.write(",")
+                archivo.write("Id del paciente")
 
-        self.listapotencia.append(str(potencia))
-        for i in self.listapotencia:
+                self.listapotencia.append(potencia[0])
+                #self.listapotencia.append(potencia)
 
-            archivo.write("\n")
-            archivo.write("F3 F4")
-            archivo.write(",")
-            archivo.write("Theta/BetaL")
-            archivo.write(",")
-            archivo.write(str(i))
-            archivo.write(",")
-            archivo.write("001")
-            archivo.write(",")
-            archivo.write("Inivitorio")
-            archivo.write(",")
-            archivo.write("001")
+                for i in self.listapotencia:
+                    archivo.write("\n")
+                    archivo.write("F3 F4")
+                    archivo.write(",")
+                    archivo.write("Theta/BetaL")
+                    archivo.write(",")
+                    archivo.write(str(i))
+                    archivo.write(",")
+                    archivo.write("001")
+                    archivo.write(",")
+                    archivo.write("Inivitorio")
+                    archivo.write(",")
+                    archivo.write("001")
+            else:
+                print("No estoy almacenando datos....")
 
 
     #***********************************************************
@@ -698,8 +837,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
         self.umbral = int(self.ui.spinBoxUmbral.value())
 
+        potencia = (potencia[0] * 100) / self.escalaUmbral
         #potencia = (potencia * 100) / self.escalaUmbral
-        potencia = (potencia[8] * 100) / self.escalaUmbral
 
         #potencia = potencia * 1000
         if self.ui.rdbExitatorio.isChecked()== True:
@@ -719,14 +858,24 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
             if operador:
 
                 self.ui.labelComandosMentales.setText("-SI- se alcanzo el umbral subir")
-                self.instruccion1()
-                #self.contadorumbralMaximo = self.contadorumbralMaximo + 1
-                #self.contadorumbral = 0
+                self.contadorpassUmbral = self.contadorpassUmbral + 1
+
+                if self.contadorpassUmbral == 3:
+
+                    if self.controlTotal == False:
+                        self.instruccion1()
+
+                    self.contadorpassUmbral = 0
+                    self.contadorUmbralMas3Segundos = self.contadorUmbralMas3Segundos+1
+                    print("=================================: "+str(self.contadorUmbralMas3Segundos))
 
             else:
+                if self.contadorUmbralMas3Segundos > 0:
+                    self.listaTiemposUmbral.append(self.contadorUmbralMas3Segundos * 3)
+                    print("La lista de tiempos tiene ===== "+str(self.listaTiemposUmbral))
                 self.ui.labelComandosMentales.setText("-No- se alcazo el umbral")
-                #self.contadorumbral = self.contadorumbral + 1
-                #self.contadorumbralMaximo = 0
+                self.contadorUmbralMas3Segundos = 0
+                self.contadorpassUmbral = 0
 
 
         else:
@@ -734,13 +883,23 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
             if operador:
 
                 self.ui.labelComandosMentales.setText("-SI- se alcanzo el umbral bajar")
-                self.instruccion2()
-                #self.contadorumbralMaximo = self.contadorumbralMaximo + 1
-                #self.contadorumbral = 0
+                self.contadorpassUmbral = self.contadorpassUmbral + 1
+
+                if self.contadorpassUmbral == 3:
+                    if self.controlTotal == False:
+                        self.instruccion2()
+                    self.contadorpassUmbral = 0
+                    self.contadorUmbralMas3Segundos = self.contadorUmbralMas3Segundos + 1
+                    print("=================================: "+str(self.contadorUmbralMas3Segundos))
+
+
             else:
+                if self.contadorUmbralMas3Segundos > 0:
+                    self.listaTiemposUmbral.append(self.contadorUmbralMas3Segundos * 3)
+                    print("La lista de tiempos tiene ===== "+str(self.listaTiemposUmbral))
                 self.ui.labelComandosMentales.setText("-No- se alcazo el umbral")
-                #self.contadorumbral = self.contadorumbral + 1
-                #self.contadorumbralMaximo = 0
+                self.contadorpassUmbral = 0
+                self.contadorUmbralMas3Segundos = 0
 
     #Funcion Umbral Intelinte (Automatico)
 
@@ -789,3 +948,16 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                 os.startfile("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\pista_3.mp3")
             except:
                 Alerta = QMessageBox.information(self, 'Alerta', "Ocurrio un error con el reproductor de musica", QMessageBox.Ok)
+
+    def cerrarVentana(self):
+        try:
+            self.hiloEmotiv.detener()
+        except:
+            print("No hay hilo de emotiv")
+
+    def closeEvent(self, a0: QtGui.QCloseEvent):
+        resultado = QMessageBox.question(self,"Salir...","¿Seguro que quieres salir de la ventana de terapia?",
+                                         QMessageBox.Yes|QMessageBox.No)
+        if resultado == QMessageBox.Yes: a0.accept(), self.cerrarVentana()
+
+        else: a0.ignore()

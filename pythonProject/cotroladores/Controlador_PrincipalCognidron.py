@@ -4,6 +4,7 @@
 from PyQt5 import QtWidgets
 from vistas.principalCognitronp import Ui_MainWindow
 from PyQt5.QtGui import QIntValidator
+from PyQt5.QtWidgets import QMessageBox
 
 
 
@@ -49,11 +50,15 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         print("soy princial de vista")
         self.ui= Ui_MainWindow()
         self.ui.setupUi(self)
+        #Electrodos bajo el estandar 10-10
+        self.electrodos = {'Estandar':'10-10',"AF3":False, 'F7':False,'F3':False,'FC5':False,'T7':False,'P7':False,'E01':False,'E02':False, 'P8':False, 'T8':False, 'FC6':False, 'F4':False,'F8':False,'AF4':False}
+
         self.InicializarGui()
         self.modelo = Modelo_Terapeuta()
         #elf.generalTerapeuta = Controlador_ConsultarTerapeutas(self.modelo)
         #self.terapeutaSelect = Control_ConsultarTerapectuaSelec(self.modelo)
-        self.abrirTerapiaNeurofeedback()
+
+
 
 
     def InicializarGui(self):
@@ -172,15 +177,28 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
 
     def abrirTerapiaNeurofeedback(self):
 
-        self.abrir = QtWidgets.QDialog()
-        self.abrir = Controlador_TerapiaNeurofeeldback()
-        self.ui.mdiArea.addSubWindow(self.abrir)
-        self.abrir.show()
+        a =0
+        print("La lista de electrodos es---------------------")
+        for id,value in self.electrodos.items():
+            print('{} = {}'.format(id,value))
+            if value == False:
+                a = a+1
+
+        if a == 14:
+            lerta = QMessageBox.information(self, 'Alerta', "No se han identificado ningun electrodo..... Por favor realiza la seleccion de los electros", QMessageBox.Ok)
+            self.abrirConexionEmotiv()
+        else:
+            self.abrir = QtWidgets.QDialog()
+            self.abrir = Controlador_TerapiaNeurofeeldback(self.electrodos)
+            self.ui.mdiArea.addSubWindow(self.abrir)
+            self.abrir.show()
+
+
 
     def abrirConexionEmotiv(self):
 
         self.abrir = QtWidgets.QDialog()
-        self.abrir = Controlador_conexion()
+        self.abrir = Controlador_conexion(self.electrodos,self.ui.mdiArea)
         self.ui.mdiArea.addSubWindow(self.abrir)
         self.abrir.show()
 

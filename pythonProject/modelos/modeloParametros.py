@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 
 
 
-
 class Modelo_conexion(QtWidgets.QMainWindow):
 
     def __init__(self):

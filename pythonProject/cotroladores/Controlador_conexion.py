@@ -18,7 +18,7 @@ from time import sleep
 import matplotlib.pyplot as plt
 
 
-
+from cotroladores.controlador_TerapiaTipoNeurofeedback import Controlador_TerapiaNeurofeeldback
 from modelos.modeloParametros import Modelo_conexion
 from cotroladores.classConexion import classConexion
 import threading
@@ -30,16 +30,13 @@ from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
 
 class Controlador_conexion(QtWidgets.QMainWindow):
 
-    signalCommand = pyqtSignal(str)
-    status = False
 
-    def __init__(self):
+    def __init__(self, electrodos, mdiArea):
         super().__init__()
-
         self.ui= Ui_Dialog()
         self.conexionClass = classConexion()
         self.modelo = Modelo_conexion()
-
+        #electrodos['P7'] = True
         # Parametros necesarios
         #self.clientId = "L1eawU5ry1QItbMc8AokvIraebewehzRCyeIW4Ro"
         #self.clientSecret = "65jIP3680Y6qztv3uoKQyjihA4giZmsme0dzkyQUtdx5odLuO6jispNzIZO1I9PJpGad7tNbcDj8JuGUMWxOAlgzeqCLwpHNYkZw4Q0YgyeX3jXGEWUPGekcI28xcKzs"
@@ -49,7 +46,11 @@ class Controlador_conexion(QtWidgets.QMainWindow):
 
         self.ui.setupUi(self)
         self.InicializarGui()
-        self.cargarParametris()
+        #self.cargarParametris()
+        self.dicionarioElectrodos = electrodos
+        self.mdiArea =mdiArea
+
+
         '''
         # 1) Crear el objeto que se moverá a otro hiloa=
         self.mental_command = self.aplicarSeleccion(self.calidadElectrodo())
@@ -72,9 +73,9 @@ class Controlador_conexion(QtWidgets.QMainWindow):
 
     def InicializarGui(self):
 
-        #self.ui.btnEvaluarConexion.clicked.connect(self.evaluarConexion)
+        self.ui.btnTerapiaNeurofeedback.clicked.connect(self.abrirTerapiaNeurofeedback)
         self.ui.btnEvaluarConexion.clicked.connect(self.evaluarConexion)
-        #self.ui.btSelElectrodos.clicked.connect(self.aplicarSeleccion)
+        self.ui.btnAplicarSelecion.clicked.connect(self.aplicarSeleccion)
         self.ui.lbAF3.setVisible(False)
         self.ui.lbAF4.setVisible(False)
         self.ui.lbF3.setVisible(False)
@@ -124,7 +125,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
             else:
                 self.ui.label_4.setStyleSheet("background-color: rgb(41, 226, 69);")
                 Alerta = QMessageBox.information(self, 'Alerta', "Conexion Exitosa", QMessageBox.Ok)
-                self.aplicarSeleccion()
+                self.ui.btnAplicarSelecion.setEnabled(True)
                 break
 
 
@@ -197,38 +198,46 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         listaElectrodos = [lbAF3,lbF7,lbF3,lbFC5,lbT7,lbP7,lb01,lb02,lbP8,lbT8,lbFC6,lbF4,lbF8,lbAF4,lbF8]
 
 
-        cbAF3  = self.ui.cbAF3
-        cbAF4  = self.ui.cbAF4
-        cbF3  = self.ui.cbF3
-        cbF4  = self.ui.cbF4
-        cbFC5  = self.ui.cbFC5
-        cbFC6  = self.ui.cbFC6
-        cb01  = self.ui.cb01
-        cb02  = self.ui.cb02
-        cbT7  = self.ui.cbT7
-        cbT8  = self.ui.cbT8
-        cbP7  = self.ui.cbP7
-        cbP8  = self.ui.cbP8
-        cbF7  = self.ui.cbF7
-        cbF8  = self.ui.cbF8
-        listaChecables = [cbAF3,cbF7,cbF3,cbFC5,cbT7,cbP7,cb01,cb02,cbP8,cbT8,cbFC6,cbF4,cbF8,cbAF4]
+        AF3  = self.ui.cbAF3
+        AF4  = self.ui.cbAF4
+        F3  = self.ui.cbF3
+        F4  = self.ui.cbF4
+        FC5  = self.ui.cbFC5
+        FC6  = self.ui.cbFC6
+        E01  = self.ui.cb01
+        E02  = self.ui.cb02
+        T7  = self.ui.cbT7
+        T8  = self.ui.cbT8
+        P7  = self.ui.cbP7
+        P8  = self.ui.cbP8
+        F7  = self.ui.cbF7
+        F8  = self.ui.cbF8
+        listaChecables = [AF3,F7,F3,FC5,T7,P7,E01,E02,P8,T8,FC6,F4,F8,AF4]
+        listaNombreElectrodo = ["AF3","F7","F3","FC5","T7","P7","E01","E02","P8","T8","FC6","F4","F8","AF4"]
         a=0
-
+        contadorParaDesabilitarTerapiaNeuro = 0
         for i in listaChecables:
-            print(i)
-            print(a)
+            print("I es igual a :"+str())
+            #print(a)
             if i.isChecked():
                 listaElectrodos[a].setVisible(True)
+                self.dicionarioElectrodos[listaNombreElectrodo[a]] = True
+                self.ui.btnTerapiaNeurofeedback.setEnabled(True)
+
             else:
                 listaElectrodos[a].setVisible(False)
+                contadorParaDesabilitarTerapiaNeuro = contadorParaDesabilitarTerapiaNeuro +1
             a=a+1
+
+            if contadorParaDesabilitarTerapiaNeuro == 14:
+                self.ui.btnTerapiaNeurofeedback.setEnabled(False)
 
         b = 0
         calElectrodo = self.calidadElectrodo()
-        print("El resultado calE ---> "+str(calElectrodo))
+        #print("El resultado calE ---> "+str(calElectrodo))
         for i in calElectrodo:
-            print("Soy i: "+str(i))
-            print("Soy a:"+str(b))
+            #print("Soy i: "+str(i))
+            #print("Soy a:"+str(b))
             if i == 0:
                 listaElectrodos[b].setStyleSheet("image: url(:/newPrefix/circuloGris.png);")
             elif i == 1:
@@ -237,19 +246,14 @@ class Controlador_conexion(QtWidgets.QMainWindow):
                 listaElectrodos[b].setStyleSheet("image: url(:/newPrefix/circuloAnaranjado.png);")
             elif i == 4:
                 listaElectrodos[b].setStyleSheet("image: url(:/newPrefix/circuloVerde.png);")
+
             else:
-                print("Hola falle XD")
+                print("Hola XD")
             b=b+1
 
+    def abrirTerapiaNeurofeedback(self):
+            self.abrir = QtWidgets.QDialog()
+            self.abrir = Controlador_TerapiaNeurofeeldback(self.dicionarioElectrodos)
+            self.mdiArea.addSubWindow(self.abrir)
+            self.abrir.show()
 
-
-
-
-'''
-    def actualizarProgresBar(self):
-
-        a= self.generarConexion()
-        b= a*100
-        self.ui.progressBar_4.setProperty("value", b)
-        self.ui.label_3.setText(str(b)+"%")
-'''

@@ -8,9 +8,10 @@ from modelos.modeloParametros import Modelo_conexion
 
 class conexionEmotiv(QThread):
 
+
     status = True
-    signEmotiv = pyqtSignal(float)
-    def __init__(self):
+    signEmotiv = pyqtSignal(list)
+    def __init__(self, banda):
         super().__init__()
 
         self.modelo = Modelo_conexion()
@@ -22,6 +23,7 @@ class conexionEmotiv(QThread):
         # - - - - - - - - - - - - - - - - -
         self.url = "wss://localhost:6868"
         self.contadorDePotencias = 0
+        self.bandaSeleccionada = banda
 
     def cargarParametris(self):
 
@@ -142,8 +144,11 @@ class conexionEmotiv(QThread):
 
         return Mensaje
 
+    def crearConexion(self):
 
-    def obtenerToken(self):
+        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
+
+    def obteunerToken(self):
 
         #Pasos relacionado con la conexion del emotiv
 
@@ -260,6 +265,7 @@ class conexionEmotiv(QThread):
     def estadoHilo(self):
         return self.status
 
+    '''
     def potenciaElectrodo(self):
 
         ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
@@ -337,40 +343,36 @@ class conexionEmotiv(QThread):
                                 "streams": ["pow"]
                             }
                         }""" % (token, sesion)
-        ws.send(msg)
-        ws.recv()
-        result = ws.recv()
 
-        bucle = json.loads(result) #Utilizar Com
-        print(str(bucle))
+        self.cont = 0
+        listaPotencias = []
+        while True:
+            ws.send(msg)
+            ws.recv()
+            result = ws.recv()
+            print(str(result))
+            self.cont = self.cont + 1
+            try:
+                #return potencialElectrico
+                bucle = json.loads(result)
+                thetaf3 = bucle["pow"][10]
+                thetaf4 = bucle["pow"][55]
+                betaf3 = bucle["pow"][12]
+                betaf4 = bucle["pow"][57]
+                thetabetha = ( ((thetaf3+thetaf4)/2) / ((betaf3+betaf4)/2) )
 
-        #Prueba solo con theta en f3
-        try:
-            #potencialElectrico = bucle["pow"][0]
-            #return potencialElectrico
-            thetaf3 = bucle["pow"][10]
-            thetaf4 = bucle["pow"][55]
-            betaf3 = bucle["pow"][12]
-            betaf4 = bucle["pow"][57]
-            thetabetha = ( ((thetaf3+thetaf4)/2) / ((betaf3+betaf4)/2) )
-            listaPotencias = []
+                listaPotencias.append(thetabetha)
+            except:
 
-            listaPotencias.append(thetabetha)
+                print("No se obtuvo lectura...")
 
-            return thetabetha
-        except:
-            print("No se obtuvo lectura...")
-            return 0
+            #Se obtiene el promedio cuando se hace 8 lecturas. Las 8 lecturas son por aegundo
+            if len(listaPotencias) == 8:
+                promedio = sum(listaPotencias) / 8
+                listaPotencias.append(promedio)
+                break
+        return listaPotencias
 
-        #Formula para sacar theta/beta = ( ((thetaf3+thetaf4)/2) / ((betabajoF3+betabajof4)/2) )
-
-        #                                   theta F4YF4 / Beta F3YF4
-        #thetaf3 = bucle["pow"][0]
-        #thetaf4 = bucle["pow"][55]
-        #betaf3 = bucle["pow"][2]
-        #betaf4 = bucle["pow"][57]
-        #thetabetha = ( ((thetaf3+thetaf2)/2) / ((beta3+betaf4)/2) )
-        #return thetabetha
 
 
     def run(self):
@@ -379,10 +381,127 @@ class conexionEmotiv(QThread):
         main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate())) #Mientras el hilo esta vivo y recuperar los datos
         while main_thread.is_alive():
             potenciaElectrica = self.potenciaElectrodo()
-            print("La potencia es: "+str(potenciaElectrica))
+            #potenciaejemplo = potenciaElectrica[4]
+            print("La potencia es desde la prueba: "+str(potenciaElectrica))
             self.contadorDePotencias = self.contadorDePotencias + 1
             print("El numero de potencias registradas son: "+str(self.contadorDePotencias))
-            time.sleep(0.5)
             self.signEmotiv.emit(potenciaElectrica)
+    '''
+    def run(self):
+        self.cont = 0
+        self.tiempoRegresivo = ""
+        main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate())) #Mientras el hilo esta vivo y recuperar los datos
+        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
+        datos = self.modelo.cargarDatos()
+
+        ListaDatos = datos[0]
+        self.clientId = str(ListaDatos[0]).strip()
+        self.clientSecret = str(ListaDatos[1]).strip()
+        profile = "Francisco"
+        #print("--------------------------Obtener Token...: ")
+        msg = """{
+                                "id": 1,
+                                "jsonrpc": "2.0",
+                                "method": "authorize",
+                                "params": {
+                                    "clientId": "%s",
+                                    "clientSecret": "%s"
+                                }
+                            }""" % (self.clientId, self.clientSecret)
+        ws.send(msg)
+
+        result = ws.recv()
+        dic = json.loads(result)
+        token = dic["result"]["cortexToken"]
 
 
+        #print("======================Ver diademas conectadas...: ")
+        msg = """{"jsonrpc": "2.0", 
+                                "method": "queryHeadsets",
+                                "params": {},
+                                "id": 1
+                            }"""
+        ws.send(msg)
+
+        result = ws.recv()
+        if 'dongle' in result:
+            dic = json.loads(result)
+            headset = dic["result"][0]["id"]  # Obtener el ID de la diadema
+        else:
+
+            pass
+
+        #print("----------------------------------Crear Sesion...: ")
+        msg = """{
+                                "id": 1,
+                                "jsonrpc": "2.0",
+                                "method": "createSession",
+                                "params": {
+                                    "cortexToken": "%s",
+                                    "headset": "%s",
+                                    "status": "open"
+                                }
+                            }""" % (token, headset)
+        ws.send(msg)
+
+        result0 = ws.recv()
+
+        if 'appId' in result0:
+            dic = json.loads(result0)
+            sesion = dic['result']['id']
+            print("sesion es igual a "+str(sesion))
+        else:
+            sesion = "Sin Sesion"
+        listaPotencias = []
+
+
+        while main_thread.is_alive():
+
+            try: #print("-----------------------------Suscribirse a neurofeedback...: ")
+                msg = """{
+                                    "id": 1,
+                                    "jsonrpc": "2.0",
+                                    "method": "subscribe",
+                                    "params": {
+                                        "cortexToken": "%s",
+                                        "session": "%s",
+                                        "streams": ["pow"]
+                                    }
+                                }""" % (token, sesion)
+
+            except:
+                print("Fallo la conexion")
+            self.cont = 0
+
+
+            ws.send(msg)
+            ws.recv()
+            result = ws.recv()
+            #print(str(result))
+            self.cont = self.cont + 1
+
+            try:
+
+
+                #return potencialElectrico
+                bucle = json.loads(result)
+                print(str(result))
+                thetaf3 = bucle["pow"][10]
+                thetaf4 = bucle["pow"][55]
+                betaf3 = bucle["pow"][12]
+                betaf4 = bucle["pow"][57]
+                thetabetha = ( ((thetaf3+thetaf4)/2) / ((betaf3+betaf4)/2) )
+
+                listaPotencias.append(thetabetha)
+                print(str(thetabetha))
+            except:
+
+                print("No se obtuvo lectura...")
+
+            #Se obtiene el promedio cuando se hace 8 lecturas. Las 8 lecturas son por aegundo
+            if len(listaPotencias) == 8:
+                promedio = sum(listaPotencias) / 8
+                listaPotencias.append(promedio)
+                print("===========Promedio 15s======: "+str(promedio))
+                self.signEmotiv.emit(listaPotencias)
+                listaPotencias = []

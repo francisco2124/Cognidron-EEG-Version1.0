@@ -2,7 +2,6 @@
 
 from cotroladores.dron.tello.controladorDronTello import DronTello
 
-
 class Dron():
 
     #Parametros de conexion del dron
@@ -110,3 +109,14 @@ class Dron():
             self.dron.girarIzquierda()
         else:
             print("----------------ERROR: No se ha creado una instancia del dron....-------------")
+
+    def getBateria(self):
+        battery = 0
+        if self.dron != None:
+            print("")
+            battery =  self.dron.getbateriaDron()
+            return battery
+
+        else:
+            print("----------------ERROR: No se ha creado una instancia del dron....-------------")
+

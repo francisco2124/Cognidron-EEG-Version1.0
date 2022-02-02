@@ -32,15 +32,127 @@ class pruebaconexionEmotiv(QThread):
         print("Los datos son los siguientes: ")
         print(str(datos))
 
+    def conectar(self):
+
+        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
+
+        print("-------------------------------------------------------")
+        print("Conectando con cortex...: ")
+        msg = """{
+                "id": 1,
+                "jsonrpc": "2.0",
+                "method": "getCortexInfo"
+            }"""
+        ws.send(msg)
+
+        print("--------------------------------------------------------")
+        result = ws.recv()
+        print("Se recupera lo siguiente: " + str(result))
+        print("--------------------------------------------------------")
+
+        mensaje = ""
+        resuladoFallido = '''{"id":1,"jsonrpc":"2.0","result":{"buildDate":"2020-09-08T12:06:34","buildNumber":"v2.2.3-659-gfa6e645","version":"2.6.0.105"}}'''
+        print(resuladoFallido)
+        if result != resuladoFallido:
+            mensaje = False
+
+        else:
+            mensaje = True
+
+        return mensaje
+
+
+    def validarInicioSesion(self):
+
+        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
+
+        print("-------------------------------------------------------")
+        print("Validar inicio de sesion del usuario...: ")
+        msg = """{
+            "id": 1,
+            "jsonrpc": "2.0",
+            "method": "getUserLogin"
+    }"""
+        ws.send(msg)
+
+        print("--------------------------------------------------------")
+        result = ws.recv()
+        print("Se recupera lo siguiente: " + str(result))
+        print("--------------------------------------------------------")
+
+
+        resuladoFallido = '''{"id":1,"jsonrpc":"2.0","result":[]}'''
+        print(resuladoFallido)
+        if result == resuladoFallido:
+            print("Verifica que tu inicio sesion este activo")
+            mensaje = False
+
+        else:
+            mensaje = True
+
+        return mensaje
+
+
+    def solicitarPermisos(self):
+
+        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
+        datos = self.modelo.cargarDatos()
+
+
+        print("Las credenciales son........")
+        clientId = "0NONRi3ZtjAVSBKu9FSihOQcdsAPLwRPungPC5oq"
+        clientSecret = "VKRg9KUJZwFuRkCESVkL9zIpmuoYbSyNAOiX6UwXuzU9CnHcDZzfmmKPcLs9534PElenBtKlcDrwUrL0kbEGwz0GGNP6Zggpi9eC74KtN4cZ8ERAkjyTnRvpc3SeC6BK"
+
+        print("Los datos son los siguientes: ")
+        print("-------------------------------------------------------")
+        print("Pedir permisios al usuario usuario...: ")
+        msg = """{
+                            "id": 1,
+                            "jsonrpc": "2.0",
+                            "method": "requestAccess",
+                            "params": {
+                                "clientId": "%s",
+                                "clientSecret": "%s"
+                            }
+                        }""" % (clientId, clientSecret)
+        ws.send(msg)
+
+        print("--------------------------------------------------------")
+        result = ws.recv()
+        print("Se recupera lo siguiente: " + str(result))
+        print("--------------------------------------------------------")
+
+
+        resuladoFallido = '''{
+            "id": 1,
+            "jsonrpc": "2.0",
+            "result": {
+                "accessGranted":false,
+                "message":"The User has not granted access right to this application. Please use Emotiv App to proceed."
+            }
+        }'''
+        print(resuladoFallido)
+        if result == resuladoFallido:
+            print("No has aceptado el mensaje de emoyiv")
+            Mensaje = False
+        else:
+            Mensaje = True
+
+        return Mensaje
+
 
     def potenciaElectrodo(self):
+
+        self.solicitarPermisos()
 
         ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
         datos = self.modelo.cargarDatos()
 
         ListaDatos = datos[0]
-        self.clientId = str(ListaDatos[0]).strip()
-        self.clientSecret = str(ListaDatos[1]).strip()
+        #self.clientId = str(ListaDatos[0]).strip()
+        #self.clientSecret = str(ListaDatos[1]).strip()
+        self.clientId = "0NONRi3ZtjAVSBKu9FSihOQcdsAPLwRPungPC5oq"
+        self.clientSecret = "VKRg9KUJZwFuRkCESVkL9zIpmuoYbSyNAOiX6UwXuzU9CnHcDZzfmmKPcLs9534PElenBtKlcDrwUrL0kbEGwz0GGNP6Zggpi9eC74KtN4cZ8ERAkjyTnRvpc3SeC6BK"
         profile = "Francisco"
         #print("--------------------------Obtener Token...: ")
         msg = """{
@@ -55,6 +167,7 @@ class pruebaconexionEmotiv(QThread):
         ws.send(msg)
 
         result = ws.recv()
+        print("Respuesta de token es: "+str(result))
         dic = json.loads(result)
         token = dic["result"]["cortexToken"]
 
@@ -99,6 +212,7 @@ class pruebaconexionEmotiv(QThread):
 
 
 
+
         #print("-----------------------------Suscribirse a los comandos mentales...: ")
         msg = """{
                                 "id": 1,
@@ -107,7 +221,7 @@ class pruebaconexionEmotiv(QThread):
                                 "params": {
                                     "cortexToken": "%s",
                                     "session": "%s",
-                                    "streams": ["pow"]
+                                    "streams": ["eeg"]
                                 }
                             }""" % (token, sesion)
         self.cont = 0
@@ -122,9 +236,10 @@ class pruebaconexionEmotiv(QThread):
             end = time.perf_counter()
             duracion = end - star
             update_treshold = end - star_treshold
-            if update_treshold >= 1.999999:
+            if update_treshold >= 1.0000000:
                 print('Actualizar umbral....')
                 star_treshold = time.perf_counter()
+                print("--------------------------------------------------------------p")
             if duracion >= 10.0:
                 break
         print("Las lecturas obtenidas son: "+str(self.cont)+" la duracion estimada fue "+str(duracion)+ " segundos")
