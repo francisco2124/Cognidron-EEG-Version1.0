@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
+    <width>729</width>
     <height>863</height>
    </rect>
   </property>
@@ -16,9 +16,9 @@
   <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>-10</x>
      <y>0</y>
-     <width>551</width>
+     <width>741</width>
      <height>881</height>
     </rect>
    </property>
@@ -34,7 +34,7 @@
    <widget class="QLabel" name="lb1_2">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>150</x>
       <y>40</y>
       <width>161</width>
       <height>41</height>
@@ -50,7 +50,7 @@
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>0</y>
       <width>81</width>
       <height>81</height>
@@ -69,7 +69,7 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>10</y>
       <width>221</width>
       <height>41</height>
@@ -82,12 +82,12 @@
      <string>CogniDron-EEG</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_18">
+   <widget class="QLabel" name="lb17">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>10</y>
-      <width>151</width>
+      <x>480</x>
+      <y>50</y>
+      <width>121</width>
       <height>21</height>
      </rect>
     </property>
@@ -95,14 +95,14 @@
      <string notr="true">font: 75 9pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>12 de octubre del 2021</string>
+     <string>Fecha de reporte:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>110</y>
+      <x>30</x>
+      <y>280</y>
       <width>31</width>
       <height>21</height>
      </rect>
@@ -120,8 +120,8 @@
    <widget class="QLabel" name="lb1_3">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>110</y>
+      <x>60</x>
+      <y>280</y>
       <width>161</width>
       <height>21</height>
      </rect>
@@ -136,8 +136,8 @@
    <widget class="QLabel" name="lb1_4">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>390</y>
+      <x>450</x>
+      <y>100</y>
       <width>161</width>
       <height>21</height>
      </rect>
@@ -152,8 +152,8 @@
    <widget class="QLabel" name="lb1_5">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>550</y>
+      <x>60</x>
+      <y>100</y>
       <width>161</width>
       <height>21</height>
      </rect>
@@ -168,8 +168,8 @@
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>550</y>
+      <x>30</x>
+      <y>100</y>
       <width>31</width>
       <height>21</height>
      </rect>
@@ -187,8 +187,8 @@
    <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>390</y>
+      <x>420</x>
+      <y>100</y>
       <width>31</width>
       <height>21</height>
      </rect>
@@ -206,17 +206,38 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>140</y>
-      <width>181</width>
-      <height>221</height>
+      <x>50</x>
+      <y>310</y>
+      <width>361</width>
+      <height>351</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <item row="12" column="0">
+      <widget class="QLabel" name="label_25">
+       <property name="text">
+        <string>Tiempo mayor que mantuvo el umbral</string>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="0">
+      <widget class="QLabel" name="label_24">
+       <property name="text">
+        <string>Porcentaje de sesioj que mantuvi el umbral</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0">
+      <widget class="QLabel" name="label_22">
+       <property name="text">
+        <string>Tipo de ejercicio:</string>
+       </property>
+      </widget>
+     </item>
      <item row="4" column="0">
       <widget class="QLabel" name="label_11">
        <property name="text">
-        <string>Área del cerebro:</string>
+        <string>Electrodos Utilizados:</string>
        </property>
       </widget>
      </item>
@@ -241,31 +262,38 @@
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
+     <item row="9" column="0">
       <widget class="QLabel" name="label_19">
        <property name="text">
         <string>Nombre de ejercicio:</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
+     <item row="8" column="0">
       <widget class="QLabel" name="label_20">
        <property name="text">
         <string>Duración de la sesión:</string>
        </property>
       </widget>
      </item>
-     <item row="9" column="0">
-      <widget class="QLabel" name="label_21">
-       <property name="text">
-        <string>Número de acieros:</string>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_16">
        <property name="text">
-        <string>Division Theta/Beta:</string>
+        <string>Promedio de potencias:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="13" column="0">
+      <widget class="QLabel" name="label_26">
+       <property name="text">
+        <string>Tiempo menor que mantuvo el umbral</string>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="0">
+      <widget class="QLabel" name="label_27">
+       <property name="text">
+        <string>Promedio de tiempo que mantuvo el umbral</string>
        </property>
       </widget>
      </item>
@@ -274,17 +302,59 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>140</y>
+      <x>410</x>
+      <y>310</y>
       <width>291</width>
-      <height>221</height>
+      <height>351</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
-     <item row="4" column="0">
-      <widget class="QLabel" name="lbAreaCerebro">
+     <item row="12" column="0">
+      <widget class="QLabel" name="lbMenorTiempoUmbral">
        <property name="text">
-        <string>Prefrontal central</string>
+        <string>3 seundos</string>
+       </property>
+      </widget>
+     </item>
+     <item row="13" column="0">
+      <widget class="QLabel" name="lbPromedioTiempoUmbral">
+       <property name="text">
+        <string>6 segundos</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="lbEjercicio">
+       <property name="text">
+        <string>Elevar Dron</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="lbDuracion">
+       <property name="text">
+        <string>15 minutos</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="lbPromedioPotencia">
+       <property name="text">
+        <string>3.1234</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0">
+      <widget class="QLabel" name="lbTiempoSobreUmbral">
+       <property name="text">
+        <string>1:30 minutos</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="lbElectrodos">
+       <property name="text">
+        <string>F3, F4</string>
        </property>
       </widget>
      </item>
@@ -309,31 +379,17 @@
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
-      <widget class="QLabel" name="lbEjercicio">
+     <item row="11" column="0">
+      <widget class="QLabel" name="lbMayorTiempoUmbral">
        <property name="text">
-        <string>Elevar Dron</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="lbDuracion">
-       <property name="text">
-        <string>15 minutos</string>
+        <string>9 segundos</string>
        </property>
       </widget>
      </item>
      <item row="9" column="0">
-      <widget class="QLabel" name="lbNumeroAciertos">
+      <widget class="QLabel" name="lbTipoEjercicio">
        <property name="text">
-        <string>4 de 10</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="lbDivision">
-       <property name="text">
-        <string>3.1234</string>
+        <string>Inivitorio</string>
        </property>
       </widget>
      </item>
@@ -342,10 +398,10 @@
    <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>420</y>
-      <width>291</width>
-      <height>111</height>
+      <x>510</x>
+      <y>130</y>
+      <width>191</width>
+      <height>131</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_4">
@@ -375,20 +431,13 @@
    <widget class="QWidget" name="gridLayoutWidget_4">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>420</y>
-      <width>181</width>
-      <height>111</height>
+      <x>420</x>
+      <y>130</y>
+      <width>91</width>
+      <height>131</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_5">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_47">
-       <property name="text">
-        <string>Nombre:</string>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_49">
        <property name="text">
@@ -403,25 +452,25 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_47">
+       <property name="text">
+        <string>Nombre:</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget_5">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>580</y>
-      <width>181</width>
+      <x>60</x>
+      <y>130</y>
+      <width>121</width>
       <height>131</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_6">
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_53">
-       <property name="text">
-        <string>Localidad:</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_51">
        <property name="text">
@@ -436,17 +485,24 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_50">
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_53">
        <property name="text">
-        <string>Tutor:</string>
+        <string>Localidad:</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="label_55">
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_50">
        <property name="text">
         <string>Contacto:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_54">
+       <property name="text">
+        <string>Tutor:</string>
        </property>
       </widget>
      </item>
@@ -455,9 +511,9 @@
    <widget class="QWidget" name="gridLayoutWidget_6">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>580</y>
-      <width>291</width>
+      <x>180</x>
+      <y>130</y>
+      <width>231</width>
       <height>131</height>
      </rect>
     </property>
@@ -479,7 +535,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="nombrePaciente">
        <property name="text">
-        <string>Dniel Ruvalcaba</string>
+        <string>Daniel Ruvalcaba</string>
        </property>
       </widget>
      </item>
@@ -502,8 +558,8 @@
    <widget class="QLabel" name="lb1_6">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>730</y>
+      <x>60</x>
+      <y>680</y>
       <width>161</width>
       <height>21</height>
      </rect>
@@ -518,8 +574,8 @@
    <widget class="QLabel" name="label_38">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>730</y>
+      <x>30</x>
+      <y>680</y>
       <width>31</width>
       <height>21</height>
      </rect>
@@ -534,33 +590,51 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lbObservaciones">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>760</y>
-      <width>481</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(223, 223, 223);</string>
-    </property>
-    <property name="text">
-     <string>El paciente mostro una mejora de atencion significativa en los primero 2 minutos</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
       <x>-10</x>
       <y>80</y>
-      <width>571</width>
+      <width>850</width>
       <height>3</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(13, 13, 13);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="ptObservaciones">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>716</y>
+      <width>651</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="plainText">
+     <string>El niño tubo una biena concentracion....
+
+Execelnte trabajo!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbFecha">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>50</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 9pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string/>

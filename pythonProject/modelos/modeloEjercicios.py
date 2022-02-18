@@ -47,6 +47,14 @@ class Modelo_Ejercicios(QtWidgets.QMainWindow):
         registro = cursor.fetchall()
         return registro
 
+    def recuperarIdEjercicio(self, nombre):
+        cursor = self.connection.cursor()
+        sql = "SELECT idEjercicios FROM ejercicios WHERE nombre = '{}'  ".format(nombre)
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro
+
+
 
 
 

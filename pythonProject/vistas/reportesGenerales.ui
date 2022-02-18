@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>759</width>
+    <width>826</width>
     <height>719</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>736</width>
-    <height>717</height>
+    <width>826</width>
+    <height>719</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>759</width>
-    <height>719</height>
+    <width>900</width>
+    <height>790</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -61,7 +61,7 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>470</x>
      <y>140</y>
      <width>41</width>
      <height>16</height>
@@ -74,7 +74,7 @@
   <widget class="QPushButton" name="btnConsultar">
    <property name="geometry">
     <rect>
-     <x>610</x>
+     <x>710</x>
      <y>140</y>
      <width>93</width>
      <height>28</height>
@@ -88,8 +88,8 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>200</y>
-     <width>731</width>
+     <y>180</y>
+     <width>801</width>
      <height>471</height>
     </rect>
    </property>
@@ -114,6 +114,9 @@
    <property name="columnCount">
     <number>6</number>
    </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>135</number>
+   </attribute>
    <column>
     <property name="text">
      <string>Identificador</string>
@@ -251,7 +254,7 @@
   <widget class="QDateEdit" name="dateEdit">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>520</x>
      <y>140</y>
      <width>110</width>
      <height>22</height>
@@ -261,7 +264,7 @@
   <widget class="QPushButton" name="btnBuscarFecha">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>640</x>
      <y>140</y>
      <width>31</width>
      <height>28</height>
@@ -280,7 +283,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>771</width>
+     <width>851</width>
      <height>81</height>
     </rect>
    </property>
@@ -322,7 +325,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <widget class="QLabel" name="label_24">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>750</x>
       <y>10</y>
       <width>71</width>
       <height>61</height>
@@ -346,7 +349,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <rect>
      <x>0</x>
      <y>80</y>
-     <width>761</width>
+     <width>851</width>
      <height>8</height>
     </rect>
    </property>
@@ -372,7 +375,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <rect>
      <x>0</x>
      <y>70</y>
-     <width>801</width>
+     <width>851</width>
      <height>651</height>
     </rect>
    </property>

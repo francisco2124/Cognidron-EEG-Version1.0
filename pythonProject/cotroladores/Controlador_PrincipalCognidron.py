@@ -39,6 +39,9 @@ from cotroladores.controlador_EjerciciosNeurofeedback import Controlador_Ejercic
 from cotroladores.controlador_EjerciciosControlMental import Controlador_EjerciciosTerapeuticosControlMental
 
 
+#----------------------------------Modulo de ayuda----------------------------------------------
+from cotroladores.controlador_moduloAyuda import Controlador_ModuloAyuda
+
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vista
 
 
@@ -51,14 +54,13 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.ui= Ui_MainWindow()
         self.ui.setupUi(self)
         #Electrodos bajo el estandar 10-10
-        self.electrodos = {'Estandar':'10-10',"AF3":False, 'F7':False,'F3':False,'FC5':False,'T7':False,'P7':False,'E01':False,'E02':False, 'P8':False, 'T8':False, 'FC6':False, 'F4':False,'F8':False,'AF4':False}
+        self.electrodos = {'Estandar':'10-10',"AF3":True, "F7":True,"F3":True,'FC5':False,'T7':False,'P7':False,'01':False,'02':False, 'P8':False, 'T8':False, 'FC6':False, 'F4':False,'F8':False,'AF4':False}
 
         self.InicializarGui()
         self.modelo = Modelo_Terapeuta()
-        #elf.generalTerapeuta = Controlador_ConsultarTerapeutas(self.modelo)
-        #self.terapeutaSelect = Control_ConsultarTerapectuaSelec(self.modelo)
 
-
+        #Regresar a abrirModuloAyuda() para que sea correcto
+        self.abrirTerapiaNeurofeedback()
 
 
     def InicializarGui(self):
@@ -183,8 +185,8 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
             print('{} = {}'.format(id,value))
             if value == False:
                 a = a+1
-
-        if a == 14:
+        #Regresar a 14 para que la validacion sea correcta
+        if a == 15:
             lerta = QMessageBox.information(self, 'Alerta', "No se han identificado ningun electrodo..... Por favor realiza la seleccion de los electros", QMessageBox.Ok)
             self.abrirConexionEmotiv()
         else:
@@ -199,6 +201,13 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
 
         self.abrir = QtWidgets.QDialog()
         self.abrir = Controlador_conexion(self.electrodos,self.ui.mdiArea)
+        self.ui.mdiArea.addSubWindow(self.abrir)
+        self.abrir.show()
+
+    def abrirModuloAyuda(self):
+
+        self.abrir = QtWidgets.QDialog()
+        self.abrir = Controlador_ModuloAyuda()
         self.ui.mdiArea.addSubWindow(self.abrir)
         self.abrir.show()
 

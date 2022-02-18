@@ -7,10 +7,13 @@ from cotroladores.Controladores_Login import Controlador_Login
 from cotroladores.Controlador_PrincipalCognidron import Controlador_PrincipalCognidron
 import sys
 
-#pyuic5 -x .ui -o .py
 
+#Agregar o actualizar una vistas
+# pyuic5 -x .ui -o .py
+
+
+#Agrear o actualizar un archivo de imagenes
 #pyrcc5 image.qrc -o images.py
-
 
 
 def print_hi(name):

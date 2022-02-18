@@ -27,7 +27,7 @@ class Modelo_Reportes(QtWidgets.QMainWindow):
             db="cognidroneeg"
         )
         cursor = connection2.cursor()
-        sql = "SELECT idSesionTerapeutica, identificador, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
+        sql = "SELECT idSesionTerapeutica, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
               "INNER JOIN ejercicios ejer ON (ejer.idEjercicios = sesio.Ejercicios_idEjercicios)" \
               "INNER JOIN paciente pati ON (pati.idPaciente = sesio.Paciente_idPaciente)" \
               "INNER JOIN terapeuta tera ON (tera.idTrapeuta = sesio.Terapeuta_idTrapeuta)"
@@ -77,14 +77,21 @@ class Modelo_Reportes(QtWidgets.QMainWindow):
 
     def busca_reporte(self, identificador):
 
-
+    #fecha, ejer.tipo, tipoOndas, metaAlcanzada, metaEstablecida, tiempo, comentarios, ejer.idEjercicios, Paciente_idPaciente,
+    #ejer.nombre
         cursor = self.connection.cursor()
-        sql = '''SELECT  tera.nombre, pati.nombre, fecha, ejer.tipo, tipoOndas, metaAlcanzada, metaEstablecida, tiempo, comentarios, ejer.idEjercicios, Paciente_idPaciente, ejer.nombre FROM sesionterapeutica sesio ''' \
+        sql = '''SELECT pati.nombre, pati.ape_paterno, pati.fecha_nacimiento, pati.localidad, tuto.nombre, tuto.ape_paterno, pati.numero_contacto,
+         tera.nombre, tera.ape_paterno, tera.fecha_nacimiento, tera.localidad, tera.borradoLogico, tera.numero_contacto,  
+         sesio.fecha, ejer.nombre, sesio.funcionCognitiva , sesio.electrodosUtilizados ,sesio.tipoEjercicio, sesio.tiempo,
+          sesio.promedioPotencia , sesio.frecuencia ,sesio.menorUmbral ,sesio.mejorUmbral, sesio.promedioUmbral, sesio.porcentajeUmbralTerapia
+            ,sesio.comentarios, pati.ape_materno FROM sesionterapeutica sesio ''' \
               '''INNER JOIN ejercicios ejer ON (ejer.idEjercicios = sesio.Ejercicios_idEjercicios)''' \
-              '''INNER JOIN paciente pati ON (pati.idPaciente = sesio.Paciente_idPaciente) '''\
-              '''INNER JOIN terapeuta tera ON (tera.idTrapeuta = sesio.Terapeuta_idTrapeuta) WHERE identificador = {}'''.format(identificador)
+              '''INNER JOIN paciente pati ON (pati.idPaciente = sesio.Paciente_idPaciente) ''' \
+              '''INNER JOIN tutor tuto ON (tuto.idTutor = pati.Tutor_idTutor) ''' \
+              '''INNER JOIN terapeuta tera ON (tera.idTrapeuta = sesio.Terapeuta_idTrapeuta) WHERE idSesionTerapeutica = {}'''.format(identificador)
         cursor.execute(sql)
         registro = cursor.fetchall()
+
         return registro
 
     def recuperarPacientes(self):
@@ -123,7 +130,28 @@ class Modelo_Reportes(QtWidgets.QMainWindow):
         registro = cursor.fetchall()
         return registro
 
+    def registarTerpaiaNeurofeedback(self, fecha, funcionCognitiva, tiempo, tipoEjericio, puntosObtenidos, frecuencia,
+                                    observaciones, promedioPotencia, elestrodos, mejorUmbral, promedioUmbral,
+                                     menorUmbral, porcentajeUmbral, idPaciente, idTerapeuta, idEjercicio):
+        connectionAgregar = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd="root0",
+            db="cognidroneeg"
+        )
 
+        cursor = connectionAgregar.cursor()
+
+        sql = '''INSERT INTO sesionterapeutica (fecha, funcionCognitiva, tiempo, tipoEjercicio, puntosObtenidos, frecuencia,
+        comentarios, promedioPotencia, electrodosUtilizados, mejorUmbral, promedioUmbral, menorUmbral, porcentajeUmbralTerapia, Paciente_idPaciente, 
+        Terapeuta_idTrapeuta, Ejercicios_idEjercicios) VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', 
+        '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')'''.format(fecha, funcionCognitiva, tiempo, tipoEjericio, puntosObtenidos,
+                                frecuencia, observaciones, promedioPotencia,elestrodos, mejorUmbral, promedioUmbral, menorUmbral, porcentajeUmbral,
+                                                                       idPaciente, idTerapeuta, idEjercicio)
+
+        cursor.execute(sql)
+        connectionAgregar.commit()
+        connectionAgregar.close()
 
 
 

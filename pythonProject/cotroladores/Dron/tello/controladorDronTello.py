@@ -102,15 +102,23 @@ class DronTello():
 
     def getbateriaDron(self):
 
-        battery = self.sock.sendto('Battery?'.encode(encoding="utf-8"), self.tello_address)
-        print("La bateria desde la clase tello es*******************: "+str(battery))
+        batteryi = self.sock.sendto('battery?'.encode(encoding="utf-8"), self.tello_address)
 
+        battery = self.sock.recvfrom(1024)
+
+
+        print("La bateria desde la clase tello es*******************: "+str(battery[0].decode()))
+
+
+
+
+        '''
         try:
             battery = int(battery)
         except:
             pass
-
-        return battery
+        '''
+        return battery[0].decode()
 
     def __del__(self):
         self.sock.close()

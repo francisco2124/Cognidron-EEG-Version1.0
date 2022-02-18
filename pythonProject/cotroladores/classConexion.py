@@ -39,32 +39,39 @@ class classConexion(QThread):
 
     def conectar(self):
 
-        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
 
-        print("-------------------------------------------------------")
-        print("Conectando con cortex...: ")
-        msg = """{
-                "id": 1,
-                "jsonrpc": "2.0",
-                "method": "getCortexInfo"
-            }"""
-        ws.send(msg)
+        try:
+            ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
 
-        print("--------------------------------------------------------")
-        result = ws.recv()
-        print("Se recupera lo siguiente: " + str(result))
-        print("--------------------------------------------------------")
+            print("-------------------------------------------------------")
+            print("Conectando con cortex...: ")
+            msg = """{
+                    "id": 1,
+                    "jsonrpc": "2.0",
+                    "method": "getCortexInfo"
+                }"""
+            ws.send(msg)
 
-        mensaje = ""
-        resuladoFallido = '''{"id":1,"jsonrpc":"2.0","result":{"buildDate":"2020-09-08T12:06:34","buildNumber":"v2.2.3-659-gfa6e645","version":"2.6.0.105"}}'''
-        print(resuladoFallido)
-        if result != resuladoFallido:
+            print("--------------------------------------------------------")
+            result = ws.recv()
+            print("Se recupera lo siguiente: " + str(result))
+            print("--------------------------------------------------------")
+
+            mensaje = ""
+            resuladoFallido = '''{"id":1,"jsonrpc":"2.0","result":{"buildDate":"2020-09-08T12:06:34","buildNumber":"v2.2.3-659-gfa6e645","version":"2.6.0.105"}}'''
+            print(resuladoFallido)
+            if result != resuladoFallido:
+                mensaje = False
+
+            else:
+                mensaje = True
+
+            return mensaje
+
+        except:
+
             mensaje = False
-
-        else:
-            mensaje = True
-
-        return mensaje
+            return mensaje
 
 
     def validarInicioSesion(self):

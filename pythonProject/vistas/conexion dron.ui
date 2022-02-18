@@ -319,7 +319,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </font>
    </property>
    <property name="text">
-    <string>Puerto</string>
+    <string>Puerto:</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
@@ -334,6 +334,72 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="text">
     <string>Establecer valores por defecto</string>
    </property>
+  </widget>
+  <widget class="QLabel" name="label_36">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>170</y>
+     <width>241</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Aterrizaje por nivel de bateria:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbPaciente_2">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>165</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Sleección de un paciente</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>10</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>15</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>20</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>25</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>35</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>40</string>
+    </property>
+   </item>
   </widget>
   <zorder>label_7</zorder>
   <zorder>label_17</zorder>
@@ -350,6 +416,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <zorder>label_34</zorder>
   <zorder>label_35</zorder>
   <zorder>pushButton_4</zorder>
+  <zorder>label_36</zorder>
+  <zorder>cbPaciente_2</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

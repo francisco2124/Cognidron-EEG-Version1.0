@@ -271,6 +271,72 @@ class pruebaconexionEmotiv(QThread):
     def estadoHilo(self):
         return self.status
 
+    def recuperarBatera(self):
+        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
+        datos = self.modelo.cargarDatos()
+        ListaDatos = datos[0]
+        clientId = str(ListaDatos[0]).strip()
+        clientSecret = str(ListaDatos[1]).strip()
+        profile = "j"
+
+
+        token = self.obteunerToken()
+        headset = self.recuperarDeadema()
+        #**************************************************************************
+        print("-------------------------------------------------------")
+        print("Crear Sesion...: ")
+        msg = """{
+                                "id": 1,
+                                "jsonrpc": "2.0",
+                                "method": "createSession",
+                                "params": {
+                                    "cortexToken": "%s",
+                                    "headset": "%s",
+                                    "status": "open"
+                                }
+                            }""" % (token, headset)
+        ws.send(msg)
+
+
+        print("--------------------------------------------------------")
+        result = ws.recv()
+        print("Se recupera lo siguiente: " + result)
+
+
+        if 'appId' in result:
+            dic = json.loads(result)
+            sesion = dic['result']['id']
+            print("El ide de la sesion es: "+str(sesion))
+        else:
+            print("Error: Problemas al iniciar sesión con el dispositivo en Cortex")
+
+
+
+        #**************************************************************************
+        print("-------------------------------------------------------")
+        print("Suscribirse a los comandos mentales...: ")
+        msg = """{
+                            "id": 1,
+                            "jsonrpc": "2.0",
+                            "method": "subscribe",
+                            "params": {
+                                "cortexToken": "%s",
+                                "session": "%s",
+                                "streams": ["dev"]
+                            }
+                        }""" % (token, sesion)
+        ws.send(msg)
+        result = ws.recv()
+
+        print("--------------------------------------------------------")
+        result = ws.recv()
+        print("res = "+str(result))
+        calidadElectrodo = json.loads(result)
+        calElectrodo = calidadElectrodo["dev"][0]
+        print("la bateria es: "+str(calElectrodo))
+
+        return calElectrodo
+
     def run(self):
         self.tiempoRegresivo = ""
         main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate())) #Mientras el hilo esta vivo y recuperar los datos
@@ -337,7 +403,6 @@ class pruebaconexionEmotiv(QThread):
             sesion = "Sin Sesion"
         listaPotencias = []
 
-        sumas =0
         self.cont = 0
         while self.status == True:
 
@@ -406,7 +471,6 @@ class pruebaconexionEmotiv(QThread):
                             potenciaDelElectrodoSeleccionado = bucle["pow"][self.potenciasXElectrodo[id][0]]
                             promedioTheta = promedioTheta+potenciaDelElectrodoSeleccionado
                             listaPotencias.append(promedioTheta)
-                            sumas = sumas + potenciaDelElectrodoSeleccionado
                     self.cont = self.cont+1
 
                 elif str(self.bandaSeleccionada) == "Alfa":
@@ -416,11 +480,40 @@ class pruebaconexionEmotiv(QThread):
                         if value == True:
                             #print("El electrodo es: "+str(id))
                             potenciaDelElectrodoSeleccionado = bucle["pow"][self.potenciasXElectrodo[id][1]]
-                            #print("la potencia obtenida es "+str(potenciaDelElectrodoSeleccionado))
-                            sumas = sumas + potenciaDelElectrodoSeleccionado
-                            #print("la suma de alfas es "+str(sumaAlfas))
                             listaPotencias.append(potenciaDelElectrodoSeleccionado)
                             #print("la lista de potencias es "+str(listaPotencias))
+                    self.cont = self.cont+1
+
+        #-------------------------------------------------------------------------------------------------------
+                elif str(self.bandaSeleccionada) == "Beta Baja":
+                    promedioTheta =0
+                    #print("Entre a theta")
+                    for id,value in self.electrodosSeleccionados.items():
+                        if value == True:
+                            potenciaDelElectrodoSeleccionado = bucle["pow"][self.potenciasXElectrodo[id][2]]
+                            promedioTheta = promedioTheta+potenciaDelElectrodoSeleccionado
+                            listaPotencias.append(promedioTheta)
+                    self.cont = self.cont+1
+
+                elif str(self.bandaSeleccionada) == "Beta Alta":
+                    promedioTheta =0
+                    #print("Entre a theta")
+                    for id,value in self.electrodosSeleccionados.items():
+                        if value == True:
+                            potenciaDelElectrodoSeleccionado = bucle["pow"][self.potenciasXElectrodo[id][3]]
+                            promedioTheta = promedioTheta+potenciaDelElectrodoSeleccionado
+                            listaPotencias.append(promedioTheta)
+                    self.cont = self.cont+1
+
+
+                elif str(self.bandaSeleccionada) == "Gama":
+                    promedioTheta =0
+                    #print("Entre a theta")
+                    for id,value in self.electrodosSeleccionados.items():
+                        if value == True:
+                            potenciaDelElectrodoSeleccionado = bucle["pow"][self.potenciasXElectrodo[id][4]]
+                            promedioTheta = promedioTheta+potenciaDelElectrodoSeleccionado
+                            listaPotencias.append(promedioTheta)
                     self.cont = self.cont+1
 
             except:
@@ -430,11 +523,37 @@ class pruebaconexionEmotiv(QThread):
             #Se obtiene el promedio cuando se hace 8 lecturas. Las 8 lecturas son por aegundo
             if self.cont == 8:
                 listaPotenciasFinal = []
-                print("lista "+str(listaPotencias))
+                sumasPorElectrodo = []
+                promedioPotencia  = 0
+                ajustador = 0
+                print("lista potencias es"+str(listaPotencias))
+
+                #Obtener numero de electrodos
                 numElectrodos = len(listaPotencias) / 8
                 print(str("Numero de electrodos es igual a: "+str(numElectrodos)))
-                promedio = sumas/8
-                listaPotenciasFinal.append(promedio)
+
+                #------------------------------------
+
+                for i in range(0, int(numElectrodos) , 1):
+                    for j in range(ajustador, len(listaPotencias), int(numElectrodos)):
+                        print(str(listaPotencias[j]))
+                        sumasPorElectrodo.append(listaPotencias[j])
+                        if len(sumasPorElectrodo) == 8:
+                            promedioPotencia = sum(sumasPorElectrodo)/8
+                            myRoundPotencia = round(promedioPotencia, 3)
+                            listaPotenciasFinal.append(myRoundPotencia)
+                            sumasPorElectrodo = []
+                    print("---------------------------")
+                    ajustador = ajustador + 1
+                print("La lista final Tiene "+str(listaPotenciasFinal))
+
+                #Obtener promedio de todos los electrodos
+                promedio = sum(listaPotenciasFinal) / len(listaPotenciasFinal)
+                myRoundPromedio = round(promedio, 3)
+
+                listaPotenciasFinal.append(myRoundPromedio)
+
+                print("La lista final con promedio es "+str(listaPotenciasFinal))
                 print("===========Promedio 1s======: "+str(promedio))
                 print("----------------------------------------------------------------------------------------------------")
                 self.signEmotiv.emit(listaPotenciasFinal)

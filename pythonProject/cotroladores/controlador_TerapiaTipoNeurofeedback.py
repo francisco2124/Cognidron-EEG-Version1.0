@@ -1,7 +1,11 @@
-import time
+
 import threading
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QMessageBox
+from datetime import *
+import time
+import pandas as pd
+
 
 #Hilos necesarios
 
@@ -120,7 +124,30 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         #Detener Bateria Dron
         self.detenerHiloBateri = 0
 
+        #Numero de electrodos seeccionados
+        self.numeroElectrodosSeleccionados = 0
+
+        #Lista del promedio de las potencias por segundos
+        self.listapotenciaPorSegundo = []
+
+        #Recuperar nombre de los esctrodos seleccionados
+        self.listaElectrodosSeleccionados = [[]]
+
     def inicializarGUI(self):
+
+        #Recuperar nombre y numero total de los electrodos seleccionados
+
+        #Recuperar fecha actual
+        fecha = str(datetime.now())
+        self.fechaF = ""
+        contadorFecha = 0
+        for i in fecha:
+            self.fechaF = self.fechaF + i
+            contadorFecha = contadorFecha +1
+            if contadorFecha == 10:
+                break
+
+        self.ui.lbFecha.setText("Fecha: "+ self.fechaF)
 
         #Inicializar valores de textos y botones
         self.ui.btnIniciarTerapia.setEnabled(True)
@@ -135,6 +162,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                                             "{"
                                             "background-color: rgb(0, 170, 0);"
                                             "}")
+
 
 
         #Controles de emergencia del dron
@@ -195,8 +223,20 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                     # Instancia del dron (Ip del dron, puerto del dron, valor del dicionario que se encuentra en la clase dron)
                     self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
 
+                    #--------------------------------------------------------------------------------------------------
+                    for id,value in self.electrodosSelecionados.items():
+                        print('{} = {}'.format(id,value))
+                        if value == True:
+                            self.listaElectrodosSeleccionados[0].append(id)
+
+                    self.listaElectrodosSeleccionados[0].append("Promedio")
+                    print("Los elestrodos seleccionados son: "+str(self.listaElectrodosSeleccionados[0]))
+                    self.numeroElectrodosSeleccionados = len(self.listaElectrodosSeleccionados[0])
+                    print("Num electrodos seleccionados "+str(self.numeroElectrodosSeleccionados))
+                    #--------------------------------------------------------------------------------------------------
+
                     self.activarBarraNeurofeedback()
-                    self.crearArchivoCSV()
+                    self.llenarArchivoCSV()
                     self.ejecutardron()
                     self.despegarDrone()
                     self.banderaRegistro = True
@@ -214,8 +254,10 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                     icon.addPixmap(QtGui.QPixmap(":/newPrefix/aterrizar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                     self.ui.btnAterrizarDrone.setIcon(icon)
                     #self.ejecutarHiloBateria()
+
         else:
             self.banderaRegistro = False
+            self.generarReportePotencias()
             self.hiloTiempo.detener()
             self.ui.btnIniciarTerapia.setText("Sesión Terminada")
             self.ui.btnGrabarSesion.setText("Datos Almacenados")
@@ -226,6 +268,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
             self.ui.btbCapturarObservaciones.setEnabled(True)
             self.hiloEmotiv.detener()
             self.finalizarTerapia()
+            self.listaElectrodosSeleccionados = [[]]
 
 
 
@@ -233,28 +276,64 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
     def pruebaBateriaDron(self):
 
-        #listaBateria = [80,78,60,50,45,43,42,40,38,33,30,29,25,20,18,16,13,10,8,5,3,1]
-        #for i in listaBateria:
-            #self.ui.progressBar_4.setValue(i)
-            #time.sleep(2)
-        while True:
+        #-------IMPORTANTE----- Valores de conexion del dron
+        self.dron = Dron('192.168.10.1', 8889, "tello")
+        # Instancia del dron (Ip del dron, puerto del dron, valor del dicionario que se encuentra en la clase dron)
+        main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate()))
+        while main_thread.is_alive():
             porcentajeBateria = self.dron.getBateria()
-            self.ui.lbPorcentajeBateriaDron.setText(str(porcentajeBateria*10)+"%")
             time.sleep(4)
-            if self.detenerHiloBateri == 2:
-                break
+            try:
+                bateria = int(porcentajeBateria)
+                self.ui.lbPorcentajeBateriaDron.setText(str(bateria)+"%")
+
+            except:
+                pass
+
 
     def ejecutarHiloBateria(self):
 
-        hilo1 = threading.Thread(target=self.pruebaBateriaDron)
-        hilo1.start()
+        self.hiloBateriaDron = threading.Thread(target=self.pruebaBateriaDron)
+        self.hiloBateriaDron.start()
+
+
+    def pruebaBateriaEmotiv(self):
+
+        self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
+        main_thread = next(filter(lambda t: t.name == "MainThread", threading.enumerate()))
+        while main_thread.is_alive():
+            porcentajeBateriaEmotiv = self.hiloEmotiv.recuperarBatera()
+            time.sleep(4)
+            try:
+                bateria = int(porcentajeBateriaEmotiv)
+                if bateria == 0:
+                    bateria = 20
+                elif bateria ==1:
+                    bateria = 40
+                elif bateria ==2:
+                    bateria = 60
+                elif bateria ==3:
+                    bateria = 80
+                elif bateria ==4:
+                    bateria = 100
+
+                self.ui.lbPorcentajeBateriaEEG.setText(str(bateria)+"%")
+
+            except:
+                pass
+
+
+    def ejecutarHiloBateriaEmotiv(self):
+
+        self.hiloBateriaEmotiv= threading.Thread(target=self.pruebaBateriaEmotiv)
+        self.hiloBateriaEmotiv.start()
 
 
 
 
     #Funcion para dejar de esuchar las instrucciones de la diadema
     def obtenerControl(self):
-
+        self.dron = Dron('192.168.10.1', 8889, "tello")
         if self.ui.btnObtenerDrone.text() == "Obtener Control Total":
             self.controlTotal = True
             self.ui.btnObtenerDrone.setStyleSheet("background-color: rgb(0, 170 ,170);")
@@ -272,9 +351,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
     def abrirCapturarObservaciones(self):
 
 
-        promedioPotencias =  sum(self.listapotencia) / len(self.listapotencia)
         if len(self.listaTiemposUmbral) != 0:
-
             max_tiempo = max(self.listaTiemposUmbral, key=int)
             min_tiempo = min(self.listaTiemposUmbral, key=int)
             promedioTiempo = sum(self.listaTiemposUmbral) / len(self.listaTiemposUmbral)
@@ -283,9 +360,44 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
             min_tiempo = 0
             promedioTiempo = 0
 
-        porcentajeTiempo = (100 / len(self.listapotencia)) * (sum(self.listaTiemposUmbral) / 3)
+        porcentajeTiempo = (100 / len(self.listapotenciaPorSegundo)) * (sum(self.listaTiemposUmbral) / 3)
         porcentajeTiempoF = round(porcentajeTiempo, 2)
-        self.abrir = Controlador_Observaciones(self.tiempoSesion,self.puntaje,promedioPotencias, max_tiempo, min_tiempo, promedioTiempo, porcentajeTiempoF)
+
+        #Obtener tipo ejercicio
+        tipoEjercio = ""
+        if self.ui.rbInivitorio.isChecked():
+            tipoEjercio = "Inivitorio"
+        else:
+            tipoEjercio = "Exitatorio"
+
+        #Recuperar frecuencia
+        frecuencia  =  self.ui.cbBanda.currentText()
+
+        #Recuperar Frecuencia
+        ejericicio = self.ui.cbEjercicio.currentText()
+        #Recuperar robot
+        robot = self.ui.cbRobot.currentText()
+
+        #Recuperar electrodos
+        electrodos = ""
+        for id,value in self.electrodosSelecionados.items():
+            print('{} = {}'.format(id,value))
+            if value == True:
+                electrodos = electrodos +str(id)+ ", "
+        try:
+            promedioPotencias =  str(sum(self.listapotenciaPorSegundo) / len(self.listapotenciaPorSegundo))
+        except:
+            Alerta = QMessageBox.information(self, 'Alerta', "No se registraron las potencias por electrodo", QMessageBox.Ok)
+
+
+        #Id Paciente
+        indexPaciente = self.ui.cbPaciente.currentIndex()
+        print("Index paciente es: "+str(indexPaciente))
+        idPaciente = self.listaIdPaciente[indexPaciente-1]
+
+        self.abrir = Controlador_Observaciones(self.tiempoSesion,self.puntaje,promedioPotencias, electrodos, max_tiempo, min_tiempo,
+                                               promedioTiempo, porcentajeTiempoF, self.fechaF, tipoEjercio, frecuencia,
+                                               ejericicio, robot, idPaciente)
         self.abrir.show()
 
         self.ui.btnIniciarTerapia.setText("Iniciar terapia")
@@ -588,7 +700,6 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         icon.addPixmap(QtGui.QPixmap(":/newPrefix/aterrizar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.ui.btnAterrizarDrone.setIcon(icon)
         self.estadoDron = 1
-        self.detenerHiloBateri = 1
         #print("El estado del dron es: "+str(self.estadoDron))
     def aterrizarDrone(self):
 
@@ -773,15 +884,13 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
 
     #Funciones para crear y llenar el archico csv correspondiente al reporte de potencias
-    def crearArchivoCSV(self):
-        #self.hilo3 = HiloSingsEotiv()
-        self.hiloEmotiv.signEmotiv.connect(self.llenarArchivoCSV)
-        #self.hilo3.signDS.connect(self.almacenarPotencias)
+    def llenarArchivoCSV(self):
+        self.hiloEmotiv.signEmotiv.connect(self.registrarPotenciasReporte)
         self.hiloEmotiv.start()
 
 
 
-    def llenarArchivoCSV(self, potencia): #222222222222222222222222222222222222222222222222222222222222222222222222222222222222-------
+    def cargarArchivoCSV(self, potencia): #222222222222222222222222222222222222222222222222222222222222222222222222222222222222-------
 
             if self.banderaRegistro == True:
                 archivo = open("archivo.csv","w")
@@ -789,35 +898,50 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                 archivo.write("Reporte de potencias 2")
                 archivo.write("\n")
 
-                #Encabezado
-                archivo.write("Electrodo")
+                #Metadatos
+                archivo.write("*Fecha")
                 archivo.write(",")
-                archivo.write("Banda")
+                archivo.write("14-02-2022")
                 archivo.write(",")
-                archivo.write("Promedio Potencia")
                 archivo.write(",")
-                archivo.write("Id de la sesio")
+                archivo.write("*Duracion de sesion")
                 archivo.write(",")
-                archivo.write("Tipo de ejercicio")
+                archivo.write("1:05 minutos")
+                archivo.write("\n")
+                archivo.write("*Tipo de ejercicio")
                 archivo.write(",")
-                archivo.write("Id del paciente")
+                archivo.write("Inivitorio")
+                archivo.write(",")
+                archivo.write(",")
+                archivo.write("Promedio F")
+                archivo.write(",")
+                archivo.write("3.146")
 
-                self.listapotencia.append(potencia[0])
+                archivo.write("\n")
+
+                #Encabezado
+                archivo.write("AF3")
+                archivo.write(",")
+                archivo.write("F7")
+                archivo.write(",")
+                archivo.write("F3")
+                archivo.write(",")
+                archivo.write("Promedio")
+
+
+                self.listapotencia.append(potencia)
                 #self.listapotencia.append(potencia)
 
                 for i in self.listapotencia:
                     archivo.write("\n")
-                    archivo.write("F3 F4")
+                    archivo.write(str(i[0]))
                     archivo.write(",")
-                    archivo.write("Theta/BetaL")
+                    archivo.write(str(i[1]))
                     archivo.write(",")
-                    archivo.write(str(i))
+                    archivo.write(str(i[2]))
                     archivo.write(",")
-                    archivo.write("001")
-                    archivo.write(",")
-                    archivo.write("Inivitorio")
-                    archivo.write(",")
-                    archivo.write("001")
+                    archivo.write(str(i[3]))
+
             else:
                 print("No estoy almacenando datos....")
 
@@ -906,15 +1030,18 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
     #------Funciones para llenar los combo box de pacientes y de ejercicios recueperando datos de la base de datos
 
     def cargarCbPacientes(self):
-
+        #lista idPaciente
+        self.listaIdPaciente = []
         pacientes =  self.modeloPaciente.recuperarPacientes()
         #print(str(pacientes))
         #print(terapeutas)
+        for i in pacientes:
+            self.listaIdPaciente.append(i[0])
 
         combo = self.ui.cbPaciente
         combo.clear()
         combo.addItem("Selecciona un paciente")
-        combo.addItems([str(x[1])+" "+str(x[2])+" "+str(x[0]) for x in pacientes])
+        combo.addItems([str(x[1])+" "+str(x[2])+"_id:"+str(x[0] ) for x in pacientes])
 
     def cargarCbEjercicios(self):
 
@@ -949,9 +1076,36 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
             except:
                 Alerta = QMessageBox.information(self, 'Alerta', "Ocurrio un error con el reproductor de musica", QMessageBox.Ok)
 
+    def registrarPotenciasReporte(self, potencia):
+
+
+        if self.banderaRegistro == True:
+
+            self.listapotencia.append(potencia)
+            self.listapotenciaPorSegundo.append(potencia[self.numeroElectrodosSeleccionados - 1])
+
+
+
+        else:
+
+            print("No estoy almacenando potencias.....")
+
+
+
+    def generarReportePotencias(self):
+
+        data = pd.DataFrame(self.listapotencia[0:],columns=self.listaElectrodosSeleccionados[0])
+
+        data.head()
+
+        data.to_csv("C:\CogniDron-EEG\Reportes_De_Potencias\Reporte1.csv", index=False)
+        self.listapotencia = []
+
+
     def cerrarVentana(self):
         try:
             self.hiloEmotiv.detener()
+
         except:
             print("No hay hilo de emotiv")
 

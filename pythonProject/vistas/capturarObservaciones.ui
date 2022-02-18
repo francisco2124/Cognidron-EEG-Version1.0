@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>477</width>
-    <height>673</height>
+    <width>463</width>
+    <height>728</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -129,13 +129,13 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QTextEdit" name="teObservaciones">
+  <widget class="QTextEdit" name="tekObservaciones">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>450</y>
+     <x>20</x>
+     <y>490</y>
      <width>431</width>
-     <height>151</height>
+     <height>171</height>
     </rect>
    </property>
   </widget>
@@ -143,7 +143,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>410</y>
+     <y>425</y>
      <width>461</width>
      <height>31</height>
     </rect>
@@ -158,11 +158,11 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btnCancelar">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>620</y>
+     <x>260</x>
+     <y>670</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -171,17 +171,17 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <string>Cancelar</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="btnRegistar">
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>620</y>
+     <y>670</y>
      <width>93</width>
      <height>28</height>
     </rect>
    </property>
    <property name="text">
-    <string>Capturar</string>
+    <string>Registrar</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -245,7 +245,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <string notr="true">font: 9pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <property name="text">
-    <string>Porcentaje que mantuvo el umbra:</string>
+    <string>Porcentaje de terapia que mantuvo el umbra:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -319,7 +319,7 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
   <widget class="QLabel" name="lbTiempoUmbralObtenido">
    <property name="geometry">
     <rect>
-     <x>275</x>
+     <x>340</x>
      <y>370</y>
      <width>121</width>
      <height>31</height>
@@ -426,6 +426,19 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
    </property>
    <property name="text">
     <string>3</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="etFuncionCognitiva">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>465</y>
+     <width>431</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Ingresa la funcion(es) cognitiva(s) trabajadas en la terapia</string>
    </property>
   </widget>
  </widget>
