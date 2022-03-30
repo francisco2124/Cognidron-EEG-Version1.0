@@ -40,7 +40,7 @@ class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
         self.ui.btnRefrescar.clicked.connect(self.refrescar)
 
     def refrescar(self):
-        self.cargarTerapeutas()
+        self.cargarPacientes()
         self.cargarCbPacientes()
     def eda(self):
 
@@ -98,12 +98,14 @@ class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
 
 
     def validarBorradoLogico(self, item):
-        '''
-        Terapeuta = self.modeloP.validarBorradoLigico2(item.text())
-        print("El resultado es: "+str(Terapeuta))
-        idTerapeuta = Terapeuta[0]
-        '''
-        res= self.modeloP.validarBorradoLigico(item)
+
+        paciente = self.modeloP.validarBorradoLigico2(item.text())
+        print("El resultado es: "+str(paciente))
+        if len(paciente) != 0:
+            res = True
+        else:
+            res = False
+
         return  res
 
     def eliminarTerapeuta(self):
@@ -121,13 +123,9 @@ class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
 
                 if(self.validarBorradoLogico(item) == True):
                     print("Entre al if")
-                    Terapeuta = self.modelo.validarBorradoLigico2(item.text())
-                    print("id tera : "+str(Terapeuta))
-                    idTerapeuta = Terapeuta[0]
-                    print("id es: " + str(idTerapeuta[0]))
-                    self.modeloP.elimina_terapeutaLogico2(idTerapeuta[0])
-                    alerta = QMessageBox.information(self, 'Alera', "El terapeuta tiene sesiones terapeuticas y su borrrado fue logico", QMessageBox.Ok)
-                    self.cargarTerapeutas()
+                    self.modeloP.elimina_PacienteLogico(item.text())
+                    alerta = QMessageBox.information(self, 'Alera', "El paciente tiene sesiones terapeuticas y su borrrado fue logico", QMessageBox.Ok)
+                    self.cargarPacientes()
                     self.cargarCbPacientes()
                 else:
                     print("Entre al else")
@@ -138,8 +136,8 @@ class Controlador_ConsultarPaciente(QtWidgets.QMainWindow):
                     '''
                     self.modeloP.eliminar_Paciente(item.text())
 
-                    alerta = QMessageBox.information(self, 'Confirmacion', "Terapeuta Eliminado permanente", QMessageBox.Ok)
-                    self.cargarTerapeutas()
+                    alerta = QMessageBox.information(self, 'Confirmacion', "El paciente se ha eliminado permanentemente", QMessageBox.Ok)
+                    self.cargarCbPacientes()
                     self.cargarCbPacientes()
 
 

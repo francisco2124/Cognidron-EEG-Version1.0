@@ -141,7 +141,7 @@ class Ui_capturarObservaciones(object):
     def retranslateUi(self, capturarObservaciones):
         _translate = QtCore.QCoreApplication.translate
         capturarObservaciones.setWindowTitle(_translate("capturarObservaciones", "Dialog"))
-        self.label_2.setText(_translate("capturarObservaciones", "Capturar Observaciones"))
+        self.label_2.setText(_translate("capturarObservaciones", "Capturar observaciones"))
         self.label_3.setText(_translate("capturarObservaciones", "Observaciones"))
         self.btnCancelar.setText(_translate("capturarObservaciones", "Cancelar"))
         self.btnRegistar.setText(_translate("capturarObservaciones", "Registrar"))

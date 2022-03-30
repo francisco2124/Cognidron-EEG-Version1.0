@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>434</width>
+    <width>445</width>
     <height>245</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>434</width>
+    <height>245</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Actualizar Parametros</string>
@@ -82,7 +88,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>451</width>
+     <width>611</width>
      <height>271</height>
     </rect>
    </property>
@@ -104,7 +110,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>441</width>
+     <width>601</width>
      <height>51</height>
     </rect>
    </property>
@@ -117,27 +123,6 @@
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="label_26">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>10</y>
-      <width>71</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/newPrefix/terapeuta.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
@@ -213,14 +198,14 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Configuración de párametros (Emotiv) </string>
+     <string>Configuración de parámetros (Emotiv Epoc +)</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>5</y>
+      <y>0</y>
       <width>51</width>
       <height>41</height>
      </rect>

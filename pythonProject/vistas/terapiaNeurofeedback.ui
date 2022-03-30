@@ -164,7 +164,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Evento del Drone</string>
+    <string>Evento del dron</string>
    </property>
   </widget>
   <widget class="QLabel" name="imgDron">
@@ -986,7 +986,7 @@ text-decoration: underline;</string>
     </rect>
    </property>
    <property name="title">
-    <string>Control Manual de Dron</string>
+    <string>Control manual de dron</string>
    </property>
    <widget class="QPushButton" name="btnElevarDrone">
     <property name="enabled">
@@ -1004,7 +1004,7 @@ text-decoration: underline;</string>
      <string>Subir Dron</string>
     </property>
     <property name="text">
-     <string>Subir Drone</string>
+     <string>Subir dron</string>
     </property>
     <property name="shortcut">
      <string>W</string>
@@ -1026,7 +1026,7 @@ text-decoration: underline;</string>
      <string>Bajar Dron</string>
     </property>
     <property name="text">
-     <string>Bajar Drone</string>
+     <string>Bajar dron</string>
     </property>
     <property name="shortcut">
      <string>S</string>
@@ -1217,7 +1217,7 @@ text-decoration: underline;</string>
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>Obtener Control Total</string>
+     <string>Obtener control total</string>
     </property>
    </widget>
   </widget>

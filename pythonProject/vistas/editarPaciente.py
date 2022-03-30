@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import vistas.images
 
 class Ui_EditarPaciente(object):
     def setupUi(self, EditarPaciente):
@@ -274,13 +275,13 @@ class Ui_EditarPaciente(object):
         font.setPointSize(10)
         self.label_19.setFont(font)
         self.label_19.setObjectName("label_19")
-        self.cbEstado_2 = QtWidgets.QComboBox(EditarPaciente)
-        self.cbEstado_2.setGeometry(QtCore.QRect(190, 290, 161, 21))
+        self.cbTutor = QtWidgets.QComboBox(EditarPaciente)
+        self.cbTutor.setGeometry(QtCore.QRect(190, 290, 161, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.cbEstado_2.setFont(font)
-        self.cbEstado_2.setObjectName("cbEstado_2")
-        self.cbEstado_2.addItem("")
+        self.cbTutor.setFont(font)
+        self.cbTutor.setObjectName("cbTutor")
+        self.cbTutor.addItem("")
         self.label_25.raise_()
         self.leLocalidad.raise_()
         self.label_16.raise_()
@@ -316,7 +317,7 @@ class Ui_EditarPaciente(object):
         self.frame_2.raise_()
         self.frame.raise_()
         self.label_19.raise_()
-        self.cbEstado_2.raise_()
+        self.cbTutor.raise_()
 
         self.retranslateUi(EditarPaciente)
         QtCore.QMetaObject.connectSlotsByName(EditarPaciente)
@@ -334,19 +335,20 @@ class Ui_EditarPaciente(object):
         self.label_11.setText(_translate("EditarPaciente", "Calle y número"))
         self.label_18.setText(_translate("EditarPaciente", "Nacionalidad"))
         self.label_9.setText(_translate("EditarPaciente", "Estado"))
-        self.label_3.setText(_translate("EditarPaciente", "Apellido Materno"))
+        self.label_3.setText(_translate("EditarPaciente", "Apellido materno"))
         self.label_14.setText(_translate("EditarPaciente", "Número de contacto"))
         self.label_12.setText(_translate("EditarPaciente", "Municipio"))
-        self.label_15.setText(_translate("EditarPaciente", "Genero"))
+        self.label_15.setText(_translate("EditarPaciente", "Género"))
         self.label_2.setText(_translate("EditarPaciente", "Apellido paterno"))
         self.btnAceptar.setText(_translate("EditarPaciente", "Editar"))
         self.btnCancelar.setText(_translate("EditarPaciente", "Limpiar Campos"))
         self.groupBox.setTitle(_translate("EditarPaciente", "Seleciona una opción"))
         self.rbFemenino.setText(_translate("EditarPaciente", "Femenino"))
         self.rbMasculino.setText(_translate("EditarPaciente", "Masculino"))
-        self.label_8.setText(_translate("EditarPaciente", "Modificar datos del Paciente"))
+        self.label_8.setText(_translate("EditarPaciente", "Modificar datos del paciente"))
         self.label_19.setText(_translate("EditarPaciente", "Tutor"))
-        self.cbEstado_2.setItemText(0, _translate("EditarPaciente", "Sin_Tutor"))
+        self.cbTutor.setItemText(0, _translate("EditarPaciente", "Sin_Tutor"))
+
 
 if __name__ == "__main__":
     import sys

@@ -62,7 +62,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Apellido Materno (*)</string>
+    <string>Apellido materno (*)</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="leCorreoElectronico">
@@ -181,7 +181,7 @@
     <rect>
      <x>20</x>
      <y>600</y>
-     <width>171</width>
+     <width>201</width>
      <height>21</height>
     </rect>
    </property>
@@ -191,7 +191,7 @@
     </font>
    </property>
    <property name="text">
-    <string>¿Es administrador?</string>
+    <string>Tipo de usuario</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_16">
@@ -541,7 +541,7 @@ background-color: rgb(200, 198, 223);</string>
     </font>
    </property>
    <property name="text">
-    <string>Genero (*)</string>
+    <string>Género (*)</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="leApellidoPaterno">
@@ -758,7 +758,7 @@ border-image: url(:/newPrefix/vision.png);</string>
     </font>
    </property>
    <property name="text">
-    <string>Apellido Paterno (*)</string>
+    <string>Apellido paterno (*)</string>
    </property>
   </widget>
   <widget class="QComboBox" name="cbMunicipio">
@@ -839,7 +839,7 @@ border-image: url(:/newPrefix/vision.png);</string>
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Nuevo Terapeutaa</string>
+     <string>Nuevo terapeuta</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">
@@ -944,12 +944,12 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <rect>
      <x>220</x>
      <y>600</y>
-     <width>81</width>
+     <width>101</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Admin</string>
+    <string>Admistrador</string>
    </property>
   </widget>
  </widget>

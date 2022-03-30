@@ -176,7 +176,7 @@ class Control_EditarTerapeutas(QtWidgets.QMainWindow):
                 return True
         def validarCorreo(campo):
 
-            if not re.fullmatch(r"[A-Za-zñ@.]{1,500}", campo) :
+            if not re.fullmatch(r"[A-Za-zñ@.-0123456789]{1,500}", campo) :
                 return True
             else:
                 return False
@@ -240,6 +240,13 @@ class Control_EditarTerapeutas(QtWidgets.QMainWindow):
             self.modelo.editar(nombre,app,apm,generoF, dateM, codPostal,localidad, calle,num,nacionalidad,contacto,
                            correoElec,idMunicipio[0],idTerapeuta)
 
+            if self.ui.cbAdmin.isChecked() == True:
+                admin = 1
+            else:
+                admin = 0
+
+            self.modelo.editarTipoUsuario(admin, self.NombreUsuario)
+
             Alerta = QMessageBox.information(self, 'Confirmacion', "Se edito el terapeuta", QMessageBox.Ok)
             self.cargarPlaceHolder()
 
@@ -271,6 +278,13 @@ class Control_EditarTerapeutas(QtWidgets.QMainWindow):
         self.ui.leCodigoPostal.setPlaceholderText(str(ListaDatos[9]).strip())
         self.ui.leNumeroContacto.setPlaceholderText(str(ListaDatos[10]).strip())
         self.ui.leCorreoElectronico.setPlaceholderText(str(ListaDatos[11]).strip())
+
+        print("Tipo = "+str(ListaDatos))
+
+        if str(ListaDatos[14]) == "1":
+            self.ui.cbAdmin.setChecked(True)
+        else:
+            self.ui.cbAdmin.setChecked(False)
 
     def limpiarCampos(self):
         self.ui.leApePaterno.setText("")

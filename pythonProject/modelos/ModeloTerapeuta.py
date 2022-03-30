@@ -88,7 +88,54 @@ class Modelo_Terapeuta(QtWidgets.QMainWindow):
         cursor = connection2.cursor()
 
         sql = "SELECT idTrapeuta, user.nombreUsuario, nombre, ape_paterno, ape_materno, numero_contacto FROM terapeuta " \
-              "INNER JOIN usuarios user ON (user.nombreUsuario = terapeuta.usuarios_nombreUsuario) where borradoLogico = '0'"
+              "INNER JOIN usuarios user ON (user.nombreUsuario = terapeuta.usuarios_nombreUsuario) where borradoLogico = '0' "
+        cursor.execute(sql)
+        cursor.close()
+        registro = cursor.fetchall()
+        return registro
+
+    def cargarTablaTerapeutasEliminados(self):
+        connection2 = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd="root0",
+            db="cognidroneeg"
+        )
+        cursor = connection2.cursor()
+
+        sql = "SELECT idTrapeuta, user.nombreUsuario, nombre, ape_paterno, ape_materno, user.tipo FROM terapeuta " \
+              "INNER JOIN usuarios user ON (user.nombreUsuario = terapeuta.usuarios_nombreUsuario) where borradoLogico = '1'"
+        cursor.execute(sql)
+        cursor.close()
+        registro = cursor.fetchall()
+        return registro
+    def cargarTablaTerapeutasEliminados(self):
+        connection2 = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd="root0",
+            db="cognidroneeg"
+        )
+        cursor = connection2.cursor()
+
+        sql = "SELECT idTrapeuta, user.nombreUsuario, nombre, ape_paterno, ape_materno, user.tipo FROM terapeuta " \
+              "INNER JOIN usuarios user ON (user.nombreUsuario = terapeuta.usuarios_nombreUsuario) where borradoLogico = '1'"
+        cursor.execute(sql)
+        cursor.close()
+        registro = cursor.fetchall()
+        return registro
+
+    def cargarTablaTerapeutasEliminadosXTipo(self,tipo):
+        connection2 = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd="root0",
+            db="cognidroneeg"
+        )
+        cursor = connection2.cursor()
+
+        sql = "SELECT idTrapeuta, user.nombreUsuario, nombre, ape_paterno, ape_materno, user.tipo FROM terapeuta " \
+              "INNER JOIN usuarios user ON (user.nombreUsuario = terapeuta.usuarios_nombreUsuario) where borradoLogico = '1' and user.tipo = '{}'  ".format(tipo)
         cursor.execute(sql)
         cursor.close()
         registro = cursor.fetchall()
@@ -132,6 +179,36 @@ class Modelo_Terapeuta(QtWidgets.QMainWindow):
         self.connection.commit()
         self.connection.close()
 
+    def editarTipoUsuario(self, tipoUusario, nombreUsuario):
+        self.connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd="root0",
+            db="cognidroneeg"
+        )
+        cursor = self.connection.cursor()
+
+        sql ='''UPDATE  usuarios SET   tipo ='{}' WHERE nombreUsuario = '{}' '''.format(tipoUusario, nombreUsuario)
+
+        cursor.execute(sql)
+        self.connection.commit()
+        self.connection.close()
+
+
+
+    def recuperarTerapeutaConBorradoLogico(self, idTerapeuta, desactivarBorradoLogico):
+        self.connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd="root0",
+            db="cognidroneeg"
+        )
+        cursor = self.connection.cursor()
+        sql ='''UPDATE terapeuta SET  borradoLogico  ='{}' WHERE idTrapeuta = '{}' '''.format(desactivarBorradoLogico, idTerapeuta)
+        cursor.execute(sql)
+        self.connection.commit()
+        self.connection.close()
+
 
     def cargarPlaceHolder(self, user):
         self.connection = pymysql.connect(
@@ -149,14 +226,14 @@ class Modelo_Terapeuta(QtWidgets.QMainWindow):
 
     def cargarEstados(self):
         cursor = self.connection.cursor()
-        sql = '''SELECT idEstadado, nombre FROM estado '''
+        sql = '''SELECT idEstado, nombre FROM estado'''
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
 
     def recuperarIdEstado(self, nombre):
         cursor = self.connection.cursor()
-        sql = '''SELECT idEstadado, nombre FROM ejercicios WHERE nombre = '{}'  '''.format(nombre)
+        sql = '''SELECT idEstado, nombre FROM estado WHERE nombre = '{}'  '''.format(nombre)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -170,14 +247,15 @@ class Modelo_Terapeuta(QtWidgets.QMainWindow):
 
     def cargarMunicipios(self, idEstado):
         cursor = self.connection.cursor()
-        sql = '''SELECT idMunicipio, nombre FROM municipio WHERE Estadado_idEstadado = '{}'  '''.format(idEstado)
+        sql = '''SELECT idMunicipio, nombre FROM municipio WHERE Estadado_idEstado = '{}'  '''.format(idEstado)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
 
     def cargarEstadoAndMunicipio(self, idMunicipio):
         cursor = self.connection.cursor()
-        sql = '''SELECT est.nombre, mun.nombre FROM municipio mun INNER JOIN estado est ON (est.idEstadado = mun.Estadado_idEstadado) WHERE idMunicipio = '{}'  '''.format(idMunicipio)
+
+        sql = '''SELECT est.nombre, mun.nombre FROM municipio mun INNER JOIN estado est ON (est.idEstado = mun.Estadado_idEstado) WHERE idMunicipio = '{}'  '''.format(idMunicipio)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -265,7 +343,7 @@ class Modelo_Terapeuta(QtWidgets.QMainWindow):
             db="cognidroneeg"
         )
         cursor = connection2.cursor()
-        sql = "SELECT idSesionTerapeutica, identificador, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
+        sql = "SELECT idSesionTerapeutica, idSesionTerapeutica, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
               "INNER JOIN ejercicios ejer ON (ejer.idEjercicios = sesio.Ejercicios_idEjercicios)" \
               "INNER JOIN paciente pati ON (pati.idPaciente = sesio.Paciente_idPaciente)" \
               "INNER JOIN terapeuta tera ON (tera.idTrapeuta = sesio.Terapeuta_idTrapeuta) WHERE Terapeuta_idTrapeuta = '{}' ".format(idTerapeuta)

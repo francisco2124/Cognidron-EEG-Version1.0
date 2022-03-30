@@ -170,7 +170,7 @@ class Control_EditarTutor(QtWidgets.QMainWindow):
                 return True
         def validarCorreo(campo):
 
-            if not re.fullmatch(r"[A-Za-zñ@.]{1,500}", campo) :
+            if not re.fullmatch(r"[A-Za-zñ@.-0123456789]{1,500}", campo) :
                 return True
             else:
                 return False

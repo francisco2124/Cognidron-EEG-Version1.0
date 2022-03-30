@@ -111,7 +111,7 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
 
         def validarCorreo(campo):
 
-            if not re.fullmatch(r"[0-9-A-Za-zñ@.]{1,500}", campo) :
+            if not re.fullmatch(r"[0-9-A-Za-zñ@.-0123456789]{1,500}", campo) :
                 return True
             else:
                 return False
@@ -217,6 +217,8 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
                 idTutorF = idtutor[0] + idtutor[1] + idtutor[2]
 
                 print("El id del tutor es: "+str(idTutorF.strip()))
+                if idTutorF == "Sin":
+                    idTutorF = 0
 
                 print("El id de municipio es: "+str(idMunicipio[0]))
                 if self.ui.rbMasculino.isChecked()==True:

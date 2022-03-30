@@ -66,7 +66,7 @@ class DronTello():
         self.sock.sendto('right 20'.encode(encoding="utf-8"), self.tello_address)
         print("Derecha Dron")
         #time.sleep(5)
-
+    
     def izquierda(self):
 
         self.sock.sendto('left 20'.encode(encoding="utf-8"), self.tello_address)
@@ -76,14 +76,14 @@ class DronTello():
     def girarDerecha(self):
 
         # Rotate clockwise 360
-        self.sock.sendto('cw 45'.encode(encoding="utf-8"), self.tello_address)
+        self.sock.sendto(f'cw 45'.encode(encoding="utf-8"), self.tello_address)
         print("Girar Derecha Dron")
         #time.sleep(5)
 
     def girarIzquierda(self):
 
         # Rotate counte clockwise 360
-        self.sock.sendto('ccw 45'.encode(encoding="utf-8"), self.tello_address)
+        self.sock.sendto(f'ccw 45'.encode(encoding="utf-8"), self.tello_address)
         print("Girar Izquierda Dron")
         #time.sleep(5)
 

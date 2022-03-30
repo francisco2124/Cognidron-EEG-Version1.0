@@ -399,7 +399,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Apellido Materno</string>
+    <string>Apellido materno</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="leNumeroContacto">
@@ -471,7 +471,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Genero</string>
+    <string>Género</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -691,7 +691,7 @@ background-color: rgb(200, 198, 223);</string>
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Modificar datos del Tutor</string>
+     <string>Modificar datos del tutor</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">

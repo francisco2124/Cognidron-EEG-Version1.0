@@ -131,14 +131,14 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
 
     def cargarEstados(self):
         cursor = self.connection.cursor()
-        sql = '''SELECT idEstadado, nombre FROM estado '''
+        sql = '''SELECT idEstado, nombre FROM estado '''
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
 
     def recuperarIdEstado(self, nombre):
         cursor = self.connection.cursor()
-        sql = '''SELECT idEstadado, nombre FROM estado WHERE nombre = '{}'  '''.format(nombre)
+        sql = '''SELECT idEstado, nombre FROM estado WHERE nombre = '{}'  '''.format(nombre)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -152,14 +152,14 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
 
     def cargarMunicipios(self, idEstado):
         cursor = self.connection.cursor()
-        sql = '''SELECT idMunicipio, nombre FROM municipio WHERE Estadado_idEstadado = '{}'  '''.format(idEstado)
+        sql = '''SELECT idMunicipio, nombre FROM municipio WHERE Estadado_idEstado = '{}'  '''.format(idEstado)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
 
     def cargarEstadoAndMunicipio(self, idMunicipio):
         cursor = self.connection.cursor()
-        sql = '''SELECT est.nombre, mun.nombre FROM municipio mun INNER JOIN estado est ON (est.idEstadado = mun.Estadado_idEstadado) WHERE idMunicipio = '{}'  '''.format(idMunicipio)
+        sql = '''SELECT est.nombre, mun.nombre FROM municipio mun INNER JOIN estado est ON (est.idEstado = mun.Estadado_idEstado) WHERE idMunicipio = '{}'  '''.format(idMunicipio)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro

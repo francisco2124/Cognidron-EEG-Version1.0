@@ -110,7 +110,7 @@ class Controlador_AgrgarTutor(QtWidgets.QMainWindow):
 
         def validarCorreo(campo):
 
-            if not re.fullmatch(r"[0-9-A-Za-zñ@.]{1,500}", campo) :
+            if not re.fullmatch(r"[0-9-A-Za-zñ@.-0123456789]{1,500}", campo) :
                 return True
             else:
                 return False

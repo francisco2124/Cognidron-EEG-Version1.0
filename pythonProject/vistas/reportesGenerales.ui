@@ -319,7 +319,7 @@
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Reportes Generales</string>
+     <string>Reportes generales</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_24">

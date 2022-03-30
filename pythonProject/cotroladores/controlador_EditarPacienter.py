@@ -34,6 +34,7 @@ class Control_EditarPaciente(QtWidgets.QMainWindow):
         self.InicializarGui()
         self.cargarMunicipio()
         self.ui.cbEstado.currentIndexChanged[str].connect(self.cargarMunicipio)
+        self.cargarCbTutores()
 
     def InicializarGui(self):
 
@@ -56,7 +57,7 @@ class Control_EditarPaciente(QtWidgets.QMainWindow):
         ListaDatos = datos[0]
 
        # print("el ide del mun es: "+str(ListaDatos[13]))
-        nombreEstado = self.modelo.cargarEstadoAndMunicipio(str(ListaDatos[15]))
+        nombreEstado = self.modelo.cargarEstadoAndMunicipio(str(ListaDatos[14]))
         nameEstado = nombreEstado[0]
        # print("Recupere"+str(nameEstado[0]))
 
@@ -84,7 +85,7 @@ class Control_EditarPaciente(QtWidgets.QMainWindow):
         #Cargar primer elemnto
         ListaDatos = datos[0]
 
-        nombreEstado = self.modelo.cargarEstadoAndMunicipio(str(ListaDatos[15]))
+        nombreEstado = self.modelo.cargarEstadoAndMunicipio(str(ListaDatos[14]))
         nameEstado = nombreEstado[0]
 
         combo = self.ui.cbMunicipio
@@ -97,6 +98,7 @@ class Control_EditarPaciente(QtWidgets.QMainWindow):
         datos = self.modelo.cargarPlaceHolder(self.idPacinte)
 
         ListaDatos = datos[0]
+        print("Los datos tiene---:"+str(ListaDatos))
         print(ListaDatos[10])
 
         print("Se deitar el tutor")
@@ -123,7 +125,7 @@ class Control_EditarPaciente(QtWidgets.QMainWindow):
 
         nacionalidad = self.ui.leNacionalidad.text()
         if len(nacionalidad) == 0:
-            nacionalidad = ListaDatos[6]
+            nacionalidad = ListaDatos[10]
         localidad = self.ui.leLocalidad.text()
         if len(localidad) == 0:
             localidad = ListaDatos[7]
@@ -135,13 +137,14 @@ class Control_EditarPaciente(QtWidgets.QMainWindow):
             num = ListaDatos[9]
         codPostal = self.ui.leCodigoPostal.text()
         if len(codPostal) == 0:
-            codPostal = ListaDatos[10]
+            codPostal = ListaDatos[6]
         contacto = self.ui.leNumeroContacto.text()
         if len(contacto) == 0:
-            contacto = ListaDatos[11]
+            contacto = ListaDatos[12]
         correoElec = self.ui.leCorreoElectronico.text()
         if len(correoElec) == 0:
-            correoElec = ListaDatos[12]
+            print("Correo "+str(ListaDatos[13]))
+            correoElec = ListaDatos[13]
 
         print("Datos extras")
         idMun = self.modelo.recuperarIdMunicipio(self.ui.cbMunicipio.currentText())
@@ -170,7 +173,7 @@ class Control_EditarPaciente(QtWidgets.QMainWindow):
                 return True
         def validarCorreo(campo):
 
-            if not re.fullmatch(r"[A-Za-zñ@.]{1,500}", campo) :
+            if not re.fullmatch(r"[A-Za-zñ@.-0123456789]{1,500}", campo) :
                 return True
             else:
                 return False
@@ -213,13 +216,13 @@ class Control_EditarPaciente(QtWidgets.QMainWindow):
             Alerta = QMessageBox.information(self, 'Alerta', "Ingresa el Nombre usando letras y espacios", QMessageBox.Ok)
 
         elif localidad != None and len(localidad) >= 1 and validarCamposConEspaciosNoObligatorios(localidad):
-            Alerta = QMessageBox.information(self, 'Alerta', "Ingresa el Localidad usando letras y espacios", QMessageBox.Ok)
+            Alerta = QMessageBox.information(self, 'Alerta', "Ingresa la Localidad usando letras y espacios", QMessageBox.Ok)
 
         elif calle != None and len(calle) >= 1 and validarCamposConEspaciosNoObligatorios(calle):
-            Alerta = QMessageBox.information(self, 'Alerta', "Ingresa el Calle usando letras y espacios", QMessageBox.Ok)
+            Alerta = QMessageBox.information(self, 'Alerta', "Ingresa la Calle usando letras y espacios", QMessageBox.Ok)
 
-        elif calle != None and len(nacionalidad) >= 1 and validarCamposConEspaciosNoObligatorios(nacionalidad):
-            Alerta = QMessageBox.information(self, 'Alerta', "Ingresa el Nacionalidad usando letras y espacios", QMessageBox.Ok)
+        elif len(nacionalidad) >= 1 and validarCamposConEspaciosNoObligatorios(nacionalidad):
+            Alerta = QMessageBox.information(self, 'Alerta', "Ingresa la Nacionalidad usando letras y espacios", QMessageBox.Ok)
         elif len(str(codPostal)) > 0 and len(str(codPostal)) != 5:
             Alerta = QMessageBox.information(self, 'Alerta', "El campo codigo postal debe tener 5 numeros", QMessageBox.Ok)
         #Continuar validadno campos obligatorios
@@ -280,5 +283,23 @@ class Control_EditarPaciente(QtWidgets.QMainWindow):
         self.ui.leCodigoPostal.setText("")
         self.ui.leCorreoElectronico.setText("")
 
+    def cargarCbTutores(self):
 
+        tutores =  self.modelo.recuperarTutores()
+        #print(terapeutas)
+
+        datos = self.modelo.cargarPlaceHolder(self.idPacinte)
+
+        ListaDatos = datos[0]
+        print("El id del Tutor es: "+str(ListaDatos[15]))
+
+        tutorSeleccionado = self.modelo.recuperarTutorEspecifico(ListaDatos[15])
+        print("El tutor selecionado es: "+str(tutorSeleccionado[0][0]))
+        tutorSelecFinal= (str(tutorSeleccionado[0][0]) + " "+str(tutorSeleccionado[0][1]))
+
+        combo = self.ui.cbTutor
+        combo.clear()
+        combo.addItem(tutorSelecFinal)
+        combo.addItem("Sin Tutor")
+        combo.addItems([str(x[0]) +"  "+ str(x[1]) for x in tutores])
 
