@@ -8,7 +8,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
-
 class Ui_DialogAgregarTerapeuta(object):
     def setupUi(self, DialogAgregarTerapeuta):
         DialogAgregarTerapeuta.setObjectName("DialogAgregarTerapeuta")
@@ -74,7 +73,7 @@ class Ui_DialogAgregarTerapeuta(object):
         self.label_17.setText("")
         self.label_17.setObjectName("label_17")
         self.label_22 = QtWidgets.QLabel(DialogAgregarTerapeuta)
-        self.label_22.setGeometry(QtCore.QRect(20, 600, 171, 21))
+        self.label_22.setGeometry(QtCore.QRect(20, 600, 201, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_22.setFont(font)
@@ -336,7 +335,7 @@ class Ui_DialogAgregarTerapeuta(object):
         self.rbMasculino.setFont(font)
         self.rbMasculino.setObjectName("rbMasculino")
         self.checkBox = QtWidgets.QCheckBox(DialogAgregarTerapeuta)
-        self.checkBox.setGeometry(QtCore.QRect(220, 600, 81, 20))
+        self.checkBox.setGeometry(QtCore.QRect(220, 600, 101, 20))
         self.checkBox.setObjectName("checkBox")
 
         self.retranslateUi(DialogAgregarTerapeuta)
@@ -345,9 +344,9 @@ class Ui_DialogAgregarTerapeuta(object):
     def retranslateUi(self, DialogAgregarTerapeuta):
         _translate = QtCore.QCoreApplication.translate
         DialogAgregarTerapeuta.setWindowTitle(_translate("DialogAgregarTerapeuta", "Dialog"))
-        self.label_3.setText(_translate("DialogAgregarTerapeuta", "Apellido Materno (*)"))
+        self.label_3.setText(_translate("DialogAgregarTerapeuta", "Apellido materno (*)"))
         self.label_5.setText(_translate("DialogAgregarTerapeuta", "Fecha de nacimiento (*)"))
-        self.label_22.setText(_translate("DialogAgregarTerapeuta", "¿Es administrador?"))
+        self.label_22.setText(_translate("DialogAgregarTerapeuta", "Tipo de usuario"))
         self.label_16.setText(_translate("DialogAgregarTerapeuta", "Correo electrónico (*)"))
         self.label_18.setText(_translate("DialogAgregarTerapeuta", "Nacionalidad"))
         self.leCofirnarPassword.setToolTip(_translate("DialogAgregarTerapeuta", "La contraseña debe tener entre 6 y 10 digitos, 1 numero, una minuscula y una mayuscula"))
@@ -360,19 +359,19 @@ class Ui_DialogAgregarTerapeuta(object):
         self.label_20.setText(_translate("DialogAgregarTerapeuta", "Nombre de Usuario (*)"))
         self.label_11.setText(_translate("DialogAgregarTerapeuta", "Calle y número"))
         self.label_9.setText(_translate("DialogAgregarTerapeuta", "Estado"))
-        self.label_15.setText(_translate("DialogAgregarTerapeuta", "Genero (*)"))
+        self.label_15.setText(_translate("DialogAgregarTerapeuta", "Género (*)"))
         self.label_14.setText(_translate("DialogAgregarTerapeuta", "Número de contacto (*)"))
         self.label_12.setText(_translate("DialogAgregarTerapeuta", "Municipio"))
         self.cbEstado.setItemText(0, _translate("DialogAgregarTerapeuta", "Jalisco"))
         self.label_10.setText(_translate("DialogAgregarTerapeuta", "Localidad"))
         self.label_13.setText(_translate("DialogAgregarTerapeuta", "Código postal"))
-        self.label_7.setText(_translate("DialogAgregarTerapeuta", "Apellido Paterno (*)"))
+        self.label_7.setText(_translate("DialogAgregarTerapeuta", "Apellido paterno (*)"))
         self.cbMunicipio.setItemText(0, _translate("DialogAgregarTerapeuta", "Ameca"))
-        self.label_2.setText(_translate("DialogAgregarTerapeuta", "Nuevo Terapeutaa"))
+        self.label_2.setText(_translate("DialogAgregarTerapeuta", "Nuevo terapeuta"))
         self.groupBox.setTitle(_translate("DialogAgregarTerapeuta", "Selecciona una opción"))
         self.rbFemenino.setText(_translate("DialogAgregarTerapeuta", "Femenino"))
         self.rbMasculino.setText(_translate("DialogAgregarTerapeuta", "Masculino"))
-        self.checkBox.setText(_translate("DialogAgregarTerapeuta", "Admin"))
+        self.checkBox.setText(_translate("DialogAgregarTerapeuta", "Admistrador"))
 
 
 if __name__ == "__main__":

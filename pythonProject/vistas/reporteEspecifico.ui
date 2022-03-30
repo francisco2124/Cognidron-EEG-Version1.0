@@ -58,7 +58,7 @@
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Reporte de una terapia de tipo Neurofeedback</string>
+     <string>Reporte de una terapia de tipo neurofeedback</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_24">
@@ -196,7 +196,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </rect>
    </property>
    <property name="text">
-    <string>Mayor Umbral:</string>
+    <string>Mayor umbral:</string>
    </property>
   </widget>
   <widget class="Line" name="line_43">
@@ -304,7 +304,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </rect>
    </property>
    <property name="text">
-    <string>Tipo de entorno</string>
+    <string>Tipo de entorno:</string>
    </property>
   </widget>
   <widget class="Line" name="line_35">
@@ -339,7 +339,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </rect>
    </property>
    <property name="text">
-    <string>Promedio Umbral:</string>
+    <string>Promedio umbral:</string>
    </property>
   </widget>
   <widget class="Line" name="line_21">
@@ -526,8 +526,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="lbIdentificador">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>92</y>
+     <x>230</x>
+     <y>90</y>
      <width>341</width>
      <height>81</height>
     </rect>
@@ -826,7 +826,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </font>
    </property>
    <property name="text">
-    <string>Identificador de reporte:</string>
+    <string>Numero de reporte:</string>
    </property>
   </widget>
   <widget class="Line" name="line_45">
@@ -1024,7 +1024,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </rect>
    </property>
    <property name="text">
-    <string>Menor Umbral:</string>
+    <string>Menor umbral:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_28">
@@ -1382,7 +1382,7 @@ Execelnte trabajo!</string>
     </rect>
    </property>
    <property name="text">
-    <string>Theta/Beta Completa</string>
+    <string>Theta/Beta completa</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
@@ -1395,7 +1395,7 @@ Execelnte trabajo!</string>
     </rect>
    </property>
    <property name="title">
-    <string>   Tipo de Grafico :</string>
+    <string>   Tipo de grafico :</string>
    </property>
    <widget class="QRadioButton" name="rbGrafLIneal_2">
     <property name="geometry">
@@ -1648,7 +1648,7 @@ Execelnte trabajo!</string>
     </rect>
    </property>
    <property name="text">
-    <string>Imprimir Reporte</string>
+    <string>Imprimir reporte</string>
    </property>
   </widget>
   <widget class="Line" name="line_22">
@@ -1699,7 +1699,7 @@ Execelnte trabajo!</string>
     </rect>
    </property>
    <property name="text">
-    <string>Visualizar Ondas</string>
+    <string>Visualizar ondas</string>
    </property>
   </widget>
   <widget class="QLabel" name="lbRobot">
@@ -1766,7 +1766,7 @@ Execelnte trabajo!</string>
     </rect>
    </property>
    <property name="text">
-    <string>Robot </string>
+    <string>Robot :</string>
    </property>
   </widget>
   <widget class="Line" name="line_24">

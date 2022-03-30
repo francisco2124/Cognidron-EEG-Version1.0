@@ -67,7 +67,7 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         cursor = connection2.cursor()
 
         sql = "SELECT p.idPaciente, p.nombre, p.ape_paterno, p.ape_materno, p.fecha_nacimiento, tuto.nombre FROM paciente p " \
-              "INNER JOIN tutor tuto ON (tuto.idTutor = p.Tutor_idTutor)"
+              "INNER JOIN tutor tuto ON (tuto.idTutor = p.Tutor_idTutor) where p.borradoLogico = 0 "
         cursor.execute(sql)
         cursor.close()
         registro = cursor.fetchall()
@@ -114,10 +114,10 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         )
         cursor = self.connection.cursor()
         date2 = date.strip()
-        sql ='''UPDATE terapeuta SET  nombre  ='{}', ape_paterno ='{}', ape_materno ='{}', genero ='{}', fecha_nacimiento ='{}',
+        sql ='''UPDATE paciente SET  nombre  ='{}', ape_paterno ='{}', ape_materno ='{}', genero ='{}', fecha_nacimiento ='{}',
          cod_postal ='{}', localidad ='{}',
         calle ='{}', num ='{}', nacionalidad ='{}',  numero_contacto ='{}', correo_electronico ='{}',
-        Municipio_idMunicipio ='{}' WHERE idTrapeuta = '{}'
+        Municipio_idMunicipio ='{}' WHERE idPaciente = '{}'
          '''.format(nombre,app,apm,genero,date, codPostal,localidad, calle, num, nacionalidad, numeroContc, correoelc, idMunicipio,
                     idTerapeuta)
 
@@ -144,7 +144,7 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
 
     def cargarEstados(self):
         cursor = self.connection.cursor()
-        sql = '''SELECT idEstadado, nombre FROM estado '''
+        sql = '''SELECT idEstado, nombre FROM estado '''
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -158,7 +158,7 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
 
     def recuperarIdEstado(self, nombre):
         cursor = self.connection.cursor()
-        sql = '''SELECT idEstadado, nombre FROM estado WHERE nombre = '{}'  '''.format(nombre)
+        sql = '''SELECT idEstado, nombre FROM estado WHERE nombre = '{}'  '''.format(nombre)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -172,14 +172,14 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
 
     def cargarMunicipios(self, idEstado):
         cursor = self.connection.cursor()
-        sql = '''SELECT idMunicipio, nombre FROM municipio WHERE Estadado_idEstadado = '{}'  '''.format(idEstado)
+        sql = '''SELECT idMunicipio, nombre FROM municipio WHERE Estadado_idEstado = '{}'  '''.format(idEstado)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
 
     def cargarEstadoAndMunicipio(self, idMunicipio):
         cursor = self.connection.cursor()
-        sql = '''SELECT est.nombre, mun.nombre FROM municipio mun INNER JOIN estado est ON (est.idEstadado = mun.Estadado_idEstadado) WHERE idMunicipio = '{}'  '''.format(idMunicipio)
+        sql = '''SELECT est.nombre, mun.nombre FROM municipio mun INNER JOIN estado est ON (est.idEstado = mun.Estadado_idEstado) WHERE idMunicipio = '{}'  '''.format(idMunicipio)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -202,24 +202,29 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         return registro
         self.connection.close()
 
-    def validarBorradoLigico(self, idPaciente):
+    def recuperarTutorEspecifico(self, idTutor):
+
+
+        self.connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd="root0",
+            db="cognidroneeg"
+        )
         cursor = self.connection.cursor()
-
-        sql='''SELECT idPaciente  FROM paciente WHERE idPaciente =' {}' '''.format(idPaciente)
-
+        sql = "SELECT nombre, ape_paterno FROM tutor where idTutor ='{}'".format(idTutor)
         cursor.execute(sql)
         registro = cursor.fetchall()
-        if(len(registro) == 0):
-            registro = False
-        else:
-            registro = True
-        self.connection.commit()
         return registro
+        self.connection.close()
+
+
+
     def validarBorradoLigico2(self, user):
         cursor = self.connection.cursor()
 
-        sql="SELECT idTutor FROM tutor " \
-            " WHERE correo_electronico ='{}'".format(user)
+        sql="SELECT fecha FROM sesionterapeutica " \
+            " WHERE Paciente_idPaciente ='{}'".format(user)
 
         cursor.execute(sql)
         registro = cursor.fetchall()

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>516</width>
-    <height>629</height>
+    <height>634</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -399,7 +399,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Apellido Materno</string>
+    <string>Apellido materno</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="leNumeroContacto">
@@ -471,7 +471,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Genero</string>
+    <string>Género</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -509,7 +509,7 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>560</y>
+     <y>570</y>
      <width>101</width>
      <height>51</height>
     </rect>
@@ -531,7 +531,7 @@ background-color: rgb(200, 198, 223);</string>
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>560</y>
+     <y>570</y>
      <width>161</width>
      <height>51</height>
     </rect>
@@ -553,7 +553,7 @@ background-color: rgb(200, 198, 223);</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>560</y>
+     <y>570</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -713,7 +713,7 @@ background-color: rgb(200, 198, 223);</string>
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Modificar datos del Terapeuta</string>
+     <string>Modificar datos del terapeuta</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">
@@ -762,6 +762,40 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <string/>
    </property>
   </widget>
+  <widget class="QCheckBox" name="cbAdmin">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>530</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Administrador</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_24">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>530</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Tipo de Usuario</string>
+   </property>
+  </widget>
   <zorder>label_25</zorder>
   <zorder>leLocalidad</zorder>
   <zorder>label_16</zorder>
@@ -797,6 +831,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <zorder>dateEdit</zorder>
   <zorder>frame_2</zorder>
   <zorder>frame</zorder>
+  <zorder>cbAdmin</zorder>
+  <zorder>label_24</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

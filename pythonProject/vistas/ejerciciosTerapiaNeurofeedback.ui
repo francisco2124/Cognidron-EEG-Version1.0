@@ -46,7 +46,7 @@
 text-decoration: underline;</string>
    </property>
    <property name="text">
-    <string>Ejercicio Seleccionado:</string>
+    <string>Ejercicios seleccionado:</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnRealizar">
@@ -143,7 +143,7 @@ text-decoration: underline;</string>
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Ejercicios de tipo Neurofeedback</string>
+     <string>Ejercicios de tipo neurofeedback</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_25">

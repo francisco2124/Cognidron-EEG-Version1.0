@@ -76,7 +76,7 @@
 font: 75 19pt &quot;Times New Roman&quot;;</string>
    </property>
    <property name="text">
-    <string>Capturar Observaciones</string>
+    <string>Capturar observaciones</string>
    </property>
   </widget>
   <widget class="QFrame" name="frame_4">

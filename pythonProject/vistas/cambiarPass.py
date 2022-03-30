@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
 
+
 class Ui_cambiarPass(object):
     def setupUi(self, cambiarPass):
         cambiarPass.setObjectName("cambiarPass")
@@ -122,11 +123,12 @@ class Ui_cambiarPass(object):
         _translate = QtCore.QCoreApplication.translate
         cambiarPass.setWindowTitle(_translate("cambiarPass", "Dialog"))
         self.btnRegistrar_2.setText(_translate("cambiarPass", "Cambiar"))
-        self.label_3.setText(_translate("cambiarPass", "Cambiar Contraseña"))
+        self.label_3.setText(_translate("cambiarPass", "Cambiar contraseña"))
         self.lePassword_2.setToolTip(_translate("cambiarPass", "La contraseña debe tener entre 6 y 10 digitos, 1 numero, una minuscula y una mayuscula"))
-        self.label_24.setText(_translate("cambiarPass", "Contraseña Nueva"))
+        self.label_24.setText(_translate("cambiarPass", "Contraseña nueva"))
         self.leCofirnarPassword_2.setToolTip(_translate("cambiarPass", "La contraseña debe tener entre 6 y 10 digitos, 1 numero, una minuscula y una mayuscula"))
-        self.label_25.setText(_translate("cambiarPass", "Confirmar Contraseña"))
+        self.label_25.setText(_translate("cambiarPass", "Confirmar contraseña"))
+
 
 if __name__ == "__main__":
     import sys

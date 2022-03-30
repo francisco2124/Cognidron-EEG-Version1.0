@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
 
+
 class Ui_ConsultarTerapeutaSelec(object):
     def setupUi(self, ConsultarTerapeutaSelec):
         ConsultarTerapeutaSelec.setObjectName("ConsultarTerapeutaSelec")
@@ -33,7 +34,7 @@ class Ui_ConsultarTerapeutaSelec(object):
         self.pushButton_3.setGeometry(QtCore.QRect(510, 610, 93, 28))
         self.pushButton_3.setObjectName("pushButton_3")
         self.lb1 = QtWidgets.QLabel(ConsultarTerapeutaSelec)
-        self.lb1.setGeometry(QtCore.QRect(10, 150, 51, 31))
+        self.lb1.setGeometry(QtCore.QRect(10, 150, 61, 31))
         self.lb1.setStyleSheet("font: 87 8pt \"Segoe UI Black\";")
         self.lb1.setObjectName("lb1")
         self.label_4 = QtWidgets.QLabel(ConsultarTerapeutaSelec)
@@ -51,13 +52,13 @@ class Ui_ConsultarTerapeutaSelec(object):
         self.lbCorreo.setGeometry(QtCore.QRect(140, 470, 141, 31))
         self.lbCorreo.setObjectName("lbCorreo")
         self.lbGenero = QtWidgets.QLabel(ConsultarTerapeutaSelec)
-        self.lbGenero.setGeometry(QtCore.QRect(50, 180, 91, 31))
+        self.lbGenero.setGeometry(QtCore.QRect(65, 180, 91, 31))
         self.lbGenero.setObjectName("lbGenero")
         self.lbNombre = QtWidgets.QLabel(ConsultarTerapeutaSelec)
         self.lbNombre.setGeometry(QtCore.QRect(70, 150, 181, 31))
         self.lbNombre.setObjectName("lbNombre")
         self.lbFechaNaimiento = QtWidgets.QLabel(ConsultarTerapeutaSelec)
-        self.lbFechaNaimiento.setGeometry(QtCore.QRect(130, 210, 111, 31))
+        self.lbFechaNaimiento.setGeometry(QtCore.QRect(150, 210, 111, 31))
         self.lbFechaNaimiento.setObjectName("lbFechaNaimiento")
         self.lbLocalida = QtWidgets.QLabel(ConsultarTerapeutaSelec)
         self.lbLocalida.setGeometry(QtCore.QRect(80, 360, 71, 31))
@@ -273,7 +274,7 @@ class Ui_ConsultarTerapeutaSelec(object):
         self.lbCodPostal.setGeometry(QtCore.QRect(80, 440, 141, 31))
         self.lbCodPostal.setObjectName("lbCodPostal")
         self.lbgen = QtWidgets.QLabel(ConsultarTerapeutaSelec)
-        self.lbgen.setGeometry(QtCore.QRect(10, 180, 41, 31))
+        self.lbgen.setGeometry(QtCore.QRect(10, 180, 51, 31))
         self.lbgen.setStyleSheet("font: 87 8pt \"Segoe UI Black\";")
         self.lbgen.setObjectName("lbgen")
         self.pushButton_4 = QtWidgets.QPushButton(ConsultarTerapeutaSelec)
@@ -324,12 +325,12 @@ class Ui_ConsultarTerapeutaSelec(object):
     def retranslateUi(self, ConsultarTerapeutaSelec):
         _translate = QtCore.QCoreApplication.translate
         ConsultarTerapeutaSelec.setWindowTitle(_translate("ConsultarTerapeutaSelec", "Terapeuta Selecionado"))
-        self.label.setText(_translate("ConsultarTerapeutaSelec", "Usuario del Terapeuta:  "))
+        self.label.setText(_translate("ConsultarTerapeutaSelec", "Usuario del terapeuta:  "))
         self.pushButton.setText(_translate("ConsultarTerapeutaSelec", "Consultar"))
         self.pushButton_2.setText(_translate("ConsultarTerapeutaSelec", "Enviar"))
         self.pushButton_3.setText(_translate("ConsultarTerapeutaSelec", "Descargar"))
         self.lb1.setText(_translate("ConsultarTerapeutaSelec", "Nombre:"))
-        self.label_4.setText(_translate("ConsultarTerapeutaSelec", "Fecha Nacimiento:"))
+        self.label_4.setText(_translate("ConsultarTerapeutaSelec", "Fecha de nacimiento:"))
         self.lb12.setText(_translate("ConsultarTerapeutaSelec", "Domicilio:"))
         self.lbDomicilio.setText(_translate("ConsultarTerapeutaSelec", "xxx"))
         self.lbCorreo.setText(_translate("ConsultarTerapeutaSelec", "imaldeaa23@gmail.com"))
@@ -338,7 +339,7 @@ class Ui_ConsultarTerapeutaSelec(object):
         self.lbFechaNaimiento.setText(_translate("ConsultarTerapeutaSelec", "xxxxxxxxxxxxx"))
         self.lbLocalida.setText(_translate("ConsultarTerapeutaSelec", "numero"))
         self.lLocalidad.setText(_translate("ConsultarTerapeutaSelec", "Localidad:"))
-        self.label_3.setText(_translate("ConsultarTerapeutaSelec", "Datos de un Terapeuta"))
+        self.label_3.setText(_translate("ConsultarTerapeutaSelec", "Datos de un terapeuta"))
         self.lbAdmin.setText(_translate("ConsultarTerapeutaSelec", "Admin"))
         item = self.tabla_pacientes.horizontalHeaderItem(0)
         item.setText(_translate("ConsultarTerapeutaSelec", "Identificador"))
@@ -366,13 +367,13 @@ class Ui_ConsultarTerapeutaSelec(object):
         self.lbNacionalidad.setText(_translate("ConsultarTerapeutaSelec", "xxxx"))
         self.lbMunicipio.setText(_translate("ConsultarTerapeutaSelec", "xxxx"))
         self.lb8.setText(_translate("ConsultarTerapeutaSelec", "Edad:"))
-        self.label_2.setText(_translate("ConsultarTerapeutaSelec", "Reportes del Terapeuta"))
-        self.label_7.setText(_translate("ConsultarTerapeutaSelec", "Pacintes del Terapeuta"))
+        self.label_2.setText(_translate("ConsultarTerapeutaSelec", "Reportes del terapeuta"))
+        self.label_7.setText(_translate("ConsultarTerapeutaSelec", "Pacintes del terapeuta"))
         self.lbUsuario.setText(_translate("ConsultarTerapeutaSelec", "xxxx"))
         self.lbContacto.setText(_translate("ConsultarTerapeutaSelec", "xxxxxxx"))
         self.lb14_2.setText(_translate("ConsultarTerapeutaSelec", "Contacto:"))
         self.lbCodPostal.setText(_translate("ConsultarTerapeutaSelec", "567"))
-        self.lbgen.setText(_translate("ConsultarTerapeutaSelec", "Sexo:"))
+        self.lbgen.setText(_translate("ConsultarTerapeutaSelec", "Género:"))
         self.pushButton_4.setText(_translate("ConsultarTerapeutaSelec", "Consultar Paciente"))
 
 if __name__ == "__main__":

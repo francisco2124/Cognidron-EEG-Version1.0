@@ -8,10 +8,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
+
 class Ui_Dialog_EditarTerapeuta(object):
     def setupUi(self, Dialog_EditarTerapeuta):
         Dialog_EditarTerapeuta.setObjectName("Dialog_EditarTerapeuta")
-        Dialog_EditarTerapeuta.resize(516, 629)
+        Dialog_EditarTerapeuta.resize(516, 634)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/images/terapeuta.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog_EditarTerapeuta.setWindowIcon(icon)
@@ -190,7 +191,7 @@ class Ui_Dialog_EditarTerapeuta(object):
         self.leNumero.setMaxLength(4)
         self.leNumero.setObjectName("leNumero")
         self.btnAceptar = QtWidgets.QPushButton(Dialog_EditarTerapeuta)
-        self.btnAceptar.setGeometry(QtCore.QRect(220, 560, 101, 51))
+        self.btnAceptar.setGeometry(QtCore.QRect(220, 570, 101, 51))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.btnAceptar.setFont(font)
@@ -198,7 +199,7 @@ class Ui_Dialog_EditarTerapeuta(object):
 "background-color: rgb(200, 198, 223);")
         self.btnAceptar.setObjectName("btnAceptar")
         self.btnCancelar = QtWidgets.QPushButton(Dialog_EditarTerapeuta)
-        self.btnCancelar.setGeometry(QtCore.QRect(340, 560, 161, 51))
+        self.btnCancelar.setGeometry(QtCore.QRect(340, 570, 161, 51))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.btnCancelar.setFont(font)
@@ -206,7 +207,7 @@ class Ui_Dialog_EditarTerapeuta(object):
 "background-color: rgb(200, 198, 223);")
         self.btnCancelar.setObjectName("btnCancelar")
         self.btnCambiarPass = QtWidgets.QPushButton(Dialog_EditarTerapeuta)
-        self.btnCambiarPass.setGeometry(QtCore.QRect(10, 560, 201, 51))
+        self.btnCambiarPass.setGeometry(QtCore.QRect(10, 570, 201, 51))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.btnCambiarPass.setFont(font)
@@ -276,6 +277,16 @@ class Ui_Dialog_EditarTerapeuta(object):
 "")
         self.label_25.setText("")
         self.label_25.setObjectName("label_25")
+        self.cbAdmin = QtWidgets.QCheckBox(Dialog_EditarTerapeuta)
+        self.cbAdmin.setGeometry(QtCore.QRect(190, 530, 111, 20))
+        self.cbAdmin.setChecked(True)
+        self.cbAdmin.setObjectName("cbAdmin")
+        self.label_24 = QtWidgets.QLabel(Dialog_EditarTerapeuta)
+        self.label_24.setGeometry(QtCore.QRect(20, 530, 181, 21))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_24.setFont(font)
+        self.label_24.setObjectName("label_24")
         self.label_25.raise_()
         self.leLocalidad.raise_()
         self.label_16.raise_()
@@ -311,6 +322,8 @@ class Ui_Dialog_EditarTerapeuta(object):
         self.dateEdit.raise_()
         self.frame_2.raise_()
         self.frame.raise_()
+        self.cbAdmin.raise_()
+        self.label_24.raise_()
 
         self.retranslateUi(Dialog_EditarTerapeuta)
         QtCore.QMetaObject.connectSlotsByName(Dialog_EditarTerapeuta)
@@ -328,10 +341,10 @@ class Ui_Dialog_EditarTerapeuta(object):
         self.label_11.setText(_translate("Dialog_EditarTerapeuta", "Calle y número"))
         self.label_18.setText(_translate("Dialog_EditarTerapeuta", "Nacionalidad"))
         self.label_9.setText(_translate("Dialog_EditarTerapeuta", "Estado"))
-        self.label_3.setText(_translate("Dialog_EditarTerapeuta", "Apellido Materno"))
+        self.label_3.setText(_translate("Dialog_EditarTerapeuta", "Apellido materno"))
         self.label_14.setText(_translate("Dialog_EditarTerapeuta", "Número de contacto"))
         self.label_12.setText(_translate("Dialog_EditarTerapeuta", "Municipio"))
-        self.label_15.setText(_translate("Dialog_EditarTerapeuta", "Genero"))
+        self.label_15.setText(_translate("Dialog_EditarTerapeuta", "Género"))
         self.label_2.setText(_translate("Dialog_EditarTerapeuta", "Apellido paterno"))
         self.btnAceptar.setText(_translate("Dialog_EditarTerapeuta", "Aceptar"))
         self.btnCancelar.setText(_translate("Dialog_EditarTerapeuta", "Limpiar Campos"))
@@ -339,7 +352,9 @@ class Ui_Dialog_EditarTerapeuta(object):
         self.groupBox.setTitle(_translate("Dialog_EditarTerapeuta", "Seleciona una opción"))
         self.rbFemenino.setText(_translate("Dialog_EditarTerapeuta", "Femenino"))
         self.rbMasculino.setText(_translate("Dialog_EditarTerapeuta", "Masculino"))
-        self.label_8.setText(_translate("Dialog_EditarTerapeuta", "Modificar datos del Terapeuta"))
+        self.label_8.setText(_translate("Dialog_EditarTerapeuta", "Modificar datos del terapeuta"))
+        self.cbAdmin.setText(_translate("Dialog_EditarTerapeuta", "Administrador"))
+        self.label_24.setText(_translate("Dialog_EditarTerapeuta", "Tipo de Usuario"))
 
 
 if __name__ == "__main__":

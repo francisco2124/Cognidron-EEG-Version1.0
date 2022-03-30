@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1285</width>
-    <height>922</height>
+    <height>978</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,7 +36,7 @@
       <x>10</x>
       <y>20</y>
       <width>1261</width>
-      <height>811</height>
+      <height>871</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -47,8 +47,8 @@
     </property>
     <property name="minimumSize">
      <size>
-      <width>1200</width>
-      <height>810</height>
+      <width>1261</width>
+      <height>871</height>
      </size>
     </property>
     <property name="baseSize">
@@ -81,7 +81,7 @@
    </widget>
    <widget class="QMenu" name="menuAchivo">
     <property name="title">
-     <string>Achivo</string>
+     <string>Personas</string>
     </property>
     <widget class="QMenu" name="opc_Paciente">
      <property name="title">
@@ -119,6 +119,7 @@
      </property>
      <addaction name="actionCrear_Terapeutta"/>
      <addaction name="actionConsultar_Terapeuta"/>
+     <addaction name="actionRecuperar_Teraputas_Eliminados"/>
     </widget>
     <addaction name="menuTerapeuta"/>
     <addaction name="menuTutor"/>
@@ -140,7 +141,7 @@
     </widget>
     <widget class="QMenu" name="menuModo_Libre">
      <property name="title">
-      <string>Modo Libre</string>
+      <string>Control Mental</string>
      </property>
      <addaction name="actionLevel_1"/>
      <addaction name="actionLevel_2"/>
@@ -186,9 +187,9 @@
    </widget>
    <addaction name="menuAchivo"/>
    <addaction name="menuEjercicios"/>
-   <addaction name="menuVista"/>
    <addaction name="menuCoexion"/>
    <addaction name="menuReportes"/>
+   <addaction name="menuVista"/>
    <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -653,6 +654,15 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionRecuperar_Teraputas_Eliminados">
+   <property name="icon">
+    <iconset resource="images/image.qrc">
+     <normaloff>:/newPrefix/lineaIzqu.png</normaloff>:/newPrefix/lineaIzqu.png</iconset>
+   </property>
+   <property name="text">
+    <string>Recuperar Teraputas Eliminados</string>
    </property>
   </action>
  </widget>

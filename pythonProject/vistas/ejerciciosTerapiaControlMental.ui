@@ -46,7 +46,7 @@
 text-decoration: underline;</string>
    </property>
    <property name="text">
-    <string>Ejercicio Seleccionado:</string>
+    <string>Ejercicio seleccionado:</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnRealizar">
@@ -59,7 +59,7 @@ text-decoration: underline;</string>
     </rect>
    </property>
    <property name="text">
-    <string>Realizar Ejercicio</string>
+    <string>Realizar ejercicio</string>
    </property>
   </widget>
   <widget class="QLabel" name="lbImagenEjercicio">
@@ -143,7 +143,7 @@ text-decoration: underline;</string>
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Ejercicios de tipo Control Mnetal</string>
+     <string>Ejercicios de tipo control menetal</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_25">

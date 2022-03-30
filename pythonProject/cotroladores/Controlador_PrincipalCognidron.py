@@ -1,10 +1,11 @@
 
 
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
 from vistas.principalCognitronp import Ui_MainWindow
 from PyQt5.QtGui import QIntValidator
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.Qt import Qt
 
 
 
@@ -14,6 +15,7 @@ from modelos.ModeloTerapeuta import Modelo_Terapeuta
 #----------------------------------Terapeutas----------------------------------------------
 from cotroladores.ControladorAgregarTerapeuta import Controlador_AgrgarTerapeutas
 from cotroladores.controlador_ConsultarTerapeuta import Controlador_ConsultarTerapeutas
+from cotroladores.controlador_RecuperarTerapeutas import Controlador_RecuperarTerapeutasEliminados
 
 #------------------------------------Tutores-----------------------------------------------
 from cotroladores.ControladorAgregarTutor import Controlador_AgrgarTutor
@@ -48,19 +50,19 @@ from cotroladores.controlador_moduloAyuda import Controlador_ModuloAyuda
 class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
 
     x = 0
-    def __init__(self):
+    def __init__(self,user):
         super().__init__()
         print("soy princial de vista")
         self.ui= Ui_MainWindow()
         self.ui.setupUi(self)
         #Electrodos bajo el estandar 10-10
-        self.electrodos = {'Estandar':'10-10',"AF3":True, "F7":True,"F3":True,'FC5':False,'T7':False,'P7':False,'01':False,'02':False, 'P8':False, 'T8':False, 'FC6':False, 'F4':False,'F8':False,'AF4':False}
-
-        self.InicializarGui()
+        self.electrodos = {'Estandar':'10-10',"AF3":False, "F7":False,"F3":True,'FC5':False,'T7':False,'P7':False,'01':False,'02':False, 'P8':False, 'T8':False, 'FC6':False, 'F4':True,'F8':False,'AF4':False}
+        self.user = user
         self.modelo = Modelo_Terapeuta()
+        self.InicializarGui()
+        self.abrirConexionEmotiv()
+        print("El usuario es: "+self.user)
 
-        #Regresar a abrirModuloAyuda() para que sea correcto
-        self.abrirTerapiaNeurofeedback()
 
 
     def InicializarGui(self):
@@ -69,6 +71,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.ui.actionCrear_Terapeutta.triggered.connect(self.agregarTerapeuta)
         self.ui.actionConsultar_Terapeuta.triggered.connect(self.consultarTerapeuta)
         self.ui.actionIconoTerapeuta.triggered.connect(self.consultarTerapeuta)
+        self.ui.actionRecuperar_Teraputas_Eliminados.triggered.connect(self.recuperarTerapeutasEliminados)
 
         #-----------------------------------Tutores------------------------------------------------
         self.ui.actionCrear_Tutor_2.triggered.connect(self.agregarTutor)
@@ -99,6 +102,16 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.ui.actionVistaCuadricula.triggered.connect(self.vista_cuadri)
         self.ui.actionVistaVentana.triggered.connect(self.vista_tabs)
 
+        datos = self.modelo.cargarPlaceHolder(self.user)
+        print("Las datos de terapeuta son:" +str(datos))
+        datosF = datos[0]
+        if datosF[14] == '0':
+            print("Eres un simple mortal  XD")
+            self.ui.actionIconoTerapeuta.setEnabled(False)
+            self.ui.menuTerapeuta.setEnabled(False)
+        else:
+            print("Eres administrador")
+
     #-----------------------------Funciones que mandan a llamar a los controladores-----------------------------------
 
     def agregarTerapeuta(self):
@@ -112,6 +125,13 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
 
         self.abrir = QtWidgets.QMainWindow()
         self.abrir = Controlador_ConsultarTerapeutas()
+        self.ui.mdiArea.addSubWindow(self.abrir)
+        self.abrir.show()
+
+    def recuperarTerapeutasEliminados(self):
+
+        self.abrir = QtWidgets.QMainWindow()
+        self.abrir = Controlador_RecuperarTerapeutasEliminados()
         self.ui.mdiArea.addSubWindow(self.abrir)
         self.abrir.show()
 
@@ -186,7 +206,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
             if value == False:
                 a = a+1
         #Regresar a 14 para que la validacion sea correcta
-        if a == 15:
+        if a == 14:
             lerta = QMessageBox.information(self, 'Alerta', "No se han identificado ningun electrodo..... Por favor realiza la seleccion de los electros", QMessageBox.Ok)
             self.abrirConexionEmotiv()
         else:
@@ -212,10 +232,15 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.abrir.show()
 
     def vista_tabs(self):
-        self.ui.mdiArea.setViewMode(1)
+        self.ui.mdiArea.setViewMode(2)
 
     def vista_cascada(self):
         self.ui.mdiArea.cascadeSubWindows()
 
     def vista_cuadri(self):
         self.ui.mdiArea.tileSubWindows()
+
+    def keyPressEvent(self, a0: QtGui.QKeyEvent) -> None:
+
+        if a0.key() == Qt.Key_M:
+            print("Hola desde M")

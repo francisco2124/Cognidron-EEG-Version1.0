@@ -8,11 +8,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1285, 922)
+        MainWindow.resize(1285, 978)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/newPrefix/idea-genial.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -22,13 +21,13 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.mdiArea = QtWidgets.QMdiArea(self.centralwidget)
         self.mdiArea.setEnabled(True)
-        self.mdiArea.setGeometry(QtCore.QRect(10, 20, 1261, 811))
+        self.mdiArea.setGeometry(QtCore.QRect(10, 20, 1261, 871))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(80)
         sizePolicy.setVerticalStretch(80)
         sizePolicy.setHeightForWidth(self.mdiArea.sizePolicy().hasHeightForWidth())
         self.mdiArea.setSizePolicy(sizePolicy)
-        self.mdiArea.setMinimumSize(QtCore.QSize(1200, 810))
+        self.mdiArea.setMinimumSize(QtCore.QSize(1261, 871))
         self.mdiArea.setBaseSize(QtCore.QSize(800, 800))
         self.mdiArea.setStyleSheet("")
         self.mdiArea.setObjectName("mdiArea")
@@ -228,6 +227,11 @@ class Ui_MainWindow(object):
         icon18.addPixmap(QtGui.QPixmap(":/newPrefix/libroControlMental.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionEjerciciosControlMnetal.setIcon(icon18)
         self.actionEjerciciosControlMnetal.setObjectName("actionEjerciciosControlMnetal")
+        self.actionRecuperar_Teraputas_Eliminados = QtWidgets.QAction(MainWindow)
+        icon19 = QtGui.QIcon()
+        icon19.addPixmap(QtGui.QPixmap(":/newPrefix/lineaIzqu.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionRecuperar_Teraputas_Eliminados.setIcon(icon19)
+        self.actionRecuperar_Teraputas_Eliminados.setObjectName("actionRecuperar_Teraputas_Eliminados")
         self.menuVista.addAction(self.mni_cascada)
         self.menuVista.addAction(self.mni_cuadricula)
         self.menuVista.addAction(self.mni_tabs)
@@ -238,6 +242,7 @@ class Ui_MainWindow(object):
         self.menuTutor.addAction(self.actionConsultar_Tutor)
         self.menuTerapeuta.addAction(self.actionCrear_Terapeutta)
         self.menuTerapeuta.addAction(self.actionConsultar_Terapeuta)
+        self.menuTerapeuta.addAction(self.actionRecuperar_Teraputas_Eliminados)
         self.menuAchivo.addAction(self.menuTerapeuta.menuAction())
         self.menuAchivo.addAction(self.menuTutor.menuAction())
         self.menuAchivo.addAction(self.opc_Paciente.menuAction())
@@ -263,9 +268,9 @@ class Ui_MainWindow(object):
         self.menuReportes.addAction(self.actionEditar_Reporte)
         self.menubar.addAction(self.menuAchivo.menuAction())
         self.menubar.addAction(self.menuEjercicios.menuAction())
-        self.menubar.addAction(self.menuVista.menuAction())
         self.menubar.addAction(self.menuCoexion.menuAction())
         self.menubar.addAction(self.menuReportes.menuAction())
+        self.menubar.addAction(self.menuVista.menuAction())
         self.menubar.addAction(self.menuAyuda.menuAction())
         self.toolBar.addAction(self.actionIconAbrirReporte)
         self.toolBar.addAction(self.actionIconConsulatrReporte)
@@ -292,13 +297,13 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Cognitron"))
         self.menuVista.setTitle(_translate("MainWindow", "Vista"))
-        self.menuAchivo.setTitle(_translate("MainWindow", "Achivo"))
+        self.menuAchivo.setTitle(_translate("MainWindow", "Personas"))
         self.opc_Paciente.setTitle(_translate("MainWindow", "Paciente"))
         self.menuTutor.setTitle(_translate("MainWindow", "Tutor"))
         self.menuTerapeuta.setTitle(_translate("MainWindow", "Terapeuta"))
         self.menuEjercicios.setTitle(_translate("MainWindow", "Ejercicios"))
         self.menuNeurofeedback.setTitle(_translate("MainWindow", "Neurofeedback"))
-        self.menuModo_Libre.setTitle(_translate("MainWindow", "Modo Libre"))
+        self.menuModo_Libre.setTitle(_translate("MainWindow", "Control Mental"))
         self.menuAyuda.setTitle(_translate("MainWindow", "Ayuda"))
         self.menuCoexion.setTitle(_translate("MainWindow", "Conexión"))
         self.menuConectar_Robot_Fisico.setTitle(_translate("MainWindow", "Conectar Robot Fisico"))
@@ -380,6 +385,7 @@ class Ui_MainWindow(object):
         self.actionEjerciciosControlMnetal.setText(_translate("MainWindow", "EjerciciosControlMnetal"))
         self.actionEjerciciosControlMnetal.setToolTip(_translate("MainWindow", "Abrir ejercicios de tipo control mental"))
         self.actionEjerciciosControlMnetal.setShortcut(_translate("MainWindow", "Ctrl+M"))
+        self.actionRecuperar_Teraputas_Eliminados.setText(_translate("MainWindow", "Recuperar Teraputas Eliminados"))
 
 
 if __name__ == "__main__":

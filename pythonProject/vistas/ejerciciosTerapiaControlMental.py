@@ -254,9 +254,9 @@ class Ui_ejercicioTerapeuticos(object):
     def retranslateUi(self, ejercicioTerapeuticos):
         _translate = QtCore.QCoreApplication.translate
         ejercicioTerapeuticos.setWindowTitle(_translate("ejercicioTerapeuticos", "Dialog"))
-        self.lbEjercicio.setText(_translate("ejercicioTerapeuticos", "Ejercicio Seleccionado:"))
-        self.btnRealizar.setText(_translate("ejercicioTerapeuticos", "Realizar Ejercicio"))
-        self.label_10.setText(_translate("ejercicioTerapeuticos", "Ejercicios de tipo Control Mnetal"))
+        self.lbEjercicio.setText(_translate("ejercicioTerapeuticos", "Ejercicio seleccionado:"))
+        self.btnRealizar.setText(_translate("ejercicioTerapeuticos", "Realizar ejercicio"))
+        self.label_10.setText(_translate("ejercicioTerapeuticos", "Ejercicios de tipo control menetal"))
         item = self.tvEjercicios.horizontalHeaderItem(0)
         item.setText(_translate("ejercicioTerapeuticos", "Nombre"))
         item = self.tvEjercicios.horizontalHeaderItem(1)
@@ -269,7 +269,7 @@ class Ui_ejercicioTerapeuticos(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Descripción del ejercico....</p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Descripción del ejercicio....</p></body></html>"))
         self.label_3.setText(_translate("ejercicioTerapeuticos", "Parámetro 1:"))
         self.lbParametro2.setText(_translate("ejercicioTerapeuticos", " -----------------------------------------------"))
         self.label_7.setText(_translate("ejercicioTerapeuticos", "Parámetro 2:"))

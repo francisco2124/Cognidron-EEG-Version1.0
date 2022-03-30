@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
 
+
 class Ui_Consultar_Terapeuta(object):
     def setupUi(self, Consultar_Terapeuta):
         Consultar_Terapeuta.setObjectName("Consultar_Terapeuta")
@@ -24,7 +25,7 @@ class Ui_Consultar_Terapeuta(object):
         self.btnModificar.setGeometry(QtCore.QRect(390, 180, 71, 28))
         self.btnModificar.setObjectName("btnModificar")
         self.label_2 = QtWidgets.QLabel(Consultar_Terapeuta)
-        self.label_2.setGeometry(QtCore.QRect(10, 110, 481, 61))
+        self.label_2.setGeometry(QtCore.QRect(10, 140, 481, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_2.setFont(font)
@@ -159,7 +160,7 @@ class Ui_Consultar_Terapeuta(object):
         self.cbfiltrar.setItemText(0, _translate("Consultar_Terapeuta", "Paciente"))
         self.cbfiltrar.setItemText(1, _translate("Consultar_Terapeuta", "Terapeuta"))
         item = self.tableView_2.horizontalHeaderItem(0)
-        item.setText(_translate("Consultar_Terapeuta", "Uusario"))
+        item.setText(_translate("Consultar_Terapeuta", "Usuario"))
         item = self.tableView_2.horizontalHeaderItem(1)
         item.setText(_translate("Consultar_Terapeuta", "Nombre"))
         item = self.tableView_2.horizontalHeaderItem(2)

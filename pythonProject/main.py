@@ -20,14 +20,22 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
-
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
 
+    '''
+    usuario = ""
     app = QtWidgets.QApplication(sys.argv)
-    controladorCognidron = Controlador_PrincipalCognidron()
+    controladorCognidron = Controlador_PrincipalCognidron(usuario)
     windowExample = Controlador_Login(controladorCognidron)
+    windowExample.setWindowTitle('Login')
+    windowExample.show()
+    sys.exit(app.exec_())
+    '''
+    app = QtWidgets.QApplication(sys.argv)
+    #controladorCognidron = Controlador_PrincipalCognidron()
+    windowExample = Controlador_Login()
     windowExample.setWindowTitle('Login')
     windowExample.show()
     sys.exit(app.exec_())

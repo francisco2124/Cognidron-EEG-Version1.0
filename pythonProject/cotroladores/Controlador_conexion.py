@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 import websocket
 import asyncio
-
+import webbrowser
 from datetime import datetime
 import json
 import ssl
@@ -21,6 +21,9 @@ import matplotlib.pyplot as plt
 from cotroladores.controlador_TerapiaTipoNeurofeedback import Controlador_TerapiaNeurofeeldback
 from modelos.modeloParametros import Modelo_conexion
 from cotroladores.classConexion import classConexion
+
+#Pruebas de conexion
+from cotroladores.pruebaEmotivList import pruebaconexionEmotiv
 import threading
 from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
 
@@ -36,10 +39,9 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         self.ui= Ui_Dialog()
         self.conexionClass = classConexion()
         self.modelo = Modelo_conexion()
-        #electrodos['P7'] = True
-        # Parametros necesarios
-        #self.clientId = "L1eawU5ry1QItbMc8AokvIraebewehzRCyeIW4Ro"
-        #self.clientSecret = "65jIP3680Y6qztv3uoKQyjihA4giZmsme0dzkyQUtdx5odLuO6jispNzIZO1I9PJpGad7tNbcDj8JuGUMWxOAlgzeqCLwpHNYkZw4Q0YgyeX3jXGEWUPGekcI28xcKzs"
+
+
+
         self.profile = "Heiler"
         # - - - - - - - - - - - - - - - - -
         self.url = "wss://localhost:6868"
@@ -50,6 +52,8 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         self.dicionarioElectrodos = electrodos
         self.mdiArea =mdiArea
 
+        #Clase de pruebas
+        self.emotiv = pruebaconexionEmotiv(self.dicionarioElectrodos, "Alfa")
 
         '''
         # 1) Crear el objeto que se moverá a otro hiloa=
@@ -76,6 +80,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         self.ui.btnTerapiaNeurofeedback.clicked.connect(self.abrirTerapiaNeurofeedback)
         self.ui.btnEvaluarConexion.clicked.connect(self.evaluarConexion)
         self.ui.btnAplicarSelecion.clicked.connect(self.aplicarSeleccion)
+        self.ui.commandLinkButton.clicked.connect(self.abrirPaginaDeErrores)
         self.ui.lbAF3.setVisible(False)
         self.ui.lbAF4.setVisible(False)
         self.ui.lbF3.setVisible(False)
@@ -96,66 +101,74 @@ class Controlador_conexion(QtWidgets.QMainWindow):
 
 
     def evaluarConexion(self):
-        a = True
-        while a == True:
-            if self.conectarServidor()== False:
-                self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
-                Alerta = QMessageBox.information(self, 'Alerta', "Fallo la conexion, revisa que la aplicacion de emotiv este instalada", QMessageBox.Ok)
-                break
-            elif self.validadInicioSesion()== False:
-                self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
-                Alerta = QMessageBox.information(self, 'Alerta', "Es necesario que inicies sesion en emotiv para continuar", QMessageBox.Ok)
-                break
-            elif self.solicitarPersmisos()== False:
-                self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
-                Alerta = QMessageBox.information(self, 'Alerta', "Acepta los acuerdos en la aplicacion de emotiv app, para continuar", QMessageBox.Ok)
-                break
-            elif self.obtenerToken() == False:
-                self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
-                Alerta = QMessageBox.information(self, 'Alerta', "Revisa tu conexion a internet y que las credenciales de tu cuenta de emotiv sean correctas", QMessageBox.Ok)
-                break
-            elif self.obtenerHeadset() == False:
-                self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
-                Alerta = QMessageBox.information(self, 'Alerta', "Se detecto un problema con la deadema... Verfica que la diadema este conectada correctamente", QMessageBox.Ok)
-                break
-            elif self.crearSesion() == False:
-                self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
-                Alerta = QMessageBox.information(self, 'Alerta', "Problemas al iniciar sesión con el dispositivo en Cortex", QMessageBox.Ok)
-                break
-            else:
-                self.ui.label_4.setStyleSheet("background-color: rgb(41, 226, 69);")
-                Alerta = QMessageBox.information(self, 'Alerta', "Conexion Exitosa", QMessageBox.Ok)
-                self.ui.btnAplicarSelecion.setEnabled(True)
-                break
+        if self.conectarServidor()== False:
+            self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
+            Alerta = QMessageBox.information(self, 'Alerta', "Fallo la conexion, revisa que la aplicacion de emotiv este instalada", QMessageBox.Ok)
+
+
+        elif self.validadInicioSesion() != True:
+             self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
+             Alerta = QMessageBox.information(self, 'Alerta', "Es necesario que inicies sesion en emotiv para continuar", QMessageBox.Ok)
+             self.ui.teErrores.setText("Probemas con el inicio de sesion, comprueva que tu inicio de sesion este activo o vuelve a iniciar sesion")
+
+        elif self.solicitarPersmisos()!= True:
+            self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
+            Alerta = QMessageBox.information(self, 'Alerta', "Acepta los acuerdos en la aplicacion de emotiv app, para continuar", QMessageBox.Ok)
+            self.ui.teErrores.setText("Verifica que hayas concedido permisos en la aplicacion emotiv app, en la parte final de la pestaña apps")
+
+        elif self.obtenerToken() !=True:
+            self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
+            error = self.emotiv.obteunerToken()
+            Alerta = QMessageBox.information(self, 'Alerta', "Error: "+str(error)+ ". Verifica tu conexion a internet y tus credenciales de emotiv", QMessageBox.Ok)
+            self.ui.teErrores.setText("Error: "+str(error)+ ".Verifica que tu conenexion a internet sea estable, que tus credenciales de emotiId "
+                                                            "y passwordId sean correctas, asi como que tu licencia de emotiv sea vigente")
+        elif self.obtenerHeadset() != True:
+            self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
+            Alerta = QMessageBox.information(self, 'Alerta', "Se detecto un problema con la deadema... Verfica que la diadema este conectada correctamente", QMessageBox.Ok)
+            self.ui.teErrores.setText("Revisa que la deadema este conectada. Algunos de lo posibles errores son: La deadema esta apagada, desconectada, fuera del"
+                                      "rango de alcance, la memoria de bluetooth esta desconectada")
+
+        elif self.crearSesion() != True:
+            self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
+            Alerta = QMessageBox.information(self, 'Alerta', "Ocurrio un problrma al iniciar sesión con el servidor...", QMessageBox.Ok)
+            self.ui.teErrores.setText("Verifica que tu conexion a internet este estable y la deadema la deadema este conectada con bateria mayor a 2. Para mayor información solicitar apoyo"
+                                      "de un tecnico especializado de cognidron EEG")
+
+        else:
+            self.ui.label_4.setStyleSheet("background-color: rgb(41, 226, 69);")
+            Alerta = QMessageBox.information(self, 'Conformación', "Conexion Exitosa", QMessageBox.Ok)
+            self.ui.btnAplicarSelecion.setEnabled(True)
+            self.ui.teErrores.setText("Se ha validado la conexió con el servidor y la deadema EEG")
+
 
 
     def conectarServidor(self):
-        resConecServer = self.conexionClass.conectar()
+        resConecServer = self.emotiv.conectar()
         print(str(resConecServer))
         return resConecServer
 
     def validadInicioSesion(self):
-        valSesion = self.conexionClass.validarInicioSesion()
+        valSesion = self.emotiv.validarInicioSesion()
         print(str(valSesion))
         return valSesion
 
     def solicitarPersmisos(self):
-        solPermisos = self.conexionClass.solicitarPermisos()
+        solPermisos = self.emotiv.solicitarPermisos()
         print(str(solPermisos))
         return solPermisos
 
     def obtenerToken(self):
-        token = self.conexionClass.obtenerToken()
+        token = self.emotiv.obteunerToken()
         print(str(token))
         return token
 
     def obtenerHeadset(self):
-        Headset = self.conexionClass.recuperarDeadema()
+        Headset = self.emotiv.recuperarDeademaEEG()
         print(str(Headset))
         return Headset
 
     def crearSesion(self):
-        sesion = self.conexionClass.crearSesion()
+        sesion = self.emotiv.crearSesion()
         print(str(sesion))
         return sesion
 
@@ -256,4 +269,11 @@ class Controlador_conexion(QtWidgets.QMainWindow):
             self.abrir = Controlador_TerapiaNeurofeeldback(self.dicionarioElectrodos)
             self.mdiArea.addSubWindow(self.abrir)
             self.abrir.show()
+
+    def abrirPaginaDeErrores(self, event):
+        try:
+            webbrowser.open('https://emotiv.gitbook.io/cortex-api/error-codes')
+        except:
+            Alerta = QMessageBox.information(self, 'Alerta', "Lo siento el link caido... Busca la pagina de errores de la empresa emotiv :D", QMessageBox.Ok)
+
 

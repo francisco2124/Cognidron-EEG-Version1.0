@@ -178,7 +178,7 @@ class Ui_Ui_ReportesGenerales_2(object):
         item.setText(_translate("Ui_ReportesGenerales_2", "Paciente"))
         item = self.tabla_pacientes.horizontalHeaderItem(5)
         item.setText(_translate("Ui_ReportesGenerales_2", "Terapeuta"))
-        self.label_11.setText(_translate("Ui_ReportesGenerales_2", "Reportes Generales"))
+        self.label_11.setText(_translate("Ui_ReportesGenerales_2", "Reportes generales"))
 
 
 if __name__ == "__main__":

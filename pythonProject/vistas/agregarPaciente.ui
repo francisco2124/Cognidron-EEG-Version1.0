@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>736</width>
+    <width>758</width>
     <height>540</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>736</width>
+    <width>758</width>
     <height>540</height>
    </size>
   </property>
@@ -46,7 +46,7 @@
     <rect>
      <x>440</x>
      <y>190</y>
-     <width>271</width>
+     <width>301</width>
      <height>231</height>
     </rect>
    </property>
@@ -57,9 +57,9 @@
   <widget class="QLabel" name="label_16">
    <property name="geometry">
     <rect>
-     <x>530</x>
+     <x>440</x>
      <y>160</y>
-     <width>91</width>
+     <width>141</width>
      <height>21</height>
     </rect>
    </property>
@@ -69,7 +69,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Diagnostico</string>
+    <string>Motivo de terapia:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -77,7 +77,7 @@
     <rect>
      <x>0</x>
      <y>80</y>
-     <width>741</width>
+     <width>761</width>
      <height>521</height>
     </rect>
    </property>
@@ -101,7 +101,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>741</width>
+     <width>761</width>
      <height>81</height>
     </rect>
    </property>
@@ -137,7 +137,7 @@
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Nuevo Paciente</string>
+     <string>Nuevo paciente</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">
@@ -167,7 +167,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <rect>
      <x>0</x>
      <y>80</y>
-     <width>741</width>
+     <width>791</width>
      <height>8</height>
     </rect>
    </property>
@@ -213,7 +213,7 @@ background-color: rgb(200, 198, 223);</string>
   <widget class="QPushButton" name="btnRegistrar">
    <property name="geometry">
     <rect>
-     <x>610</x>
+     <x>640</x>
      <y>430</y>
      <width>101</width>
      <height>51</height>
@@ -235,9 +235,9 @@ background-color: rgb(200, 198, 223);</string>
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>440</x>
      <y>110</y>
-     <width>131</width>
+     <width>161</width>
      <height>21</height>
     </rect>
    </property>
@@ -247,15 +247,15 @@ background-color: rgb(200, 198, 223);</string>
     </font>
    </property>
    <property name="text">
-    <string>Selecionar Tutor</string>
+    <string>Selecionar un tutor:</string>
    </property>
   </widget>
   <widget class="QComboBox" name="cbTutor">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>580</x>
      <y>110</y>
-     <width>151</width>
+     <width>161</width>
      <height>21</height>
     </rect>
    </property>
@@ -321,7 +321,7 @@ background-color: rgb(200, 198, 223);</string>
     </font>
    </property>
    <property name="text">
-    <string>Genero (*)</string>
+    <string>Género (*)</string>
    </property>
   </widget>
   <widget class="QComboBox" name="cbMunicipio">
@@ -552,7 +552,7 @@ background-color: rgb(200, 198, 223);</string>
     </font>
    </property>
    <property name="text">
-    <string>Apellido Materno (*)</string>
+    <string>Apellido materno (*)</string>
    </property>
   </widget>
   <widget class="QComboBox" name="cbEstado">
@@ -608,7 +608,7 @@ background-color: rgb(200, 198, 223);</string>
     </font>
    </property>
    <property name="text">
-    <string>Apellido Paterno (*)</string>
+    <string>Apellido paterno (*)</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="leCodigoPostal">

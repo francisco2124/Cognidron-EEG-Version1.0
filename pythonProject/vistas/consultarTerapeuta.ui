@@ -62,9 +62,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>110</y>
+     <y>140</y>
      <width>481</width>
-     <height>61</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -261,7 +261,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    </property>
    <column>
     <property name="text">
-     <string>Uusario</string>
+     <string>Usuario</string>
     </property>
     <property name="font">
      <font>
