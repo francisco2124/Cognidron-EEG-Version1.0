@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Cognitron</string>
+   <string>CogniDron-EEG v 1.0</string>
   </property>
   <property name="windowIcon">
    <iconset resource="images/image.qrc">

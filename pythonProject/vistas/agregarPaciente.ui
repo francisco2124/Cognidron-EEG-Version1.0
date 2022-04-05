@@ -45,7 +45,7 @@
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>190</y>
+     <y>220</y>
      <width>301</width>
      <height>231</height>
     </rect>
@@ -58,7 +58,7 @@
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>160</y>
+     <y>190</y>
      <width>141</width>
      <height>21</height>
     </rect>
@@ -192,7 +192,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>430</y>
+     <y>460</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -214,7 +214,7 @@ background-color: rgb(200, 198, 223);</string>
    <property name="geometry">
     <rect>
      <x>640</x>
-     <y>430</y>
+     <y>460</y>
      <width>101</width>
      <height>51</height>
     </rect>
@@ -812,6 +812,19 @@ background-color: rgb(200, 198, 223);</string>
     <number>40</number>
    </property>
   </widget>
+  <widget class="QCheckBox" name="checkBoxcbRecuperarDatosTutor">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>150</y>
+     <width>231</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Recuperar datos del terapeuta</string>
+   </property>
+  </widget>
   <zorder>label_7</zorder>
   <zorder>label_17</zorder>
   <zorder>ptDiagnostico</zorder>
@@ -849,6 +862,7 @@ background-color: rgb(200, 198, 223);</string>
   <zorder>leLoclidad</zorder>
   <zorder>leNacionalidad</zorder>
   <zorder>leCorreoElectronico</zorder>
+  <zorder>checkBoxcbRecuperarDatosTutor</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

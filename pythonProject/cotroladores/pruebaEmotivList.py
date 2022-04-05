@@ -449,7 +449,7 @@ class pruebaconexionEmotiv(QThread):
         result = ws.recv()
         dic = json.loads(result)
         token = dic["result"]["cortexToken"]
-
+        #Configurar    problema de internet
 
         #print("======================Ver diademas conectadas...: ")
         msg = """{"jsonrpc": "2.0", 

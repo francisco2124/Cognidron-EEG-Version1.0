@@ -56,7 +56,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.ui= Ui_MainWindow()
         self.ui.setupUi(self)
         #Electrodos bajo el estandar 10-10
-        self.electrodos = {'Estandar':'10-10',"AF3":False, "F7":False,"F3":True,'FC5':False,'T7':False,'P7':False,'01':False,'02':False, 'P8':False, 'T8':False, 'FC6':False, 'F4':True,'F8':False,'AF4':False}
+        self.electrodos = {'Estandar':'10-10',"AF3":False, "F7":False,"F3":False,'FC5':False,'T7':False,'P7':False,'01':False,'02':False, 'P8':False, 'T8':False, 'FC6':False, 'F4':False,'F8':False,'AF4':False}
         self.user = user
         self.modelo = Modelo_Terapeuta()
         self.InicializarGui()

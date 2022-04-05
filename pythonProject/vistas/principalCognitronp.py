@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -295,7 +296,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Cognitron"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "CogniDron-EEG v 1.0"))
         self.menuVista.setTitle(_translate("MainWindow", "Vista"))
         self.menuAchivo.setTitle(_translate("MainWindow", "Personas"))
         self.opc_Paciente.setTitle(_translate("MainWindow", "Paciente"))

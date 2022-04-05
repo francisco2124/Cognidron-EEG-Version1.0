@@ -73,6 +73,7 @@ class DronTello():
         print("Izquierda Dron")
         #time.sleep(5)
 
+
     def girarDerecha(self):
 
         # Rotate clockwise 360
@@ -84,7 +85,14 @@ class DronTello():
 
         # Rotate counte clockwise 360
         self.sock.sendto(f'ccw 45'.encode(encoding="utf-8"), self.tello_address)
-        print("Girar Izquierda Dron")
+        print("Girar Izquierda Dron ")
+        #time.sleep(5)
+
+    def girarIzquierda90grados(self):
+
+        # Rotate counte clockwise 360
+        self.sock.sendto(f'ccw 90'.encode(encoding="utf-8"), self.tello_address)
+        print("Girar Izquierda Dron 90 grados")
         #time.sleep(5)
 
     def send_command(self, command):
@@ -102,23 +110,23 @@ class DronTello():
 
     def getbateriaDron(self):
 
-        batteryi = self.sock.sendto('battery?'.encode(encoding="utf-8"), self.tello_address)
-
-        battery = self.sock.recvfrom(1024)
-
-
-        print("La bateria desde la clase tello es*******************: "+str(battery[0].decode()))
-
-
-
-
-        '''
         try:
-            battery = int(battery)
+            batteryi = self.sock.sendto('battery?'.encode(encoding="utf-8"), self.tello_address)
+
+            battery = self.sock.recvfrom(1024)
+
+
+            print("La bateria desde la clase tello es*******************: "+str(battery[0].decode()))
+
+            '''
+            try:
+                battery = int(battery)
+            except:
+                pass
+            '''
+            return battery[0].decode()
         except:
-            pass
-        '''
-        return battery[0].decode()
+            return 0
 
     def __del__(self):
         self.sock.close()

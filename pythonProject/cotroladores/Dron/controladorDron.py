@@ -110,6 +110,14 @@ class Dron():
         else:
             print("----------------ERROR: No se ha creado una instancia del dron....-------------")
 
+    def girarizquierda90(self):
+
+        if self.dron != None:
+            print("")
+            self.dron.girarIzquierda90grados()
+        else:
+            print("----------------ERROR: No se ha creado una instancia del dron....-------------")
+
     def getBateria(self):
         battery = 0
         if self.dron != None:

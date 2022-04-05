@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore
 from vistas.agregarPaciente import Ui_NuevoPaciente
 from modelos.ModeloPacientes import Modelo_Paciente_
+from modelos.ModeloTutor import Modelo_Tutor_
 from PyQt5.QtGui import QIntValidator
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp
@@ -22,6 +23,7 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
         print("soy la vista de agregar Pacientes")
         self.ui= Ui_NuevoPaciente()
         self.modelo = Modelo_Paciente_()
+        self.modeloTutor = Modelo_Tutor_()
         self.ui.setupUi(self)
         self.inicializarGUI()
         self.cargarMunicipio()
@@ -33,6 +35,7 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
         self.cargarEstados()
         self.ui.btnRegistrar.clicked.connect(self.agregarterapeuta)
         self.ui.btnCancelar.clicked.connect(self.limpiarCampos)
+        self.ui.checkBoxcbRecuperarDatosTutor.stateChanged.connect(self.recuperarDtaosTutor)
 
         self.validarNumero = QRegExpValidator(QRegExp("^[0-9]+$ ") , self)
         self.validarCadenaSinEspacio= QRegExpValidator(QRegExp("[a-zA-Zñ]+"), self)
@@ -271,6 +274,35 @@ class Controlador_AgrgarPaciente(QtWidgets.QMainWindow):
         combo.clear()
         combo.addItem("Sin Tutor")
         combo.addItems([str(x[0]) +"  "+ str(x[1]) for x in tutores])
+
+    def recuperarDtaosTutor(self):
+
+        cbTutor = self.ui.cbTutor.currentText()
+        print("El id es: "+str(cbTutor))
+        idTutor = ""
+
+        for i in cbTutor:
+            idTutor = idTutor + i
+            if i == " ":
+                break
+
+        print("El id de tutor es: "+idTutor)
+
+        try:
+            datosTutor = self.modeloTutor.cargarPlaceHolder(int(idTutor))
+            print("Los datos del tutor son: "+str(datosTutor))
+
+            datosTutorF = datosTutor[0]
+
+            self.ui.leLoclidad.setText(str(datosTutorF[7]))
+            self.ui.leCalle.setText(str(datosTutorF[8]))
+            self.ui.leNumeroCalle.setText(str(datosTutorF[9]))
+            self.ui.leCodigoPostal.setText(str(datosTutorF[10]))
+            self.ui.leNumeroContacto.setText(str(datosTutorF[11]))
+            self.ui.leCorreoElectronico.setText(str(datosTutorF[12]))
+
+        except:
+            Alerta = QMessageBox.information(self, 'Alerta', "Selecciona un tutor para recuperar sus datos", QMessageBox.Ok)
 
 
 

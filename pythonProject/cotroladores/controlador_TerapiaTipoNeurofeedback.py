@@ -70,6 +70,9 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.contadorPuntos = 1
         self.porcentajeBarraPuntaje = 0
 
+
+        #Variables para ejercicios Complejor
+        self.contadorIstrucciones = 20
         #Valida que se halla alcansado 3 veces el umbral
         self.contadorpassUmbral = 0
 
@@ -234,9 +237,16 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                         # Instancia del dron (Ip del dron, puerto del dron, valor del dicionario que se encuentra en la clase dron)
                     except:
                         pass
-                    #self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
-                    self.hiloEmotiv = HiloSingsEotiv()
-                    self.ejecutarHiloBateria()
+                    self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
+                    #self.hiloEmotiv = HiloSingsEotiv()
+                    try:
+                        self.ejecutarHiloBateria()
+                    except:
+                        pass
+
+                    #Abrir audio de inicio de sesion
+
+
                     #--------------------------------------------------------------------------------------------------
                     if self.ui.cbBanda.currentText() == "Theta/BetaBaja":
                         self.numeroElectrodosSeleccionados = 5
@@ -526,6 +536,14 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
             self.proximoMovimiento1 = "Girar 45° grados a la derecha"
         elif ejercicio == "Ejercicio Complejo 1":
             print("Entre en Ejercicio Complejo 1")
+            self.ui.lbProximoMoviemntoDron.setText("El dron despegara")
+            self.posY = 360
+            self.posX = 340
+            self.ancho = 251
+            self.alto = 191
+            self.ui.imgDron.setGeometry(QtCore.QRect(self.posX, self.posY, self.ancho, self.alto))
+
+            self.ui.imgDron.setStyleSheet("image: url(:/newPrefix/despegar.png);")
         else:
             self.ui.labelEventoDrone.setText("------Selecciona un ejercicio---------")
 
@@ -1055,6 +1073,112 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                 self.contadorpassUmbral = self.contadorpassUmbral + 1
 
                 if self.contadorpassUmbral == 3:
+
+                    if self.contadorPuntos !=5:
+                        self.valoresPredeterminadosdePuntaje()
+
+                    elif self.contadorPuntos ==5:
+                        self.valoresPredeterminadosPuntaje2()
+
+
+                    if self.contadorIstrucciones == 14:
+                        self.contadorIstrucciones = 0
+
+                    else:
+                        pass
+
+                    if self.contadorIstrucciones <13:
+
+                        list = ["Girar Izquierda","Girar Izquierda", "Girar Izquierda","Girar Izquierda","Elevar",
+                                "Elevar","Elevar","Girar Izquierda","Girar Izquierda","Girar Izquierda","Girar Izquierda",
+                                "Desecnder","Desecnder","Desecnder"]
+
+                        listImages = ["EjerGiro90Izq.png","EjerGiro90Izq.png","EjerGiro90Izq.png","EjerGiro90Izq.png","EjerElevarC1.png",
+                                      "EjerElevarC1.png","EjerElevarC1.png","EjerGiro90Izq.png","EjerGiro90Izq.png","EjerGiro90Izq.png",
+                                      "EjerGiro90Izq.png","EjerDecenderC1.png","EjerDecenderC1.png","EjerDecenderC1.png"]
+                        imagenDron = listImages[self.contadorIstrucciones]
+                        self.ui.lbProximoMoviemntoDron.setText(list[self.contadorIstrucciones])
+                        self.ui.imgDron.setStyleSheet("image: url(:/newPrefix/"+imagenDron+");")
+
+                    else:
+                        pass
+
+
+                    if self.controlTotal == False:
+                        if self.estadoDron == 0:
+                            print("Despegar-----------------")
+                            self.dron.despegar()
+                            icon = QtGui.QIcon()
+                            icon.addPixmap(QtGui.QPixmap(":/newPrefix/aterrizar.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                            self.ui.btnAterrizarDrone.setIcon(icon)
+                            self.ui.imgDron.setStyleSheet("image: url(:/newPrefix/EjerGiro90Izq.png);")
+                            self.ui.lbProximoMoviemntoDron.setText("Girar Izquierda")
+                            self.contadorIstrucciones = 1
+                            self.estadoDron = 1
+                        elif self.giroDron <4:
+                            self.dron.girarizquierda90()
+                            self.contadorIstrucciones = self.contadorIstrucciones + 1
+                            self.giroDron = self.giroDron +1
+                        elif self.alturaMaximaDron <3:
+                            self.dron.elevar()
+                            self.contadorIstrucciones = self.contadorIstrucciones + 1
+                            self.alturaMaximaDron = self.alturaMaximaDron + 1
+                            if self.alturaMaximaDron == 3:
+                                self.giroDron = 0
+                                self.alturaMinimaDron = 0
+                            else:
+                                pass
+                        elif self.alturaMinimaDron <3:
+                            self.dron.decender()
+                            self.contadorIstrucciones = self.contadorIstrucciones + 1
+                            self.alturaMinimaDron= self.alturaMinimaDron + 1
+                            if self.alturaMinimaDron == 3:
+                                self.giroDron = 0
+                                self.alturaMaximaDron = 0
+                            else:
+                                pass
+                        else:
+                            print("Erro con el ejercicio complejo_1")
+
+
+                        try:
+                            os.startfile("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\punto.mp3")
+                        except:
+                            print("Ocurrio un error con el sonido de umbral")
+
+                    self.contadorpassUmbral = 0
+                    self.contadorUmbralMas3Segundos = self.contadorUmbralMas3Segundos+1
+                    print("=================================: "+str(self.contadorUmbralMas3Segundos))
+
+            else:
+                if self.contadorUmbralMas3Segundos > 0:
+                    self.listaTiemposUmbral.append(self.contadorUmbralMas3Segundos * 3)
+                    print("La lista de tiempos tiene ===== "+str(self.listaTiemposUmbral))
+                self.ui.labelComandosMentales.setText("-No- se alcazo el umbral")
+                self.contadorUmbralMas3Segundos = 0
+                self.contadorpassUmbral = 0
+
+        elif self.ui.cbEjercicio.currentText() == "Ejercicio Complejo 2":
+            self.umbral = int(self.ui.spinBoxUmbral.value())
+
+            potencia = (potencia[self.numeroElectrodosSeleccionados - 1] * 100) / self.escalaUmbral
+
+            #potencia = potencia * 1000
+            if self.ui.rdbExitatorio.isChecked()== True:
+                self.ui.labelEventoDrone.setText("Eleva tus ondas cerebrales")
+                #operdor logico exitatorio
+                operador = potencia >= self.umbral
+            else:
+                #operador logico inibitorio
+                self.ui.labelEventoDrone.setText("Disminuye tus ondas cerebrales")
+                operador = potencia <= self.umbral
+
+            if operador:
+
+                self.ui.labelComandosMentales.setText("-SI- se alcanzo el umbral subir")
+                self.contadorpassUmbral = self.contadorpassUmbral + 1
+
+                if self.contadorpassUmbral == 3:
                     if self.contadorPuntos !=5:
                         self.valoresPredeterminadosdePuntaje()
 
@@ -1066,11 +1190,11 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                         if self.estadoDron == 0:
                             self.dron.despegar()
                             self.estadoDron = 1
-                        elif self.giroDron <8:
-                            self.dron.girarderecha()
+                        elif self.giroDron <4:
+                            self.dron.girarizquierda90()
                             self.giroDron = self.giroDron +1
                         elif self.alturaMaximaDron <3:
-                            self.dron.elevar()
+                            self.dron.adelante()
                             self.alturaMaximaDron = self.alturaMaximaDron + 1
                             if self.alturaMaximaDron == 3:
                                 self.giroDron = 0
@@ -1078,7 +1202,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                             else:
                                 pass
                         elif self.alturaMinimaDron <3:
-                            self.dron.decender()
+                            self.dron.atras()
                             self.alturaMinimaDron= self.alturaMinimaDron + 1
                             if self.alturaMinimaDron == 3:
                                 self.giroDron = 0
@@ -1099,8 +1223,6 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                 self.ui.labelComandosMentales.setText("-No- se alcazo el umbral")
                 self.contadorUmbralMas3Segundos = 0
                 self.contadorpassUmbral = 0
-
-
 
         else:
             self.umbral = int(self.ui.spinBoxUmbral.value())

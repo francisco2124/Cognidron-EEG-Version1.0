@@ -131,7 +131,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         elif self.crearSesion() != True:
             self.ui.label_4.setStyleSheet("background-color: rgb(255, 0, 0);")
             Alerta = QMessageBox.information(self, 'Alerta', "Ocurrio un problrma al iniciar sesión con el servidor...", QMessageBox.Ok)
-            self.ui.teErrores.setText("Verifica que tu conexion a internet este estable y la deadema la deadema este conectada con bateria mayor a 2. Para mayor información solicitar apoyo"
+            self.ui.teErrores.setText("Verifica que tu conexion a internet este estable y la deadema la deadema este conectada con bateria mayor a 20%. Para mayor información solicitar apoyo"
                                       "de un tecnico especializado de cognidron EEG")
 
         else:

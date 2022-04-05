@@ -2,14 +2,12 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
 
-from email.mime.multipart import MIMEMultipart
-from email.mime.base import MIMEBase
-from smtplib import SMTP
-from email.mime.text import MIMEText
+
 
 from vistas.login import Ui_Dialog
 from PyQt5.QtGui import QIntValidator
 from cotroladores.Controlador_PrincipalCognidron import Controlador_PrincipalCognidron
+from cotroladores.controlador_RecuperarCredenciales import Controlador_RecuperarCredenciales
 
 from modelos.ModeloTerapeuta import Modelo_Terapeuta
 
@@ -33,9 +31,10 @@ class Controlador_Login(QtWidgets.QMainWindow):
 
     def InicializarGui(self):
 
-        self.ui.btnIngresar.clicked.connect(self.abrir)
+        self.ui.btnIngresar.clicked.connect(self.validar)
         self.ui.btnVerPas.pressed.connect(self.visualizarPass)
         self.ui.btnVerPas.released.connect(self.ocultarPass)
+        self.ui.btnOlvideMiPass.clicked.connect(self.abrirRecuperarCredenciales)
 
 
     def abrir(self):
@@ -81,18 +80,7 @@ class Controlador_Login(QtWidgets.QMainWindow):
             else:
                 Alerta = QMessageBox.information(self, 'Alerta', "Usuario o contraseña incorectos", QMessageBox.Ok)
 
-    def recuperarPasword(self):
-        try:
-            mensaje = MIMEMultipart("plain")
-            mensaje["From"]="cognidroneeg@gmail.com"
-            mensaje["To"] = "ingcervantes@hotmail.com"
-            mensaje["Subject"] = "Correo de prueba >:)"
-            body = "Hola Mundo"
-            mensaje.attach(MIMEText(body, 'plain'))
-            smtp = SMTP("smtp.gmail.com")
-            smtp.starttls()
-            smtp.login("cognidroneeg@gmail.com","eegcognidron")
-            smtp.sendmail("vasito352@gmail.com","ingcervantes@hotmail.com",mensaje.as_string())
-            print("Envie el correo :O")
-        except:
-            pass
+    def abrirRecuperarCredenciales(self):
+        self.recuperarCredenciales = Controlador_RecuperarCredenciales()
+        self.recuperarCredenciales.show()
+

@@ -374,3 +374,17 @@ class Modelo_Terapeuta(QtWidgets.QMainWindow):
         sql ="UPDATE usuarios SET  password  ='{}' WHERE nombreUsuario = '{}' ".format(newPass,nameUser).strip()
         cursor.execute(sql)
         connection2.commit()
+
+    def recuperarCredenciales(self, correo):
+        self.connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd="root0",
+            db="cognidroneeg"
+        )
+        cursor = self.connection.cursor()
+        sql = '''SELECT user.nombreUsuario, user.password  FROM terapeuta tera INNER JOIN usuarios user ON
+         (user.nombreUsuario = tera.usuarios_nombreUsuario) WHERE tera.correo_electronico = '{}'  '''.format(correo)
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro

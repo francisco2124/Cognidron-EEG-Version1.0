@@ -308,6 +308,26 @@ border-image: url(:/newPrefix/vision.png);</string>
      </rect>
     </property>
    </widget>
+   <widget class="QCommandLinkButton" name="btnOlvideMiPass">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>390</y>
+      <width>241</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 9pt &quot;Times New Roman&quot;;</string>
+    </property>
+    <property name="text">
+     <string>¿olvidaste tu usuario o contraseña?</string>
+    </property>
+    <property name="icon">
+     <iconset resource="images/image.qrc">
+      <normaloff>:/newPrefix/key.png</normaloff>:/newPrefix/key.png</iconset>
+    </property>
+   </widget>
   </widget>
   <action name="actionUsuario">
    <property name="icon">
