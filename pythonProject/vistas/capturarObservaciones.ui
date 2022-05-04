@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>463</width>
-    <height>728</height>
+    <height>867</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Capturar Observaciones</string>
   </property>
   <widget class="QFrame" name="frame">
    <property name="geometry">
@@ -111,7 +111,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
      <x>0</x>
      <y>70</y>
      <width>480</width>
-     <height>691</height>
+     <height>741</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -132,8 +132,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QTextEdit" name="tekObservaciones">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>490</y>
+     <x>10</x>
+     <y>555</y>
      <width>431</width>
      <height>171</height>
     </rect>
@@ -142,8 +142,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>425</y>
+     <x>0</x>
+     <y>490</y>
      <width>461</width>
      <height>31</height>
     </rect>
@@ -161,8 +161,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QPushButton" name="btnCancelar">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>670</y>
+     <x>250</x>
+     <y>735</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -174,8 +174,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QPushButton" name="btnRegistar">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>670</y>
+     <x>350</x>
+     <y>735</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -220,7 +220,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>250</y>
+     <y>330</y>
      <width>261</width>
      <height>31</height>
     </rect>
@@ -236,7 +236,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>370</y>
+     <y>450</y>
      <width>311</width>
      <height>31</height>
     </rect>
@@ -304,7 +304,7 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>250</y>
+     <y>330</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -313,14 +313,14 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
     <string notr="true">font: 87 8pt &quot;Arial Black&quot;;</string>
    </property>
    <property name="text">
-    <string>9</string>
+    <string>0</string>
    </property>
   </widget>
   <widget class="QLabel" name="lbTiempoUmbralObtenido">
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>370</y>
+     <y>450</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -368,7 +368,7 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>290</y>
+     <y>370</y>
      <width>281</width>
      <height>31</height>
     </rect>
@@ -384,7 +384,7 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>290</y>
+     <y>370</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -393,14 +393,14 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
     <string notr="true">font: 87 8pt &quot;Arial Black&quot;;</string>
    </property>
    <property name="text">
-    <string>-</string>
+    <string>0</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_10">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>330</y>
+     <y>410</y>
      <width>261</width>
      <height>31</height>
     </rect>
@@ -416,7 +416,7 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
    <property name="geometry">
     <rect>
      <x>298</x>
-     <y>330</y>
+     <y>410</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -425,20 +425,84 @@ font: 87 8pt &quot;Arial Black&quot;;</string>
     <string notr="true">font: 87 8pt &quot;Arial Black&quot;;</string>
    </property>
    <property name="text">
-    <string>3</string>
+    <string>0</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="etFuncionCognitiva">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>465</y>
+     <x>10</x>
+     <y>530</y>
      <width>431</width>
      <height>22</height>
     </rect>
    </property>
    <property name="placeholderText">
     <string>Ingresa la funcion(es) cognitiva(s) trabajadas en la terapia</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>290</y>
+     <width>281</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Numero de veces que alcanzo el umbral:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>250</y>
+     <width>301</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Tiempo que alcanzo el umbral la primera vez:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbNumeroUmbrales">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>290</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 87 8pt &quot;Arial Black&quot;;</string>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbPrimerUmbral">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>250</y>
+     <width>61</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 87 8pt &quot;Arial Black&quot;;</string>
+   </property>
+   <property name="text">
+    <string>0</string>
    </property>
   </widget>
  </widget>

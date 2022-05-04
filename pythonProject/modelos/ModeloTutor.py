@@ -76,6 +76,15 @@ class Modelo_Tutor_(QtWidgets.QMainWindow):
         registro = cursor.fetchall()
         return registro
 
+    def cargarTablaxTutorE(self, idTutor):
+        cursor = self.connection.cursor()
+        sql = sql = "SELECT idPaciente, nombre, ape_paterno, ape_materno, fecha_nacimiento FROM " \
+                    "paciente  where Tutor_idTutor = '{}'".format(idTutor)
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro
+
+
     def elimina_tutor(self,idTerapeuta):
         self.connection.close()
         self.connection = pymysql.connect(

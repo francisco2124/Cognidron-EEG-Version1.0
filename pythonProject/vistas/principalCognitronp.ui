@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1285</width>
+    <width>1833</width>
     <height>978</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1833</width>
+    <height>978</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>CogniDron-EEG v 1.0</string>
@@ -35,7 +41,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>1261</width>
+      <width>1811</width>
       <height>871</height>
      </rect>
     </property>
@@ -47,7 +53,13 @@
     </property>
     <property name="minimumSize">
      <size>
-      <width>1261</width>
+      <width>1600</width>
+      <height>871</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1811</width>
       <height>871</height>
      </size>
     </property>
@@ -67,7 +79,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1285</width>
+     <width>1833</width>
      <height>26</height>
     </rect>
    </property>

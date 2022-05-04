@@ -46,10 +46,17 @@ class Modelo_Reportes(QtWidgets.QMainWindow):
             db="cognidroneeg"
         )
         cursor = connection2.cursor()
-        sql = "SELECT idSesionTerapeutica, identificador, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
+        sql = "SELECT idSesionTerapeutica, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
               "INNER JOIN ejercicios ejer ON (ejer.idEjercicios = sesio.Ejercicios_idEjercicios)" \
               "INNER JOIN paciente pati ON (pati.idPaciente = sesio.Paciente_idPaciente)" \
               "INNER JOIN terapeuta tera ON (tera.idTrapeuta = sesio.Terapeuta_idTrapeuta) WHERE pati.nombre = '{}' ".format(nombre)
+
+        cursor.execute(sql)
+        cursor.close()
+        registro = cursor.fetchall()
+        return registro
+
+
 
         cursor.execute(sql)
         cursor.close()
@@ -65,7 +72,7 @@ class Modelo_Reportes(QtWidgets.QMainWindow):
             db="cognidroneeg"
         )
         cursor = connection2.cursor()
-        sql = "SELECT idSesionTerapeutica, identificador, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
+        sql = "SELECT idSesionTerapeutica, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
               "INNER JOIN ejercicios ejer ON (ejer.idEjercicios = sesio.Ejercicios_idEjercicios)" \
               "INNER JOIN paciente pati ON (pati.idPaciente = sesio.Paciente_idPaciente)" \
               "INNER JOIN terapeuta tera ON (tera.idTrapeuta = sesio.Terapeuta_idTrapeuta) WHERE fecha = '{}' ".format(Fecha)

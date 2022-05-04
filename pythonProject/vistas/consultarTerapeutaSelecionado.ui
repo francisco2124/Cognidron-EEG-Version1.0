@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Terapeuta Selecionado</string>
+   <string>Terapeuta selecionado</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -770,7 +770,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </font>
    </property>
    <property name="text">
-    <string>Pacintes del terapeuta</string>
+    <string>Pacientes del terapeuta</string>
    </property>
   </widget>
   <widget class="QLabel" name="lbUsuario">

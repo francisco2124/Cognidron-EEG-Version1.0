@@ -93,6 +93,9 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.estadoDron = 0
         self.dirreccion = 0
 
+        #Contador motivacion que se activa cada 30 segundos que no se alcance el umbral
+        self.motivacion = 0
+
         #Variable que establece la escala de umbral en la interfaz grafica
         self.escalaUmbral = 15
         #Variable que almacena 3 promedios de la deademas y coloca la linea de umbral en automatico
@@ -100,6 +103,9 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
         #Lista que alamacena el promedio de las potencias de las ondas cerebrales cada 5 segundos
         self.promedioPotencias5sg = []
+
+        #variable que almacena el primer umbral
+        self.tPrimerUmbral = "---"
 
         #Variable que almacena los segundos de concentracio sobre el umbral
         self.segundosSobreUmbral = 0
@@ -205,9 +211,10 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.ui.spinBoxUmbral.setSingleStep(1)
         self.ui.spinBoxUmbral.setValue(30)
 
+        self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
+        #self.hiloEmotiv = HiloSingsEotiv()
 
-
-
+        self.activarBarraNeurofeedback()
 
 
 
@@ -231,20 +238,26 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                     else:
                         pass
 
+                    #Abrir audio de inicio de sesion
+                    try:
+                        os.startfile("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\iniciosesion.mp3")
+                    except:
+                        print("Ocurrio un error con el sonido del punto")
+
                     try:
                         #-------IMPORTANTE----- Valores de conexion del dron
                         self.dron = Dron('192.168.10.1', 8889, "tello")
                         # Instancia del dron (Ip del dron, puerto del dron, valor del dicionario que se encuentra en la clase dron)
                     except:
                         pass
-                    self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
+    #---------------
+                    #self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
                     #self.hiloEmotiv = HiloSingsEotiv()
                     try:
                         self.ejecutarHiloBateria()
                     except:
                         pass
 
-                    #Abrir audio de inicio de sesion
 
 
                     #--------------------------------------------------------------------------------------------------
@@ -263,8 +276,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                         self.numeroElectrodosSeleccionados = len(self.listaElectrodosSeleccionados[0])
                         print("Num electrodos seleccionados "+str(self.numeroElectrodosSeleccionados))
                     #--------------------------------------------------------------------------------------------------
-
-                    self.activarBarraNeurofeedback()
+#---------------------
+                    #self.activarBarraNeurofeedback()
                     self.llenarArchivoCSV()
                     self.ejecutardron()
                     #self.despegarDrone()
@@ -285,6 +298,10 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                     #self.ejecutarHiloBateria()
 
         else:
+            try:
+                os.startfile("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\sesionterminada.mp3")
+            except:
+               print("Ocurrio un error con el sonido del punto")
             self.banderaRegistro = False
             self.generarReportePotencias()
             self.hiloTiempo.detener()
@@ -395,7 +412,6 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
     #Funcion para capturar obsrvaciones y recuperar datos sbresalientes de la sesion
     def abrirCapturarObservaciones(self):
 
-
         if len(self.listaTiemposUmbral) != 0:
             max_tiempo = max(self.listaTiemposUmbral, key=int)
             min_tiempo = min(self.listaTiemposUmbral, key=int)
@@ -440,9 +456,12 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         print("Index paciente es: "+str(indexPaciente))
         idPaciente = self.listaIdPaciente[indexPaciente-1]
 
+        numVecesUmbrales = int(int(self.segundosSobreUmbral) / 3)
+        print("Veces que supero el umbral por 3 segundos ="+str(numVecesUmbrales))
+
         self.abrir = Controlador_Observaciones(self.tiempoSesion,self.puntaje,promedioPotencias, electrodos, max_tiempo, min_tiempo,
                                                promedioTiempo, porcentajeTiempoF, self.fechaF, tipoEjercio, frecuencia,
-                                               ejericicio, robot, idPaciente)
+                                               ejericicio, robot, idPaciente,self.tPrimerUmbral, numVecesUmbrales)
         self.abrir.show()
 
         self.ui.btnIniciarTerapia.setText("Iniciar terapia")
@@ -456,6 +475,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.ui.cbPaciente.setEnabled(True)
         self.ui.cbPaciente.setCurrentIndex(0)
         self.ui.cbBanda.setEnabled(True)
+
+
 
 
 
@@ -972,8 +993,12 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
     #Funcion para establecer escala de umbral
     def modificarEscalaUmbral(self):
-        nuevoUmbral = int(self.ui.edUmbral.text())
-        self.escalaUmbral = nuevoUmbral
+
+        try:
+            nuevoUmbral = int(self.ui.edUmbral.text())
+            self.escalaUmbral = nuevoUmbral
+        except:
+            pass
 
 
     #Funciones para crear y llenar el archico csv correspondiente al reporte de potencias
@@ -1070,6 +1095,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
             if operador:
 
                 self.ui.labelComandosMentales.setText("-SI- se alcanzo el umbral subir")
+                self.motivacion = 0
                 self.contadorpassUmbral = self.contadorpassUmbral + 1
 
                 if self.contadorpassUmbral == 3:
@@ -1115,6 +1141,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                             self.ui.lbProximoMoviemntoDron.setText("Girar Izquierda")
                             self.contadorIstrucciones = 1
                             self.estadoDron = 1
+                            self.tPrimerUmbral = self.ui.lbMinutos.text()
+                            print("El  primer umbral se logro en el minuto: "+self.tPrimerUmbral)
                         elif self.giroDron <4:
                             self.dron.girarizquierda90()
                             self.contadorIstrucciones = self.contadorIstrucciones + 1
@@ -1155,6 +1183,17 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                     self.listaTiemposUmbral.append(self.contadorUmbralMas3Segundos * 3)
                     print("La lista de tiempos tiene ===== "+str(self.listaTiemposUmbral))
                 self.ui.labelComandosMentales.setText("-No- se alcazo el umbral")
+                self.motivacion = self.motivacion + 1
+                residuomotivacion = self.motivacion / 30
+                residuo = residuomotivacion.is_integer()
+                print("Reciduo : "+str(residuomotivacion))
+                print("Motivacion : "+str(self.motivacion))
+                if self.motivacion !=0 and residuo == True:
+                    try:
+                        os.startfile("C:\Cognidron-EEG-Software-Pruebas-Moni\pythonProject\multimedia\motivacion.mp3")
+                    except:
+                        print("Ocurrio un error con el sonido de motivacion")
+
                 self.contadorUmbralMas3Segundos = 0
                 self.contadorpassUmbral = 0
 
@@ -1360,7 +1399,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
 
     def generarReportePotencias(self):
-
+        indexPaciente = self.ui.cbPaciente.currentIndex()
+        idPaciente = self.listaIdPaciente[indexPaciente-1]
         if self.ui.cbBanda.currentText() == "Theta/BetaBaja":
 
             listaEncabezadosThetaBetaBaja = [["ThetaF3","ThetaF4","BetaBajaF3","BetaBajaF4","Theta/BetaBajaF3,F4"]]
@@ -1368,14 +1408,29 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
             data.head()
 
-            data.to_csv("C:\CogniDron-EEG\Reportes_De_Potencias\Reporte1.csv", index=False)
+
+            directorio = "C:\CogniDron-EEG\Reportes_De_Potencias\paciente"+str(idPaciente)+""
+            directorio2 = "C:\CogniDron-EEG\Reportes_De_Potencias\paciente"+str(idPaciente)+"\d"+str(self.fechaF)
+            try:
+                os.mkdir(directorio)
+            except:
+                pass
+
+            try:
+                os.mkdir(directorio2)
+            except:
+                pass
+
+            data.to_csv("C:\CogniDron-EEG\Reportes_De_Potencias\paciente"+str(idPaciente)+"\d"+str(self.fechaF)+"\Reporte1.csv", index=False)
             self.listapotencia = []
         else:
+
             data = pd.DataFrame(self.listapotencia[0:],columns=self.listaElectrodosSeleccionados[0])
 
             data.head()
 
-            data.to_csv("C:\CogniDron-EEG\Reportes_De_Potencias\Reporte1.csv", index=False)
+            #data.to_csv("C:\CogniDron-EEG\Reportes_De_Potencias\Reporte1.csv", index=False)
+            data.to_csv("C:\CogniDron-EEG\Reportes_De_Potencias\paciente"+str(idPaciente)+"\d"+str(self.fechaF)+"\Reporte1.csv", index=False)
             self.listapotencia = []
 
 

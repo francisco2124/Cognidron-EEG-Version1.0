@@ -9,7 +9,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
 
-
 class Ui_ConsultarTerapeutaSelec(object):
     def setupUi(self, ConsultarTerapeutaSelec):
         ConsultarTerapeutaSelec.setObjectName("ConsultarTerapeutaSelec")
@@ -324,7 +323,7 @@ class Ui_ConsultarTerapeutaSelec(object):
 
     def retranslateUi(self, ConsultarTerapeutaSelec):
         _translate = QtCore.QCoreApplication.translate
-        ConsultarTerapeutaSelec.setWindowTitle(_translate("ConsultarTerapeutaSelec", "Terapeuta Selecionado"))
+        ConsultarTerapeutaSelec.setWindowTitle(_translate("ConsultarTerapeutaSelec", "Terapeuta selecionado"))
         self.label.setText(_translate("ConsultarTerapeutaSelec", "Usuario del terapeuta:  "))
         self.pushButton.setText(_translate("ConsultarTerapeutaSelec", "Consultar"))
         self.pushButton_2.setText(_translate("ConsultarTerapeutaSelec", "Enviar"))
@@ -368,7 +367,7 @@ class Ui_ConsultarTerapeutaSelec(object):
         self.lbMunicipio.setText(_translate("ConsultarTerapeutaSelec", "xxxx"))
         self.lb8.setText(_translate("ConsultarTerapeutaSelec", "Edad:"))
         self.label_2.setText(_translate("ConsultarTerapeutaSelec", "Reportes del terapeuta"))
-        self.label_7.setText(_translate("ConsultarTerapeutaSelec", "Pacintes del terapeuta"))
+        self.label_7.setText(_translate("ConsultarTerapeutaSelec", "Pacientes del terapeuta"))
         self.lbUsuario.setText(_translate("ConsultarTerapeutaSelec", "xxxx"))
         self.lbContacto.setText(_translate("ConsultarTerapeutaSelec", "xxxxxxx"))
         self.lb14_2.setText(_translate("ConsultarTerapeutaSelec", "Contacto:"))

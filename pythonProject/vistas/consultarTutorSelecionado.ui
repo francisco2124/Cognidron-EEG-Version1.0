@@ -33,51 +33,6 @@
     <string>Id del tutor:  </string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>570</y>
-     <width>93</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Consultar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>650</y>
-     <width>93</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Enviar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_3">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>610</y>
-     <width>93</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Descargar</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="lb1">
    <property name="geometry">
     <rect>
@@ -310,226 +265,6 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
    </widget>
   </widget>
-  <widget class="QTableWidget" name="tabla_pacientes">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>570</y>
-     <width>481</width>
-     <height>211</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>10</width>
-     <height>10</height>
-    </size>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
-   </property>
-   <property name="dragEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="rowCount">
-    <number>0</number>
-   </property>
-   <property name="columnCount">
-    <number>6</number>
-   </property>
-   <column>
-    <property name="text">
-     <string>Identificador</string>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Fecha</string>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="textAlignment">
-     <set>AlignCenter</set>
-    </property>
-    <property name="background">
-     <color>
-      <red>85</red>
-      <green>255</green>
-      <blue>127</blue>
-     </color>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Ejercicio</string>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="textAlignment">
-     <set>AlignCenter</set>
-    </property>
-    <property name="background">
-     <color>
-      <red>255</red>
-      <green>248</green>
-      <blue>53</blue>
-     </color>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Duración</string>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="textAlignment">
-     <set>AlignCenter</set>
-    </property>
-    <property name="background">
-     <color>
-      <red>0</red>
-      <green>170</green>
-      <blue>127</blue>
-     </color>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Paciente</string>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="textAlignment">
-     <set>AlignCenter</set>
-    </property>
-    <property name="background">
-     <color>
-      <red>255</red>
-      <green>170</green>
-      <blue>0</blue>
-     </color>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Terapeuta</string>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="textAlignment">
-     <set>AlignCenter</set>
-    </property>
-    <property name="background">
-     <color>
-      <red>85</red>
-      <green>170</green>
-      <blue>255</blue>
-     </color>
-    </property>
-   </column>
-  </widget>
-  <widget class="QTableWidget" name="tabla_pacientes_2">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>180</y>
-     <width>261</width>
-     <height>191</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>10</width>
-     <height>10</height>
-    </size>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
-   </property>
-   <property name="dragEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="rowCount">
-    <number>0</number>
-   </property>
-   <property name="columnCount">
-    <number>2</number>
-   </property>
-   <column>
-    <property name="text">
-     <string>Paciente</string>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="textAlignment">
-     <set>AlignCenter</set>
-    </property>
-    <property name="background">
-     <color>
-      <red>255</red>
-      <green>170</green>
-      <blue>0</blue>
-     </color>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Localidad</string>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="textAlignment">
-     <set>AlignCenter</set>
-    </property>
-    <property name="background">
-     <color>
-      <red>64</red>
-      <green>236</green>
-      <blue>255</blue>
-     </color>
-    </property>
-   </column>
-  </widget>
   <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
@@ -721,27 +456,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     </font>
    </property>
    <property name="text">
-    <string>Reportes relacionados al paciente asignado </string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>120</y>
-     <width>251</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Pacintes del tutor</string>
+    <string>Pacientes relacionados al tutor </string>
    </property>
   </widget>
   <widget class="QLabel" name="lbUsuario">
@@ -825,27 +540,150 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
     <string>Género:</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
+  <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>380</y>
-     <width>161</width>
-     <height>28</height>
+     <x>500</x>
+     <y>530</y>
+     <width>101</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Consultar Paciente</string>
+    <string>Consultar</string>
    </property>
+  </widget>
+  <widget class="QTableWidget" name="tableView_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>580</y>
+     <width>591</width>
+     <height>200</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>200</width>
+     <height>200</height>
+    </size>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <property name="dragEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="rowCount">
+    <number>0</number>
+   </property>
+   <property name="columnCount">
+    <number>5</number>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>155</number>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>Id_Paciente</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Nombre</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+    <property name="background">
+     <color>
+      <red>85</red>
+      <green>255</green>
+      <blue>127</blue>
+     </color>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>A. Paterno</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+    <property name="background">
+     <color>
+      <red>255</red>
+      <green>248</green>
+      <blue>53</blue>
+     </color>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>A.Materno</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+    <property name="background">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>127</blue>
+     </color>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Fecha de Nacimiento</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+    <property name="background">
+     <color>
+      <red>255</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </column>
   </widget>
   <zorder>label_8</zorder>
   <zorder>label</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>pushButton_2</zorder>
-  <zorder>pushButton_3</zorder>
   <zorder>lb1</zorder>
   <zorder>label_4</zorder>
   <zorder>lb12</zorder>
@@ -857,8 +695,6 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <zorder>lbLocalida</zorder>
   <zorder>lLocalidad</zorder>
   <zorder>frame</zorder>
-  <zorder>tabla_pacientes</zorder>
-  <zorder>tabla_pacientes_2</zorder>
   <zorder>frame_2</zorder>
   <zorder>lb9</zorder>
   <zorder>lb10</zorder>
@@ -871,13 +707,13 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <zorder>lbMunicipio</zorder>
   <zorder>lb8</zorder>
   <zorder>label_2</zorder>
-  <zorder>label_7</zorder>
   <zorder>lbUsuario</zorder>
   <zorder>lbContacto</zorder>
   <zorder>lb14_2</zorder>
   <zorder>lbCodPostal</zorder>
   <zorder>lbgen</zorder>
-  <zorder>pushButton_4</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>tableView_2</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

@@ -6,6 +6,7 @@ import ssl
 import threading
 from modelos.modeloParametros import Modelo_conexion
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox
 
 
 
@@ -45,8 +46,12 @@ class pruebaconexionEmotiv(QThread):
 
     def conectar(self):
 
-        ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
+        try:
+            ws = websocket.create_connection(self.url,sslopt={"cert_reqs": ssl.CERT_NONE})
+        except:
 
+            #Lanzar mensaje--------Pendiente-----------
+            print("Valio cacahuate :/")
         try:
             print("-------------------------------------------------------")
             print("Conectando con cortex...: ")

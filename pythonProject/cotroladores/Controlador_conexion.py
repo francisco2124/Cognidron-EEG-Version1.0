@@ -13,7 +13,7 @@ from vistas.conexion import Ui_Dialog
 from PyQt5.QtGui import QIntValidator
 import os
 from time import sleep
-#import threading
+import threading
 
 import matplotlib.pyplot as plt
 
@@ -182,6 +182,14 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         print(str(datos))
 
     def calidadElectrodo(self):
+        self.hiloClidadElectrodos = classConexion()
+        self.hiloClidadElectrodos.signEmotiv.connect(self.aplicarSeleccion)
+        self.hiloClidadElectrodos.start()
+
+
+
+    '''
+    def calidadElectrodo(self):
         result = self.conexionClass.suscribirseDEV()
         calidadElectrodo = json.loads(result) #Utilizar Com
         print("Todos los datos: "+str(calidadElectrodo))
@@ -190,10 +198,10 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         a=0
 
         return calElectrodo
+    '''
 
 
-
-    def aplicarSeleccion(self):
+    def aplicarSeleccion(self, calidadElectrodos):
         lbAF3  = self.ui.lbAF3
         lbAF4  = self.ui.lbAF4
         lbF3  = self.ui.lbF3
@@ -246,7 +254,8 @@ class Controlador_conexion(QtWidgets.QMainWindow):
                 self.ui.btnTerapiaNeurofeedback.setEnabled(False)
 
         b = 0
-        calElectrodo = self.calidadElectrodo()
+        print("los electrodos son: "+str(calidadElectrodos))
+        calElectrodo = calidadElectrodos
         #print("El resultado calE ---> "+str(calElectrodo))
         for i in calElectrodo:
             #print("Soy i: "+str(i))

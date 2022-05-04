@@ -12,7 +12,8 @@ import vistas.images
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1285, 978)
+        MainWindow.resize(1833, 978)
+        MainWindow.setMaximumSize(QtCore.QSize(1833, 978))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/newPrefix/idea-genial.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -22,19 +23,20 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.mdiArea = QtWidgets.QMdiArea(self.centralwidget)
         self.mdiArea.setEnabled(True)
-        self.mdiArea.setGeometry(QtCore.QRect(10, 20, 1261, 871))
+        self.mdiArea.setGeometry(QtCore.QRect(10, 20, 1811, 871))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(80)
         sizePolicy.setVerticalStretch(80)
         sizePolicy.setHeightForWidth(self.mdiArea.sizePolicy().hasHeightForWidth())
         self.mdiArea.setSizePolicy(sizePolicy)
-        self.mdiArea.setMinimumSize(QtCore.QSize(1261, 871))
+        self.mdiArea.setMinimumSize(QtCore.QSize(1600, 871))
+        self.mdiArea.setMaximumSize(QtCore.QSize(1811, 871))
         self.mdiArea.setBaseSize(QtCore.QSize(800, 800))
         self.mdiArea.setStyleSheet("")
         self.mdiArea.setObjectName("mdiArea")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1285, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1833, 26))
         self.menubar.setObjectName("menubar")
         self.menuVista = QtWidgets.QMenu(self.menubar)
         self.menuVista.setObjectName("menuVista")
@@ -387,7 +389,6 @@ class Ui_MainWindow(object):
         self.actionEjerciciosControlMnetal.setToolTip(_translate("MainWindow", "Abrir ejercicios de tipo control mental"))
         self.actionEjerciciosControlMnetal.setShortcut(_translate("MainWindow", "Ctrl+M"))
         self.actionRecuperar_Teraputas_Eliminados.setText(_translate("MainWindow", "Recuperar Teraputas Eliminados"))
-
 
 if __name__ == "__main__":
     import sys

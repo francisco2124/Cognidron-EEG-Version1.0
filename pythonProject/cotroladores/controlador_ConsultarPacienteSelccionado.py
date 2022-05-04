@@ -21,21 +21,21 @@ class Control_ConsultarPaciebSelec(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.paciente = idPaciente
         self.modelo = Modelo_Paciente_()
-        self.cargarTerapeuta()
+        self.cargarPaciente()
         self.InicializarGui()
-        #self.cargarReportesXTerapeuta()
+        self.cargarReportesXPaciente()
         #self.cargarTablaTeraPacientes()
 
     def InicializarGui(self):
 
         #print(type, self.user)
         self.ui.lbUsuario.setText(self.paciente)
-        #self.ui.pushButton.clicked.connect(self.abrirReporteEspecifico)
+        self.ui.pushButton.clicked.connect(self.abrirReporteEspecifico)
 
 
 
 
-    def cargarTerapeuta(self):
+    def cargarPaciente(self):
 
 
 
@@ -79,47 +79,28 @@ class Control_ConsultarPaciebSelec(QtWidgets.QMainWindow):
             nombreTutor =  self.modelo.recuperarNombreTutor(str(ListaDatos[15]))
             self.ui.lbTutor.setText(str(nombreTutor[0][0])+ " "+str(nombreTutor[0][1]))
 
-    def cargarReportesXTerapeuta(self):
+    def cargarReportesXPaciente(self):
 
-        datosidT = self.modelo.cargarPlaceHolder(self.user)
-        ListaDatos2 = datosidT[0]
-        print("Datos del terapeuta: "+str(ListaDatos2))
+        datosidT = self.modelo.cargarTablaXSesionPati(self.paciente)
+        datos= datosidT
+        print("Terapias recuperadas: "+str(datos))
 
-        datos = self.modelo.cargarTablaXSesionTera(str(ListaDatos2[12]))
         print("cargar Reportes")
         i = len(datos)
         self.ui.tabla_pacientes.setRowCount(i)
         tablerow = 0
         for row in datos:
-            self.ui.tabla_pacientes.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[1]))
-            self.ui.tabla_pacientes.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
-            self.ui.tabla_pacientes.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
-            self.ui.tabla_pacientes.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[4]))
-            self.ui.tabla_pacientes.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
-            self.ui.tabla_pacientes.setItem(tablerow,5,QtWidgets.QTableWidgetItem(row[6]))
+            self.ui.tabla_pacientes.setItem(tablerow,0,QtWidgets.QTableWidgetItem(str(row[0])))
+            self.ui.tabla_pacientes.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[1]))
+            self.ui.tabla_pacientes.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[2]))
+            self.ui.tabla_pacientes.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[3]))
+            self.ui.tabla_pacientes.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[4]))
+            self.ui.tabla_pacientes.setItem(tablerow,5,QtWidgets.QTableWidgetItem(row[5]))
 
 
             tablerow +=1
 
-    def cargarTablaTeraPacientes(self):
 
-        datosidT = self.modelo.cargarPlaceHolder(self.user)
-        ListaDatos3 = datosidT[0]
-
-        datos3 = self.modelo.cargarTablaxTeraPaciente(str(ListaDatos3[12]))
-
-
-        #print(datos3[0])
-
-        if len(datos3) > 0:
-            i = len(datos3)
-            self.ui.tabla_pacientes_2.setRowCount(i)
-            tablerow = 0
-            for row in datos3:
-                self.ui.tabla_pacientes_2.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[1]))
-                self.ui.tabla_pacientes_2.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
-                #self.ui.tabla_pacientes_2.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
-                tablerow +=1
 
     def abrirReporteEspecifico(self):
 
@@ -133,6 +114,6 @@ class Control_ConsultarPaciebSelec(QtWidgets.QMainWindow):
             self.abrir.show()
 
         else:
-            Alerta = QMessageBox.information(self, 'Alerta', "Selecciona un rreporte", QMessageBox.Ok)
+            Alerta = QMessageBox.information(self, 'Alerta', "Selecciona un reporte", QMessageBox.Ok)
             print("No selecionaste")
 

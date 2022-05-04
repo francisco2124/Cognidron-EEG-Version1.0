@@ -78,10 +78,11 @@ class Control_ConsultarTerapectuaSelec(QtWidgets.QMainWindow):
 
         datosidT = self.modelo.cargarPlaceHolder(self.user)
         ListaDatos2 = datosidT[0]
-        print("Datos del terapeuta: "+str(ListaDatos2))
+        print("Datos del terapeuta---: "+str(ListaDatos2))
 
         datos = self.modelo.cargarTablaXSesionTera(str(ListaDatos2[12]))
         print("cargar Reportes")
+        print("Los datos  son "+str(datos))
         i = len(datos)
         self.ui.tabla_pacientes.setRowCount(i)
         tablerow = 0

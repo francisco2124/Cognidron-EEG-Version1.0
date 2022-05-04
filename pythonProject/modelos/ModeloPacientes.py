@@ -72,6 +72,25 @@ class Modelo_Paciente_(QtWidgets.QMainWindow):
         cursor.close()
         registro = cursor.fetchall()
         return registro
+    def cargarTablaXSesionPati(self, idPati):
+
+        connection2 = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd="root0",
+            db="cognidroneeg"
+        )
+        cursor = connection2.cursor()
+        sql = "SELECT idSesionTerapeutica, fecha, ejer.nombre, tiempo, pati.nombre, tera.nombre FROM sesionterapeutica sesio " \
+              "INNER JOIN ejercicios ejer ON (ejer.idEjercicios = sesio.Ejercicios_idEjercicios)" \
+              "INNER JOIN paciente pati ON (pati.idPaciente = sesio.Paciente_idPaciente)" \
+              "INNER JOIN terapeuta tera ON (tera.idTrapeuta = sesio.Terapeuta_idTrapeuta) WHERE pati.idPaciente = '{}' ".format(idPati)
+
+        cursor.execute(sql)
+        cursor.close()
+        registro = cursor.fetchall()
+        return registro
+
 
     def contenoPacientes(self):
         connection2 = pymysql.connect(

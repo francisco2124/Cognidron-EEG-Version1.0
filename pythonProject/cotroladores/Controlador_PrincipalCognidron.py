@@ -35,6 +35,7 @@ from cotroladores.controlador_TerapiaTipoNeurofeedback import Controlador_Terapi
 #----------------------------------Conexion------------------------------------------------
 from cotroladores.controlador_ParametrosConexion import Controlador_parametros
 from cotroladores.Controlador_conexion import Controlador_conexion
+from cotroladores.controlador_ConexionDron import Controlador_ConexionDron
 
 #----------------------------------Ejercicios----------------------------------------------
 from cotroladores.controlador_EjerciciosNeurofeedback import Controlador_EjerciciosTerapeuticos
@@ -56,7 +57,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.ui= Ui_MainWindow()
         self.ui.setupUi(self)
         #Electrodos bajo el estandar 10-10
-        self.electrodos = {'Estandar':'10-10',"AF3":False, "F7":False,"F3":False,'FC5':False,'T7':False,'P7':False,'01':False,'02':False, 'P8':False, 'T8':False, 'FC6':False, 'F4':False,'F8':False,'AF4':False}
+        self.electrodos = {'Estandar':'10-10',"AF3":False, "F7":False,"F3":False,'FC5':False,'T7':False,'P7':False,'01':False,'02':True, 'P8':False, 'T8':False, 'FC6':False, 'F4':False,'F8':False,'AF4':False}
         self.user = user
         self.modelo = Modelo_Terapeuta()
         self.InicializarGui()
@@ -92,6 +93,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         #-----------------------------------Conexion-------------------------------------------------
         self.ui.actionConfigurar_parametros_de_conexi_n.triggered.connect(self.editarParametros)
         self.ui.actionConectar_Emotiv.triggered.connect(self.abrirConexionEmotiv)
+        self.ui.menuConectar_Robot_Fisico.triggered.connect(self.abrirConexionDron)
 
         #-----------------------------------Ejercicios-------------------------------------------------
         self.ui.actionIconLibro.triggered.connect(self.ejerciciosNeuro)
@@ -221,6 +223,13 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
 
         self.abrir = QtWidgets.QDialog()
         self.abrir = Controlador_conexion(self.electrodos,self.ui.mdiArea)
+        self.ui.mdiArea.addSubWindow(self.abrir)
+        self.abrir.show()
+
+    def abrirConexionDron(self):
+
+        self.abrir = QtWidgets.QDialog()
+        self.abrir = Controlador_ConexionDron()
         self.ui.mdiArea.addSubWindow(self.abrir)
         self.abrir.show()
 

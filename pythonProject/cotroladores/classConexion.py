@@ -1,10 +1,11 @@
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 import time
-
+import threading
 import websocket
 import json
 import ssl
 from modelos.modeloParametros import Modelo_conexion
+
 
 class classConexion(QThread):
     signDS = pyqtSignal(int)
@@ -304,28 +305,30 @@ class classConexion(QThread):
             print("Error: Problemas al iniciar sesión con el dispositivo en Cortex")
 
 
+        try:
+            #**************************************************************************
+            print("-------------------------------------------------------")
+            print("Suscribirse a los comandos mentales...: ")
+            msg = """{
+                                "id": 1,
+                                "jsonrpc": "2.0",
+                                "method": "subscribe",
+                                "params": {
+                                    "cortexToken": "%s",
+                                    "session": "%s",
+                                    "streams": ["dev"]
+                                }
+                            }""" % (token, sesion)
+            ws.send(msg)
 
-        #**************************************************************************
-        print("-------------------------------------------------------")
-        print("Suscribirse a los comandos mentales...: ")
-        msg = """{
-                            "id": 1,
-                            "jsonrpc": "2.0",
-                            "method": "subscribe",
-                            "params": {
-                                "cortexToken": "%s",
-                                "session": "%s",
-                                "streams": ["dev"]
-                            }
-                        }""" % (token, sesion)
-        ws.send(msg)
-
-        print("--------------------------------------------------------")
-        result = ws.recv()
-        print("Se recupera lo siguiente: " + result)
-        result = ws.recv()
-        self.signDS.emit(result)
-        return result
+            print("--------------------------------------------------------")
+            result = ws.recv()
+            print("Se recupera lo siguiente ---Arreglo de elctrodos---: " + result)
+            result = ws.recv()
+            self.signDS.emit(result)
+            return result
+        except:
+            print("Fallo conexion")
 
     def suscribirseNeurofeedback(self):
 

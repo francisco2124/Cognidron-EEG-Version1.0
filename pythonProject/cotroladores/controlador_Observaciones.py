@@ -17,7 +17,7 @@ from modelos.modelorReportes import Modelo_Reportes
 class Controlador_Observaciones(QtWidgets.QMainWindow):
 
     def __init__(self, tiempoSesion, puntos, promedioPotencias, electrodos, mayorTiempo, menorTiempo, promedioTiempo, porcentajeTiempo,
-                 fecha, tipoEjercicio, frecuencia, ejercicio,robot, paciente):
+                 fecha, tipoEjercicio, frecuencia, ejercicio,robot, paciente, primerUmbral, numVecesUmbral):
         super().__init__()
         print("soy la vista de capturar observaciones")
         self.ui= Ui_capturarObservaciones()
@@ -41,6 +41,8 @@ class Controlador_Observaciones(QtWidgets.QMainWindow):
         self.ejercicio = ejercicio
         self.robot = robot
         self.paciente = paciente
+        self.primerUmbral = primerUmbral
+        self.numVecesUmbral = numVecesUmbral
 
         self.InicializarGui()
 
@@ -53,6 +55,8 @@ class Controlador_Observaciones(QtWidgets.QMainWindow):
         self.ui.lbMenorTiempo.setText(str(self.menorTiempo))
         self.ui.lbPromedioTiempo.setText(str(self.promedioTiepo))
         self.ui.lbTiempoUmbralObtenido.setText(str(self.porcentajeTiempo)+" %")
+        self.ui.lbPrimerUmbral.setText(self.primerUmbral)
+        self.ui.lbNumeroUmbrales.setText(str(self.numVecesUmbral))
 
         self.ui.btnRegistar.clicked.connect(self.capturarObservaciones)
 

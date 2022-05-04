@@ -34,7 +34,7 @@ class Controlador_RecuperarCredenciales(QtWidgets.QMainWindow):
     def recuperarCredenciales(self):
 
         correo = self.ui.etCorreo.text()
-        print(str(correo))
+        print("el correo es: "+str(correo))
         try:
             datos = self.modelo.recuperarCredenciales(correo)
             print("Los datos son: "+str(datos))
@@ -49,8 +49,8 @@ class Controlador_RecuperarCredenciales(QtWidgets.QMainWindow):
 
                 datosF =datos[0]
                 mensaje = MIMEMultipart("plain")
-                mensaje["From"]=correo
-                mensaje["To"] = "franciscoGomez272@gmail.com"
+                mensaje["From"]="cognidroneeg@gmail.com"
+                mensaje["To"] = correo
                 mensaje["Subject"] = "CogniDron-EEG. Recuperación de credenciales"
                 body = "Hola soy el asistente del sistema CogniDron-EEG. Tu usuario es: -"+str(datosF[0])+"- y tu contraseña es: -"+\
                        str(datosF[1])+"- .Muchas gracias por preferir el sistema CogniDron-EEG :)"
