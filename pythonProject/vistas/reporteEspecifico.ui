@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1008</width>
-    <height>761</height>
+    <height>802</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -113,9 +113,9 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>702</y>
+     <y>740</y>
      <width>171</width>
-     <height>41</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -129,7 +129,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>619</y>
+     <y>650</y>
      <width>131</width>
      <height>21</height>
     </rect>
@@ -190,7 +190,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>652</y>
+     <y>680</y>
      <width>171</width>
      <height>23</height>
     </rect>
@@ -333,7 +333,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>682</y>
+     <y>710</y>
      <width>171</width>
      <height>23</height>
     </rect>
@@ -580,7 +580,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>642</y>
+     <y>670</y>
      <width>171</width>
      <height>41</height>
     </rect>
@@ -728,7 +728,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>622</y>
+     <y>650</y>
      <width>221</width>
      <height>21</height>
     </rect>
@@ -763,7 +763,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>672</y>
+     <y>700</y>
      <width>171</width>
      <height>41</height>
     </rect>
@@ -802,7 +802,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>652</y>
+     <y>680</y>
      <width>171</width>
      <height>22</height>
     </rect>
@@ -1005,7 +1005,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>612</y>
+     <y>640</y>
      <width>171</width>
      <height>41</height>
     </rect>
@@ -1018,7 +1018,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>622</y>
+     <y>650</y>
      <width>171</width>
      <height>22</height>
     </rect>
@@ -1109,8 +1109,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
   <widget class="QLabel" name="label_23">
    <property name="geometry">
     <rect>
-     <x>37</x>
-     <y>652</y>
+     <x>40</x>
+     <y>680</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -1123,7 +1123,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>682</y>
+     <y>710</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -1158,8 +1158,8 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>712</y>
-     <width>171</width>
+     <y>745</y>
+     <width>121</width>
      <height>23</height>
     </rect>
    </property>
@@ -1233,7 +1233,7 @@ font: 75 19pt &quot;Times New Roman&quot;;</string>
      <x>680</x>
      <y>402</y>
      <width>311</width>
-     <height>331</height>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -1328,7 +1328,7 @@ Execelnte trabajo!</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>682</y>
+     <y>710</y>
      <width>171</width>
      <height>22</height>
     </rect>
@@ -1363,7 +1363,7 @@ Execelnte trabajo!</string>
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>712</y>
+     <y>745</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -1376,7 +1376,7 @@ Execelnte trabajo!</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>712</y>
+     <y>745</y>
      <width>151</width>
      <height>22</height>
     </rect>
@@ -2077,9 +2077,9 @@ Execelnte trabajo!</string>
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>80</y>
+     <y>90</y>
      <width>1011</width>
-     <height>681</height>
+     <height>721</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -2104,6 +2104,212 @@ Execelnte trabajo!</string>
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="Line" name="line_49">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>770</y>
+     <width>621</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>2</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72, 72, 72);</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_52">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>650</y>
+     <width>2</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>2</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72, 72, 72);</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_53">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>650</y>
+     <width>2</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>2</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72, 72, 72);</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_54">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>650</y>
+     <width>2</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>2</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72, 72, 72);</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_55">
+   <property name="geometry">
+    <rect>
+     <x>173</x>
+     <y>650</y>
+     <width>2</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>2</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72, 72, 72);</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_56">
+   <property name="geometry">
+    <rect>
+     <x>1010</x>
+     <y>640</y>
+     <width>2</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>2</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72, 72, 72);</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_57">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>650</y>
+     <width>2</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>2</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72, 72, 72);</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbnumUmbrales">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>620</y>
+     <width>161</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>10</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_34">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>620</y>
+     <width>131</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Primel umbral:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_75">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>617</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Num. Umbrales </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbPrimerUmbral">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>610</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>2:20</string>
    </property>
   </widget>
   <zorder>label_8</zorder>
@@ -2220,6 +2426,17 @@ Execelnte trabajo!</string>
   <zorder>line_46</zorder>
   <zorder>line_33</zorder>
   <zorder>lbFuncionesCognitivas</zorder>
+  <zorder>line_49</zorder>
+  <zorder>line_52</zorder>
+  <zorder>line_53</zorder>
+  <zorder>line_54</zorder>
+  <zorder>line_55</zorder>
+  <zorder>line_56</zorder>
+  <zorder>line_57</zorder>
+  <zorder>lbnumUmbrales</zorder>
+  <zorder>label_34</zorder>
+  <zorder>label_75</zorder>
+  <zorder>lbPrimerUmbral</zorder>
  </widget>
  <resources>
   <include location="images/image.qrc"/>

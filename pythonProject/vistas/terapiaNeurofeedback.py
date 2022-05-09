@@ -181,7 +181,7 @@ class Ui_TerapiaNeurofeedback(object):
         self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
         self.lbTerapeuta = QtWidgets.QLabel(self.frame)
-        self.lbTerapeuta.setGeometry(QtCore.QRect(190, 50, 121, 31))
+        self.lbTerapeuta.setGeometry(QtCore.QRect(190, 50, 511, 31))
         font = QtGui.QFont()
         font.setPointSize(9)
         font.setBold(True)

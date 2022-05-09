@@ -26,6 +26,7 @@ from cotroladores.pruebaEmotivList import pruebaconexionEmotiv
 
 from modelos.ModeloPacientes import Modelo_Paciente_
 from modelos.modeloEjercicios import Modelo_Ejercicios
+from modelos.ModeloTerapeuta import Modelo_Terapeuta
 
 from cotroladores.controlador_Observaciones import Controlador_Observaciones
 
@@ -46,7 +47,7 @@ from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
 class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
 
-    def __init__(self, electrodos):
+    def __init__(self, electrodos, usuario):
         super().__init__()
         self.ui = Ui_TerapiaNeurofeedback()
         self.ui.setupUi(self)
@@ -69,6 +70,8 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.proximoMovimiento2 =  ""
         self.contadorPuntos = 1
         self.porcentajeBarraPuntaje = 0
+
+        self.user = usuario
 
 
         #Variables para ejercicios Complejor
@@ -113,6 +116,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         #modelos
         self.modeloPaciente = Modelo_Paciente_()
         self.modeloEjercicios = Modelo_Ejercicios()
+        self.modeloTerapeuta = Modelo_Terapeuta()
 
         #Funciones
         self.cargarCbPacientes()
@@ -151,8 +155,20 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
     def inicializarGUI(self):
 
-        #Recuperar nombre y numero total de los electrodos seleccionados
+        #Recuperar nombre del terapeuta
 
+        print("Usuario del terapeuta desde terapia es: "+str(self.user))
+        datos = self.modeloTerapeuta.cargarPlaceHolder(self.user)
+        print("Las datos de terapeuta desde la terapia son:" +str(datos))
+        datosF = datos[0]
+
+        self.idTerapeuta = datosF[12]
+        print("El id del terapeuta es: "+str(self.idTerapeuta))
+
+        nombreTerapeuta = datosF[0] + " " + datosF[1] + " " + datosF[2]
+
+        print("Nombre del terapeuto con apellido es: "+nombreTerapeuta)
+        self.ui.lbTerapeuta.setText(nombreTerapeuta)
         #Recuperar fecha actual
         fecha = str(datetime.now())
         self.fechaF = ""
@@ -211,10 +227,14 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.ui.spinBoxUmbral.setSingleStep(1)
         self.ui.spinBoxUmbral.setValue(30)
 
-        self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
+        try:
+            self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
+            self.activarBarraNeurofeedback()
+        except:
+            lerta = QMessageBox.information(self, 'Alerta', "Es necesario contar con conexion a internet para realizar una terapia", QMessageBox.Ok)
         #self.hiloEmotiv = HiloSingsEotiv()
 
-        self.activarBarraNeurofeedback()
+
 
 
 
@@ -461,7 +481,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
         self.abrir = Controlador_Observaciones(self.tiempoSesion,self.puntaje,promedioPotencias, electrodos, max_tiempo, min_tiempo,
                                                promedioTiempo, porcentajeTiempoF, self.fechaF, tipoEjercio, frecuencia,
-                                               ejericicio, robot, idPaciente,self.tPrimerUmbral, numVecesUmbrales)
+                                               ejericicio, robot, idPaciente,self.tPrimerUmbral, numVecesUmbrales, self.idTerapeuta)
         self.abrir.show()
 
         self.ui.btnIniciarTerapia.setText("Iniciar terapia")

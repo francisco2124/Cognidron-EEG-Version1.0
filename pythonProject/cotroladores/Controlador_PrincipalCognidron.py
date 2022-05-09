@@ -57,7 +57,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
         self.ui= Ui_MainWindow()
         self.ui.setupUi(self)
         #Electrodos bajo el estandar 10-10
-        self.electrodos = {'Estandar':'10-10',"AF3":False, "F7":False,"F3":False,'FC5':False,'T7':False,'P7':False,'01':False,'02':True, 'P8':False, 'T8':False, 'FC6':False, 'F4':False,'F8':False,'AF4':False}
+        self.electrodos = {'Estandar':'10-10',"AF3":False, "F7":False,"F3":False,'FC5':False,'T7':False,'P7':False,'01':False,'02':False, 'P8':False, 'T8':False, 'FC6':False, 'F4':False,'F8':False,'AF4':False}
         self.user = user
         self.modelo = Modelo_Terapeuta()
         self.InicializarGui()
@@ -213,7 +213,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
             self.abrirConexionEmotiv()
         else:
             self.abrir = QtWidgets.QDialog()
-            self.abrir = Controlador_TerapiaNeurofeeldback(self.electrodos)
+            self.abrir = Controlador_TerapiaNeurofeeldback(self.electrodos, self.user)
             self.ui.mdiArea.addSubWindow(self.abrir)
             self.abrir.show()
 
@@ -222,7 +222,7 @@ class Controlador_PrincipalCognidron(QtWidgets.QMainWindow):
     def abrirConexionEmotiv(self):
 
         self.abrir = QtWidgets.QDialog()
-        self.abrir = Controlador_conexion(self.electrodos,self.ui.mdiArea)
+        self.abrir = Controlador_conexion(self.electrodos,self.ui.mdiArea, self.user)
         self.ui.mdiArea.addSubWindow(self.abrir)
         self.abrir.show()
 

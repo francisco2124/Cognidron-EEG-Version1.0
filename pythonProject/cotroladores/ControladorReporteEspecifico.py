@@ -47,7 +47,7 @@ class Controlador_ConsultarReporteEspecifoco(QtWidgets.QMainWindow):
 
         ListDatos = datos[0]
 
-        print("Los datos son: "+str(ListDatos))
+        print("Los datos del reporte son +++: "+str(ListDatos))
 
       #-------------------------------------------Datos del Paciente----------------------------------------------
 
@@ -77,7 +77,7 @@ class Controlador_ConsultarReporteEspecifoco(QtWidgets.QMainWindow):
         age = (datetime.now() - fecha_dt)
         dias = age.days
         edad = math.floor(dias/365)
-        self.ui.lbEdadPaciente.setText(str(edad)+ " años")
+        self.ui.lbEdadTera.setText(str(edad)+ " años")
         #---Localidad---
         self.ui.lbLocalidadTera.setText(ListDatos[10])
         #---Estatus---
@@ -118,12 +118,17 @@ class Controlador_ConsultarReporteEspecifoco(QtWidgets.QMainWindow):
         self.ui.lbMenorUmbral.setText(str(ListDatos[21]))
         #---Mayor Umbral---
         self.ui.lbMoyorUmbral.setText(str(ListDatos[22]))
+        #---Numero de umbrales alcanzados---
+        self.ui.lbnumUmbrales.setText(str(ListDatos[26]))
+        #---Tiempo de primer umbral alcanzado---
+        self.ui.lbPrimerUmbral.setText(ListDatos[27])
         #---Promedio Umbral---
         self.ui.lbPromedioUmbral.setText(str(ListDatos[23]))
         #---Porcentaje logrado---
         self.ui.lbPorcentajeLogrado.setText(str(ListDatos[24]))
         #---Observaciones de la terapia---
         self.ui.tpObservaciones.setPlainText(ListDatos[25])
+
 
     '''
     def cargarReporteGrafico(self):

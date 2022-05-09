@@ -34,7 +34,7 @@ from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
 class Controlador_conexion(QtWidgets.QMainWindow):
 
 
-    def __init__(self, electrodos, mdiArea):
+    def __init__(self, electrodos, mdiArea, user):
         super().__init__()
         self.ui= Ui_Dialog()
         self.conexionClass = classConexion()
@@ -51,6 +51,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         #self.cargarParametris()
         self.dicionarioElectrodos = electrodos
         self.mdiArea =mdiArea
+        self.user = user
 
         #Clase de pruebas
         self.emotiv = pruebaconexionEmotiv(self.dicionarioElectrodos, "Alfa")
@@ -181,14 +182,11 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         print("Los datos son los siguientes: ")
         print(str(datos))
 
-    def calidadElectrodo(self):
-        self.hiloClidadElectrodos = classConexion()
-        self.hiloClidadElectrodos.signEmotiv.connect(self.aplicarSeleccion)
-        self.hiloClidadElectrodos.start()
 
 
 
-    '''
+
+
     def calidadElectrodo(self):
         result = self.conexionClass.suscribirseDEV()
         calidadElectrodo = json.loads(result) #Utilizar Com
@@ -198,10 +196,10 @@ class Controlador_conexion(QtWidgets.QMainWindow):
         a=0
 
         return calElectrodo
-    '''
 
 
-    def aplicarSeleccion(self, calidadElectrodos):
+
+    def aplicarSeleccion(self):
         lbAF3  = self.ui.lbAF3
         lbAF4  = self.ui.lbAF4
         lbF3  = self.ui.lbF3
@@ -254,8 +252,8 @@ class Controlador_conexion(QtWidgets.QMainWindow):
                 self.ui.btnTerapiaNeurofeedback.setEnabled(False)
 
         b = 0
-        print("los electrodos son: "+str(calidadElectrodos))
-        calElectrodo = calidadElectrodos
+
+        calElectrodo = self.calidadElectrodo()
         #print("El resultado calE ---> "+str(calElectrodo))
         for i in calElectrodo:
             #print("Soy i: "+str(i))
@@ -275,7 +273,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
 
     def abrirTerapiaNeurofeedback(self):
             self.abrir = QtWidgets.QDialog()
-            self.abrir = Controlador_TerapiaNeurofeeldback(self.dicionarioElectrodos)
+            self.abrir = Controlador_TerapiaNeurofeeldback(self.dicionarioElectrodos, self.user)
             self.mdiArea.addSubWindow(self.abrir)
             self.abrir.show()
 

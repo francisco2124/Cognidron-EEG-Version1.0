@@ -453,7 +453,10 @@ class pruebaconexionEmotiv(QThread):
 
         result = ws.recv()
         dic = json.loads(result)
-        token = dic["result"]["cortexToken"]
+        try:
+            token = dic["result"]["cortexToken"]
+        except:
+            print("Fallo la conexion a internet")
         #Configurar    problema de internet
 
         #print("======================Ver diademas conectadas...: ")

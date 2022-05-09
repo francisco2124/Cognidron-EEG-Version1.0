@@ -17,7 +17,7 @@ from modelos.modelorReportes import Modelo_Reportes
 class Controlador_Observaciones(QtWidgets.QMainWindow):
 
     def __init__(self, tiempoSesion, puntos, promedioPotencias, electrodos, mayorTiempo, menorTiempo, promedioTiempo, porcentajeTiempo,
-                 fecha, tipoEjercicio, frecuencia, ejercicio,robot, paciente, primerUmbral, numVecesUmbral):
+                 fecha, tipoEjercicio, frecuencia, ejercicio,robot, paciente, primerUmbral, numVecesUmbral, idTerapeuta):
         super().__init__()
         print("soy la vista de capturar observaciones")
         self.ui= Ui_capturarObservaciones()
@@ -43,6 +43,7 @@ class Controlador_Observaciones(QtWidgets.QMainWindow):
         self.paciente = paciente
         self.primerUmbral = primerUmbral
         self.numVecesUmbral = numVecesUmbral
+        self.idTerapeuta = idTerapeuta
 
         self.InicializarGui()
 
@@ -90,7 +91,8 @@ class Controlador_Observaciones(QtWidgets.QMainWindow):
             self.modelo.registarTerpaiaNeurofeedback(self.fecha, funcionCognitiva, self.tiempoSesion,self.tipoEjercicio,
                                                     self.puntosSesion, self.frecuencia,observaciones,
                                                     self.promedioPotencias, self.electrodos, self.mayorTiempo, self.promedioTiepo,
-                                                    self.menorTiempo, self.porcentajeTiempo, self.paciente, 1,idEjercicio[0])
+                                                    self.menorTiempo, self.numVecesUmbral, self.primerUmbral, self.porcentajeTiempo,
+                                                     self.paciente, self.idTerapeuta,idEjercicio[0])
             Alerta = QMessageBox.information(self, 'Conformacion', "Se registraron correctamente los datos", QMessageBox.Ok)
 
             #except:

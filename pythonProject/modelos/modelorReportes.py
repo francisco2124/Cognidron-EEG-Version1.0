@@ -91,7 +91,7 @@ class Modelo_Reportes(QtWidgets.QMainWindow):
          tera.nombre, tera.ape_paterno, tera.fecha_nacimiento, tera.localidad, tera.borradoLogico, tera.numero_contacto,  
          sesio.fecha, ejer.nombre, sesio.funcionCognitiva , sesio.electrodosUtilizados ,sesio.tipoEjercicio, sesio.tiempo,
           sesio.promedioPotencia , sesio.frecuencia ,sesio.menorUmbral ,sesio.mejorUmbral, sesio.promedioUmbral, sesio.porcentajeUmbralTerapia
-            ,sesio.comentarios, pati.ape_materno FROM sesionterapeutica sesio ''' \
+            ,sesio.comentarios, sesio.numUmbrales, sesio.primerUmbral FROM sesionterapeutica sesio ''' \
               '''INNER JOIN ejercicios ejer ON (ejer.idEjercicios = sesio.Ejercicios_idEjercicios)''' \
               '''INNER JOIN paciente pati ON (pati.idPaciente = sesio.Paciente_idPaciente) ''' \
               '''INNER JOIN tutor tuto ON (tuto.idTutor = pati.Tutor_idTutor) ''' \
@@ -139,7 +139,7 @@ class Modelo_Reportes(QtWidgets.QMainWindow):
 
     def registarTerpaiaNeurofeedback(self, fecha, funcionCognitiva, tiempo, tipoEjericio, puntosObtenidos, frecuencia,
                                     observaciones, promedioPotencia, elestrodos, mejorUmbral, promedioUmbral,
-                                     menorUmbral, porcentajeUmbral, idPaciente, idTerapeuta, idEjercicio):
+                                     menorUmbral, numUmbrales, primerUmbral, porcentajeUmbral, idPaciente, idTerapeuta, idEjercicio):
         connectionAgregar = pymysql.connect(
             host="localhost",
             user="root",
@@ -149,12 +149,13 @@ class Modelo_Reportes(QtWidgets.QMainWindow):
 
         cursor = connectionAgregar.cursor()
 
-        sql = '''INSERT INTO sesionterapeutica (fecha, funcionCognitiva, tiempo, tipoEjercicio, puntosObtenidos, frecuencia,
-        comentarios, promedioPotencia, electrodosUtilizados, mejorUmbral, promedioUmbral, menorUmbral, porcentajeUmbralTerapia, Paciente_idPaciente, 
+        sql = '''INSERT INTO sesionterapeutica (fecha, funcionCognitiva, tiempo, tipoEjercicio, puntosObtenidos, frecuencia, 
+        comentarios, promedioPotencia, electrodosUtilizados, mejorUmbral, promedioUmbral, menorUmbral, numUmbrales, primerUmbral,
+        porcentajeUmbralTerapia, Paciente_idPaciente, 
         Terapeuta_idTrapeuta, Ejercicios_idEjercicios) VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', 
-        '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')'''.format(fecha, funcionCognitiva, tiempo, tipoEjericio, puntosObtenidos,
-                                frecuencia, observaciones, promedioPotencia,elestrodos, mejorUmbral, promedioUmbral, menorUmbral, porcentajeUmbral,
-                                                                       idPaciente, idTerapeuta, idEjercicio)
+        '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')'''.format(fecha, funcionCognitiva, tiempo, tipoEjericio, puntosObtenidos,
+                                frecuencia, observaciones, promedioPotencia,elestrodos, mejorUmbral, promedioUmbral, menorUmbral,numUmbrales, primerUmbral,
+                                                                                    porcentajeUmbral,idPaciente, idTerapeuta, idEjercicio)
 
         cursor.execute(sql)
         connectionAgregar.commit()

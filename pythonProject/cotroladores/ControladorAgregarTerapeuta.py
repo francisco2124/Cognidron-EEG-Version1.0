@@ -159,6 +159,8 @@ class Controlador_AgrgarTerapeutas(QtWidgets.QMainWindow):
                 return True
             else:
                 return False
+
+
         def validarCodPostal(campo):
             if len(campo) != 5:
                 return True
