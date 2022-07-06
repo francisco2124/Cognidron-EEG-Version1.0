@@ -289,7 +289,7 @@ class Ui_ConsultarPacienteSelec(object):
 
     def retranslateUi(self, ConsultarPacienteSelec):
         _translate = QtCore.QCoreApplication.translate
-        ConsultarPacienteSelec.setWindowTitle(_translate("ConsultarPacienteSelec", "Terapeuta Selecionado"))
+        ConsultarPacienteSelec.setWindowTitle(_translate("ConsultarPacienteSelec", "Paciente seleccionado "))
         self.label.setText(_translate("ConsultarPacienteSelec", "Id del paciente:  "))
         self.pushButton.setText(_translate("ConsultarPacienteSelec", "Consultar"))
         self.pushButton_2.setText(_translate("ConsultarPacienteSelec", "Enviar"))

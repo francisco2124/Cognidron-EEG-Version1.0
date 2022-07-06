@@ -14,19 +14,14 @@ from PyQt5.QtGui import QIntValidator
 import os
 from time import sleep
 import threading
-
 import matplotlib.pyplot as plt
-
-
 from cotroladores.controlador_TerapiaTipoNeurofeedback import Controlador_TerapiaNeurofeeldback
 from modelos.modeloParametros import Modelo_conexion
 from cotroladores.classConexion import classConexion
-
 #Pruebas de conexion
 from cotroladores.pruebaEmotivList import pruebaconexionEmotiv
 import threading
 from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
-
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vista
 
 
@@ -139,7 +134,7 @@ class Controlador_conexion(QtWidgets.QMainWindow):
             self.ui.label_4.setStyleSheet("background-color: rgb(41, 226, 69);")
             Alerta = QMessageBox.information(self, 'Conformación', "Conexion Exitosa", QMessageBox.Ok)
             self.ui.btnAplicarSelecion.setEnabled(True)
-            self.ui.teErrores.setText("Se ha validado la conexió con el servidor y la deadema EEG")
+            self.ui.teErrores.setText("The connection with the server and the deadema EEG have been validated")
 
 
 

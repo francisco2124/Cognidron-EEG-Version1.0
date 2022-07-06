@@ -4,20 +4,14 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore
-
 from vistas.agregarTerapeuta import Ui_DialogAgregarTerapeuta
 from modelos.ModeloTerapeuta import Modelo_Terapeuta
 from PyQt5.QtGui import QIntValidator
-
-
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp
 import re
 
-
-
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vista
-
 
 class Controlador_AgrgarTerapeutas(QtWidgets.QMainWindow):
 

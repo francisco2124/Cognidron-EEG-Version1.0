@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Terapeuta Selecionado</string>
+   <string>Paciente seleccionado </string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">

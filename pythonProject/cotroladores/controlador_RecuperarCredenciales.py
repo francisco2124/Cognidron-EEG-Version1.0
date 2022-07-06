@@ -52,7 +52,7 @@ class Controlador_RecuperarCredenciales(QtWidgets.QMainWindow):
                 mensaje["From"]="cognidroneeg@gmail.com"
                 mensaje["To"] = correo
                 mensaje["Subject"] = "CogniDron-EEG. Recuperación de credenciales"
-                body = "Hola soy el asistente del sistema CogniDron-EEG. Tu usuario es: -"+str(datosF[0])+"- y tu contraseña es: -"+\
+                body = "Hola soy el asistente del sistema CogniDron-EEG. Tu usuario es: -"+str(datosF[0])+"- y tu contraseña es: -"+ \
                        str(datosF[1])+"- .Muchas gracias por preferir el sistema CogniDron-EEG :)"
                 mensaje.attach(MIMEText(body, 'plain'))
                 smtp = SMTP("smtp.gmail.com")

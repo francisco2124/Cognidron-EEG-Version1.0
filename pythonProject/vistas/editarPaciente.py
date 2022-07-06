@@ -324,7 +324,7 @@ class Ui_EditarPaciente(object):
 
     def retranslateUi(self, EditarPaciente):
         _translate = QtCore.QCoreApplication.translate
-        EditarPaciente.setWindowTitle(_translate("EditarPaciente", "Editar Terapeuta"))
+        EditarPaciente.setWindowTitle(_translate("EditarPaciente", "Editar paciente"))
         self.label_16.setText(_translate("EditarPaciente", "Correo electrónico"))
         self.cbEstado.setItemText(0, _translate("EditarPaciente", "Jalisco"))
         self.label_10.setText(_translate("EditarPaciente", "Localidad"))

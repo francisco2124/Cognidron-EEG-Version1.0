@@ -9,11 +9,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
 
-
 class Ui_Consultar_Terapeuta(object):
     def setupUi(self, Consultar_Terapeuta):
         Consultar_Terapeuta.setObjectName("Consultar_Terapeuta")
-        Consultar_Terapeuta.resize(679, 683)
+        Consultar_Terapeuta.resize(675, 683)
         Consultar_Terapeuta.setMinimumSize(QtCore.QSize(674, 683))
         self.btnEliminar = QtWidgets.QPushButton(Consultar_Terapeuta)
         self.btnEliminar.setGeometry(QtCore.QRect(480, 180, 71, 28))
@@ -151,12 +150,12 @@ class Ui_Consultar_Terapeuta(object):
 
     def retranslateUi(self, Consultar_Terapeuta):
         _translate = QtCore.QCoreApplication.translate
-        Consultar_Terapeuta.setWindowTitle(_translate("Consultar_Terapeuta", "Consulatar Terapeuta"))
+        Consultar_Terapeuta.setWindowTitle(_translate("Consultar_Terapeuta", "Gestionar terapeuta"))
         self.btnEliminar.setText(_translate("Consultar_Terapeuta", "Eliminar"))
         self.btnConsultar.setText(_translate("Consultar_Terapeuta", "Consultar"))
         self.btnModificar.setText(_translate("Consultar_Terapeuta", "Modificar"))
         self.label_2.setText(_translate("Consultar_Terapeuta", "Buscar terapeuta: "))
-        self.label_3.setText(_translate("Consultar_Terapeuta", "Reportes generales de terapeutas"))
+        self.label_3.setText(_translate("Consultar_Terapeuta", "Gestionar terapeutas"))
         self.cbfiltrar.setItemText(0, _translate("Consultar_Terapeuta", "Paciente"))
         self.cbfiltrar.setItemText(1, _translate("Consultar_Terapeuta", "Terapeuta"))
         item = self.tableView_2.horizontalHeaderItem(0)

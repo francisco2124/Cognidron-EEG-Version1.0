@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import vistas.images
 
+
 class Ui_TerapiaNeurofeedback(object):
     def setupUi(self, TerapiaNeurofeedback):
         TerapiaNeurofeedback.setObjectName("TerapiaNeurofeedback")

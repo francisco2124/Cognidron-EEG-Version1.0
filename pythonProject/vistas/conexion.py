@@ -351,7 +351,6 @@ class Ui_Dialog(object):
         self.label_7.setText(_translate("Dialog", "Da clic para conocer más de los errores..."))
         self.commandLinkButton.setText(_translate("Dialog", "Abrir página de errores"))
 
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

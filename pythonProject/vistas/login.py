@@ -156,6 +156,7 @@ class Ui_Dialog(object):
         self.label_2.setText(_translate("Dialog", "CogniDron-EEG"))
         self.label.setText(_translate("Dialog", "Ingresa tus credenciales"))
         self.btnIngresar.setText(_translate("Dialog", "Ingresar"))
+        self.btnIngresar.setShortcut(_translate("Dialog", "Return"))
         self.label_8.setToolTip(_translate("Dialog", "Ingresa solo letras y numeros sin espacios"))
         self.label_7.setToolTip(_translate("Dialog", "Ingresa solo letras y numeros sin espacios"))
         self.label_4.setText(_translate("Dialog", "Nombre de usuario"))

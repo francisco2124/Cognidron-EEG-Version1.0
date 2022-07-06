@@ -12,7 +12,7 @@ import vistas.images
 class Ui_Dialog_EditarTutor(object):
     def setupUi(self, Dialog_EditarTutor):
         Dialog_EditarTutor.setObjectName("Dialog_EditarTutor")
-        Dialog_EditarTutor.resize(515, 629)
+        Dialog_EditarTutor.resize(522, 629)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/images/terapeuta.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog_EditarTutor.setWindowIcon(icon)
@@ -309,7 +309,7 @@ class Ui_Dialog_EditarTutor(object):
 
     def retranslateUi(self, Dialog_EditarTutor):
         _translate = QtCore.QCoreApplication.translate
-        Dialog_EditarTutor.setWindowTitle(_translate("Dialog_EditarTutor", "Editar Terapeuta"))
+        Dialog_EditarTutor.setWindowTitle(_translate("Dialog_EditarTutor", "Editar tutor"))
         self.label_16.setText(_translate("Dialog_EditarTutor", "Correo electrónico"))
         self.cbEstado.setItemText(0, _translate("Dialog_EditarTutor", "Jalisco"))
         self.label_10.setText(_translate("Dialog_EditarTutor", "Localidad"))
@@ -331,7 +331,6 @@ class Ui_Dialog_EditarTutor(object):
         self.rbFemenino.setText(_translate("Dialog_EditarTutor", "Femenino"))
         self.rbMasculino.setText(_translate("Dialog_EditarTutor", "Masculino"))
         self.label_8.setText(_translate("Dialog_EditarTutor", "Modificar datos del tutor"))
-
 
 if __name__ == "__main__":
     import sys

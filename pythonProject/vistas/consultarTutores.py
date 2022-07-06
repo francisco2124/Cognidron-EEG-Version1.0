@@ -158,12 +158,12 @@ class Ui_Consultar_Tutor(object):
 
     def retranslateUi(self, Consultar_Tutor):
         _translate = QtCore.QCoreApplication.translate
-        Consultar_Tutor.setWindowTitle(_translate("Consultar_Tutor", "Consulatar Terapeuta"))
+        Consultar_Tutor.setWindowTitle(_translate("Consultar_Tutor", "Gestionar tutores"))
         self.btnEliminar.setText(_translate("Consultar_Tutor", "Eliminar"))
         self.btnConsultar.setText(_translate("Consultar_Tutor", "Consultar"))
         self.btnModificar.setText(_translate("Consultar_Tutor", "Modificar"))
         self.label_2.setText(_translate("Consultar_Tutor", "Buscar Tutores: "))
-        self.label_3.setText(_translate("Consultar_Tutor", "Reportes generales de tutores"))
+        self.label_3.setText(_translate("Consultar_Tutor", "Gestionar tutores"))
         self.cbfiltrar.setItemText(0, _translate("Consultar_Tutor", "Nombre"))
         item = self.tableView_2.horizontalHeaderItem(0)
         item.setText(_translate("Consultar_Tutor", "Id_Tutor"))

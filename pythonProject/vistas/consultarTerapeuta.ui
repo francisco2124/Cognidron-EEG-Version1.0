@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>679</width>
+    <width>675</width>
     <height>683</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Consulatar Terapeuta</string>
+   <string>Gestionar terapeuta</string>
   </property>
   <widget class="QPushButton" name="btnEliminar">
    <property name="geometry">
@@ -117,7 +117,7 @@
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Reportes generales de terapeutas</string>
+     <string>Gestionar terapeutas</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">

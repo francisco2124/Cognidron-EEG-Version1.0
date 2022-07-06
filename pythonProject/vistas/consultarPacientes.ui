@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Consulatar Terapeuta</string>
+   <string>Gestionar pacientes</string>
   </property>
   <widget class="QPushButton" name="btnEliminar">
    <property name="geometry">
@@ -123,7 +123,7 @@
 font: 75 19pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Reportes generales de pacientes</string>
+     <string>Gestionar pacientes</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">

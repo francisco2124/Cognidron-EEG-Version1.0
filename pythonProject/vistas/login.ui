@@ -138,6 +138,9 @@
     <property name="text">
      <string>Ingresar</string>
     </property>
+    <property name="shortcut">
+     <string>Return</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_8">
     <property name="geometry">

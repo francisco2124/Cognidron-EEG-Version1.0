@@ -327,11 +327,11 @@ class Ui_MainWindow(object):
         self.actionLevel_4.setText(_translate("MainWindow", "Level 4"))
         self.actionLevel_5.setText(_translate("MainWindow", "Level 5"))
         self.menuCrear_Paciente.setText(_translate("MainWindow", "Crear Paciente"))
-        self.actionConsultar_Paciente.setText(_translate("MainWindow", "Consultar Paciente"))
+        self.actionConsultar_Paciente.setText(_translate("MainWindow", "Gestionar Paciente"))
         self.actionCrear_Tutor_2.setText(_translate("MainWindow", "Crear Tutor"))
-        self.actionConsultar_Tutor.setText(_translate("MainWindow", "Consultar Tutor"))
+        self.actionConsultar_Tutor.setText(_translate("MainWindow", "Gestionar Tutor"))
         self.actionCrear_Terapeutta.setText(_translate("MainWindow", "Crear Terapeutta"))
-        self.actionConsultar_Terapeuta.setText(_translate("MainWindow", "Consultar Terapeuta"))
+        self.actionConsultar_Terapeuta.setText(_translate("MainWindow", "Gestionar Terapeuta"))
         self.actionIconAbrirReporte.setText(_translate("MainWindow", "IconAbrirReporte"))
         self.actionIconAbrirReporte.setToolTip(_translate("MainWindow", "Abrir Reporte"))
         self.actionIconAbrirReporte.setShortcut(_translate("MainWindow", "Ctrl+R"))
@@ -389,6 +389,7 @@ class Ui_MainWindow(object):
         self.actionEjerciciosControlMnetal.setToolTip(_translate("MainWindow", "Abrir ejercicios de tipo control mental"))
         self.actionEjerciciosControlMnetal.setShortcut(_translate("MainWindow", "Ctrl+M"))
         self.actionRecuperar_Teraputas_Eliminados.setText(_translate("MainWindow", "Recuperar Teraputas Eliminados"))
+
 
 if __name__ == "__main__":
     import sys

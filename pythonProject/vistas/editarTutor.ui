@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>515</width>
+    <width>522</width>
     <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Editar Terapeuta</string>
+   <string>Editar tutor</string>
   </property>
   <property name="windowIcon">
    <iconset>

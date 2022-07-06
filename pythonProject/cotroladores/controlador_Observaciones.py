@@ -1,18 +1,12 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-
 from vistas.capturarObservaciones import Ui_capturarObservaciones
 from PyQt5.QtGui import QIntValidator
-
 #Modelos
 from modelos.modeloEjercicios import Modelo_Ejercicios
 from modelos.modelorReportes import Modelo_Reportes
 
-
-
 #En esta clase se inserta codigo que permita a la vista realizar distintos comportamientos sin modificar el archivo principal de la vista
-
-
 
 class Controlador_Observaciones(QtWidgets.QMainWindow):
 
@@ -82,7 +76,6 @@ class Controlador_Observaciones(QtWidgets.QMainWindow):
             Alerta = QMessageBox.information(self, 'Alerta', "Ingresa las observaciones de la terapia para continuar", QMessageBox.Ok)
 
         else:
-            #try:
 
             datos = self.modeloEjericicio.recuperarIdEjercicio(str(self.ejercicio))
             idEjercicio = datos[0]
@@ -94,7 +87,4 @@ class Controlador_Observaciones(QtWidgets.QMainWindow):
                                                     self.menorTiempo, self.numVecesUmbral, self.primerUmbral, self.porcentajeTiempo,
                                                      self.paciente, self.idTerapeuta,idEjercicio[0])
             Alerta = QMessageBox.information(self, 'Conformacion', "Se registraron correctamente los datos", QMessageBox.Ok)
-
-            #except:
-             #   Alerta = QMessageBox.information(self, 'Alerta', "Ocurrio un problema al registrar los datos", QMessageBox.Ok)
 

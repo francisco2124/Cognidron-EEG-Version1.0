@@ -2,8 +2,6 @@
 from plistlib import Data
 
 import socket, time
-
-
 import command as command
 
 class DronTello():
@@ -16,32 +14,27 @@ class DronTello():
         self.dron_port = dron_port
         self.host_ip = host_ip
         self.host_port = host_port
-
+        self.tello_address = (self.dron_ip, self.dron_port)
         self.locaddr = (self.host_ip, self.host_port)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.tello_address = (self.dron_ip, self.dron_port)
         self.sock.bind(self.locaddr)
         self.sock.sendto('command'.encode(encoding="utf-8"), self.tello_address)
         time.sleep(5)
 
-
     def despegar(self):
-        # Takeoff
+        # Despegar dron
         self.sock.sendto('takeoff'.encode(encoding="utf-8"), self.tello_address)
         print("Despergar Dron")
-        #time.sleep(5)
 
     def aterrizar(self):
-        # Land
+        # Aterrizar dron
         self.sock.sendto('land'.encode(encoding="utf-8"), self.tello_address)
         print("Aterrizar Dron")
-        #time.sleep(5)
 
     def adelante(self):
-
+        # Mover dron hacia adelante
         self.sock.sendto('forward 20'.encode(encoding="utf-8"), self.tello_address)
         print("Adelante Dron")
-        #time.sleep(5)
 
     def atras(self):
 

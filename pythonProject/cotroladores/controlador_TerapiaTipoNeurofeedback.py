@@ -228,11 +228,12 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
         self.ui.spinBoxUmbral.setValue(30)
 
         try:
-            self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
+            self.hiloEmotiv = HiloSingsEotiv()
+            #self.hiloEmotiv = pruebaconexionEmotiv(self.electrodosSelecionados,self.ui.cbBanda.currentText())
             self.activarBarraNeurofeedback()
         except:
             lerta = QMessageBox.information(self, 'Alerta', "Es necesario contar con conexion a internet para realizar una terapia", QMessageBox.Ok)
-        #self.hiloEmotiv = HiloSingsEotiv()
+
 
 
 
@@ -265,6 +266,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                         print("Ocurrio un error con el sonido del punto")
 
                     try:
+                        print("Intente conectar con el dron................................")
                         #-------IMPORTANTE----- Valores de conexion del dron
                         self.dron = Dron('192.168.10.1', 8889, "tello")
                         # Instancia del dron (Ip del dron, puerto del dron, valor del dicionario que se encuentra en la clase dron)
@@ -575,9 +577,9 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
                                     "EjerCirculo6.png",  "EjerCirculo7.png", "EjerCirculo8.png"]
             self.contadorListaEjercicioGirar = 0
             self.proximoMovimiento1 = "Girar 45° grados a la derecha"
-        elif ejercicio == "Ejercicio Complejo 1":
-            print("Entre en Ejercicio Complejo 1")
-            self.ui.lbProximoMoviemntoDron.setText("El dron despegara")
+        elif ejercicio == "Rutina 1":
+            print("Entre a Rutina 1")
+            self.ui.lbProximoMoviemntoDron.setText("El dron despegará")
             self.posY = 360
             self.posX = 340
             self.ancho = 251
@@ -1097,7 +1099,7 @@ class Controlador_TerapiaNeurofeeldback(QtWidgets.QMainWindow):
 
     def movimientoDron(self, potencia):
 
-        if self.ui.cbEjercicio.currentText() == "Ejercicio Complejo 1":
+        if self.ui.cbEjercicio.currentText() == "Rutina 1":
             self.umbral = int(self.ui.spinBoxUmbral.value())
 
             potencia = (potencia[self.numeroElectrodosSeleccionados - 1] * 100) / self.escalaUmbral

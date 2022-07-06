@@ -253,7 +253,7 @@ class Ui_ConsultarTutorSelec(object):
 
     def retranslateUi(self, ConsultarTutorSelec):
         _translate = QtCore.QCoreApplication.translate
-        ConsultarTutorSelec.setWindowTitle(_translate("ConsultarTutorSelec", "Terapeuta Selecionado"))
+        ConsultarTutorSelec.setWindowTitle(_translate("ConsultarTutorSelec", "Tutor Selecionado"))
         self.label.setText(_translate("ConsultarTutorSelec", "Id del tutor:  "))
         self.lb1.setText(_translate("ConsultarTutorSelec", "Nombre:"))
         self.label_4.setText(_translate("ConsultarTutorSelec", "Fecha de nacimiento:"))

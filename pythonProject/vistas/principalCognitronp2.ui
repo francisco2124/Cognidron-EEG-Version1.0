@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1833</width>
-    <height>978</height>
+    <width>1793</width>
+    <height>868</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>CogniDron-EEG v 1.0</string>
+   <string>Main</string>
   </property>
   <property name="windowIcon">
    <iconset resource="images/image.qrc">
@@ -79,13 +79,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1833</width>
+     <width>1793</width>
      <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuVista">
     <property name="title">
-     <string>Vista</string>
+     <string>Views</string>
     </property>
     <addaction name="mni_cascada"/>
     <addaction name="mni_cuadricula"/>
@@ -93,7 +93,7 @@
    </widget>
    <widget class="QMenu" name="menuAchivo">
     <property name="title">
-     <string>Personas</string>
+     <string>Persons</string>
     </property>
     <widget class="QMenu" name="opc_Paciente">
      <property name="title">
@@ -139,7 +139,7 @@
    </widget>
    <widget class="QMenu" name="menuEjercicios">
     <property name="title">
-     <string>Ejercicios</string>
+     <string>Exercices</string>
     </property>
     <widget class="QMenu" name="menuNeurofeedback">
      <property name="title">
@@ -166,12 +166,12 @@
    </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
-     <string>Ayuda</string>
+     <string>Help</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuCoexion">
     <property name="title">
-     <string>Conexión</string>
+     <string>Connection</string>
     </property>
     <widget class="QMenu" name="menuConectar_Robot_Fisico">
      <property name="title">
@@ -331,7 +331,7 @@
      <normaloff>:/newPrefix/lupa.png</normaloff>:/newPrefix/lupa.png</iconset>
    </property>
    <property name="text">
-    <string>Gestionar Paciente</string>
+    <string>Consultar Paciente</string>
    </property>
   </action>
   <action name="actionCrear_Tutor_2">
@@ -349,7 +349,7 @@
      <normaloff>:/newPrefix/lupa.png</normaloff>:/newPrefix/lupa.png</iconset>
    </property>
    <property name="text">
-    <string>Gestionar Tutor</string>
+    <string>Consultar Tutor</string>
    </property>
   </action>
   <action name="actionCrear_Terapeutta">
@@ -367,7 +367,7 @@
      <normaloff>:/newPrefix/lupa.png</normaloff>:/newPrefix/lupa.png</iconset>
    </property>
    <property name="text">
-    <string>Gestionar Terapeuta</string>
+    <string>Consultar Terapeuta</string>
    </property>
   </action>
   <action name="actionIconAbrirReporte">

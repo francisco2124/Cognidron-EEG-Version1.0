@@ -339,7 +339,6 @@ class conexionEmotiv(QThread):
         sumas =0
         self.cont = 0
         while self.status == True:
-
             try: #print("-----------------------------Suscribirse a neurofeedback...: ")
                 msg = """{
                                     "id": 1,
@@ -355,12 +354,9 @@ class conexionEmotiv(QThread):
             except:
                 print("Fallo la conexion")
 
-
-
             ws.send(msg)
             ws.recv()
             result = ws.recv()
-            #print(str(result))
 
             try:
                 #return potencialElectrico
@@ -380,7 +376,7 @@ class conexionEmotiv(QThread):
                     thetaf3 = bucle["pow"][10]
                     thetaf4 = bucle["pow"][55]
                     betaAltaF3 = bucle["pow"][13]
-                    betaAltaF4 = bucle["pow"][58]
+                    betaAl1taF4 = bucle["pow"][58]
                     thetabetaAlta = ( ((thetaf3+thetaf4)/2) / ((betaAltaF3+betaAltaF4)/2) )
                     sumas = sumas + thetabetaAlta
                     listaPotencias.append(thetabetaAlta)
@@ -461,7 +457,7 @@ class conexionEmotiv(QThread):
 
                 print("No se obtuvo lectura...")
 
-            #Se obtiene el promedio cuando se hace 8 lecturas. Las 8 lecturas son por aegundo
+            #Se calcula el promedio de 8 lecturas que son las que se recuperan por segundo
             if self.cont == 8:
                 listaPotenciasFinal = []
                 print("lista potencias es"+str(listaPotencias))

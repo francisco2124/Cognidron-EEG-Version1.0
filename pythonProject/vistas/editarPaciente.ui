@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Editar Terapeuta</string>
+   <string>Editar paciente</string>
   </property>
   <property name="windowIcon">
    <iconset>
